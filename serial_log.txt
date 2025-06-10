@@ -1,0 +1,62 @@
+top
+Computing times...
+[H[2J[H16 processes; 121 threads;[K
+CPU states: 12.9% user, 0.1% kernel[K
+CPU  0 Idle: 88.5% [K
+CPU  1 Idle: 85.5% [K
+Memory: 1024M total, 34M avail, page size 4K[K
+[K
+PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND             [K
+15    29  16 Rply      0:16:01   3.42% puc_app.out         [K
+15    39  16 Rply      0:07:31   1.53% puc_app.out         [K
+15    21   5 Run       0:06:06   1.19% puc_app.out         [K
+12    22  16 CdV       0:01:45   0.96% screen              [K
+15     6  11 NSlp      0:04:08   0.90% puc_app.out         [K
+12    12  16 CdV       0:02:40   0.56% screen              [K
+10     4  11 Rcv       0:01:05   0.43% ipcmgr              [K
+8    11  11 Rcv       0:01:04   0.43% tiipc-mgr           [K
+8     3  21 Rcv       0:02:07   0.43% tiipc-mgr           [K
+10     3  10 NSlp      0:01:41   0.38% ipcmgr              [K
+[K
+Min        Max       Average [K
+CPU 0 idle:   88%        88%        88% [K
+CPU 1 idle:   85%        85%        85% [K
+Mem Avail:    34MB       34MB       34MB  [K
+Processes:    16         16         16    [K
+Threads:     121        121        121    [K
+[K
+[H16 processes; 121 threads;[K
+CPU states: 13.6% user, 0.0% kernel[K
+CPU  0 Idle: 88.1% [K
+CPU  1 Idle: 84.5% [K
+Memory: 1024M total, 34M avail, page size 4K[K
+[K
+PID   TID PRI STATE    HH:MM:SS    CPU  COMMAND             [K
+15    29  16 CdV       0:16:01   3.51% puc_app.out         [K
+15    39  16 CdV       0:07:31   1.62% puc_app.out         [K
+15    21   5 NSlp      0:06:06   1.33% puc_app.out         [K
+12    14  16 Rcv       0:01:36   0.91% screen              [K
+15     6  11 NSlp      0:04:08   0.90% puc_app.out         [K
+12    12  16 CdV       0:02:40   0.56% screen              [K
+10     4  11 Rcv       0:01:05   0.46% ipcmgr              [K
+8     3  21 Rcv       0:02:07   0.45% tiipc-mgr           [K
+8    10  16 Rcv       0:01:07   0.40% tiipc-mgr           [K
+10     3  10 NSlp      0:01:41   0.36% ipcmgr              [K
+[K
+Min        Max       Average [K
+CPU 0 idle:   88%        88%        88% [K
+CPU 1 idle:   84%        85%        84% [K
+Mem Avail:    34MB       34MB       34MB  [K
+Processes:    16         16         16    [K
+Threads:     121        121        121    [K
+[K
+[H[2JFCA_DT@QNX:/#
+FCA_DT@QNX:/#
+FCA_DT@QNX:/#
+FCA_DT@QNX:/#
+FCA_DT@QNX:/#
+ls
+Variants     etc          proc         tmp
+bin          fs           sbin         usr
+dev          lib          ti_fs        var
+FCA_DT@QNX:/#

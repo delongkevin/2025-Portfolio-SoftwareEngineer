@@ -1,0 +1,275 @@
+@Library('L2H5250_Shared_Lib@v1.0.6') _
+def commitMsgExtract = 'UNKNOWN'
+def gitTag = ''
+def odisflash = ''
+def buildJob = ''
+def output = ''
+to_users = 'Saibhargav.Thottempudi@magna.com'
+
+pipeline {
+    parameters {
+        string(name: 'ReleaseBuild',
+            defaultValue: 'master',
+            description: 'The name of the release build.'
+        )
+        string(name: 'upstreamJobName', 
+            defaultValue: 'L2H5250/job/L2H5250_BS_branches/job/L2H5250_Software/job', 
+            description: 'The name of the upstream job.'
+        )
+        choice(name: 'buildMachine',
+            choices: ['L2H5250_SWTest'],
+            description: 'What build machine/label should be used?'
+        )
+        string(name: 'BuildNumber',
+            defaultValue: '251',
+            description: 'Only required for manual Trigger!'
+        )
+        string(name: 'flashingTimeout',
+            defaultValue: '3000',
+            description: 'Flashing process timeout? (in seconds)'
+        )
+        string(name: 'BVTTimeout',
+            defaultValue: '3500',
+            description: 'Testing process timeout? (in seconds)'
+        )
+        booleanParam(name: 'flashTarget',
+            defaultValue: true,
+            description: 'Flash the ECU with Bootloader/Application binaries?'
+        )
+        booleanParam(name: 'enableBVT',
+            defaultValue: true,
+            description: 'Execute Build Verification Testing?'
+        )
+        booleanParam(name: 'enableEBT',
+            defaultValue: true,
+            description: 'Execute ECU Bring Up Testing?'
+        )
+        booleanParam(name: 'enable_Feature_Tests',
+            defaultValue: false,
+            description: 'Execute Feature Testing?'
+        )
+        booleanParam(name: 'Smoke',
+            defaultValue: false,
+            description: 'Execute Smoke Testing?'
+        )
+        booleanParam(name: 'PublishHtmlReport',
+            defaultValue: false,
+            description: 'Publish HTML Report?'
+        )
+        string(name: 'SoftwareTestReport',
+            defaultValue: 'FD13',
+            description: 'Input keyword for report'
+        )
+        string(name: 'Report_File_Name',
+            defaultValue: 'Report_Sanity.html',
+            description: 'Input keyword for report file name. Example, Report_Robustness or Report_QuickSanity.'
+        )
+        string(name: 'Mail_To',
+            defaultValue: 'gopinath.ramanathan@magna.com meenakshi.vishwanathan@magna.com shashidhar.kasoju@magna.com shruti.karbhari@magna.com mohan.shanthigrama@magna.com Shivprasad.Naik@magna.com sayma.tamboli@magna.com Saibhargav.Thottempudi@magna.com kevin.delong@magna.com sravan.reddy@magna.com devaraju.dg@partner.magna.com atul.singh@magna.com prateek.gupta@magna.com Azharul.Haque@magna.com Swapnil.Kirve@magna.com madhavi.harish@magna.com lakshmi.kasala@magna.com Supriya.Kedar@magna.com',
+            description: 'Email notification send to'
+        )
+    }
+    environment {
+        PYTHONPATH = 'C:/prjtools/automationBookshelf/2022_Bookshelf_1005'
+        FLASHING_EXE = "C:/prjtools/OdxPdxFlasher/v1.1.0/OdxPdxFlasher.exe"
+        PAGEPYTHONPATH = 'C:/prjtools/python/ver_3.7.6'
+        GIT_PYTHON_GIT_EXECUTABLE = 'C:/prjtools/git/ver_1.3/bin/git.exe'
+        PY_EXE = 'C:/prjtools/python/ver_3.7.6_p7/python.exe'
+        CANOE_CONTROL = '_bookshelf/autotest/CANoe/CANoeControl.py'
+        CANOE_TEST_CONTROL = '_bookshelf/autotest/CANoe/CANoeTestControl.py'
+        PATH = "C:/prjtools/python/ver_3.7.6_p7;$PATH"
+        CURL_EXE = 'C:/prjtools/git/ver_1.3/mingw64/bin/curl.exe'
+        ZIP_EXE = 'C:/prjtools/7zip/ver_1.0/App/7-Zip64/7z.exe'
+        CONFIG_READER = 'Scripts\\ConfigurationManager.py'
+        FULL_PDX_NAME = 'FL_85E907217B_XXXX_DEV_V001_E.pdx'
+        OUTPUT_PATH = "${env.WORKSPACE}\\build\\TriCore_Debug"
+        SED_EXE = 'C:/prjtools/git/ver_1.3/usr/bin/sed.exe'
+        DIR_CYGWIN = 'C:\\prjtools\\cygwin\\ver_2.8.2\\bin'
+        JENKINS_URL = "https://eahubjenkins02.magna.global:8443/view/L2H5250/job"
+    }
+    agent {
+        label params.buildMachine
+    }
+   // triggers {
+	//cron(env.BRANCH_NAME == 'develop' ? '00 19 * * *' : '')           
+   // }
+    options {
+        timeout(time: 3, unit: 'HOURS')
+	      buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '5'))
+    }
+    stages {
+        stage('checkBuildEnvironment') {
+            steps {
+                script {
+                    setEnvironment.executecheckBuildEnv(configPackageJsonPath :"config/Packager/config_package.json")
+                }
+            }
+        }
+        stage('flashTarget') {
+            when {
+                expression { params.flashTarget == true };
+            }
+            steps {
+                echo 'Flash Target stage triggered'
+		        sleep 60
+                script {
+                    dir("C:\\JS\\ws\\develop\\sw\\Release\\") {
+			//bat ("del /f /q /s ${env.WORKSPACE}\\BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\images\\*")
+                        bat ("C:/prjtools/python/ver_3.7.6_p7/python.exe C:/prjtools/automationBookshelf/2022_Bookshelf_1005/_bookshelf/autotest/CANoe/CANoeControl.py --openCANoeSimulation ${env.WORKSPACE}\\BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\ME_L2H50250_HD_CVADAS_DSBus.cfg")
+                        bat ("C:/prjtools/python/ver_3.7.6_p7/python.exe C:/prjtools/automationBookshelf/2022_Bookshelf_1005/_bookshelf/autotest/CANoe/CANoeControl.py --startSimulation")                
+						scriptFlashPath = "C:\\JS\\ws\\develop\\sw\\Release\\Flashing_Lauterbach_boot_app.py"
+                        flash_output = bat (script: "${scriptFlashPath}", returnStdout: true)
+                        bat ("C:/prjtools/python/ver_3.7.6_p7/python.exe C:/prjtools/automationBookshelf/2022_Bookshelf_1005/_bookshelf/autotest/CANoe/CANoeControl.py --closeCANoe")
+						}
+                }
+            }
+        }
+        stage('executeBVT') {
+            when {
+                expression { params.enableBVT == true };
+            }
+            steps {
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\ME_L2H50250_HD_CVADAS_DSBus.cfg',
+                        CANoeTestUnitNames: 'Sanity', timeouts: """${params.BVTTimeout}""")
+			//bat ('taskkill /IM "CANoe64.exe" /F')
+                    }
+                }
+            }
+        }
+        stage('QuickSanity') {
+            when {
+                expression { params.enableEBT == true };
+            }
+            steps {
+			sleep 60
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\ME_L2H50250_HD_CVADAS_DSBus.cfg',
+                        CANoeTestUnitNames: 'QuickSanity', timeouts: """${params.flashingTimeout}""")
+                    }
+                }
+            }
+        }
+
+        stage('Robustness') {
+            when {
+                expression { params.enable_Feature_Tests == true };
+            }
+            steps {
+			sleep 60
+                script {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\ME_L2H50250_HD_CVADAS_DSBus.cfg',
+                        CANoeTestUnitNames: 'Robustness', timeouts: """${params.BVTTimeout}""")
+							}
+						}
+				}
+		}
+		
+		
+		
+		stage('Parse Data') {
+			steps {
+				script {				
+					// Assign paths to variables
+					pythonPath = "C:/prjtools/python/ver_3.7.6_p7/python.exe"
+					scriptPath = "${env.WORKSPACE}\\config\\Jenkins\\arg_parser.py"
+					htmlFile = "${env.WORKSPACE}\\BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS\\${params.Report_File_Name}"
+					args = "${htmlFile} ${params.SoftwareTestReport}"
+
+					output = bat(script: "${pythonPath} ${scriptPath} ${args}", returnStdout: true)
+				}
+			}
+		}
+
+	}
+post {
+        always {
+        print """
+        =========================================================================
+        POST: Archive Artifacts
+        =========================================================================
+        """
+	//bat ("taskkill /IM t32marm.exe /F")
+	//bat ('taskkill /IM "CANoe64.exe" /F')
+	bat ("xcopy C:\\JS\\ws\\develop\\sw\\Release\\FlashLog.txt ${env.WORKSPACE}\\BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS")
+	archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/HD_CVADAS_RBS/FlashLog.txt', caseSensitive: false
+	//bat ("del /f /q /s C:\\JS\\ws\\develop\\sw\\Release\\FlashLog.txt")
+	publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\03_VariantDependent\\Customer\\HD_CVADAS_RBS', reportFiles: 'index.html', reportName: 'L2H5250 CVADAS SWQT Report', reportTitles: 'SWQT results'])
+    archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/HD_CVADAS_RBS/*.html'
+	archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/HD_CVADAS_RBS/images/*.png'
+    //archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/HD_CVADAS_RBS/*.xml'
+    archiveArtifacts allowEmptyArchive: true, artifacts: '*.txt'
+	bat '''
+           %DIR_CYGWIN%\\find.exe . -name "*.xml" -wholename "Report_*" -exec %PY_EXE% Scripts\\report_parser.py {} ;
+        '''
+        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/03_VariantDependent/*/HD_CVADAS_RBS/*_jenkins.xml"
+	script{
+            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*" ,CanoeTestReportsPath: "BVTRBS/03_VariantDependent/Customer/HD_CVADAS_RBS" )
+        }
+	print """
+	=========================================================================
+	POST: CLEANING WORKSPACE
+	=========================================================================
+	"""
+        }
+
+	failure {
+        print """
+        =========================================================================
+        POST: FAILED
+        =========================================================================
+        """
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'vector_write_window.txt'
+		emailext mimeType: 'text/html',attachmentsPattern: "**/*.html", body: """Dear All,<br><br>
+        <p>Please find attached Jenkins execution (BVT/EBT) L2H5250 CVADAS test report for build number [${BUILD_NUMBER}]
+        </p><br>Test_Job : <a href=$JOB_NAME>"Job Report"</a> </br>
+		<p>${flash_output}</p>
+		<br><b>Software Test Report: </b> <br />
+		${output}
+        </p><br><b>Test_Execution_Report_Path :</b><a href=$BUILD_URL>"Build Report"</a>
+        <br><br>
+        <p> For any questions, comments or concerns with these reports. Please send email out to Kevin.Delong@magna.com </p>
+        <p>
+        </p><br>
+
+        Regards,
+        <br>Jenkins """, subject: """L2H5250 CVADAS SWQT :Test Report on  ${BRANCH_NAME} branch, Build number ${BUILD_NUMBER}""", to: """${params.Mail_To}""", replyTo: """${to_users}"""
+	print """
+	=========================================================================
+	POST: CLEANING WORKSPACE
+	=========================================================================
+	"""
+        }
+
+        success {
+        print """
+        =========================================================================
+        POST: SUCCESS
+        =========================================================================
+        """
+		emailext mimeType: 'text/html',attachmentsPattern: "**/*.html", body: """Dear All,<br><br>
+        <p>Please find attached Jenkins execution (BVT/EBT) test report for build number [${BUILD_NUMBER}]
+        </p><br>Test_Job : $JOB_NAME </br>
+		<p>${flash_output}</p>
+		<br><b>Software Test Report: </b> <br />
+		${output}
+        </p><br><b>Test_Job :</b> $JOB_NAME
+        </p><br><b>Test_Execution_Report_Path :</b> <a href=$BUILD_URL>"Build Report"</a>
+        <br><br>
+        <p> For any questions, comments or concerns with these reports. Please send email out to Kevin.Delong@magna.com </p>
+        </p><br>
+
+        Regards,
+        <br>Jenkins """, subject: """L2H5250 CVADAS SWQT :Smoke Test Report for Build number ${BUILD_NUMBER} Result : SUCCESS""", to: """${params.Mail_To}""", replyTo: """${to_users}"""
+	print """
+	=========================================================================
+	POST: CLEANING WORKSPACE
+	=========================================================================
+	"""
+        }
+    }
+}
+	

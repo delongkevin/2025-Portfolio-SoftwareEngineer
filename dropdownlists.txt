@@ -1,0 +1,71 @@
+inputs: .txt, .html, word doc
+output: excel, txt 
+
+
+Country Code - separate
+Tyre-Size - no list
+Drive Type Variant -
+ 0 = FWD 
+ 1 = RWD 
+ 2 = Single Speed AWD 
+ 3 = 2 Speed 4WD 
+ 4 = 2 Speed 4WD with ELSD"
+Gear_Box_type - 
+" 0 = Not valid 
+ 1 = MTX 
+ 2 = MTA (Robotized Gearbox) 
+ 3 = DDCT 
+ 4 = ATX 
+ 5 = CVT"
+ pam_tuning_set -
+ " 0 = None 
+  1 = Base 
+  2 = Rebel 
+  3 = TRX 
+  4 = Tungsten 
+  5 = Big Horn/Lone Star 
+  6 = REPB / BEV"
+vehicle line config - separate
+Hybrid_Type - 
+" 0 = Not Applicable 
+ 1 = Battery Electric Vehicle (BEV) 
+ 2 = Hybrid Electric Vehicle 
+ 3 = Plugin Hybrid Electric Vehicle 
+ 4 = 48V Belt Start Generator (BSG) 
+ 5 = 12V Belt Start Generator (BSG) 
+ 6 = Range Electric Paradigm Breaker (REPB)"
+Steering_Ratio_Rack_Pinion_Type -
+" 0 = Absent 
+ 1 = Type 1 
+ 2 = Type 2 
+ 3 = Type 3"
+PAM Configuration - 
+" 0 = Rear 
+ 1 = Front And Rear"
+ WHeelbase - separate
+ Radio_Display_type - separate
+ Autonomy_Level -
+ " 0 = None/Level 1 
+  1 = Level 2 
+  2 = Level 2 Plus"
+Model Year - different
+Body_Types
+
+Trailer_Reverse_Steering_Presence - 0/1
+Trailer_Hitch_Assist_Presence - 0/1
+Dual_Rear_Wheels_Present
+CAN node 27 (ASM/ASCM)
+SRT
+Auxiliary_Trailer_Camera
+Trailer_Surround_Presence
+Can Node 41 (STOM)
+Forward_Facing_Camera
+Trailer_Reverse_Guidance_Presence
+Box_Delete
+Digital_CHMSL_Camera_Present
+CVPAM_Presence
+CAN node 24 (PAM/CVADAS) - 0/1
+CAN node 63 - 0/1
+CAN node 67 - 0/1
+CAN node 95 - 0/1
+Surround VIew Camera - 0/1
