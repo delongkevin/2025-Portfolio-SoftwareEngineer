@@ -1490,7 +1490,7 @@ class App:
             self.log_to_status(f"Error updating DBC message dropdown: {e}")
 
     def open_dbc_send_dialog(self):
-        """Opens a new window to edit and send a selected DBC message."""
+        """Opens a new, scrollable window to edit and send a selected DBC message."""
         if dbc_db is None:
             messagebox.showerror("DBC Error", "No DBC database is loaded.", parent=self.root)
             return
@@ -1506,18 +1506,106 @@ class App:
             messagebox.showerror("Error", f"Could not find message '{selected_message_name}' in the database.", parent=self.root)
             return
 
+        # --- Create the Dialog Window ---
         dialog = tk.Toplevel(self.root)
-        dialog.title(f"Send {message_obj.name}")
+        dialog.title(f"Send: {message_obj.name}")
         dialog.transient(self.root)
         dialog.grab_set()
 
+        # --- Main Frame and Canvas for Scrolling ---
+        main_frame = ttk.Frame(dialog)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+        
+        canvas = tk.Canvas(main_frame)
+        scrollbar = ttk.Scrollbar(main_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+
+        # This binding allows the canvas to know the size of the content
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
+
+        # This creates the window inside the canvas that will hold our widgets
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        
+        # --- Layout the canvas and scrollbar ---
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        
+        # Function to enable mouse wheel scrolling
+        def _on_mouse_wheel(event):
+            # The delta is usually a multiple of 120; divide to get a reasonable scroll speed
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        
+        canvas.bind_all("<MouseWheel>", _on_mouse_wheel)
+
+
+        # --- Create widgets for each signal INSIDE the scrollable frame ---
         signal_entries = {}
         for i, signal in enumerate(message_obj.signals):
-            ttk.Label(dialog, text=f"{signal.name}:").grid(row=i, column=0, padx=5, pady=5, sticky="e")
-            entry = ttk.Entry(dialog, width=25)
+            ttk.Label(scrollable_frame, text=f"{signal.name}:").grid(row=i, column=0, padx=10, pady=5, sticky="e")
+            entry = ttk.Entry(scrollable_frame, width=30)
+            # You can set default values here if you want, e.g., from signal.initial
             entry.insert(0, "0")
-            entry.grid(row=i, column=1, padx=5, pady=5)
+            entry.grid(row=i, column=1, padx=10, pady=5, sticky="w")
             signal_entries[signal.name] = entry
+
+        # --- Send button for the dialog (placed outside the scrollable area) ---
+        def on_dialog_send():
+            if not self.can_bus:
+                messagebox.showerror("CAN Error", "Direct CAN: Bus not connected.", parent=dialog)
+                return
+
+            signal_data_dict = {}
+            try:
+                for sig_name, entry_widget in signal_entries.items():
+                    signal_data_dict[sig_name] = float(entry_widget.get())
+            except ValueError as e:
+                messagebox.showerror("Input Error", f"Invalid number entered for a signal.\n\nError: {e}", parent=dialog)
+                return
+
+            try:
+                data_bytes = message_obj.encode(signal_data_dict)
+                is_fd_frame = (hasattr(message_obj, 'protocol') and message_obj.protocol == 'can-fd')
+                msg_to_send = can.Message(
+                    arbitration_id=message_obj.frame_id,
+                    data=data_bytes,
+                    is_extended_id=message_obj.is_extended_frame,
+                    is_fd=is_fd_frame
+                )
+                self.can_bus.send(msg_to_send)
+                
+                id_hex_display = f"{msg_to_send.arbitration_id:08X}" if msg_to_send.is_extended_id else f"{msg_to_send.arbitration_id:03X}"
+                log_entry = f"[DBC TX] | ID: {id_hex_display} | DL: {msg_to_send.dlc} | Data: {' '.join(f'{b:02X}' for b in msg_to_send.data)}"
+                self.log_to_status(log_entry)
+                self.log_to_status(f"  └ Sent Signals: {signal_data_dict}")
+
+                # Unbind the mousewheel before destroying to prevent errors
+                canvas.unbind_all("<MouseWheel>")
+                dialog.destroy()
+
+            except Exception as e:
+                messagebox.showerror("Send Error", f"Failed to encode or send message:\n\n{e}", parent=dialog)
+                self.log_to_status(f"DBC Send Error: {traceback.format_exc()}")
+
+        # Add the send button at the bottom of the main dialog window
+        button_frame = ttk.Frame(dialog)
+        button_frame.pack(fill=tk.X, padx=10, pady=5)
+        send_button = ttk.Button(button_frame, text="Send Message", command=on_dialog_send, style="Accent.TButton")
+        send_button.pack(expand=True, fill=tk.X, ipady=4)
+
+        # --- Limit the initial size of the popup window ---
+        dialog.update_idletasks() # Allow tkinter to calculate widget sizes
+        max_height = int(self.root.winfo_screenheight() * 0.8) # 80% of screen height
+        current_height = dialog.winfo_height()
+        current_width = dialog.winfo_width()
+        
+        if current_height > max_height:
+             dialog.geometry(f"{current_width}x{max_height}")
 
         def on_dialog_send():
             if not self.can_bus:
