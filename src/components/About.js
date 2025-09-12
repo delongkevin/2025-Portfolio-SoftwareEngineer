@@ -4,7 +4,7 @@ const About = () => (
   <div className="max-w-4xl mx-auto p-8 text-center">
     <img
       src="/headshot.jpg"
-      alt="Kevin Douglas Delong"
+      alt="Kevin Delong"
       className="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-primary"
     />
     <h1 className="text-4xl font-bold mb-4">Kevin Douglas Delong</h1>

@@ -35,7 +35,7 @@ const Resume = () => {
               <ul className="list-disc pl-5 text-gray-600">
                 <li>CANoe 9, Vector hardware/tools for simulation and automation</li>
                 <li>CAN/CAN-FD/Ethernet bus; TCP/UDP; Wireshark, ZenMap for network analysis</li>
-                <li>Fuzz testing (BT, Wi-Fi, Ethernet, CAN-bus); ARP spoofing, John the Ripper for security</li>
+                <li>Fuzz testing (BT, Wi-Fi, Ethernet, CAN-bus)</li>
               </ul>
             </div>
             <div>

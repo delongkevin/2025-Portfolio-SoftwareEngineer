@@ -26,7 +26,7 @@ function App() {
       <div className="min-h-screen">
         <nav className="bg-white dark:bg-gray-800 shadow-lg fixed w-full top-0 z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-            <div className="text-xl font-bold text-gray-900 dark:text-white">Kevin Douglas Delong</div>
+          <div className="text-xl font-bold text-gray-900 dark:text-white">Kevin D. Delong | Software Engineer</div>
             <ul className="flex space-x-4 sm:space-x-8">
               <li>
                 <NavLink
