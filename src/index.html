@@ -1,0 +1,323 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kevin Douglas DeLong - Digital Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- React and ReactDOM CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <!-- Babel CDN for JSX -->
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.5/Babel.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- Resume.js Component -->
+  <script type="text/babel">
+    const Resume = () => {
+      return (
+        <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+            {/* Resume Section */}
+            <section className="mb-12">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Kevin Douglas DeLong</h1>
+              <p className="text-gray-600">
+                Fenton, MI 48430 | (810) 287-7409 | delong.kevin@gmail.com |{' '}
+                <a href="#" className="text-blue-600 hover:underline">[LinkedIn/GitHub Portfolio]</a>
+              </p>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4 border-b-2 border-gray-200 pb-2">
+                Professional Summary
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.
+              </p>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4 border-b-2 border-gray-200 pb-2">
+                Technical Skills
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="text-lg font-medium text-gray-700">Languages & Frameworks</h3>
+                  <ul className="list-disc pl-5 text-gray-600">
+                    <li>C, C++, Python, Visual Basic, Android (mobile app development)</li>
+                    <li>AutoSAR RTE architecture for real-time embedded systems</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-gray-700">Tools & Protocols</h3>
+                  <ul className="list-disc pl-5 text-gray-600">
+                    <li>CANoe 9, Vector hardware/tools for simulation and automation</li>
+                    <li>CAN/CAN-FD/Ethernet bus; TCP/UDP; Wireshark, ZenMap for network analysis</li>
+                    <li>Fuzz testing (BT, Wi-Fi, Ethernet, CAN-bus); ARP spoofing, John the Ripper for security</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-gray-700">Domains & Methodologies</h3>
+                  <ul className="list-disc pl-5 text-gray-600">
+                    <li>ADAS, telematics (OTA updates), camera CVPM systems</li>
+                    <li>CI/CD, automation scripting, Agile/Scrum; ISTQB-certified QA practices</li>
+                    <li>Backend: SOC/IOC defect resolution; Frontend: CANoe UI for feature simulation</li>
+                  </ul>
+                </div>
+              </div>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4 border-b-2 border-gray-200 pb-2">
+                Professional Experience
+              </h2>
+              <div className="mb-6">
+                <h3 className="text-xl font-medium text-gray-800">
+                  Software Testing Lead (Software Engineer Focus)
+                </h3>
+                <p className="text-gray-600 italic">Harman International Industries Inc., Novi, MI | January 2018 – Present</p>
+                <ul className="list-disc pl-5 text-gray-600 mt-2">
+                  <li>Collaborated with development teams to resolve defects in AutoSAR implementations on SOC/IOC, accelerating deployment cycles by 15% through automated scripting in Python and C++.</li>
+                  <li>Led test case optimization and configuration management, ensuring 100% milestone compliance and reducing post-release bugs by 25% via CI/CD integration.</li>
+                  <li>Coordinated multi-team efforts to enhance automation tools, improving testing efficiency for infotainment systems (radio/UI interfaces) across 50+ vehicle ECUs.</li>
+                  <li>Trained 20+ new hires on hardware/software schematics, Vector tools, and AutoSAR real-time environments, fostering a culture of best-in-class engineering practices.</li>
+                  <li>Conducted fuzz testing and security audits (DoS, firewall permissions), identifying vulnerabilities in Ethernet/CAN-bus protocols to bolster system security.</li>
+                </ul>
+              </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-medium text-gray-800">Software Test Engineer</h3>
+                <p className="text-gray-600 italic">Harman International Industries Inc., Novi, MI | January 2013 – January 2018</p>
+                <ul className="list-disc pl-5 text-gray-600 mt-2">
+                  <li>Developed and debugged automation test scripts using Vector tools and CANoe 9, simulating vehicle ECUs and validating customer requirements—cutting manual testing time by 40%.</li>
+                  <li>Designed user interfaces in CANoe for CAN-bus key feature simulation, supporting frontend-backend integration for mobile-connected infotainment apps.</li>
+                  <li>Performed on-site customer ride-and-drives, gathering/analyzing data to refine software models and ensure seamless OTA telematics functionality.</li>
+                  <li>Wrote optimized test cases for manual and automated validation, contributing to zero-defect deliveries in ADAS and camera CVPM systems.</li>
+                </ul>
+              </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-medium text-gray-800">Computer Technician</h3>
+                <p className="text-gray-600 italic">Barrister Global Services Network Inc., Novi, MI | January 2012 – January 2013</p>
+                <ul className="list-disc pl-5 text-gray-600 mt-2">
+                  <li>Configured hardware, networks, and software for 100+ employee workstations, troubleshooting peripherals (printers/scanners) and integrating backend systems for optimal performance.</li>
+                  <li>Partnered with vendors to source components and resolve advanced issues, minimizing downtime by 30% through proactive scripting and diagnostics.</li>
+                </ul>
+              </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-medium text-gray-800">Maintenance Assistant</h3>
+                <p className="text-gray-600 italic">Alexander & Hornung, St. Clair Shores, MI | February 2006 – December 2011</p>
+                <ul className="list-disc pl-5 text-gray-600 mt-2">
+                  <li>Executed preventive maintenance on industrial equipment using tools like MIG/TIG welders, power saws, and soldering irons—applying hands-on problem-solving transferable to hardware-software integration.</li>
+                  <li>Collaborated on major repair projects with cross-functional teams, ensuring compliance with safety protocols and operational efficiency.</li>
+                </ul>
+              </div>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4 border-b-2 border-gray-200 pb-2">
+                Education
+              </h2>
+              <p className="text-gray-600">
+                <span className="font-medium">Master of Science in Computer Engineering</span><br />
+                Oakland University, Rochester Hills, MI | May 2018
+              </p>
+              <p className="text-gray-600 mt-2">
+                <span className="font-medium">Bachelor of Science in Computer Engineering</span><br />
+                Lawrence Technological University, Southfield, MI | May 2014
+              </p>
+
+              <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4 border-b-2 border-gray-200 pb-2">
+                Certifications
+              </h2>
+              <ul className="list-disc pl-5 text-gray-600">
+                <li>ISTQB Foundation Level (International Software Testing Qualifications Board) | 2020</li>
+              </ul>
+            </section>
+
+            {/* Cover Letter Section */}
+            <section className="mt-12">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-gray-200 pb-2">
+                Cover Letter
+              </h2>
+              <div className="text-gray-600 leading-relaxed">
+                <p>Kevin Douglas DeLong<br />Fenton, MI 48430<br />(810) 287-7409 | delong.kevin@gmail.com | [LinkedIn/GitHub]<br />[Date]</p>
+                <p className="mt-4">
+                  Hiring Manager<br />
+                  [Company Name]<br />
+                  [Company Address]<br />
+                  [City, State, ZIP Code]
+                </p>
+                <p className="mt-4">Dear Hiring Manager,</p>
+                <p className="mt-2">
+                  As a passionate Software Engineer with over a decade of hands-on experience in full-stack development for embedded and automotive systems, I am excited to apply for the Software Engineer position at [Company Name]. My background in building scalable backend automation (Python/C++) and intuitive frontend interfaces (Android/CANoe UIs) aligns seamlessly with your team's focus on innovative web, mobile, and desktop solutions. At Harman International, I led CI/CD optimizations that reduced defects by 25%, and I'm eager to bring that engineering rigor to [Company Name]'s dynamic projects.
+                </p>
+                <p className="mt-2">
+                  In my current role as Software Testing Lead, I collaborate closely with development teams to architect and debug AutoSAR-based systems for infotainment platforms, integrating CAN/Ethernet protocols with secure fuzz testing and OTA telematics. Key achievements include developing automation scripts that accelerated milestone deliveries by 15% and training cross-functional teams on Vector tools for real-time embedded environments. Previously, as a Software Test Engineer, I designed simulation UIs and validated ADAS/camera systems, honing my skills in full-lifecycle software engineering—from requirements gathering to on-site data analysis. These experiences, combined with my MS in Computer Engineering from Oakland University, have equipped me to deliver high-impact, quality-driven code that scales across platforms.
+                </p>
+                <p className="mt-2">
+                  What draws me to [Company Name] is your commitment to [specific company value/project, e.g., "cutting-edge mobile integrations" or "user-centric design"]. I thrive in collaborative Agile settings and am proficient in tools like Wireshark for network security and ZenMap for protocol analysis—skills I'll leverage to contribute immediately. I would welcome the opportunity to discuss how my expertise in backend optimization and frontend prototyping can support your team's goals.
+                </p>
+                <p className="mt-2">
+                  Thank you for considering my application. I look forward to the possibility of connecting and exploring how I can contribute to [Company Name]'s success.
+                </p>
+                <p className="mt-4">Sincerely,<br />Kevin Douglas DeLong</p>
+              </div>
+            </section>
+
+            {/* Action Buttons */}
+            <div className="mt-8 flex space-x-4">
+              <a
+                href="#"
+                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+                onClick={() => alert('Download PDF functionality to be implemented')}
+              >
+                Download Resume PDF
+              </a>
+              <a
+                href="#"
+                className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition"
+                onClick={() => alert('Request access to project source code')}
+              >
+                Request Project Access
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const App = () => {
+      return (
+        <div>
+          {/* Navigation */}
+          <nav className="bg-blue-900 text-white py-4 shadow-md">
+            <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
+              <h1 className="text-2xl font-bold">Kevin Douglas DeLong</h1>
+              <div className="space-x-4">
+                <a href="#about" className="hover:text-blue-300">About Me</a>
+                <a href="#projects" className="hover:text-blue-300">Projects</a>
+                <a href="#resume" className="hover:text-blue-300">Resume & Cover Letter</a>
+                <a href="#contact" className="hover:text-blue-300">Contact Me</a>
+                <a
+                  href="#"
+                  className="bg-yellow-500 text-black px-4 py-2 rounded-md hover:bg-yellow-600"
+                  onClick={() => alert('Donate functionality to be implemented')}
+                >
+                  Donate
+                </a>
+              </div>
+            </div>
+          </nav>
+
+          {/* About Me Section */}
+          <section id="about" className="py-16 bg-gray-50">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">About Me</h2>
+              <p className="text-gray-600 leading-relaxed">
+                I am a dedicated Software Engineer with over 10 years of experience in full-stack development, specializing in backend automation and frontend UI design for web, mobile, and embedded applications. My expertise spans C++, Python, and AutoSAR, with a passion for building secure, scalable solutions. Explore my projects and resume to see how I can contribute to your team.
+              </p>
+            </div>
+          </section>
+
+          {/* Projects Section */}
+          <section id="projects" className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">Projects</h2>
+              <p className="text-gray-600">
+                Below are samples of my work, including live demos and source code (access restricted to authorized users). Click "Request Project Access" to view private repositories.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <h3 className="text-xl font-semibold">Infotainment UI Simulation</h3>
+                  <p className="text-gray-600">A CANoe-based UI for vehicle ECU simulation, built with C++ and Python.</p>
+                  <a href="#" className="text-blue-600 hover:underline" onClick={() => alert('Request access to view demo')}>
+                    View Demo
+                  </a>
+                </div>
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <h3 className="text-xl font-semibold">OTA Telematics Module</h3>
+                  <p className="text-gray-600">A Python-based module for secure OTA updates in automotive systems.</p>
+                  <a href="#" className="text-blue-600 hover:underline" onClick={() => alert('Request access to view source')}>
+                    View Source
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Resume Section */}
+          <section id="resume" className="py-16 bg-gray-50">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">Resume & Cover Letter</h2>
+              <Resume />
+            </div>
+          </section>
+
+          {/* Contact Me Section */}
+          <section id="contact" className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Me</h2>
+              <p className="text-gray-600 mb-4">
+                Reach out to discuss opportunities or request access to project source code.
+              </p>
+              <div className="flex flex-col space-y-4">
+                <p>Email: <a href="mailto:delong.kevin@gmail.com" className="text-blue-600 hover:underline">delong.kevin@gmail.com</a></p>
+                <p>Phone: (810) 287-7409</p>
+                <p>LinkedIn/GitHub: <a href="#" className="text-blue-600 hover:underline">[Your Profile]</a></p>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-blue-900 text-white py-4">
+            <div className="max-w-6xl mx-auto px-4 text-center">
+              <p>&copy; 2025 Kevin Douglas DeLong. All rights reserved.</p>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
