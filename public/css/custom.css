@@ -1,28 +1,19 @@
-/* Custom styles for donate page */
-.donate-section {
-  text-align: center;
-  margin: 2rem 0;
-}
-.donate-section a {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #00A2FF; /* Venmo blue */
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  margin: 1rem;
-  font-weight: bold;
-}
-.donate-section a:hover {
-  background-color: #0088CC;
-}
-.donate-section img {
-  max-width: 200px; /* QR code size */
-  margin: 1rem auto;
-  display: block;
-}
+/* Reduce overall white space in Ananke theme */
+.pa4 { padding: 1rem !important; } /* Shrink padding-around from 2rem */
+.pv4 { padding-top: 1rem !important; padding-bottom: 1rem !important; } /* Tighten vertical padding */
+.mt4, .mb4 { margin-top: 1rem !important; margin-bottom: 1rem !important; } /* Reduce vertical margins */
+.flex-l.items-center.justify-center { gap: 0.5rem; } /* Close gaps in flex sections (e.g., nav, heroes) */
+
+/* Homepage and section tightening */
+.hero { padding: 1rem 0 !important; } /* Less vertical space in hero */
+.section { margin: 0.5rem 0 !important; } /* Tighten between content blocks */
+.article { line-height: 1.4; } /* Slightly denser text for efficiency */
+
+/* Mobile tweaks (under 600px) */
 @media (max-width: 600px) {
-  .donate-section img {
-    max-width: 150px; /* Smaller QR code on mobile */
-  }
+  .pa4 { padding: 0.75rem !important; }
+  .pv4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
 }
+
+/* Donate-specific (from previous) - already tight, but align with rest */
+.donate-section { margin: 1rem 0 !important; }

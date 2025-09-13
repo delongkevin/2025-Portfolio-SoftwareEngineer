@@ -1,13 +1,11 @@
-
 ---
 title: "Welcome to My Portfolio"
 date: 2025-09-13
 ---
+I'm Kevin Douglas Delong, a software engineer specializing in backend/front-end for web, mobile, and desktop apps. Hands-on demos await in [Projects](/projects/).
 
-I'm Kevin Douglas Delong, a software engineer specializing in backend and front-end development for web, mobile, and desktop applications. Explore my projects, resume, and more.
-
-- [About Me](/about/) – Learn about my expertise.
-- [Projects](/projects/) – View demos and source code (access-controlled).
-- [Contact Me](/contact/) – Get in touch.
-- [Resume](/resume/) – Download my latest resume and cover letter.
-- [Donate](/donate/) – Support my open-source work.
+Quick Highlights:
+- Built scalable React/Node.js web apps for 10k+ users.
+- Cross-platform mobile solutions in Flutter/React Native.
+- Desktop tools with Electron/.NET for seamless UX.
+- Automotive application with CD/CI pipelines on ensuring best software quality deployment.

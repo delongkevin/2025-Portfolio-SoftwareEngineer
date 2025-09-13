@@ -7,7 +7,7 @@ theme = "ananke"
   description = "Professional portfolio of Kevin Douglas Delong, specializing in backend and front-end development for web, mobile, and desktop applications."
   author = "Kevin Douglas Delong"
   favicon = "/images/favicon.ico"  # Add favicon to static/images/
-  custom_css = ["css/custom.css"]  # Optional: Add custom CSS file in static/css/
+  custom_css = ["/css/custom.css"]  # Optional: Add custom CSS file in static/css/
 
 [[menu.main]]
   name = "About Me"
