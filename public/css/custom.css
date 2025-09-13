@@ -1,0 +1,28 @@
+/* Custom styles for donate page */
+.donate-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+.donate-section a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #00A2FF; /* Venmo blue */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 1rem;
+  font-weight: bold;
+}
+.donate-section a:hover {
+  background-color: #0088CC;
+}
+.donate-section img {
+  max-width: 200px; /* QR code size */
+  margin: 1rem auto;
+  display: block;
+}
+@media (max-width: 600px) {
+  .donate-section img {
+    max-width: 150px; /* Smaller QR code on mobile */
+  }
+}
