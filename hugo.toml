@@ -1,12 +1,13 @@
-baseURL = "https://kevindouglasdelong.net/" # Replace with your custom domain once registered
+baseURL = "https://kevindouglasdelong.net/"  # Matches your domain
 languageCode = "en-us"
 title = "Kevin Douglas Delong - Software Engineer Portfolio"
-theme = "ananke" # Example theme; replace with your chosen theme
+theme = "ananke"
 
 [params]
-  description = "Portfolio of Kevin Douglas Delong, specializing in backend/front-end design for web, mobile, and desktop applications."
+  description = "Professional portfolio of Kevin Douglas Delong, specializing in backend and front-end development for web, mobile, and desktop applications."
   author = "Kevin Douglas Delong"
-  favicon = "/images/favicon.ico" # Optional: Add favicon in static/images/
+  favicon = "/images/favicon.ico"  # Add favicon to static/images/
+  custom_css = ["css/custom.css"]  # Optional: Add custom CSS file in static/css/
 
 [[menu.main]]
   name = "About Me"
@@ -24,3 +25,7 @@ theme = "ananke" # Example theme; replace with your chosen theme
   name = "Resume"
   url = "/resume/"
   weight = 4
+[[menu.main]]
+  name = "Donate"
+  url = "/donate/"
+  weight = 5  # New donate page

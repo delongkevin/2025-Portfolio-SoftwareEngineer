@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</title><link>https://kevindouglasdelong.net/</link><description>Recent content in Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://kevindouglasdelong.net/index.xml" rel="self" type="application/rss+xml"/><item><title>About Me</title><link>https://kevindouglasdelong.net/about/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/about/</guid><description>&lt;p&gt;&lt;img src="https://kevindouglasdelong.net/images/headshot.jpg" alt="Profile Photo"&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m Kevin Douglas Delong, a dedicated software engineer with expertise in backend (e.g., Node.js, Python) and front-end (e.g., React, Flutter) development. I build scalable web, mobile, and desktop applications, focusing on user-friendly designs and efficient code.&lt;/p&gt;
+&lt;p&gt;Key Skills:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web: HTML/CSS/JS, React, Next.js&lt;/li&gt;
+&lt;li&gt;Mobile: Flutter, React Native&lt;/li&gt;
+&lt;li&gt;Desktop: Electron, .NET&lt;/li&gt;
+&lt;li&gt;Backend: Express, Django, databases (SQL/NoSQL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Passionate about innovative solutions—let&amp;rsquo;s connect!&lt;/p&gt;</description></item><item><title>Contact Me</title><link>https://kevindouglasdelong.net/contact/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/contact/</guid><description>&lt;p&gt;Reach out for collaborations, project inquiries, or source code access.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Email: &lt;a href="mailto:kevin@kevindouglasdelong.net"&gt;kevin@kevindouglasdelong.net&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LinkedIn: &lt;a href="https://www.linkedin.com/in/kevin-delong-50726135b/"&gt;linkedin.com/in/kevin-delong&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;GitHub: &lt;a href="https://github.com/delongkevin"&gt;github.com/your-username&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For source code requests, include details about the project.&lt;/p&gt;</description></item><item><title>Donate</title><link>https://kevindouglasdelong.net/donate/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/donate/</guid><description>&lt;p&gt;Support my open-source projects and development work!&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Find me on Venmo! &lt;a href="https://account.venmo.com/u/KDelong147"&gt;https://account.venmo.com/u/KDelong147&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Projects</title><link>https://kevindouglasdelong.net/projects/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/projects/</guid><description>&lt;p&gt;Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).&lt;/p&gt;
+&lt;p&gt;Projects to Come - Please check back later.&lt;/p&gt;
+&lt;p&gt;In meantime, please check for uncompleted work at my Git Hub repo: &lt;a href="https://github.com/delongkevin"&gt;https://github.com/delongkevin&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Resume</title><link>https://kevindouglasdelong.net/resume/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/resume/</guid><description>&lt;p&gt;Download my latest resume and cover letter (updated September 13, 2025).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://kevindouglasdelong.net/resume/resume.pdf"&gt;Resume PDF&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Professional Summary
+Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.&lt;/p&gt;</description></item></channel></rss>
