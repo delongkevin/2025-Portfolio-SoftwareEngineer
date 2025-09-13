@@ -3,7 +3,6 @@
 title: "Welcome to My Portfolio"
 date: 2025-09-13
 ---
-![Hero Image](/images/hero.jpg)  <!-- Add hero.jpg to static/images/ for a professional graphic, e.g., code-themed banner -->
 
 I'm Kevin Douglas Delong, a software engineer specializing in backend and front-end development for web, mobile, and desktop applications. Explore my projects, resume, and more.
 
