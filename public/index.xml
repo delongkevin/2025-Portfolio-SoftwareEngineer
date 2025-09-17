@@ -2,53 +2,53 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</title>
-    <link>http://localhost:58697/</link>
+    <link>http://localhost:58369/</link>
     <description>Recent content in Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:58697/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:58369/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About Me</title>
-      <link>http://localhost:58697/about/</link>
+      <link>http://localhost:58369/about/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/about/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:58697/images/headshot.jpg&#34; alt=&#34;Profile Photo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m Kevin Douglas Delong, a dedicated software engineer with expertise in backend (e.g., Node.js, Python) and front-end (e.g., React, Flutter) development. I build scalable web, mobile, and desktop applications, focusing on user-friendly designs and efficient code.&lt;/p&gt;&#xA;&lt;p&gt;Key Skills:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Web: HTML/CSS/JS, React, Next.js&lt;/li&gt;&#xA;&lt;li&gt;Mobile: Flutter, React Native&lt;/li&gt;&#xA;&lt;li&gt;Desktop: Electron, .NET&lt;/li&gt;&#xA;&lt;li&gt;Backend: Express, Django, databases (SQL/NoSQL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Passionate about innovative solutions—let&amp;rsquo;s connect!&lt;/p&gt;</description>
+      <guid>http://localhost:58369/about/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:58369/images/headshot.jpg&#34; alt=&#34;Profile Photo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m Kevin Douglas Delong, a dedicated software engineer with expertise in backend (e.g., Node.js, Python) and front-end (e.g., React, Flutter) development. I build scalable web, mobile, and desktop applications, focusing on user-friendly designs and efficient code.&lt;/p&gt;&#xA;&lt;p&gt;Key Skills:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Web: HTML/CSS/JS, React, Next.js&lt;/li&gt;&#xA;&lt;li&gt;Mobile: Flutter, React Native&lt;/li&gt;&#xA;&lt;li&gt;Desktop: Electron, .NET&lt;/li&gt;&#xA;&lt;li&gt;Backend: Express, Django, databases (SQL/NoSQL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Passionate about innovative solutions—let&amp;rsquo;s connect!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact Me</title>
-      <link>http://localhost:58697/contact/</link>
+      <link>http://localhost:58369/contact/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/contact/</guid>
+      <guid>http://localhost:58369/contact/</guid>
       <description>&lt;p&gt;Reach out for collaborations, project inquiries, or source code access.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Email: &lt;a href=&#34;mailto:delong.kevin@gmail.com&#34;&gt;delong.kevin@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;LinkedIn: &lt;a href=&#34;https://www.linkedin.com/in/kevin-delong-50726135b/&#34;&gt;linkedin.com/in/kevin-delong&lt;/a&gt;  &lt;/li&gt;&#xA;&lt;li&gt;GitHub: &lt;a href=&#34;https://github.com/delongkevin&#34;&gt;github.com/delongkevin&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For source code requests, include details about the project.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Donate</title>
-      <link>http://localhost:58697/donate/</link>
+      <link>http://localhost:58369/donate/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/donate/</guid>
+      <guid>http://localhost:58369/donate/</guid>
       <description>&lt;p&gt;Support my open-source projects and development work!&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;Find me on Venmo!  &lt;a href=&#34;https://account.venmo.com/u/KDelong147&#34;&gt;https://account.venmo.com/u/KDelong147&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Projects</title>
-      <link>http://localhost:58697/projects/</link>
+      <link>http://localhost:58369/projects/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/projects/</guid>
-      <description>&lt;p&gt;Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).&lt;/p&gt;&#xA;&lt;h3 id=&#34;scientific-calculator-web-app&#34;&gt;Scientific Calculator Web App!&lt;/h3&gt;&#xA;&lt;p&gt;Try this interactive scientific calculator with graphing capabilities—test sin(x) and plot live!&#xA;&lt;iframe src=&#34;http://localhost:58697/calculator/index.html&#34; width=&#34;100%&#34; height=&#34;800px&#34; frameborder=&#34;0&#34; allowfullscreen style=&#34;border-radius: 8px;&#34;&gt;&lt;/iframe&gt;&#xA; &#xA;&lt;a href=&#34;http://localhost:58697/contact/&#34;&gt;Request Source Code&lt;/a&gt; &lt;/p&gt;&#xA;&lt;p&gt;More projects to come :)&lt;/p&gt;</description>
+      <guid>http://localhost:58369/projects/</guid>
+      <description>&lt;p&gt;Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).&lt;/p&gt;&#xA;&lt;h3 id=&#34;scientific-calculator-web-app&#34;&gt;Scientific Calculator Web App!&lt;/h3&gt;&#xA;&lt;p&gt;Try this interactive scientific calculator with graphing capabilities—test sin(x) and plot live!&#xA;&lt;iframe src=&#34;http://localhost:58369/calculator/index.html&#34; width=&#34;100%&#34; height=&#34;800px&#34; frameborder=&#34;0&#34; allowfullscreen style=&#34;border-radius: 8px;&#34;&gt;&lt;/iframe&gt;&#xA; &#xA;&lt;a href=&#34;http://localhost:58369/contact/&#34;&gt;Request Source Code&lt;/a&gt; &lt;/p&gt;&#xA;&lt;p&gt;More projects to come :)&lt;/p&gt;</description>
     </item>
     <item>
       <title>Resume</title>
-      <link>http://localhost:58697/resume/</link>
+      <link>http://localhost:58369/resume/</link>
       <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/resume/</guid>
-      <description>&lt;p&gt;Download my latest resume and cover letter (updated September 13, 2025).&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:58697/resume/resume.pdf&#34;&gt;Resume PDF&lt;/a&gt;  &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Professional Summary&#xA;Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.&lt;/p&gt;</description>
+      <guid>http://localhost:58369/resume/</guid>
+      <description>&lt;p&gt;Download my latest resume and cover letter (updated September 13, 2025).&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:58369/resume/resume.pdf&#34;&gt;Resume PDF&lt;/a&gt;  &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Professional Summary&#xA;Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:58697/build/</link>
+      <link>http://localhost:58369/build/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:58697/build/</guid>
-      <description>&lt;!doctype html&gt;&lt;html lang=&#34;en&#34;&gt;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34;/&gt;&lt;link rel=&#34;icon&#34; href=&#34;http://localhost:58697/favicon.ico&#34;/&gt;&lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1&#34;/&gt;&lt;meta name=&#34;theme-color&#34; content=&#34;#000000&#34;/&gt;&lt;meta name=&#34;description&#34; content=&#34;Web site created using create-react-app&#34;/&gt;&lt;link rel=&#34;apple-touch-icon&#34; href=&#34;http://localhost:58697/logo192.png&#34;/&gt;&lt;link rel=&#34;manifest&#34; href=&#34;http://localhost:58697/manifest.json&#34;/&gt;&lt;title&gt;React App&lt;/title&gt;&lt;script defer=&#34;defer&#34; src=&#34;http://localhost:58697/static/js/main.0ea5d40a.js&#34;&gt;&lt;/script&gt;&lt;link href=&#34;http://localhost:58697/static/css/main.4572f46e.css&#34; rel=&#34;stylesheet&#34;&gt;&lt;/head&gt;&lt;body&gt;&lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;&lt;div id=&#34;root&#34;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</description>
+      <guid>http://localhost:58369/build/</guid>
+      <description>&lt;!doctype html&gt;&lt;html lang=&#34;en&#34;&gt;&lt;head&gt;&lt;meta charset=&#34;utf-8&#34;/&gt;&lt;link rel=&#34;icon&#34; href=&#34;http://localhost:58369/favicon.ico&#34;/&gt;&lt;meta name=&#34;viewport&#34; content=&#34;width=device-width,initial-scale=1&#34;/&gt;&lt;meta name=&#34;theme-color&#34; content=&#34;#000000&#34;/&gt;&lt;meta name=&#34;description&#34; content=&#34;Web site created using create-react-app&#34;/&gt;&lt;link rel=&#34;apple-touch-icon&#34; href=&#34;http://localhost:58369/logo192.png&#34;/&gt;&lt;link rel=&#34;manifest&#34; href=&#34;http://localhost:58369/manifest.json&#34;/&gt;&lt;title&gt;React App&lt;/title&gt;&lt;script defer=&#34;defer&#34; src=&#34;http://localhost:58369/static/js/main.0ea5d40a.js&#34;&gt;&lt;/script&gt;&lt;link href=&#34;http://localhost:58369/static/css/main.4572f46e.css&#34; rel=&#34;stylesheet&#34;&gt;&lt;/head&gt;&lt;body&gt;&lt;noscript&gt;You need to enable JavaScript to run this app.&lt;/noscript&gt;&lt;div id=&#34;root&#34;&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</description>
     </item>
   </channel>
 </rss>
