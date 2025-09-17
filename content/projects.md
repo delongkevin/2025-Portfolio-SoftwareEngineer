@@ -5,6 +5,12 @@ date: 2025-09-13
 ---
 Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).
 
-Projects to Come - Please check back later.
+### Casio FX-5800P-Inspired Graphing Calculator
+Try this interactive scientific calculator with graphing capabilities—test sin(x) and plot live!
 
-In meantime, please check for uncompleted work at my Git Hub repo: https://github.com/delongkevin
+{{< calculator >}} <!-- Uses the new shortcode -->
+[Request Source Code](/contact/) <!-- Gated access via email for GitHub invite -->
+
+More projects to come :)
+
+In meantime, check out my Git Repos:  https://github.com/delongkevin

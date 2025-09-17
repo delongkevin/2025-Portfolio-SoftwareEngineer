@@ -10,7 +10,7 @@
 .article { line-height: 1.4; } /* Slightly denser text for efficiency */
 
 /* Mobile tweaks (under 600px) */
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .pa4 { padding: 0.75rem !important; }
   .pv4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
 }
