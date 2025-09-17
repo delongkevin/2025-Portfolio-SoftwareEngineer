@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Tic Tac Toe</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        #root {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .game-container {
+            background: rgba(35, 35, 35, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+        
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .status {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-weight: 400;
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(50, 50, 50, 0.8);
+            border: 1px solid #555;
+        }
+        
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 8px;
+            margin: 0 auto 25px;
+            max-width: 320px;
+        }
+        
+        .square {
+            background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            height: 90px;
+            width: 90px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .square:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+        }
+        
+        .square:active {
+            transform: translateY(1px);
+        }
+        
+        .square.X {
+            color: #ff7a7a;
+            text-shadow: 0 0 10px rgba(255, 122, 122, 0.5);
+        }
+        
+        .square.O {
+            color: #7a9fff;
+            text-shadow: 0 0 10px rgba(122, 159, 255, 0.5);
+        }
+        
+        .reset-btn {
+            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 30px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, #444, #333);
+        }
+        
+        .reset-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .winning-square {
+            animation: pulse 1.5s infinite;
+            position: relative;
+        }
+        
+        .winning-square::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff7a7a, #7a9fff);
+            z-index: -1;
+            animation: border-pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes border-pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 8px;
+            border: 1px solid #555;
+        }
+        
+        .score {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        
+        .score-x {
+            color: #ff7a7a;
+        }
+        
+        .score-o {
+            color: #7a9fff;
+        }
+        
+        .draws {
+            color: #dddddd;
+        }
+        
+        .turns-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+            gap: 20px;
+        }
+        
+        .player-indicator {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            background: #2a2a2a;
+            border: 1px solid #555;
+            color: #ffffff;
+        }
+        
+        .active-player {
+            background: #333;
+            box-shadow: 0 0 10px rgba(122, 159, 255, 0.3);
+            color: #ffffff;
+        }
+        
+        .instructions {
+            color: #cccccc;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const Square = ({ value, onClick, isWinning }) => {
+            return (
+                <button 
+                    className={`square ${value} ${isWinning ? 'winning-square' : ''}`} 
+                    onClick={onClick}
+                >
+                    {value}
+                </button>
+            );
+        };
+
+        const Board = () => {
+            const [squares, setSquares] = useState(Array(9).fill(null));
+            const [isXNext, setIsXNext] = useState(true);
+            const [winner, setWinner] = useState(null);
+            const [winningLine, setWinningLine] = useState([]);
+            const [scores, setScores] = useState({ X: 0, O: 0, draws: 0 });
+
+            useEffect(() => {
+                // Check for winner after each move
+                const gameWinner = calculateWinner(squares);
+                if (gameWinner) {
+                    setWinner(gameWinner.winner);
+                    setWinningLine(gameWinner.line);
+                    // Update scores
+                    setScores(prev => ({
+                        ...prev,
+                        [gameWinner.winner]: prev[gameWinner.winner] + 1
+                    }));
+                } else if (!squares.includes(null)) {
+                    setWinner('Draw');
+                    setScores(prev => ({
+                        ...prev,
+                        draws: prev.draws + 1
+                    }));
+                }
+            }, [squares]);
+
+            const calculateWinner = (squares) => {
+                const lines = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                    [0, 4, 8], [2, 4, 6]             // diagonals
+                ];
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const [a, b, c] = lines[i];
+                    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                        return {
+                            winner: squares[a],
+                            line: lines[i]
+                        };
+                    }
+                }
+                return null;
+            };
+
+            const handleClick = (i) => {
+                if (squares[i] || winner) return;
+                
+                const newSquares = squares.slice();
+                newSquares[i] = isXNext ? 'X' : 'O';
+                setSquares(newSquares);
+                setIsXNext(!isXNext);
+            };
+
+            const resetGame = () => {
+                setSquares(Array(9).fill(null));
+                setIsXNext(true);
+                setWinner(null);
+                setWinningLine([]);
+            };
+
+            const renderSquare = (i) => {
+                return (
+                    <Square
+                        value={squares[i]}
+                        onClick={() => handleClick(i)}
+                        isWinning={winningLine.includes(i)}
+                    />
+                );
+            };
+
+            const getStatus = () => {
+                if (winner === 'Draw') {
+                    return 'Game ended in a draw!';
+                } else if (winner) {
+                    return `Winner: ${winner}`;
+                } else {
+                    return `Next player: ${isXNext ? 'X' : 'O'}`;
+                }
+            };
+
+            return (
+                <div className="game-container">
+                    <h1>Tic Tac Toe</h1>
+                    
+                    <div className="turns-indicator">
+                        <div className={`player-indicator ${isXNext && !winner ? 'active-player' : ''}`}>
+                            Player X
+                        </div>
+                        <div className={`player-indicator ${!isXNext && !winner ? 'active-player' : ''}`}>
+                            Player O
+                        </div>
+                    </div>
+                    
+                    <div className="status">{getStatus()}</div>
+                    
+                    <div className="board">
+                        {renderSquare(0)}
+                        {renderSquare(1)}
+                        {renderSquare(2)}
+                        {renderSquare(3)}
+                        {renderSquare(4)}
+                        {renderSquare(5)}
+                        {renderSquare(6)}
+                        {renderSquare(7)}
+                        {renderSquare(8)}
+                    </div>
+                    
+                    <button className="reset-btn" onClick={resetGame}>
+                        {winner ? 'New Game' : 'Reset Board'}
+                    </button>
+                    
+                    <div className="score-board">
+                        <div className="score score-x">X: {scores.X}</div>
+                        <div className="score draws">Draws: {scores.draws}</div>
+                        <div className="score score-o">O: {scores.O}</div>
+                    </div>
+                    
+                    <div className="instructions">
+                        Click on a square to place your mark. Get three in a row to win!
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            return <Board />;
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
