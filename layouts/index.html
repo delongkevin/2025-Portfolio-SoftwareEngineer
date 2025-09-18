@@ -1,20 +1,19 @@
 
-
+<!-- layouts/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.150.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    //index/head
+    {{ printf "%s/%s/head" .Page.File.Dir "index" }}
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.client.min.js"></script>
   </head>
   <body>
-     //index/head
+     {{ printf "%s/%s/head" .Page.File.Dir "index" }}
      <div id="shooter-container"></div>
      <div id="tetris-container"></div>
 
-     
-     <script src="/js/shooter.js"></script>
-     <script src="/js/tetris.js"></script>
+     <!-- Load games -->
+     <script src="{{ relURL "js/shooter.js" }}"></script>
+     <script src="{{ relURL "js/tetris.js" }}"></script>
   </body>
 </html>

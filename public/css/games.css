@@ -1,0 +1,6 @@
+#tetris-container canvas {
+  background-color: #1d3f5f;
+}
+#shooter-container canvas {
+  border: 1px solid black;
+}
