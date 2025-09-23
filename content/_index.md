@@ -7,5 +7,5 @@ I'm Kevin Douglas Delong, a software engineer specializing in backend/front-end 
 Quick Highlights:
 - Built scalable React/Node.js web apps for 10k+ users.
 - Cross-platform mobile solutions in Flutter/React Native.
-- Desktop tools with Electron/.NET for seamless UX.
+- Desktop tools with .NET for seamless UX.
 - Automotive application with CD/CI pipelines on ensuring best software quality deployment.
