@@ -14,5 +14,8 @@ Explore my portfolio of web, mobile, and desktop applications. Each includes a d
 ### Blackjack Game
 {{<blackjack>}}
 
+###Color Match
+{{<color_match>}}
+
 GitHub: [Request Source Code](/contact/)
 More projects to come :)
