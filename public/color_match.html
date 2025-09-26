@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Match Challenge</title>
+    <style>
+        /* Reset everything more aggressively */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            padding: 20px;
+        }
+        
+        .game-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1000; /* Ensure it stays on top */
+        }
+        
+        /* Rest of your CSS remains the same */
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .target-color {
+            width: 150px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            border: 3px solid #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .color-option {
+            height: 120px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 3px solid transparent;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        button {
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px 5px;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        #start-btn {
+            background: linear-gradient(to right, #2196F3, #21b0f3);
+        }
+        
+        #reset-btn {
+            background: linear-gradient(to right, #f44336, #f46b36);
+        }
+        
+        .message {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            min-height: 40px;
+        }
+        
+        .correct {
+            color: #4CAF50;
+        }
+        
+        .incorrect {
+            color: #f44336;
+        }
+        
+        .game-over {
+            font-size: 2rem;
+            color: #f44336;
+            margin: 20px 0;
+        }
+        
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 500px) {
+            .color-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Color Match Challenge</h1>
+        
+        <div class="game-info">
+            <div>Score: <span id="score">0</span></div>
+            <div>Time: <span id="time">60</span>s</div>
+            <div>Level: <span id="level">1</span></div>
+        </div>
+        
+        <div class="target-color" id="target-color"></div>
+        
+        <div class="message" id="message">Match the color above!</div>
+        
+        <div class="color-grid" id="color-grid">
+            <!-- Color options will be generated here -->
+        </div>
+        
+        <div class="controls">
+            <button id="start-btn">Start Game</button>
+            <button id="reset-btn">Reset Game</button>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Play:</h3>
+            <p>Click on the square that matches the target color at the top. The game gets faster as you level up!</p>
+        </div>
+    </div>
+
+    <script>
+        // Game variables
+        let score = 0;
+        let timeLeft = 60;
+        let level = 1;
+        let gameActive = false;
+        let timer;
+        let correctColor;
+        
+        // DOM elements
+        const scoreElement = document.getElementById('score');
+        const timeElement = document.getElementById('time');
+        const levelElement = document.getElementById('level');
+        const targetColorElement = document.getElementById('target-color');
+        const colorGrid = document.getElementById('color-grid');
+        const messageElement = document.getElementById('message');
+        const startButton = document.getElementById('start-btn');
+        const resetButton = document.getElementById('reset-btn');
+        
+        // Color options (hex values)
+        const colors = [
+            '#FF5733', '#33FF57', '#3357FF', '#F333FF',
+            '#FF33A1', '#33FFF6', '#F6FF33', '#8C33FF',
+            '#FF8C33', '#33FF8C', '#FF3333', '#33A1FF',
+            '#A133FF', '#FF33F6', '#33FFA1', '#F6FF33'
+        ];
+        
+        // Initialize the game
+        function initGame() {
+            score = 0;
+            timeLeft = 60;
+            level = 1;
+            gameActive = false;
+            
+            scoreElement.textContent = score;
+            timeElement.textContent = timeLeft;
+            levelElement.textContent = level;
+            messageElement.textContent = 'Match the color above!';
+            messageElement.className = 'message';
+            
+            clearInterval(timer);
+            generateColorOptions();
+        }
+        
+        // Generate random color options
+        function generateColorOptions() {
+            colorGrid.innerHTML = '';
+            
+            // Select a random correct color
+            correctColor = colors[Math.floor(Math.random() * colors.length)];
+            targetColorElement.style.backgroundColor = correctColor;
+            
+            // Create an array with the correct color and some random wrong colors
+            let colorOptions = [correctColor];
+            
+            // Add wrong colors (number depends on level)
+            const numOptions = Math.min(3 + level, 9);
+            while (colorOptions.length < numOptions) {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                if (!colorOptions.includes(randomColor)) {
+                    colorOptions.push(randomColor);
+                }
+            }
+            
+            // Shuffle the color options
+            colorOptions = shuffleArray(colorOptions);
+            
+            // Create color option elements
+            colorOptions.forEach(color => {
+                const colorOption = document.createElement('div');
+                colorOption.className = 'color-option';
+                colorOption.style.backgroundColor = color;
+                colorOption.dataset.color = color;
+                
+                colorOption.addEventListener('click', () => {
+                    if (gameActive) {
+                        checkAnswer(color);
+                    }
+                });
+                
+                colorGrid.appendChild(colorOption);
+            });
+        }
+        
+        // Shuffle array function
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Check if the selected color is correct
+        function checkAnswer(selectedColor) {
+            if (selectedColor === correctColor) {
+                // Correct answer
+                score += level;
+                scoreElement.textContent = score;
+                messageElement.textContent = 'Correct! +' + level + ' points';
+                messageElement.className = 'message correct';
+                
+                // Level up every 10 points
+                if (score >= level * 10) {
+                    level++;
+                    levelElement.textContent = level;
+                    messageElement.textContent = `Level ${level}! Game is getting faster!`;
+                }
+            } else {
+                // Wrong answer
+                messageElement.textContent = 'Wrong! Try again!';
+                messageElement.className = 'message incorrect';
+                timeLeft = Math.max(0, timeLeft - 2);
+                timeElement.textContent = timeLeft;
+            }
+            
+            generateColorOptions();
+        }
+        
+        // Start the game
+        function startGame() {
+            if (gameActive) return;
+            
+            gameActive = true;
+            startButton.disabled = true;
+            messageElement.textContent = 'Game started! Match the colors!';
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                timeElement.textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+            
+            generateColorOptions();
+        }
+        
+        // End the game
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            startButton.disabled = false;
+            
+            messageElement.textContent = `Game Over! Final Score: ${score}`;
+            messageElement.className = 'message game-over';
+        }
+        
+        // Event listeners
+        startButton.addEventListener('click', startGame);
+        resetButton.addEventListener('click', initGame);
+        
+        // Initialize the game on load
+        window.onload = initGame;
+    </script>
+</body>
+</html>

@@ -1,1 +1,41 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://kevindouglasdelong.net/about/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/contact/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/donate/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/projects/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/resume/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/</loc><lastmod>2025-09-13T00:00:00+00:00</lastmod></url><url><loc>https://kevindouglasdelong.net/blackjack/</loc></url><url><loc>https://kevindouglasdelong.net/blackjack_embed/</loc></url><url><loc>https://kevindouglasdelong.net/circle_clicker/</loc></url><url><loc>https://kevindouglasdelong.net/color_match/</loc></url><url><loc>https://kevindouglasdelong.net/ride-sharing/</loc></url><url><loc>https://kevindouglasdelong.net/tictactoe/</loc></url><url><loc>https://kevindouglasdelong.net/tictactoe_embed/</loc></url><url><loc>https://kevindouglasdelong.net/categories/</loc></url><url><loc>https://kevindouglasdelong.net/tags/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/about/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/contact/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/donate/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/resume/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-09-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blackjack/</loc>
+  </url><url>
+    <loc>http://localhost:1313/blackjack_embed/</loc>
+  </url><url>
+    <loc>http://localhost:1313/circle_clicker/</loc>
+  </url><url>
+    <loc>http://localhost:1313/color_match/</loc>
+  </url><url>
+    <loc>http://localhost:1313/ride-sharing/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tictactoe/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tictactoe_embed/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+  </url>
+</urlset>
