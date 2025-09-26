@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Match Challenge</title>
     <style>
+        /* Reset everything more aggressively */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent scrollbars */
         }
         
         body {
@@ -23,15 +30,18 @@
         }
         
         .game-container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             padding: 30px;
             max-width: 600px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1000; /* Ensure it stays on top */
         }
         
+        /* Rest of your CSS remains the same */
         h1 {
             color: #333;
             margin-bottom: 20px;
@@ -239,7 +249,7 @@
             let colorOptions = [correctColor];
             
             // Add wrong colors (number depends on level)
-            const numOptions = Math.min(3 + level, 9); // More options at higher levels
+            const numOptions = Math.min(3 + level, 9);
             while (colorOptions.length < numOptions) {
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 if (!colorOptions.includes(randomColor)) {
@@ -280,7 +290,7 @@
         function checkAnswer(selectedColor) {
             if (selectedColor === correctColor) {
                 // Correct answer
-                score += level; // Higher score for higher levels
+                score += level;
                 scoreElement.textContent = score;
                 messageElement.textContent = 'Correct! +' + level + ' points';
                 messageElement.className = 'message correct';
@@ -295,12 +305,10 @@
                 // Wrong answer
                 messageElement.textContent = 'Wrong! Try again!';
                 messageElement.className = 'message incorrect';
-                // Small penalty for wrong answers
                 timeLeft = Math.max(0, timeLeft - 2);
                 timeElement.textContent = timeLeft;
             }
             
-            // Generate new color options
             generateColorOptions();
         }
         
@@ -312,7 +320,6 @@
             startButton.disabled = true;
             messageElement.textContent = 'Game started! Match the colors!';
             
-            // Start the timer
             timer = setInterval(() => {
                 timeLeft--;
                 timeElement.textContent = timeLeft;
