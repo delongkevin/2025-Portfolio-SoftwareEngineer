@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideShare Entertainment Center</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #6b8cbc;
+            --accent: #ff7e5f;
+            --light: #f5f7fa;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .ride-info {
+            background: white;
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .tab-container {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            background: var(--primary);
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .tab-button.active {
+            background: var(--secondary);
+        }
+        
+        .tab-button:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-content {
+            padding: 20px;
+            min-height: 400px;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .game-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .game-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .game-desc {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        .climate-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .control-panel {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .control-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .control-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .temp-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        
+        .temp-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .temp-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .temp-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .fan-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .fan-speed {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .speed-btn {
+            padding: 8px 15px;
+            border: none;
+            background: var(--light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .speed-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .qa-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .question-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #question-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+        
+        #ask-btn {
+            padding: 12px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        #ask-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .answer-display {
+            background: var(--light);
+            padding: 15px;
+            border-radius: var(--radius);
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .faq-section {
+            margin-top: 20px;
+        }
+        
+        .faq-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .faq-item {
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: var(--radius);
+            transition: background 0.3s;
+        }
+        
+        .faq-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+        
+        .widget-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .widget-icon {
+            color: var(--primary);
+        }
+        
+        .music-player {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .music-btn:hover {
+            background: var(--secondary);
+        }
+        
+        .play-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+        }
+        
+        .news-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .news-date {
+            font-size: 0.8rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.7;
+        }
+        
+        /* Game specific styles */
+        .game-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        #tic-tac-toe-board {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 5px;
+            margin: 20px 0;
+        }
+        
+        .ttt-cell {
+            background: var(--light);
+            border: 2px solid var(--primary);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .ttt-cell:hover {
+            background: #e0e7ff;
+        }
+        
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .game-btn {
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #trivia-question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        #trivia-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .trivia-option {
+            padding: 12px;
+            background: var(--light);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .trivia-option:hover {
+            background: #e0e7ff;
+        }
+        
+        .trivia-option.correct {
+            background: var(--success);
+            color: white;
+        }
+        
+        .trivia-option.incorrect {
+            background: var(--danger);
+            color: white;
+        }
+        
+        #memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            grid-template-rows: repeat(3, 80px);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .memory-card {
+            background: var(--primary);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .memory-card .front, .memory-card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+        
+        .memory-card .front {
+            background: var(--primary);
+        }
+        
+        .memory-card .back {
+            background: white;
+            color: var(--dark);
+            transform: rotateY(180deg);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: -1;
+            }
+            
+            .climate-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🚗</div>
+                <div class="logo-text">RideShare Entertainment</div>
+            </div>
+            <div class="ride-info">
+                <div class="info-item">
+                    <div class="info-label">Driver</div>
+                    <div class="info-value">Kevin Delong</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">ETA</div>
+                    <div class="info-value">15 min</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Vehicle</div>
+                    <div class="info-value">Ford Fusion</div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="games">Games</button>
+                    <button class="tab-button" data-tab="climate">Climate Control</button>
+                    <button class="tab-button" data-tab="assistant">Ask Questions</button>
+                </div>
+                
+                <div class="tab-content">
+                    <!-- Games Tab -->
+                    <div id="games" class="tab-pane active">
+                        <div class="games-grid">
+                            <div class="game-card" data-game="tic-tac-toe">
+                                <div class="game-icon">⭕</div>
+                                <div class="game-title">Tic Tac Toe</div>
+                                <div class="game-desc">Classic X and O game</div>
+                            </div>
+                            <div class="game-card" data-game="trivia">
+                                <div class="game-icon">❓</div>
+                                <div class="game-title">Trivia Challenge</div>
+                                <div class="game-desc">Test your knowledge</div>
+                            </div>
+                            <div class="game-card" data-game="memory">
+                                <div class="game-icon">🧠</div>
+                                <div class="game-title">Memory Game</div>
+                                <div class="game-desc">Match pairs of cards</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tic Tac Toe Game Screen -->
+                        <div id="tic-tac-toe-screen" class="game-screen">
+                            <h2>Tic Tac Toe</h2>
+                            <div id="tic-tac-toe-board">
+                                <!-- Cells will be generated by JavaScript -->
+                            </div>
+                            <div id="ttt-status">Your turn (X)</div>
+                            <div class="game-controls">
+                                <button class="game-btn" id="ttt-restart">Restart</button>
+                                <button class="game-btn" id="ttt-back">Back to Games</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Trivia Game Screen -->
+                        <div id="trivia-screen" class="game-screen">
+                            <h2>Trivia Challenge</h2>
+                            <div id="trivia-question">Loading question...</div>
+                            <div id="trivia-options">
+                                <!-- Options will be generated by JavaScript -->
+                            </div>
+                            <div id="trivia-status"></div>
+                            <div class="game-controls">
+                                <button class="game-btn" id="trivia-next">Next Question</button>
+                                <button class="game-btn" id="trivia-back">Back to Games</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Memory Game Screen -->
+                        <div id="memory-screen" class="game-screen">
+                            <h2>Memory Game</h2>
+                            <div id="memory-game">
+                                <!-- Cards will be generated by JavaScript -->
+                            </div>
+                            <div id="memory-status">Matches: 0/6</div>
+                            <div class="game-controls">
+                                <button class="game-btn" id="memory-restart">Restart</button>
+                                <button class="game-btn" id="memory-back">Back to Games</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Climate Control Tab -->
+                    <div id="climate" class="tab-pane">
+                        <div class="climate-controls">
+                            <div class="control-panel">
+                                <div class="control-title">
+                                    <span class="control-icon">🌡️</span>
+                                    Temperature
+                                </div>
+                                <div class="temp-display" id="current-temp">72°F</div>
+                                <div class="temp-controls">
+                                    <button class="temp-btn" id="temp-down">-</button>
+                                    <div id="temp-scale">
+                                        <button class="speed-btn active">°F</button>
+                                        <button class="speed-btn">°C</button>
+                                    </div>
+                                    <button class="temp-btn" id="temp-up">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="control-panel">
+                                <div class="control-title">
+                                    <span class="control-icon">💨</span>
+                                    Fan Speed
+                                </div>
+                                <div class="fan-controls">
+                                    <div class="fan-speed">
+                                        <button class="speed-btn active">Low</button>
+                                        <button class="speed-btn">Medium</button>
+                                        <button class="speed-btn">High</button>
+                                    </div>
+                                    <div class="control-title">
+                                        <span class="control-icon">🌀</span>
+                                        Air Circulation
+                                    </div>
+                                    <div class="fan-speed">
+                                        <button class="speed-btn active">Internal</button>
+                                        <button class="speed-btn">External</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px; text-align: center;">
+                            <button id="climate-request" style="padding: 12px 30px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer;">
+                                Send Climate Request to Driver
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Assistant Tab -->
+                    <div id="assistant" class="tab-pane">
+                        <div class="qa-container">
+                            <div class="question-input">
+                                <input type="text" id="question-input" placeholder="Ask a question about your ride...">
+                                <button id="ask-btn">Ask</button>
+                            </div>
+                            <div class="answer-display" id="answer-display">
+                                Ask me anything about your ride, the area, or your driver!
+                            </div>
+                        </div>
+                        
+                        <div class="faq-section">
+                            <div class="faq-title">Frequently Asked Questions</div>
+                            <div class="faq-item">
+                                <div class="faq-question">How long will the ride take? <span>+</span></div>
+                                <div class="faq-answer">Based on current traffic conditions, your estimated arrival time is 15 minutes.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Can I change the destination? <span>+</span></div>
+                                <div class="faq-answer">Please communicate any destination changes directly with your driver.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Is there a charging port in the vehicle? <span>+</span></div>
+                                <div class="faq-answer">Yes, there are USB charging ports available in the backseat.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">What's the wifi password? <span>+</span></div>
+                                <div class="faq-answer">The wifi network is "RideShare_Guest" and the password is "comfortride2023".</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="widget">
+                    <div class="widget-title">
+                        <span class="widget-icon">🎵</span>
+                        Music Player
+                    </div>
+                    <div class="music-player">
+                        <div id="now-playing">Now Playing: Chill Vibes Playlist</div>
+                        <div class="music-controls">
+                            <button class="music-btn" id="prev-btn">⏮️</button>
+                            <button class="music-btn play-btn" id="play-btn">▶️</button>
+                            <button class="music-btn" id="next-btn">⏭️</button>
+                        </div>
+                        <div class="volume-control">
+                            <span>🔈</span>
+                            <input type="range" class="volume-slider" min="0" max="100" value="70">
+                            <span>🔊</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-title">
+                        <span class="widget-icon">📰</span>
+                        News & Updates
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">Local Event This Weekend</div>
+                        <div class="news-date">Sep 15, 2023</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">Weather Alert: Clear Skies</div>
+                        <div class="news-date">Sep 14, 2023</div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-title">New Features in RideShare App</div>
+                        <div class="news-date">Sep 10, 2023</div>
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-title">
+                        <span class="widget-icon">⭐</span>
+                        Rate Your Ride
+                    </div>
+                    <div style="text-align: center; padding: 10px 0;">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">
+                            <span class="star" data-rating="1">☆</span>
+                            <span class="star" data-rating="2">☆</span>
+                            <span class="star" data-rating="3">☆</span>
+                            <span class="star" data-rating="4">☆</span>
+                            <span class="star" data-rating="5">☆</span>
+                        </div>
+                        <button style="padding: 8px 15px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            Submit Rating
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        RideShare Entertainment Center • For Passenger Use Only • v1.0
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all tabs and buttons
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab).classList.add('active');
+                
+                // If returning to games tab, hide all game screens
+                if (button.dataset.tab === 'games') {
+                    document.querySelectorAll('.game-screen').forEach(screen => {
+                        screen.style.display = 'none';
+                    });
+                    document.querySelector('.games-grid').style.display = 'grid';
+                }
+            });
+        });
+        
+        // FAQ functionality
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Climate control functionality
+        let currentTemp = 72;
+        let isFahrenheit = true;
+        
+        document.getElementById('temp-up').addEventListener('click', () => {
+            currentTemp++;
+            updateTempDisplay();
+        });
+        
+        document.getElementById('temp-down').addEventListener('click', () => {
+            currentTemp--;
+            updateTempDisplay();
+        });
+        
+        document.querySelectorAll('#temp-scale .speed-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#temp-scale .speed-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                isFahrenheit = btn.textContent === '°F';
+                updateTempDisplay();
+            });
+        });
+        
+        function updateTempDisplay() {
+            let displayTemp = isFahrenheit ? currentTemp : Math.round((currentTemp - 32) * 5/9);
+            document.getElementById('current-temp').textContent = `${displayTemp}°${isFahrenheit ? 'F' : 'C'}`;
+        }
+        
+        // Fan speed buttons
+        document.querySelectorAll('.fan-speed .speed-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+        
+        // Climate request button
+        document.getElementById('climate-request').addEventListener('click', () => {
+            alert('Climate control request sent to driver!');
+        });
+        
+        // Question answering functionality
+        document.getElementById('ask-btn').addEventListener('click', askQuestion);
+        document.getElementById('question-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') askQuestion();
+        });
+        
+        function askQuestion() {
+            const question = document.getElementById('question-input').value.trim();
+            if (!question) return;
+            
+            const answerDisplay = document.getElementById('answer-display');
+            answerDisplay.innerHTML = '<div>Thinking...</div>';
+            
+            // Simple mock AI response based on keywords
+            setTimeout(() => {
+                let answer = "I'm not sure about that. Please ask your driver for assistance.";
+                
+                if (question.toLowerCase().includes('eta') || question.toLowerCase().includes('time')) {
+                    answer = "Based on current traffic, your estimated arrival time is 15 minutes.";
+                } else if (question.toLowerCase().includes('stop') || question.toLowerCase().includes('break')) {
+                    answer = "Please discuss any stops or breaks directly with your driver.";
+                } else if (question.toLowerCase().includes('music') || question.toLowerCase().includes('volume')) {
+                    answer = "You can control the music using the player on the right. For volume adjustments, please ask the driver.";
+                } else if (question.toLowerCase().includes('charge') || question.toLowerCase().includes('port')) {
+                    answer = "USB charging ports are available in the backseat area.";
+                } else if (question.toLowerCase().includes('wi-fi') || question.toLowerCase().includes('wifi')) {
+                    answer = "The wifi network is 'RideShare_Guest' and the password is 'comfortride2023'.";
+                } else if (question.toLowerCase().includes('temperature') || question.toLowerCase().includes('climate')) {
+                    answer = "You can adjust the climate settings using the Climate Control tab.";
+                }
+                
+                answerDisplay.innerHTML = `<div>${answer}</div>`;
+            }, 1000);
+            
+            document.getElementById('question-input').value = '';
+        }
+        
+        // Music player functionality
+        let isPlaying = false;
+        
+        document.getElementById('play-btn').addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            document.getElementById('play-btn').textContent = isPlaying ? '⏸️' : '▶️';
+        });
+        
+        // Star rating functionality
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.rating);
+                document.querySelectorAll('.star').forEach(s => {
+                    if (parseInt(s.dataset.rating) <= rating) {
+                        s.textContent = '★';
+                    } else {
+                        s.textContent = '☆';
+                    }
+                });
+            });
+        });
+        
+        // Game functionality
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const game = card.dataset.game;
+                document.querySelector('.games-grid').style.display = 'none';
+                document.getElementById(`${game}-screen`).style.display = 'flex';
+                
+                // Initialize the selected game
+                if (game === 'tic-tac-toe') {
+                    initTicTacToe();
+                } else if (game === 'trivia') {
+                    initTrivia();
+                } else if (game === 'memory') {
+                    initMemoryGame();
+                }
+            });
+        });
+        
+        // Back buttons for games
+        document.querySelectorAll('[id$="-back"]').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.game-screen').forEach(screen => {
+                    screen.style.display = 'none';
+                });
+                document.querySelector('.games-grid').style.display = 'grid';
+            });
+        });
+        
+        // Tic Tac Toe Game
+        function initTicTacToe() {
+            const board = document.getElementById('tic-tac-toe-board');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'ttt-cell';
+                cell.dataset.index = i;
+                cell.addEventListener('click', handleTicTacToeClick);
+                board.appendChild(cell);
+            }
+            
+            document.getElementById('ttt-status').textContent = "Your turn (X)";
+            document.getElementById('ttt-restart').addEventListener('click', initTicTacToe);
+            
+            ticTacToeState = {
+                board: Array(9).fill(''),
+                currentPlayer: 'X',
+                gameOver: false
+            };
+        }
+        
+        function handleTicTacToeClick(e) {
+            if (ticTacToeState.gameOver) return;
+            
+            const index = parseInt(e.target.dataset.index);
+            if (ticTacToeState.board[index] !== '') return;
+            
+            ticTacToeState.board[index] = ticTacToeState.currentPlayer;
+            e.target.textContent = ticTacToeState.currentPlayer;
+            
+            if (checkTicTacToeWin()) {
+                document.getElementById('ttt-status').textContent = `Player ${ticTacToeState.currentPlayer} wins!`;
+                ticTacToeState.gameOver = true;
+                return;
+            }
+            
+            if (ticTacToeState.board.every(cell => cell !== '')) {
+                document.getElementById('ttt-status').textContent = "It's a tie!";
+                ticTacToeState.gameOver = true;
+                return;
+            }
+            
+            ticTacToeState.currentPlayer = ticTacToeState.currentPlayer === 'X' ? 'O' : 'X';
+            document.getElementById('ttt-status').textContent = `Player ${ticTacToeState.currentPlayer}'s turn`;
+        }
+        
+        function checkTicTacToeWin() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6] // diagonals
+            ];
+            
+            return winPatterns.some(pattern => {
+                const [a, b, c] = pattern;
+                return ticTacToeState.board[a] !== '' &&
+                       ticTacToeState.board[a] === ticTacToeState.board[b] &&
+                       ticTacToeState.board[a] === ticTacToeState.board[c];
+            });
+        }
+        
+        // Trivia Game
+        const triviaQuestions = [
+            {
+                question: "What is the capital of France?",
+                options: ["London", "Berlin", "Paris", "Madrid"],
+                correct: 2
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                correct: 1
+            },
+            {
+                question: "What is the largest mammal in the world?",
+                options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+                correct: 1
+            }
+        ];
+        
+        let currentTriviaIndex = 0;
+        
+        function initTrivia() {
+            showTriviaQuestion();
+            document.getElementById('trivia-next').addEventListener('click', nextTriviaQuestion);
+        }
+        
+        function showTriviaQuestion() {
+            const question = triviaQuestions[currentTriviaIndex];
+            document.getElementById('trivia-question').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('trivia-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'trivia-option';
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => checkTriviaAnswer(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            document.getElementById('trivia-status').textContent = '';
+        }
+        
+        function checkTriviaAnswer(selectedIndex) {
+            const question = triviaQuestions[currentTriviaIndex];
+            const options = document.querySelectorAll('.trivia-option');
+            
+            options.forEach((option, index) => {
+                option.classList.remove('correct', 'incorrect');
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (selectedIndex === question.correct) {
+                document.getElementById('trivia-status').textContent = "Correct!";
+            } else {
+                document.getElementById('trivia-status').textContent = "Incorrect!";
+            }
+        }
+        
+        function nextTriviaQuestion() {
+            currentTriviaIndex = (currentTriviaIndex + 1) % triviaQuestions.length;
+            showTriviaQuestion();
+        }
+        
+        // Memory Game
+        function initMemoryGame() {
+            const symbols = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓'];
+            const cards = [...symbols, ...symbols];
+            
+            // Shuffle cards
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            const gameContainer = document.getElementById('memory-game');
+            gameContainer.innerHTML = '';
+            
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.innerHTML = `
+                    <div class="front">?</div>
+                    <div class="back">${symbol}</div>
+                `;
+                card.dataset.symbol = symbol;
+                card.addEventListener('click', () => flipMemoryCard(card));
+                gameContainer.appendChild(card);
+            });
+            
+            memoryGameState = {
+                flippedCards: [],
+                matchedPairs: 0,
+                canFlip: true
+            };
+            
+            document.getElementById('memory-status').textContent = `Matches: 0/${symbols.length}`;
+            document.getElementById('memory-restart').addEventListener('click', initMemoryGame);
+        }
+        
+        function flipMemoryCard(card) {
+            if (!memoryGameState.canFlip || card.classList.contains('flipped') || memoryGameState.flippedCards.includes(card)) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            memoryGameState.flippedCards.push(card);
+            
+            if (memoryGameState.flippedCards.length === 2) {
+                memoryGameState.canFlip = false;
+                checkMemoryMatch();
+            }
+        }
+        
+        function checkMemoryMatch() {
+            const [card1, card2] = memoryGameState.flippedCards;
+            
+            if (card1.dataset.symbol === card2.dataset.symbol) {
+                memoryGameState.matchedPairs++;
+                document.getElementById('memory-status').textContent = `Matches: ${memoryGameState.matchedPairs}/6`;
+                memoryGameState.flippedCards = [];
+                memoryGameState.canFlip = true;
+                
+                if (memoryGameState.matchedPairs === 6) {
+                    document.getElementById('memory-status').textContent = "Congratulations! You've matched all pairs!";
+                }
+            } else {
+                setTimeout(() => {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    memoryGameState.flippedCards = [];
+                    memoryGameState.canFlip = true;
+                }, 1000);
+            }
+        }
+        
+        // Initialize the first game state variables
+        let ticTacToeState, memoryGameState;
+        
+        // Initialize the app with Tic Tac Toe ready
+        initTicTacToe();
+    </script>
+</body>
+</html>

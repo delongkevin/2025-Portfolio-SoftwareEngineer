@@ -1,89 +1,2908 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content in Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About Me</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/headshot.jpg&#34; alt=&#34;Profile Photo&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m Kevin Douglas Delong, a dedicated software engineer with expertise in backend (e.g., Node.js, Python) and front-end (e.g., React, Flutter) development. I build scalable web, mobile, and desktop applications, focusing on user-friendly designs and efficient code.&lt;/p&gt;&#xA;&lt;p&gt;Key Skills:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Web: HTML/CSS/JS, React, Next.js&lt;/li&gt;&#xA;&lt;li&gt;Mobile: Flutter, React Native&lt;/li&gt;&#xA;&lt;li&gt;Desktop: Electron, .NET&lt;/li&gt;&#xA;&lt;li&gt;Backend: Express, Django, databases (SQL/NoSQL)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Passionate about innovative solutions—let&amp;rsquo;s connect!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Contact Me</title>
-      <link>http://localhost:1313/contact/</link>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/contact/</guid>
-      <description>&lt;p&gt;Reach out for collaborations, project inquiries, or source code access.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Email: &lt;a href=&#34;mailto:delong.kevin@gmail.com&#34;&gt;delong.kevin@gmail.com&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;LinkedIn: &lt;a href=&#34;https://www.linkedin.com/in/kevin-delong-50726135b/&#34;&gt;linkedin.com/in/kevin-delong&lt;/a&gt;  &lt;/li&gt;&#xA;&lt;li&gt;GitHub: &lt;a href=&#34;https://github.com/delongkevin&#34;&gt;github.com/delongkevin&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For source code requests, include details about the project.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Donate</title>
-      <link>http://localhost:1313/donate/</link>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/donate/</guid>
-      <description>&lt;p&gt;Support my open-source projects and development work!&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;Find me on Venmo!  &lt;a href=&#34;https://account.venmo.com/u/KDelong147&#34;&gt;https://account.venmo.com/u/KDelong147&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Projects</title>
-      <link>http://localhost:1313/projects/</link>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/</guid>
-      <description>&lt;p&gt;Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).&lt;/p&gt;&#xA;&lt;h3 id=&#34;scientific-calculator-web-app&#34;&gt;Scientific Calculator Web App!&lt;/h3&gt;&#xA;&lt;iframe src=&#34;http://localhost:1313/calculator/index.html&#34; width=&#34;100%&#34; height=&#34;400px&#34; frameborder=&#34;0&#34; allowfullscreen style=&#34;border-radius: 8px;&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;&lt;h3 id=&#34;tic-tac-toe-game&#34;&gt;Tic Tac Toe Game&lt;/h3&gt;&#xA;&lt;iframe src=&#34;http://localhost:1313/tictactoe.html&#34; width=&#34;100%&#34; height=&#34;600px&#34; frameborder=&#34;0&#34; allowfullscreen style=&#34;border-radius: 8px;&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;&#xA;&lt;h3 id=&#34;blackjack-game&#34;&gt;Blackjack Game&lt;/h3&gt;&#xA;&lt;iframe src=&#34;http://localhost:1313/blackjack.html&#34; width=&#34;100%&#34; height=&#34;800px&#34; frameborder=&#34;0&#34; allowfullscreen style=&#34;border-radius: 8px;&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;&lt;h3 id=&#34;circle-clicker&#34;&gt;Circle Clicker&lt;/h3&gt;&#xA;&#xA;&lt;iframe src=&#34;circle_clicker.html&#34; width=&#34;100%&#34; height=&#34;600&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;&lt;h3 id=&#34;color-match&#34;&gt;Color Match&lt;/h3&gt;&#xA;&#xA;&lt;iframe src=&#34;color-match.html&#34; width=&#34;100%&#34; height=&#34;600&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&#xA;&#xA;&lt;p&gt;GitHub: &lt;a href=&#34;http://localhost:1313/contact/&#34;&gt;Request Source Code&lt;/a&gt;&#xA;More projects to come :)&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Resume</title>
-      <link>http://localhost:1313/resume/</link>
-      <pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/resume/</guid>
-      <description>&lt;p&gt;Download my latest resume and cover letter (updated September 13, 2025).&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/resume/resume.pdf&#34;&gt;Resume PDF&lt;/a&gt;  &lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/blackjack/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blackjack/</guid>
-      <description>&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xD;&#xA;&lt;head&gt;&#xD;&#xA;    &lt;meta charset=&#34;UTF-8&#34;&gt;&#xD;&#xA;    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;&#xD;&#xA;    &lt;title&gt;Blackjack Game&lt;/title&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/@babel/standalone/babel.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;style&gt;&#xD;&#xA;        * {&#xD;&#xA;            margin: 0;&#xD;&#xA;            padding: 0;&#xD;&#xA;            box-sizing: border-box;&#xD;&#xA;            font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        body {&#xD;&#xA;            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);&#xD;&#xA;            min-height: 100vh;&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            align-items: center;&#xD;&#xA;            padding: 20px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        #root {&#xD;&#xA;            width: 100%;&#xD;&#xA;            max-width: 600px;&#xD;&#xA;            margin: 0 auto;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .game-container {&#xD;&#xA;            background: rgba(35, 35, 35, 0.95);&#xD;&#xA;            border-radius: 12px;&#xD;&#xA;            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);&#xD;&#xA;            padding: 25px;&#xD;&#xA;            text-align: center;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        h1 {&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            margin-bottom: 20px;&#xD;&#xA;            font-size: 2.2rem;&#xD;&#xA;            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);&#xD;&#xA;            font-weight: 300;&#xD;&#xA;            letter-spacing: 1px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-board {&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: space-around;&#xD;&#xA;            margin-bottom: 20px;&#xD;&#xA;            padding: 15px;&#xD;&#xA;            background: rgba(50, 50, 50, 0.8);&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score {&#xD;&#xA;            font-size: 1.1rem;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-wins {&#xD;&#xA;            color: #7a9fff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-losses {&#xD;&#xA;            color: #ff7a7a;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-pushes {&#xD;&#xA;            color: #dddddd;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .hands-container {&#xD;&#xA;            display: flex;&#xD;&#xA;            flex-direction: column;&#xD;&#xA;            gap: 30px;&#xD;&#xA;            margin-bottom: 25px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .hand {&#xD;&#xA;            display: flex;&#xD;&#xA;            flex-direction: column;&#xD;&#xA;            align-items: center;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .hand-title {&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            font-size: 1.2rem;&#xD;&#xA;            margin-bottom: 10px;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .cards {&#xD;&#xA;            display: flex;&#xD;&#xA;            flex-wrap: wrap;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            gap: 10px;&#xD;&#xA;            min-height: 150px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .card {&#xD;&#xA;            width: 80px;&#xD;&#xA;            height: 120px;&#xD;&#xA;            background: #2a2a2a;&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            display: flex;&#xD;&#xA;            flex-direction: column;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            align-items: center;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);&#xD;&#xA;            position: relative;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .card-value {&#xD;&#xA;            font-size: 1.5rem;&#xD;&#xA;            font-weight: bold;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .card-suit {&#xD;&#xA;            font-size: 1.8rem;&#xD;&#xA;            margin-top: 5px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .heart, .diamond {&#xD;&#xA;            color: #ff7a7a;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .spade, .club {&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .hand-total {&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            font-size: 1.1rem;&#xD;&#xA;            margin-top: 10px;&#xD;&#xA;            background: rgba(50, 50, 50, 0.8);&#xD;&#xA;            padding: 5px 15px;&#xD;&#xA;            border-radius: 20px;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .message {&#xD;&#xA;            font-size: 1.3rem;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            margin: 20px 0;&#xD;&#xA;            padding: 12px;&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            background: rgba(50, 50, 50, 0.8);&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            min-height: 60px;&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            align-items: center;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .controls {&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            gap: 15px;&#xD;&#xA;            margin-bottom: 20px;&#xD;&#xA;            flex-wrap: wrap;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn {&#xD;&#xA;            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            border-radius: 6px;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            cursor: pointer;&#xD;&#xA;            font-size: 1rem;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;            padding: 12px 25px;&#xD;&#xA;            transition: all 0.3s ease;&#xD;&#xA;            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);&#xD;&#xA;            min-width: 120px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn:hover {&#xD;&#xA;            transform: translateY(-2px);&#xD;&#xA;            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);&#xD;&#xA;            background: linear-gradient(145deg, #444, #333);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn:active {&#xD;&#xA;            transform: translateY(1px);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn-hit {&#xD;&#xA;            background: linear-gradient(145deg, #2a7a2a, #1f5e1f);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn-stand {&#xD;&#xA;            background: linear-gradient(145deg, #7a2a2a, #5e1f1f);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .btn-deal {&#xD;&#xA;            background: linear-gradient(145deg, #2a2a7a, #1f1f5e);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .instructions {&#xD;&#xA;            color: #cccccc;&#xD;&#xA;            font-size: 0.9rem;&#xD;&#xA;            margin-top: 25px;&#xD;&#xA;            padding: 15px;&#xD;&#xA;            border-top: 1px solid #555;&#xD;&#xA;            text-align: left;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .instructions h3 {&#xD;&#xA;            margin-bottom: 10px;&#xD;&#xA;            color: #7a9fff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .instructions ul {&#xD;&#xA;            padding-left: 20px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .instructions li {&#xD;&#xA;            margin-bottom: 5px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        @media (max-width: 500px) {&#xD;&#xA;            .card {&#xD;&#xA;                width: 70px;&#xD;&#xA;                height: 105px;&#xD;&#xA;            }&#xD;&#xA;            &#xD;&#xA;            .btn {&#xD;&#xA;                padding: 10px 15px;&#xD;&#xA;                min-width: 100px;&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;    &lt;/style&gt;&#xD;&#xA;&lt;/head&gt;&#xD;&#xA;&lt;body&gt;&#xD;&#xA;    &lt;div id=&#34;root&#34;&gt;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;    &lt;script type=&#34;text/babel&#34;&gt;&#xD;&#xA;        const { useState, useEffect } = React;&#xD;&#xA;&#xD;&#xA;        const Card = ({ suit, value, hidden }) =&gt; {&#xD;&#xA;            if (hidden) {&#xD;&#xA;                return (&#xD;&#xA;                    &lt;div className=&#34;card&#34;&gt;&#xD;&#xA;                        &lt;div style={{ &#xD;&#xA;                            width: &#39;100%&#39;, &#xD;&#xA;                            height: &#39;100%&#39;, &#xD;&#xA;                            background: &#39;linear-gradient(145deg, #1a1a1a, #2a2a2a)&#39;,&#xD;&#xA;                            borderRadius: &#39;7px&#39;,&#xD;&#xA;                            display: &#39;flex&#39;,&#xD;&#xA;                            justifyContent: &#39;center&#39;,&#xD;&#xA;                            alignItems: &#39;center&#39;&#xD;&#xA;                        }}&gt;&#xD;&#xA;                            &lt;div style={{&#xD;&#xA;                                width: &#39;50%&#39;,&#xD;&#xA;                                height: &#39;50%&#39;,&#xD;&#xA;                                background: &#39;#333&#39;,&#xD;&#xA;                                borderRadius: &#39;5px&#39;,&#xD;&#xA;                                border: &#39;2px solid #555&#39;&#xD;&#xA;                            }}&gt;&lt;/div&gt;&#xD;&#xA;                        &lt;/div&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                );&#xD;&#xA;            }&#xD;&#xA;&#xD;&#xA;            return (&#xD;&#xA;                &lt;div className=&#34;card&#34;&gt;&#xD;&#xA;                    &lt;div className={`card-value ${suit}`}&gt;{value}&lt;/div&gt;&#xD;&#xA;                    &lt;div className={`card-suit ${suit}`}&gt;&#xD;&#xA;                        {suit === &#39;heart&#39; ? &#39;♥&#39; : &#xD;&#xA;                         suit === &#39;diamond&#39; ? &#39;♦&#39; : &#xD;&#xA;                         suit === &#39;club&#39; ? &#39;♣&#39; : &#39;♠&#39;}&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                &lt;/div&gt;&#xD;&#xA;            );&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        const Hand = ({ cards, title, total, isDealer }) =&gt; {&#xD;&#xA;            return (&#xD;&#xA;                &lt;div className=&#34;hand&#34;&gt;&#xD;&#xA;                    &lt;div className=&#34;hand-title&#34;&gt;{title}&lt;/div&gt;&#xD;&#xA;                    &lt;div className=&#34;cards&#34;&gt;&#xD;&#xA;                        {cards.map((card, index) =&gt; (&#xD;&#xA;                            &lt;Card &#xD;&#xA;                                key={index} &#xD;&#xA;                                suit={card.suit} &#xD;&#xA;                                value={card.value} &#xD;&#xA;                                hidden={isDealer &amp;&amp; index === 0 &amp;&amp; total === 0}&#xD;&#xA;                            /&gt;&#xD;&#xA;                        ))}&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    {total &gt; 0 &amp;&amp; (&#xD;&#xA;                        &lt;div className=&#34;hand-total&#34;&gt;Total: {total}&lt;/div&gt;&#xD;&#xA;                    )}&#xD;&#xA;                &lt;/div&gt;&#xD;&#xA;            );&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        const BlackjackGame = () =&gt; {&#xD;&#xA;            const [deck, setDeck] = useState([]);&#xD;&#xA;            const [playerHand, setPlayerHand] = useState([]);&#xD;&#xA;            const [dealerHand, setDealerHand] = useState([]);&#xD;&#xA;            const [playerTotal, setPlayerTotal] = useState(0);&#xD;&#xA;            const [dealerTotal, setDealerTotal] = useState(0);&#xD;&#xA;            const [gameStatus, setGameStatus] = useState(&#39;waiting&#39;); // waiting, player-turn, dealer-turn, win, lose, push&#xD;&#xA;            const [message, setMessage] = useState(&#39;Place your bet and deal cards&#39;);&#xD;&#xA;            const [score, setScore] = useState({ wins: 0, losses: 0, pushes: 0 });&#xD;&#xA;&#xD;&#xA;            // Initialize a deck of cards&#xD;&#xA;            const initializeDeck = () =&gt; {&#xD;&#xA;                const suits = [&#39;heart&#39;, &#39;diamond&#39;, &#39;club&#39;, &#39;spade&#39;];&#xD;&#xA;                const values = [&#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;10&#39;, &#39;J&#39;, &#39;Q&#39;, &#39;K&#39;, &#39;A&#39;];&#xD;&#xA;                const newDeck = [];&#xD;&#xA;                &#xD;&#xA;                for (let suit of suits) {&#xD;&#xA;                    for (let value of values) {&#xD;&#xA;                        newDeck.push({ suit, value });&#xD;&#xA;                    }&#xD;&#xA;                }&#xD;&#xA;                &#xD;&#xA;                return shuffleDeck(newDeck);&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Shuffle the deck using Fisher-Yates algorithm&#xD;&#xA;            const shuffleDeck = (deck) =&gt; {&#xD;&#xA;                const newDeck = [...deck];&#xD;&#xA;                for (let i = newDeck.length - 1; i &gt; 0; i--) {&#xD;&#xA;                    const j = Math.floor(Math.random() * (i + 1));&#xD;&#xA;                    [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];&#xD;&#xA;                }&#xD;&#xA;                return newDeck;&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Calculate the total value of a hand&#xD;&#xA;            const calculateTotal = (hand) =&gt; {&#xD;&#xA;                let total = 0;&#xD;&#xA;                let aces = 0;&#xD;&#xA;                &#xD;&#xA;                for (let card of hand) {&#xD;&#xA;                    if (card.value === &#39;A&#39;) {&#xD;&#xA;                        aces += 1;&#xD;&#xA;                        total += 11;&#xD;&#xA;                    } else if ([&#39;K&#39;, &#39;Q&#39;, &#39;J&#39;].includes(card.value)) {&#xD;&#xA;                        total += 10;&#xD;&#xA;                    } else {&#xD;&#xA;                        total += parseInt(card.value);&#xD;&#xA;                    }&#xD;&#xA;                }&#xD;&#xA;                &#xD;&#xA;                // Adjust for aces&#xD;&#xA;                while (total &gt; 21 &amp;&amp; aces &gt; 0) {&#xD;&#xA;                    total -= 10;&#xD;&#xA;                    aces -= 1;&#xD;&#xA;                }&#xD;&#xA;                &#xD;&#xA;                return total;&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Deal initial cards&#xD;&#xA;            const dealCards = () =&gt; {&#xD;&#xA;                const newDeck = initializeDeck();&#xD;&#xA;                const playerCards = [newDeck.pop(), newDeck.pop()];&#xD;&#xA;                const dealerCards = [newDeck.pop(), newDeck.pop()];&#xD;&#xA;                &#xD;&#xA;                setDeck(newDeck);&#xD;&#xA;                setPlayerHand(playerCards);&#xD;&#xA;                setDealerHand(dealerCards);&#xD;&#xA;                &#xD;&#xA;                const playerTotalValue = calculateTotal(playerCards);&#xD;&#xA;                const dealerTotalValue = calculateTotal([dealerCards[0]]); // Only show first card for dealer&#xD;&#xA;                &#xD;&#xA;                setPlayerTotal(playerTotalValue);&#xD;&#xA;                setDealerTotal(dealerTotalValue);&#xD;&#xA;                setGameStatus(&#39;player-turn&#39;);&#xD;&#xA;                setMessage(&#39;Your turn! Hit or Stand?&#39;);&#xD;&#xA;                &#xD;&#xA;                // Check for blackjack&#xD;&#xA;                if (playerTotalValue === 21) {&#xD;&#xA;                    setTimeout(stand, 1000);&#xD;&#xA;                }&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Player draws a card&#xD;&#xA;            const hit = () =&gt; {&#xD;&#xA;                if (gameStatus !== &#39;player-turn&#39;) return;&#xD;&#xA;                &#xD;&#xA;                const newDeck = [...deck];&#xD;&#xA;                const newCard = newDeck.pop();&#xD;&#xA;                const newPlayerHand = [...playerHand, newCard];&#xD;&#xA;                const newPlayerTotal = calculateTotal(newPlayerHand);&#xD;&#xA;                &#xD;&#xA;                setDeck(newDeck);&#xD;&#xA;                setPlayerHand(newPlayerHand);&#xD;&#xA;                setPlayerTotal(newPlayerTotal);&#xD;&#xA;                &#xD;&#xA;                if (newPlayerTotal &gt; 21) {&#xD;&#xA;                    setGameStatus(&#39;lose&#39;);&#xD;&#xA;                    setMessage(&#39;Busted! You lose.&#39;);&#xD;&#xA;                    setScore({ ...score, losses: score.losses + 1 });&#xD;&#xA;                } else if (newPlayerTotal === 21) {&#xD;&#xA;                    setTimeout(stand, 500);&#xD;&#xA;                }&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Player ends their turn&#xD;&#xA;            const stand = () =&gt; {&#xD;&#xA;                if (gameStatus !== &#39;player-turn&#39;) return;&#xD;&#xA;                &#xD;&#xA;                setGameStatus(&#39;dealer-turn&#39;);&#xD;&#xA;                setMessage(&#34;Dealer&#39;s turn&#34;);&#xD;&#xA;                &#xD;&#xA;                // Reveal dealer&#39;s hidden card after a short delay&#xD;&#xA;                setTimeout(() =&gt; {&#xD;&#xA;                    const newDealerTotal = calculateTotal(dealerHand);&#xD;&#xA;                    setDealerTotal(newDealerTotal);&#xD;&#xA;                    &#xD;&#xA;                    let currentDeck = [...deck];&#xD;&#xA;                    let currentDealerHand = [...dealerHand];&#xD;&#xA;                    let currentDealerTotal = newDealerTotal;&#xD;&#xA;                    &#xD;&#xA;                    // Dealer draws until they have at least 17&#xD;&#xA;                    const dealerDraw = () =&gt; {&#xD;&#xA;                        if (currentDealerTotal &lt; 17) {&#xD;&#xA;                            setTimeout(() =&gt; {&#xD;&#xA;                                const newCard = currentDeck.pop();&#xD;&#xA;                                currentDealerHand.push(newCard);&#xD;&#xA;                                currentDealerTotal = calculateTotal(currentDealerHand);&#xD;&#xA;                                &#xD;&#xA;                                setDeck(currentDeck);&#xD;&#xA;                                setDealerHand(currentDealerHand);&#xD;&#xA;                                setDealerTotal(currentDealerTotal);&#xD;&#xA;                                &#xD;&#xA;                                dealerDraw();&#xD;&#xA;                            }, 800);&#xD;&#xA;                        } else {&#xD;&#xA;                            // Determine winner after dealer finishes drawing&#xD;&#xA;                            setTimeout(determineWinner, 500);&#xD;&#xA;                        }&#xD;&#xA;                    };&#xD;&#xA;                    &#xD;&#xA;                    dealerDraw();&#xD;&#xA;                }, 800);&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Determine the winner&#xD;&#xA;            const determineWinner = () =&gt; {&#xD;&#xA;                if (dealerTotal &gt; 21) {&#xD;&#xA;                    setGameStatus(&#39;win&#39;);&#xD;&#xA;                    setMessage(&#39;Dealer busts! You win!&#39;);&#xD;&#xA;                    setScore({ ...score, wins: score.wins + 1 });&#xD;&#xA;                } else if (dealerTotal &gt; playerTotal) {&#xD;&#xA;                    setGameStatus(&#39;lose&#39;);&#xD;&#xA;                    setMessage(&#39;Dealer wins!&#39;);&#xD;&#xA;                    setScore({ ...score, losses: score.losses + 1 });&#xD;&#xA;                } else if (dealerTotal &lt; playerTotal) {&#xD;&#xA;                    setGameStatus(&#39;win&#39;);&#xD;&#xA;                    setMessage(&#39;You win!&#39;);&#xD;&#xA;                    setScore({ ...score, wins: score.wins + 1 });&#xD;&#xA;                } else {&#xD;&#xA;                    setGameStatus(&#39;push&#39;);&#xD;&#xA;                    setMessage(&#34;It&#39;s a push!&#34;);&#xD;&#xA;                    setScore({ ...score, pushes: score.pushes + 1 });&#xD;&#xA;                }&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            // Start a new game&#xD;&#xA;            const newGame = () =&gt; {&#xD;&#xA;                setPlayerHand([]);&#xD;&#xA;                setDealerHand([]);&#xD;&#xA;                setPlayerTotal(0);&#xD;&#xA;                setDealerTotal(0);&#xD;&#xA;                setGameStatus(&#39;waiting&#39;);&#xD;&#xA;                setMessage(&#39;Place your bet and deal cards&#39;);&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            return (&#xD;&#xA;                &lt;div className=&#34;game-container&#34;&gt;&#xD;&#xA;                    &lt;h1&gt;Blackjack&lt;/h1&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;score-board&#34;&gt;&#xD;&#xA;                        &lt;div className=&#34;score score-wins&#34;&gt;Wins: {score.wins}&lt;/div&gt;&#xD;&#xA;                        &lt;div className=&#34;score score-losses&#34;&gt;Losses: {score.losses}&lt;/div&gt;&#xD;&#xA;                        &lt;div className=&#34;score score-pushes&#34;&gt;Pushes: {score.pushes}&lt;/div&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;hands-container&#34;&gt;&#xD;&#xA;                        &lt;Hand &#xD;&#xA;                            cards={dealerHand} &#xD;&#xA;                            title=&#34;Dealer&#34; &#xD;&#xA;                            total={gameStatus !== &#39;player-turn&#39; ? dealerTotal : 0}&#xD;&#xA;                            isDealer={gameStatus === &#39;player-turn&#39;}&#xD;&#xA;                        /&gt;&#xD;&#xA;                        &#xD;&#xA;                        &lt;Hand &#xD;&#xA;                            cards={playerHand} &#xD;&#xA;                            title=&#34;Player&#34; &#xD;&#xA;                            total={playerTotal}&#xD;&#xA;                            isDealer={false}&#xD;&#xA;                        /&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;message&#34;&gt;{message}&lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;controls&#34;&gt;&#xD;&#xA;                        {gameStatus === &#39;waiting&#39; ? (&#xD;&#xA;                            &lt;button className=&#34;btn btn-deal&#34; onClick={dealCards}&gt;&#xD;&#xA;                                Deal Cards&#xD;&#xA;                            &lt;/button&gt;&#xD;&#xA;                        ) : gameStatus === &#39;player-turn&#39; ? (&#xD;&#xA;                            &lt;&gt;&#xD;&#xA;                                &lt;button className=&#34;btn btn-hit&#34; onClick={hit}&gt;&#xD;&#xA;                                    Hit&#xD;&#xA;                                &lt;/button&gt;&#xD;&#xA;                                &lt;button className=&#34;btn btn-stand&#34; onClick={stand}&gt;&#xD;&#xA;                                    Stand&#xD;&#xA;                                &lt;/button&gt;&#xD;&#xA;                            &lt;/&gt;&#xD;&#xA;                        ) : (&#xD;&#xA;                            &lt;button className=&#34;btn btn-deal&#34; onClick={newGame}&gt;&#xD;&#xA;                                New Game&#xD;&#xA;                            &lt;/button&gt;&#xD;&#xA;                        )}&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;instructions&#34;&gt;&#xD;&#xA;                        &lt;h3&gt;How to Play:&lt;/h3&gt;&#xD;&#xA;                        &lt;ul&gt;&#xD;&#xA;                            &lt;li&gt;Try to get as close to 21 as possible without going over&lt;/li&gt;&#xD;&#xA;                            &lt;li&gt;Dealer must hit until they reach at least 17&lt;/li&gt;&#xD;&#xA;                            &lt;li&gt;Aces count as 1 or 11&lt;/li&gt;&#xD;&#xA;                            &lt;li&gt;Face cards (J, Q, K) are worth 10&lt;/li&gt;&#xD;&#xA;                        &lt;/ul&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                &lt;/div&gt;&#xD;&#xA;            );&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(&lt;BlackjackGame /&gt;);&#xD;&#xA;    &lt;/script&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&lt;/html&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/blackjack_embed/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blackjack_embed/</guid>
-      <description>&lt;iframe &#xD;&#xA;    src=&#34;blackjack.html&#34; &#xD;&#xA;    width=&#34;650&#34; &#xD;&#xA;    height=&#34;800&#34; &#xD;&#xA;    frameborder=&#34;0&#34;&#xD;&#xA;    style=&#34;border: none; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);&#34;&#xD;&#xA;    allowfullscreen&gt;&#xD;&#xA;&lt;/iframe&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/circle_clicker/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/circle_clicker/</guid>
-      <description>&lt;!DOCTYPE html&gt;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xA;&lt;head&gt;&#xA;    &lt;meta charset=&#34;UTF-8&#34;&gt;&#xA;    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;&#xA;    &lt;title&gt;Quick Reflex: Circle Clicker&lt;/title&gt;&#xA;    &lt;style&gt;&#xA;        * {&#xA;            margin: 0;&#xA;            padding: 0;&#xA;            box-sizing: border-box;&#xA;            font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;&#xA;        }&#xA;        &#xA;        body {&#xA;            display: flex;&#xA;            justify-content: center;&#xA;            align-items: center;&#xA;            min-height: 100vh;&#xA;            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);&#xA;            padding: 20px;&#xA;            overflow: hidden;&#xA;        }&#xA;        &#xA;        .game-container {&#xA;            background-color: rgba(255, 255, 255, 0.95);&#xA;            border-radius: 20px;&#xA;            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);&#xA;            padding: 30px;&#xA;            max-width: 800px;&#xA;            width: 100%;&#xA;            text-align: center;&#xA;            position: relative;&#xA;            overflow: hidden;&#xA;        }&#xA;        &#xA;        h1 {&#xA;            color: #333;&#xA;            margin-bottom: 15px;&#xA;            font-size: 2.8rem;&#xA;            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);&#xA;            background: linear-gradient(to right, #6a11cb, #2575fc);&#xA;            -webkit-background-clip: text;&#xA;            -webkit-text-fill-color: transparent;&#xA;        }&#xA;        &#xA;        .game-info {&#xA;            display: flex;&#xA;            justify-content: space-around;&#xA;            margin-bottom: 20px;&#xA;            font-size: 1.3rem;&#xA;            font-weight: bold;&#xA;            background: linear-gradient(to right, #f5f7fa, #c3cfe2);&#xA;            padding: 15px;&#xA;            border-radius: 15px;&#xA;            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);&#xA;        }&#xA;        &#xA;        .info-item {&#xA;            display: flex;&#xA;            flex-direction: column;&#xA;            align-items: center;&#xA;        }&#xA;        &#xA;        .info-value {&#xA;            font-size: 2rem;&#xA;            color: #6a11cb;&#xA;            margin-top: 5px;&#xA;        }&#xA;        &#xA;        .game-area {&#xA;            height: 400px;&#xA;            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);&#xA;            border-radius: 15px;&#xA;            margin: 20px 0;&#xA;            position: relative;&#xA;            overflow: hidden;&#xA;            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);&#xA;            border: 3px solid #e0e6f0;&#xA;        }&#xA;        &#xA;        .target {&#xA;            position: absolute;&#xA;            border-radius: 50%;&#xA;            cursor: pointer;&#xA;            transition: transform 0.1s;&#xA;            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);&#xA;            background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4);&#xA;            display: flex;&#xA;            justify-content: center;&#xA;            align-items: center;&#xA;            color: white;&#xA;            font-weight: bold;&#xA;            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);&#xA;        }&#xA;        &#xA;        .target:hover {&#xA;            transform: scale(1.05);&#xA;        }&#xA;        &#xA;        .target:active {&#xA;            transform: scale(0.95);&#xA;        }&#xA;        &#xA;        .controls {&#xA;            margin-top: 20px;&#xA;            display: flex;&#xA;            justify-content: center;&#xA;            gap: 15px;&#xA;        }&#xA;        &#xA;        button {&#xA;            background: linear-gradient(to right, #6a11cb, #2575fc);&#xA;            border: none;&#xA;            color: white;&#xA;            padding: 14px 35px;&#xA;            text-align: center;&#xA;            text-decoration: none;&#xA;            font-size: 1.1rem;&#xA;            font-weight: bold;&#xA;            cursor: pointer;&#xA;            border-radius: 50px;&#xA;            transition: all 0.3s;&#xA;            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);&#xA;            letter-spacing: 1px;&#xA;        }&#xA;        &#xA;        button:hover {&#xA;            transform: translateY(-3px);&#xA;            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);&#xA;        }&#xA;        &#xA;        button:active {&#xA;            transform: translateY(1px);&#xA;        }&#xA;        &#xA;        button:disabled {&#xA;            background: linear-gradient(to right, #cccccc, #999999);&#xA;            cursor: not-allowed;&#xA;            transform: none;&#xA;            box-shadow: none;&#xA;        }&#xA;        &#xA;        #start-btn {&#xA;            background: linear-gradient(to right, #00b09b, #96c93d);&#xA;        }&#xA;        &#xA;        #reset-btn {&#xA;            background: linear-gradient(to right, #ff5e62, #ff9966);&#xA;        }&#xA;        &#xA;        .message {&#xA;            font-size: 1.5rem;&#xA;            font-weight: bold;&#xA;            margin: 20px 0;&#xA;            min-height: 40px;&#xA;            padding: 10px;&#xA;            border-radius: 10px;&#xA;            transition: all 0.3s;&#xA;        }&#xA;        &#xA;        .game-start {&#xA;            color: #00b09b;&#xA;            background-color: rgba(0, 176, 155, 0.1);&#xA;        }&#xA;        &#xA;        .correct {&#xA;            color: #00b09b;&#xA;            background-color: rgba(0, 176, 155, 0.1);&#xA;        }&#xA;        &#xA;        .game-over {&#xA;            font-size: 2.2rem;&#xA;            color: #ff5e62;&#xA;            background-color: rgba(255, 94, 98, 0.1);&#xA;            padding: 15px;&#xA;            margin: 20px 0;&#xA;        }&#xA;        &#xA;        .instructions {&#xA;            background: linear-gradient(to right, #f5f7fa, #c3cfe2);&#xA;            padding: 20px;&#xA;            border-radius: 15px;&#xA;            margin-top: 25px;&#xA;            text-align: left;&#xA;            font-size: 1rem;&#xA;            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);&#xA;        }&#xA;        &#xA;        .instructions h3 {&#xA;            color: #6a11cb;&#xA;            margin-bottom: 10px;&#xA;            text-align: center;&#xA;        }&#xA;        &#xA;        .instructions ul {&#xA;            padding-left: 20px;&#xA;        }&#xA;        &#xA;        .instructions li {&#xA;            margin-bottom: 8px;&#xA;        }&#xA;        &#xA;        .combo {&#xA;            position: absolute;&#xA;            font-size: 2rem;&#xA;            font-weight: bold;&#xA;            color: #ff5e62;&#xA;            animation: floatUp 1s ease-out forwards;&#xA;            pointer-events: none;&#xA;        }&#xA;        &#xA;        @keyframes floatUp {&#xA;            0% {&#xA;                opacity: 1;&#xA;                transform: translateY(0);&#xA;            }&#xA;            100% {&#xA;                opacity: 0;&#xA;                transform: translateY(-50px);&#xA;            }&#xA;        }&#xA;        &#xA;        @media (max-width: 600px) {&#xA;            h1 {&#xA;                font-size: 2.2rem;&#xA;            }&#xA;            &#xA;            .game-info {&#xA;                flex-direction: column;&#xA;                gap: 10px;&#xA;            }&#xA;            &#xA;            .game-area {&#xA;                height: 300px;&#xA;            }&#xA;            &#xA;            .controls {&#xA;                flex-direction: column;&#xA;                align-items: center;&#xA;            }&#xA;            &#xA;            button {&#xA;                width: 80%;&#xA;            }&#xA;        }&#xA;    &lt;/style&gt;&#xA;&lt;/head&gt;&#xA;&lt;body&gt;&#xA;    &lt;div class=&#34;game-container&#34;&gt;&#xA;        &lt;h1&gt;Quick Reflex: Circle Clicker&lt;/h1&gt;&#xA;        &#xA;        &lt;div class=&#34;game-info&#34;&gt;&#xA;            &lt;div class=&#34;info-item&#34;&gt;&#xA;                &lt;div&gt;Score&lt;/div&gt;&#xA;                &lt;div class=&#34;info-value&#34; id=&#34;score&#34;&gt;0&lt;/div&gt;&#xA;            &lt;/div&gt;&#xA;            &lt;div class=&#34;info-item&#34;&gt;&#xA;                &lt;div&gt;Time&lt;/div&gt;&#xA;                &lt;div class=&#34;info-value&#34; id=&#34;time&#34;&gt;30&lt;/div&gt;&#xA;            &lt;/div&gt;&#xA;            &lt;div class=&#34;info-item&#34;&gt;&#xA;                &lt;div&gt;Level&lt;/div&gt;&#xA;                &lt;div class=&#34;info-value&#34; id=&#34;level&#34;&gt;1&lt;/div&gt;&#xA;            &lt;/div&gt;&#xA;            &lt;div class=&#34;info-item&#34;&gt;&#xA;                &lt;div&gt;Combo&lt;/div&gt;&#xA;                &lt;div class=&#34;info-value&#34; id=&#34;combo&#34;&gt;1x&lt;/div&gt;&#xA;            &lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;message&#34; id=&#34;message&#34;&gt;Click Start to begin the game!&lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;game-area&#34; id=&#34;game-area&#34;&gt;&#xA;            &lt;!-- Circles will be generated here --&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;controls&#34;&gt;&#xA;            &lt;button id=&#34;start-btn&#34;&gt;Start Game&lt;/button&gt;&#xA;            &lt;button id=&#34;reset-btn&#34;&gt;Reset Game&lt;/button&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;instructions&#34;&gt;&#xA;            &lt;h3&gt;How to Play:&lt;/h3&gt;&#xA;            &lt;ul&gt;&#xA;                &lt;li&gt;Click on the circles as quickly as possible before they disappear&lt;/li&gt;&#xA;                &lt;li&gt;Each circle gives you points based on its size and your current combo&lt;/li&gt;&#xA;                &lt;li&gt;Smaller circles are worth more points but harder to click&lt;/li&gt;&#xA;                &lt;li&gt;Click circles consecutively to build your combo multiplier&lt;/li&gt;&#xA;                &lt;li&gt;The game gets faster as you level up!&lt;/li&gt;&#xA;            &lt;/ul&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/div&gt;&#xA;&#xA;    &lt;script&gt;&#xA;        // Game variables&#xA;        let score = 0;&#xA;        let timeLeft = 30;&#xA;        let level = 1;&#xA;        let gameActive = false;&#xA;        let timer;&#xA;        let circleInterval;&#xA;        let combo = 1;&#xA;        let circlesClicked = 0;&#xA;        let circlesMissed = 0;&#xA;        &#xA;        // DOM elements&#xA;        const scoreElement = document.getElementById(&#39;score&#39;);&#xA;        const timeElement = document.getElementById(&#39;time&#39;);&#xA;        const levelElement = document.getElementById(&#39;level&#39;);&#xA;        const comboElement = document.getElementById(&#39;combo&#39;);&#xA;        const gameArea = document.getElementById(&#39;game-area&#39;);&#xA;        const messageElement = document.getElementById(&#39;message&#39;);&#xA;        const startButton = document.getElementById(&#39;start-btn&#39;);&#xA;        const resetButton = document.getElementById(&#39;reset-btn&#39;);&#xA;        &#xA;        // Initialize the game&#xA;        function initGame() {&#xA;            score = 0;&#xA;            timeLeft = 30;&#xA;            level = 1;&#xA;            gameActive = false;&#xA;            combo = 1;&#xA;            circlesClicked = 0;&#xA;            circlesMissed = 0;&#xA;            &#xA;            scoreElement.textContent = score;&#xA;            timeElement.textContent = timeLeft;&#xA;            levelElement.textContent = level;&#xA;            comboElement.textContent = combo + &#39;x&#39;;&#xA;            messageElement.textContent = &#39;Click Start to begin the game!&#39;;&#xA;            messageElement.className = &#39;message&#39;;&#xA;            &#xA;            clearInterval(timer);&#xA;            clearInterval(circleInterval);&#xA;            gameArea.innerHTML = &#39;&#39;;&#xA;            &#xA;            startButton.disabled = false;&#xA;        }&#xA;        &#xA;        // Create a new circle&#xA;        function createCircle() {&#xA;            if (!gameActive) return;&#xA;            &#xA;            const circle = document.createElement(&#39;div&#39;);&#xA;            circle.className = &#39;target&#39;;&#xA;            &#xA;            // Random size based on level (smaller circles are harder to click)&#xA;            const minSize = Math.max(40, 70 - level * 5);&#xA;            const maxSize = Math.max(60, 90 - level * 5);&#xA;            const size = Math.floor(Math.random() * (maxSize - minSize + 1)) + minSize;&#xA;            &#xA;            circle.style.width = `${size}px`;&#xA;            circle.style.height = `${size}px`;&#xA;            &#xA;            // Random position within game area&#xA;            const maxX = gameArea.offsetWidth - size;&#xA;            const maxY = gameArea.offsetHeight - size;&#xA;            const x = Math.floor(Math.random() * maxX);&#xA;            const y = Math.floor(Math.random() * maxY);&#xA;            &#xA;            circle.style.left = `${x}px`;&#xA;            circle.style.top = `${y}px`;&#xA;            &#xA;            // Points based on size (smaller circles = more points)&#xA;            const points = Math.floor(100 / (size / 50)) * combo;&#xA;            circle.dataset.points = points;&#xA;            &#xA;            // Display points on circle&#xA;            circle.textContent = points;&#xA;            &#xA;            // Random color gradient&#xA;            const color1 = `hsl(${Math.random() * 360}, 70%, 65%)`;&#xA;            const color2 = `hsl(${Math.random() * 360}, 70%, 55%)`;&#xA;            circle.style.background = `radial-gradient(circle at 30% 30%, ${color1}, ${color2})`;&#xA;            &#xA;            // Circle disappears after a time based on level&#xA;            const disappearTime = Math.max(1000, 2500 - level * 150);&#xA;            &#xA;            circle.addEventListener(&#39;click&#39;, () =&gt; {&#xA;                if (gameActive) {&#xA;                    circleClicked(circle, points);&#xA;                }&#xA;            });&#xA;            &#xA;            gameArea.appendChild(circle);&#xA;            &#xA;            // Remove circle after time if not clicked&#xA;            setTimeout(() =&gt; {&#xA;                if (circle.parentNode) {&#xA;                    circle.parentNode.removeChild(circle);&#xA;                    circleMissed();&#xA;                }&#xA;            }, disappearTime);&#xA;        }&#xA;        &#xA;        // Handle circle click&#xA;        function circleClicked(circle, points) {&#xA;            // Add to score&#xA;            score += points;&#xA;            scoreElement.textContent = score;&#xA;            &#xA;            // Increase combo&#xA;            combo++;&#xA;            comboElement.textContent = combo + &#39;x&#39;;&#xA;            circlesClicked++;&#xA;            &#xA;            // Show combo text&#xA;            const comboText = document.createElement(&#39;div&#39;);&#xA;            comboText.className = &#39;combo&#39;;&#xA;            comboText.textContent = `+${points} (${combo}x Combo!)`;&#xA;            comboText.style.left = circle.style.left;&#xA;            comboText.style.top = circle.style.top;&#xA;            gameArea.appendChild(comboText);&#xA;            &#xA;            // Remove combo text after animation&#xA;            setTimeout(() =&gt; {&#xA;                if (comboText.parentNode) {&#xA;                    comboText.parentNode.removeChild(comboText);&#xA;                }&#xA;            }, 1000);&#xA;            &#xA;            // Remove circle&#xA;            circle.parentNode.removeChild(circle);&#xA;            &#xA;            // Level up every 500 points&#xA;            if (score &gt;= level * 500) {&#xA;                levelUp();&#xA;            }&#xA;            &#xA;            // Positive feedback message&#xA;            if (combo % 5 === 0) {&#xA;                messageElement.textContent = `Awesome! ${combo}x Combo!`;&#xA;                messageElement.className = &#39;message correct&#39;;&#xA;            }&#xA;        }&#xA;        &#xA;        // Handle missed circle&#xA;        function circleMissed() {&#xA;            circlesMissed++;&#xA;            &#xA;            // Reset combo when missing a circle&#xA;            if (combo &gt; 1) {&#xA;                messageElement.textContent = `Combo broken!`;&#xA;                messageElement.className = &#39;message incorrect&#39;;&#xA;            }&#xA;            &#xA;            combo = 1;&#xA;            comboElement.textContent = combo + &#39;x&#39;;&#xA;        }&#xA;        &#xA;        // Level up&#xA;        function levelUp() {&#xA;            level++;&#xA;            levelElement.textContent = level;&#xA;            messageElement.textContent = `Level ${level}! Circles are getting smaller and faster!`;&#xA;            messageElement.className = &#39;message correct&#39;;&#xA;            &#xA;            // Increase game speed&#xA;            clearInterval(circleInterval);&#xA;            const interval = Math.max(300, 1000 - level * 80);&#xA;            circleInterval = setInterval(createCircle, interval);&#xA;        }&#xA;        &#xA;        // Start the game&#xA;        function startGame() {&#xA;            if (gameActive) return;&#xA;            &#xA;            gameActive = true;&#xA;            startButton.disabled = true;&#xA;            messageElement.textContent = &#39;Click the circles quickly!&#39;;&#xA;            messageElement.className = &#39;message game-start&#39;;&#xA;            &#xA;            // Start the timer&#xA;            timer = setInterval(() =&gt; {&#xA;                timeLeft--;&#xA;                timeElement.textContent = timeLeft;&#xA;                &#xA;                if (timeLeft &lt;= 0) {&#xA;                    endGame();&#xA;                }&#xA;            }, 1000);&#xA;            &#xA;            // Start generating circles&#xA;            const initialInterval = 1000;&#xA;            circleInterval = setInterval(createCircle, initialInterval);&#xA;            &#xA;            // Create first circle immediately&#xA;            setTimeout(createCircle, 300);&#xA;        }&#xA;        &#xA;        // End the game&#xA;        function endGame() {&#xA;            gameActive = false;&#xA;            clearInterval(timer);&#xA;            clearInterval(circleInterval);&#xA;            startButton.disabled = false;&#xA;            &#xA;            const accuracy = circlesClicked + circlesMissed &gt; 0&#xA;                ? Math.round((circlesClicked / (circlesClicked + circlesMissed)) * 100)&#xA;                : 0;&#xA;            &#xA;            messageElement.innerHTML = `&#xA;                Game Over!&lt;br&gt;&#xA;                Final Score: ${score}&lt;br&gt;&#xA;                Accuracy: ${accuracy}%&#xA;            `;&#xA;            messageElement.className = &#39;message game-over&#39;;&#xA;        }&#xA;        &#xA;        // Event listeners&#xA;        startButton.addEventListener(&#39;click&#39;, startGame);&#xA;        resetButton.addEventListener(&#39;click&#39;, initGame);&#xA;        &#xA;        // Initialize the game on load&#xA;        window.onload = initGame;&#xA;    &lt;/script&gt;&#xA;&lt;/body&gt;&#xA;&lt;/html&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/color_match/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/color_match/</guid>
-      <description>&lt;!DOCTYPE html&gt;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xA;&lt;head&gt;&#xA;    &lt;meta charset=&#34;UTF-8&#34;&gt;&#xA;    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;&#xA;    &lt;title&gt;Color Match Challenge&lt;/title&gt;&#xA;    &lt;style&gt;&#xA;        /* Reset everything more aggressively */&#xA;        * {&#xA;            margin: 0;&#xA;            padding: 0;&#xA;            box-sizing: border-box;&#xA;            font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;&#xA;        }&#xA;        &#xA;        html, body {&#xA;            width: 100%;&#xA;            height: 100%;&#xA;            overflow: hidden; /* Prevent scrollbars */&#xA;        }&#xA;        &#xA;        body {&#xA;            display: flex;&#xA;            justify-content: center;&#xA;            align-items: center;&#xA;            min-height: 100vh;&#xA;            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);&#xA;            padding: 20px;&#xA;        }&#xA;        &#xA;        .game-container {&#xA;            background-color: rgba(255, 255, 255, 0.95);&#xA;            border-radius: 20px;&#xA;            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);&#xA;            padding: 30px;&#xA;            max-width: 600px;&#xA;            width: 100%;&#xA;            text-align: center;&#xA;            position: relative;&#xA;            z-index: 1000; /* Ensure it stays on top */&#xA;        }&#xA;        &#xA;        /* Rest of your CSS remains the same */&#xA;        h1 {&#xA;            color: #333;&#xA;            margin-bottom: 20px;&#xA;            font-size: 2.5rem;&#xA;            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);&#xA;        }&#xA;        &#xA;        .game-info {&#xA;            display: flex;&#xA;            justify-content: space-between;&#xA;            margin-bottom: 20px;&#xA;            font-size: 1.2rem;&#xA;            font-weight: bold;&#xA;        }&#xA;        &#xA;        .target-color {&#xA;            width: 150px;&#xA;            height: 80px;&#xA;            margin: 0 auto 20px;&#xA;            border-radius: 10px;&#xA;            border: 3px solid #333;&#xA;            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);&#xA;        }&#xA;        &#xA;        .color-grid {&#xA;            display: grid;&#xA;            grid-template-columns: repeat(3, 1fr);&#xA;            gap: 15px;&#xA;            margin: 30px 0;&#xA;        }&#xA;        &#xA;        .color-option {&#xA;            height: 120px;&#xA;            border-radius: 10px;&#xA;            cursor: pointer;&#xA;            transition: transform 0.2s, box-shadow 0.2s;&#xA;            border: 3px solid transparent;&#xA;        }&#xA;        &#xA;        .color-option:hover {&#xA;            transform: scale(1.05);&#xA;            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);&#xA;        }&#xA;        &#xA;        .controls {&#xA;            margin-top: 20px;&#xA;        }&#xA;        &#xA;        button {&#xA;            background: linear-gradient(to right, #4CAF50, #45a049);&#xA;            border: none;&#xA;            color: white;&#xA;            padding: 12px 30px;&#xA;            text-align: center;&#xA;            text-decoration: none;&#xA;            display: inline-block;&#xA;            font-size: 18px;&#xA;            margin: 10px 5px;&#xA;            cursor: pointer;&#xA;            border-radius: 50px;&#xA;            transition: all 0.3s;&#xA;            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);&#xA;        }&#xA;        &#xA;        button:hover {&#xA;            transform: translateY(-3px);&#xA;            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);&#xA;        }&#xA;        &#xA;        button:active {&#xA;            transform: translateY(1px);&#xA;        }&#xA;        &#xA;        #start-btn {&#xA;            background: linear-gradient(to right, #2196F3, #21b0f3);&#xA;        }&#xA;        &#xA;        #reset-btn {&#xA;            background: linear-gradient(to right, #f44336, #f46b36);&#xA;        }&#xA;        &#xA;        .message {&#xA;            font-size: 1.5rem;&#xA;            font-weight: bold;&#xA;            margin: 20px 0;&#xA;            min-height: 40px;&#xA;        }&#xA;        &#xA;        .correct {&#xA;            color: #4CAF50;&#xA;        }&#xA;        &#xA;        .incorrect {&#xA;            color: #f44336;&#xA;        }&#xA;        &#xA;        .game-over {&#xA;            font-size: 2rem;&#xA;            color: #f44336;&#xA;            margin: 20px 0;&#xA;        }&#xA;        &#xA;        .instructions {&#xA;            background-color: #f9f9f9;&#xA;            padding: 15px;&#xA;            border-radius: 10px;&#xA;            margin-top: 20px;&#xA;            text-align: left;&#xA;            font-size: 0.9rem;&#xA;        }&#xA;        &#xA;        @media (max-width: 500px) {&#xA;            .color-grid {&#xA;                grid-template-columns: repeat(2, 1fr);&#xA;            }&#xA;            &#xA;            h1 {&#xA;                font-size: 2rem;&#xA;            }&#xA;        }&#xA;    &lt;/style&gt;&#xA;&lt;/head&gt;&#xA;&lt;body&gt;&#xA;    &lt;div class=&#34;game-container&#34;&gt;&#xA;        &lt;h1&gt;Color Match Challenge&lt;/h1&gt;&#xA;        &#xA;        &lt;div class=&#34;game-info&#34;&gt;&#xA;            &lt;div&gt;Score: &lt;span id=&#34;score&#34;&gt;0&lt;/span&gt;&lt;/div&gt;&#xA;            &lt;div&gt;Time: &lt;span id=&#34;time&#34;&gt;60&lt;/span&gt;s&lt;/div&gt;&#xA;            &lt;div&gt;Level: &lt;span id=&#34;level&#34;&gt;1&lt;/span&gt;&lt;/div&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;target-color&#34; id=&#34;target-color&#34;&gt;&lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;message&#34; id=&#34;message&#34;&gt;Match the color above!&lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;color-grid&#34; id=&#34;color-grid&#34;&gt;&#xA;            &lt;!-- Color options will be generated here --&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;controls&#34;&gt;&#xA;            &lt;button id=&#34;start-btn&#34;&gt;Start Game&lt;/button&gt;&#xA;            &lt;button id=&#34;reset-btn&#34;&gt;Reset Game&lt;/button&gt;&#xA;        &lt;/div&gt;&#xA;        &#xA;        &lt;div class=&#34;instructions&#34;&gt;&#xA;            &lt;h3&gt;How to Play:&lt;/h3&gt;&#xA;            &lt;p&gt;Click on the square that matches the target color at the top. The game gets faster as you level up!&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/tictactoe/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tictactoe/</guid>
-      <description>&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xD;&#xA;&lt;head&gt;&#xD;&#xA;    &lt;meta charset=&#34;UTF-8&#34;&gt;&#xD;&#xA;    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&gt;&#xD;&#xA;    &lt;title&gt;Professional Tic Tac Toe&lt;/title&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;script src=&#34;https://unpkg.com/@babel/standalone/babel.min.js&#34;&gt;&lt;/script&gt;&#xD;&#xA;    &lt;style&gt;&#xD;&#xA;        * {&#xD;&#xA;            margin: 0;&#xD;&#xA;            padding: 0;&#xD;&#xA;            box-sizing: border-box;&#xD;&#xA;            font-family: &#39;Segoe UI&#39;, Tahoma, Geneva, Verdana, sans-serif;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        body {&#xD;&#xA;            background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);&#xD;&#xA;            min-height: 100vh;&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            align-items: center;&#xD;&#xA;            padding: 20px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        #root {&#xD;&#xA;            width: 100%;&#xD;&#xA;            max-width: 500px;&#xD;&#xA;            margin: 0 auto;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .game-container {&#xD;&#xA;            background: rgba(35, 35, 35, 0.95);&#xD;&#xA;            border-radius: 12px;&#xD;&#xA;            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);&#xD;&#xA;            padding: 25px;&#xD;&#xA;            text-align: center;&#xD;&#xA;            border: 1px solid #444;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        h1 {&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            margin-bottom: 20px;&#xD;&#xA;            font-size: 2.2rem;&#xD;&#xA;            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);&#xD;&#xA;            font-weight: 300;&#xD;&#xA;            letter-spacing: 1px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .status {&#xD;&#xA;            font-size: 1.2rem;&#xD;&#xA;            margin-bottom: 20px;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            font-weight: 400;&#xD;&#xA;            padding: 12px;&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            background: rgba(50, 50, 50, 0.8);&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .board {&#xD;&#xA;            display: grid;&#xD;&#xA;            grid-template-columns: repeat(3, 1fr);&#xD;&#xA;            grid-gap: 8px;&#xD;&#xA;            margin: 0 auto 25px;&#xD;&#xA;            max-width: 320px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .square {&#xD;&#xA;            background: linear-gradient(145deg, #2a2a2a, #3a3a3a);&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            border-radius: 6px;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            font-size: 2.5rem;&#xD;&#xA;            font-weight: bold;&#xD;&#xA;            height: 90px;&#xD;&#xA;            width: 90px;&#xD;&#xA;            cursor: pointer;&#xD;&#xA;            transition: all 0.2s ease;&#xD;&#xA;            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .square:hover {&#xD;&#xA;            transform: translateY(-2px);&#xD;&#xA;            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);&#xD;&#xA;            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .square:active {&#xD;&#xA;            transform: translateY(1px);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .square.X {&#xD;&#xA;            color: #ff7a7a;&#xD;&#xA;            text-shadow: 0 0 10px rgba(255, 122, 122, 0.5);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .square.O {&#xD;&#xA;            color: #7a9fff;&#xD;&#xA;            text-shadow: 0 0 10px rgba(122, 159, 255, 0.5);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .reset-btn {&#xD;&#xA;            background: linear-gradient(145deg, #3a3a3a, #2a2a2a);&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            border-radius: 6px;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;            cursor: pointer;&#xD;&#xA;            font-size: 1rem;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;            padding: 12px 30px;&#xD;&#xA;            margin-top: 10px;&#xD;&#xA;            transition: all 0.3s ease;&#xD;&#xA;            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);&#xD;&#xA;            letter-spacing: 0.5px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .reset-btn:hover {&#xD;&#xA;            transform: translateY(-2px);&#xD;&#xA;            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);&#xD;&#xA;            background: linear-gradient(145deg, #444, #333);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .reset-btn:active {&#xD;&#xA;            transform: translateY(1px);&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .winning-square {&#xD;&#xA;            animation: pulse 1.5s infinite;&#xD;&#xA;            position: relative;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .winning-square::after {&#xD;&#xA;            content: &#39;&#39;;&#xD;&#xA;            position: absolute;&#xD;&#xA;            top: -2px;&#xD;&#xA;            left: -2px;&#xD;&#xA;            right: -2px;&#xD;&#xA;            bottom: -2px;&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            background: linear-gradient(45deg, #ff7a7a, #7a9fff);&#xD;&#xA;            z-index: -1;&#xD;&#xA;            animation: border-pulse 1.5s infinite;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        @keyframes pulse {&#xD;&#xA;            0% { transform: scale(1); }&#xD;&#xA;            50% { transform: scale(1.05); }&#xD;&#xA;            100% { transform: scale(1); }&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        @keyframes border-pulse {&#xD;&#xA;            0% { opacity: 0.7; }&#xD;&#xA;            50% { opacity: 1; }&#xD;&#xA;            100% { opacity: 0.7; }&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-board {&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: space-around;&#xD;&#xA;            margin-top: 20px;&#xD;&#xA;            padding: 15px;&#xD;&#xA;            background: rgba(50, 50, 50, 0.8);&#xD;&#xA;            border-radius: 8px;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score {&#xD;&#xA;            font-size: 1.1rem;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-x {&#xD;&#xA;            color: #ff7a7a;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .score-o {&#xD;&#xA;            color: #7a9fff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .draws {&#xD;&#xA;            color: #dddddd;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .turns-indicator {&#xD;&#xA;            display: flex;&#xD;&#xA;            justify-content: center;&#xD;&#xA;            margin-bottom: 15px;&#xD;&#xA;            gap: 20px;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .player-indicator {&#xD;&#xA;            padding: 8px 15px;&#xD;&#xA;            border-radius: 6px;&#xD;&#xA;            font-weight: 500;&#xD;&#xA;            background: #2a2a2a;&#xD;&#xA;            border: 1px solid #555;&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .active-player {&#xD;&#xA;            background: #333;&#xD;&#xA;            box-shadow: 0 0 10px rgba(122, 159, 255, 0.3);&#xD;&#xA;            color: #ffffff;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        .instructions {&#xD;&#xA;            color: #cccccc;&#xD;&#xA;            font-size: 0.9rem;&#xD;&#xA;            margin-top: 20px;&#xD;&#xA;            padding: 10px;&#xD;&#xA;            border-top: 1px solid #555;&#xD;&#xA;        }&#xD;&#xA;    &lt;/style&gt;&#xD;&#xA;&lt;/head&gt;&#xD;&#xA;&lt;body&gt;&#xD;&#xA;    &lt;div id=&#34;root&#34;&gt;&lt;/div&gt;&#xD;&#xA;&#xD;&#xA;    &lt;script type=&#34;text/babel&#34;&gt;&#xD;&#xA;        const { useState, useEffect } = React;&#xD;&#xA;&#xD;&#xA;        const Square = ({ value, onClick, isWinning }) =&gt; {&#xD;&#xA;            return (&#xD;&#xA;                &lt;button &#xD;&#xA;                    className={`square ${value} ${isWinning ? &#39;winning-square&#39; : &#39;&#39;}`} &#xD;&#xA;                    onClick={onClick}&#xD;&#xA;                &gt;&#xD;&#xA;                    {value}&#xD;&#xA;                &lt;/button&gt;&#xD;&#xA;            );&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        const Board = () =&gt; {&#xD;&#xA;            const [squares, setSquares] = useState(Array(9).fill(null));&#xD;&#xA;            const [isXNext, setIsXNext] = useState(true);&#xD;&#xA;            const [winner, setWinner] = useState(null);&#xD;&#xA;            const [winningLine, setWinningLine] = useState([]);&#xD;&#xA;            const [scores, setScores] = useState({ X: 0, O: 0, draws: 0 });&#xD;&#xA;&#xD;&#xA;            useEffect(() =&gt; {&#xD;&#xA;                // Check for winner after each move&#xD;&#xA;                const gameWinner = calculateWinner(squares);&#xD;&#xA;                if (gameWinner) {&#xD;&#xA;                    setWinner(gameWinner.winner);&#xD;&#xA;                    setWinningLine(gameWinner.line);&#xD;&#xA;                    // Update scores&#xD;&#xA;                    setScores(prev =&gt; ({&#xD;&#xA;                        ...prev,&#xD;&#xA;                        [gameWinner.winner]: prev[gameWinner.winner] + 1&#xD;&#xA;                    }));&#xD;&#xA;                } else if (!squares.includes(null)) {&#xD;&#xA;                    setWinner(&#39;Draw&#39;);&#xD;&#xA;                    setScores(prev =&gt; ({&#xD;&#xA;                        ...prev,&#xD;&#xA;                        draws: prev.draws + 1&#xD;&#xA;                    }));&#xD;&#xA;                }&#xD;&#xA;            }, [squares]);&#xD;&#xA;&#xD;&#xA;            const calculateWinner = (squares) =&gt; {&#xD;&#xA;                const lines = [&#xD;&#xA;                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows&#xD;&#xA;                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns&#xD;&#xA;                    [0, 4, 8], [2, 4, 6]             // diagonals&#xD;&#xA;                ];&#xD;&#xA;                &#xD;&#xA;                for (let i = 0; i &lt; lines.length; i++) {&#xD;&#xA;                    const [a, b, c] = lines[i];&#xD;&#xA;                    if (squares[a] &amp;&amp; squares[a] === squares[b] &amp;&amp; squares[a] === squares[c]) {&#xD;&#xA;                        return {&#xD;&#xA;                            winner: squares[a],&#xD;&#xA;                            line: lines[i]&#xD;&#xA;                        };&#xD;&#xA;                    }&#xD;&#xA;                }&#xD;&#xA;                return null;&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            const handleClick = (i) =&gt; {&#xD;&#xA;                if (squares[i] || winner) return;&#xD;&#xA;                &#xD;&#xA;                const newSquares = squares.slice();&#xD;&#xA;                newSquares[i] = isXNext ? &#39;X&#39; : &#39;O&#39;;&#xD;&#xA;                setSquares(newSquares);&#xD;&#xA;                setIsXNext(!isXNext);&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            const resetGame = () =&gt; {&#xD;&#xA;                setSquares(Array(9).fill(null));&#xD;&#xA;                setIsXNext(true);&#xD;&#xA;                setWinner(null);&#xD;&#xA;                setWinningLine([]);&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            const renderSquare = (i) =&gt; {&#xD;&#xA;                return (&#xD;&#xA;                    &lt;Square&#xD;&#xA;                        value={squares[i]}&#xD;&#xA;                        onClick={() =&gt; handleClick(i)}&#xD;&#xA;                        isWinning={winningLine.includes(i)}&#xD;&#xA;                    /&gt;&#xD;&#xA;                );&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            const getStatus = () =&gt; {&#xD;&#xA;                if (winner === &#39;Draw&#39;) {&#xD;&#xA;                    return &#39;Game ended in a draw!&#39;;&#xD;&#xA;                } else if (winner) {&#xD;&#xA;                    return `Winner: ${winner}`;&#xD;&#xA;                } else {&#xD;&#xA;                    return `Next player: ${isXNext ? &#39;X&#39; : &#39;O&#39;}`;&#xD;&#xA;                }&#xD;&#xA;            };&#xD;&#xA;&#xD;&#xA;            return (&#xD;&#xA;                &lt;div className=&#34;game-container&#34;&gt;&#xD;&#xA;                    &lt;h1&gt;Tic Tac Toe&lt;/h1&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;turns-indicator&#34;&gt;&#xD;&#xA;                        &lt;div className={`player-indicator ${isXNext &amp;&amp; !winner ? &#39;active-player&#39; : &#39;&#39;}`}&gt;&#xD;&#xA;                            Player X&#xD;&#xA;                        &lt;/div&gt;&#xD;&#xA;                        &lt;div className={`player-indicator ${!isXNext &amp;&amp; !winner ? &#39;active-player&#39; : &#39;&#39;}`}&gt;&#xD;&#xA;                            Player O&#xD;&#xA;                        &lt;/div&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;status&#34;&gt;{getStatus()}&lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;board&#34;&gt;&#xD;&#xA;                        {renderSquare(0)}&#xD;&#xA;                        {renderSquare(1)}&#xD;&#xA;                        {renderSquare(2)}&#xD;&#xA;                        {renderSquare(3)}&#xD;&#xA;                        {renderSquare(4)}&#xD;&#xA;                        {renderSquare(5)}&#xD;&#xA;                        {renderSquare(6)}&#xD;&#xA;                        {renderSquare(7)}&#xD;&#xA;                        {renderSquare(8)}&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;button className=&#34;reset-btn&#34; onClick={resetGame}&gt;&#xD;&#xA;                        {winner ? &#39;New Game&#39; : &#39;Reset Board&#39;}&#xD;&#xA;                    &lt;/button&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;score-board&#34;&gt;&#xD;&#xA;                        &lt;div className=&#34;score score-x&#34;&gt;X: {scores.X}&lt;/div&gt;&#xD;&#xA;                        &lt;div className=&#34;score draws&#34;&gt;Draws: {scores.draws}&lt;/div&gt;&#xD;&#xA;                        &lt;div className=&#34;score score-o&#34;&gt;O: {scores.O}&lt;/div&gt;&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                    &#xD;&#xA;                    &lt;div className=&#34;instructions&#34;&gt;&#xD;&#xA;                        Click on a square to place your mark. Get three in a row to win!&#xD;&#xA;                    &lt;/div&gt;&#xD;&#xA;                &lt;/div&gt;&#xD;&#xA;            );&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        const App = () =&gt; {&#xD;&#xA;            return &lt;Board /&gt;;&#xD;&#xA;        };&#xD;&#xA;&#xD;&#xA;        ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(&lt;App /&gt;);&#xD;&#xA;    &lt;/script&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&lt;/html&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/tictactoe_embed/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tictactoe_embed/</guid>
-      <description>&lt;iframe &#xD;&#xA;    src=&#34;tictactoe.html&#34; &#xD;&#xA;    width=&#34;550&#34; &#xD;&#xA;    height=&#34;800&#34; &#xD;&#xA;    frameborder=&#34;0&#34;&#xD;&#xA;    allowfullscreen&gt;&#xD;&#xA;&lt;/iframe&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</title><link>https://kevindouglasdelong.net/</link><description>Recent content in Welcome to My Portfolio on Kevin Douglas Delong - Software Engineer Portfolio</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://kevindouglasdelong.net/index.xml" rel="self" type="application/rss+xml"/><item><title>About Me</title><link>https://kevindouglasdelong.net/about/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/about/</guid><description>&lt;p&gt;&lt;img src="https://kevindouglasdelong.net/images/headshot.jpg" alt="Profile Photo"&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m Kevin Douglas Delong, a dedicated software engineer with expertise in backend (e.g., Node.js, Python) and front-end (e.g., React, Flutter) development. I build scalable web, mobile, and desktop applications, focusing on user-friendly designs and efficient code.&lt;/p&gt;
+&lt;p&gt;Key Skills:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web: HTML/CSS/JS, React, Next.js&lt;/li&gt;
+&lt;li&gt;Mobile: Flutter, React Native&lt;/li&gt;
+&lt;li&gt;Desktop: Electron, .NET&lt;/li&gt;
+&lt;li&gt;Backend: Express, Django, databases (SQL/NoSQL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Passionate about innovative solutions—let&amp;rsquo;s connect!&lt;/p&gt;</description></item><item><title>Contact Me</title><link>https://kevindouglasdelong.net/contact/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/contact/</guid><description>&lt;p&gt;Reach out for collaborations, project inquiries, or source code access.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Email: &lt;a href="mailto:delong.kevin@gmail.com"&gt;delong.kevin@gmail.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LinkedIn: &lt;a href="https://www.linkedin.com/in/kevin-delong-50726135b/"&gt;linkedin.com/in/kevin-delong&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;GitHub: &lt;a href="https://github.com/delongkevin"&gt;github.com/delongkevin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For source code requests, include details about the project.&lt;/p&gt;</description></item><item><title>Donate</title><link>https://kevindouglasdelong.net/donate/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/donate/</guid><description>&lt;p&gt;Support my open-source projects and development work!&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;Find me on Venmo! &lt;a href="https://account.venmo.com/u/KDelong147"&gt;https://account.venmo.com/u/KDelong147&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Projects</title><link>https://kevindouglasdelong.net/projects/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/projects/</guid><description>&lt;p&gt;Explore my portfolio of web, mobile, and desktop applications. Each includes a demo embed and source code access (request permission via contact).&lt;/p&gt;
+&lt;h3 id="scientific-calculator-web-app"&gt;Scientific Calculator Web App!&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/calculator/index.html" width="100%" height="400px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+&lt;h3 id="tic-tac-toe-game"&gt;Tic Tac Toe Game&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/tictactoe.html" width="100%" height="600px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+
+&lt;h3 id="blackjack-game"&gt;Blackjack Game&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/blackjack.html" width="100%" height="800px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+&lt;h3 id="entertainment-center-for-ride-sharing-passengers"&gt;Entertainment Center for Ride-Sharing Passengers&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/ride-sharing.html" width="100%" height="2000px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+&lt;h3 id="circle-clicker"&gt;Circle Clicker&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/circle_clicker.html" width="100%" height="2000px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+&lt;h3 id="color-match"&gt;Color Match&lt;/h3&gt;
+&lt;iframe src="https://kevindouglasdelong.net/color_match.html" width="100%" height="1800px" frameborder="0" allowfullscreen style="border-radius: 8px;"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;GitHub: &lt;a href="https://kevindouglasdelong.net/contact/"&gt;Request Source Code&lt;/a&gt;
+More projects to come :)&lt;/p&gt;</description></item><item><title>Resume</title><link>https://kevindouglasdelong.net/resume/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/resume/</guid><description>&lt;p&gt;Download my latest resume and cover letter (updated September 13, 2025).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://kevindouglasdelong.net/resume/resume.pdf"&gt;Resume PDF&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Results-oriented Software Engineer with 10+ years in automotive infotainment systems, specializing in backend automation, frontend UI development, and full-stack integration for web, mobile, and embedded applications. Proven track record in C++, Python, and AutoSAR architecture, collaborating on CI/CD pipelines to deliver high-quality, secure software. Excel at debugging complex SOC/IOC issues, fuzz testing protocols (CAN/Ethernet), and leading cross-functional teams to exceed milestones—reducing defects by 25% through optimized test automation. Eager to drive innovative solutions in scalable software environments.&lt;/p&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/blackjack/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/blackjack/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+ &lt;title&gt;Blackjack Game&lt;/title&gt;
+ &lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;
+ &lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"&gt;&lt;/script&gt;
+ &lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;
+ &lt;style&gt;
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ body {
+ background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+ min-height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 20px;
+ }
+ 
+ #root {
+ width: 100%;
+ max-width: 600px;
+ margin: 0 auto;
+ }
+ 
+ .game-container {
+ background: rgba(35, 35, 35, 0.95);
+ border-radius: 12px;
+ box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+ padding: 25px;
+ text-align: center;
+ border: 1px solid #555;
+ }
+ 
+ h1 {
+ color: #ffffff;
+ margin-bottom: 20px;
+ font-size: 2.2rem;
+ text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+ font-weight: 300;
+ letter-spacing: 1px;
+ }
+ 
+ .score-board {
+ display: flex;
+ justify-content: space-around;
+ margin-bottom: 20px;
+ padding: 15px;
+ background: rgba(50, 50, 50, 0.8);
+ border-radius: 8px;
+ border: 1px solid #555;
+ }
+ 
+ .score {
+ font-size: 1.1rem;
+ font-weight: 500;
+ color: #ffffff;
+ }
+ 
+ .score-wins {
+ color: #7a9fff;
+ }
+ 
+ .score-losses {
+ color: #ff7a7a;
+ }
+ 
+ .score-pushes {
+ color: #dddddd;
+ }
+ 
+ .hands-container {
+ display: flex;
+ flex-direction: column;
+ gap: 30px;
+ margin-bottom: 25px;
+ }
+ 
+ .hand {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ .hand-title {
+ color: #ffffff;
+ font-size: 1.2rem;
+ margin-bottom: 10px;
+ font-weight: 500;
+ }
+ 
+ .cards {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ gap: 10px;
+ min-height: 150px;
+ }
+ 
+ .card {
+ width: 80px;
+ height: 120px;
+ background: #2a2a2a;
+ border-radius: 8px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ border: 1px solid #555;
+ box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+ position: relative;
+ }
+ 
+ .card-value {
+ font-size: 1.5rem;
+ font-weight: bold;
+ color: #ffffff;
+ }
+ 
+ .card-suit {
+ font-size: 1.8rem;
+ margin-top: 5px;
+ }
+ 
+ .heart, .diamond {
+ color: #ff7a7a;
+ }
+ 
+ .spade, .club {
+ color: #ffffff;
+ }
+ 
+ .hand-total {
+ color: #ffffff;
+ font-size: 1.1rem;
+ margin-top: 10px;
+ background: rgba(50, 50, 50, 0.8);
+ padding: 5px 15px;
+ border-radius: 20px;
+ border: 1px solid #555;
+ }
+ 
+ .message {
+ font-size: 1.3rem;
+ color: #ffffff;
+ margin: 20px 0;
+ padding: 12px;
+ border-radius: 8px;
+ background: rgba(50, 50, 50, 0.8);
+ border: 1px solid #555;
+ min-height: 60px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+ 
+ .controls {
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+ margin-bottom: 20px;
+ flex-wrap: wrap;
+ }
+ 
+ .btn {
+ background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+ border: 1px solid #555;
+ border-radius: 6px;
+ color: #ffffff;
+ cursor: pointer;
+ font-size: 1rem;
+ font-weight: 500;
+ padding: 12px 25px;
+ transition: all 0.3s ease;
+ box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+ min-width: 120px;
+ }
+ 
+ .btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+ background: linear-gradient(145deg, #444, #333);
+ }
+ 
+ .btn:active {
+ transform: translateY(1px);
+ }
+ 
+ .btn-hit {
+ background: linear-gradient(145deg, #2a7a2a, #1f5e1f);
+ }
+ 
+ .btn-stand {
+ background: linear-gradient(145deg, #7a2a2a, #5e1f1f);
+ }
+ 
+ .btn-deal {
+ background: linear-gradient(145deg, #2a2a7a, #1f1f5e);
+ }
+ 
+ .instructions {
+ color: #cccccc;
+ font-size: 0.9rem;
+ margin-top: 25px;
+ padding: 15px;
+ border-top: 1px solid #555;
+ text-align: left;
+ }
+ 
+ .instructions h3 {
+ margin-bottom: 10px;
+ color: #7a9fff;
+ }
+ 
+ .instructions ul {
+ padding-left: 20px;
+ }
+ 
+ .instructions li {
+ margin-bottom: 5px;
+ }
+ 
+ @media (max-width: 500px) {
+ .card {
+ width: 70px;
+ height: 105px;
+ }
+ 
+ .btn {
+ padding: 10px 15px;
+ min-width: 100px;
+ }
+ }
+ &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;div id="root"&gt;&lt;/div&gt;
+
+ &lt;script type="text/babel"&gt;
+ const { useState, useEffect } = React;
+
+ const Card = ({ suit, value, hidden }) =&gt; {
+ if (hidden) {
+ return (
+ &lt;div className="card"&gt;
+ &lt;div style={{ 
+ width: '100%', 
+ height: '100%', 
+ background: 'linear-gradient(145deg, #1a1a1a, #2a2a2a)',
+ borderRadius: '7px',
+ display: 'flex',
+ justifyContent: 'center',
+ alignItems: 'center'
+ }}&gt;
+ &lt;div style={{
+ width: '50%',
+ height: '50%',
+ background: '#333',
+ borderRadius: '5px',
+ border: '2px solid #555'
+ }}&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ );
+ }
+
+ return (
+ &lt;div className="card"&gt;
+ &lt;div className={`card-value ${suit}`}&gt;{value}&lt;/div&gt;
+ &lt;div className={`card-suit ${suit}`}&gt;
+ {suit === 'heart' ? '♥' : 
+ suit === 'diamond' ? '♦' : 
+ suit === 'club' ? '♣' : '♠'}
+ &lt;/div&gt;
+ &lt;/div&gt;
+ );
+ };
+
+ const Hand = ({ cards, title, total, isDealer }) =&gt; {
+ return (
+ &lt;div className="hand"&gt;
+ &lt;div className="hand-title"&gt;{title}&lt;/div&gt;
+ &lt;div className="cards"&gt;
+ {cards.map((card, index) =&gt; (
+ &lt;Card 
+ key={index} 
+ suit={card.suit} 
+ value={card.value} 
+ hidden={isDealer &amp;&amp; index === 0 &amp;&amp; total === 0}
+ /&gt;
+ ))}
+ &lt;/div&gt;
+ {total &gt; 0 &amp;&amp; (
+ &lt;div className="hand-total"&gt;Total: {total}&lt;/div&gt;
+ )}
+ &lt;/div&gt;
+ );
+ };
+
+ const BlackjackGame = () =&gt; {
+ const [deck, setDeck] = useState([]);
+ const [playerHand, setPlayerHand] = useState([]);
+ const [dealerHand, setDealerHand] = useState([]);
+ const [playerTotal, setPlayerTotal] = useState(0);
+ const [dealerTotal, setDealerTotal] = useState(0);
+ const [gameStatus, setGameStatus] = useState('waiting'); // waiting, player-turn, dealer-turn, win, lose, push
+ const [message, setMessage] = useState('Place your bet and deal cards');
+ const [score, setScore] = useState({ wins: 0, losses: 0, pushes: 0 });
+
+ // Initialize a deck of cards
+ const initializeDeck = () =&gt; {
+ const suits = ['heart', 'diamond', 'club', 'spade'];
+ const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+ const newDeck = [];
+ 
+ for (let suit of suits) {
+ for (let value of values) {
+ newDeck.push({ suit, value });
+ }
+ }
+ 
+ return shuffleDeck(newDeck);
+ };
+
+ // Shuffle the deck using Fisher-Yates algorithm
+ const shuffleDeck = (deck) =&gt; {
+ const newDeck = [...deck];
+ for (let i = newDeck.length - 1; i &gt; 0; i--) {
+ const j = Math.floor(Math.random() * (i + 1));
+ [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
+ }
+ return newDeck;
+ };
+
+ // Calculate the total value of a hand
+ const calculateTotal = (hand) =&gt; {
+ let total = 0;
+ let aces = 0;
+ 
+ for (let card of hand) {
+ if (card.value === 'A') {
+ aces += 1;
+ total += 11;
+ } else if (['K', 'Q', 'J'].includes(card.value)) {
+ total += 10;
+ } else {
+ total += parseInt(card.value);
+ }
+ }
+ 
+ // Adjust for aces
+ while (total &gt; 21 &amp;&amp; aces &gt; 0) {
+ total -= 10;
+ aces -= 1;
+ }
+ 
+ return total;
+ };
+
+ // Deal initial cards
+ const dealCards = () =&gt; {
+ const newDeck = initializeDeck();
+ const playerCards = [newDeck.pop(), newDeck.pop()];
+ const dealerCards = [newDeck.pop(), newDeck.pop()];
+ 
+ setDeck(newDeck);
+ setPlayerHand(playerCards);
+ setDealerHand(dealerCards);
+ 
+ const playerTotalValue = calculateTotal(playerCards);
+ const dealerTotalValue = calculateTotal([dealerCards[0]]); // Only show first card for dealer
+ 
+ setPlayerTotal(playerTotalValue);
+ setDealerTotal(dealerTotalValue);
+ setGameStatus('player-turn');
+ setMessage('Your turn! Hit or Stand?');
+ 
+ // Check for blackjack
+ if (playerTotalValue === 21) {
+ setTimeout(stand, 1000);
+ }
+ };
+
+ // Player draws a card
+ const hit = () =&gt; {
+ if (gameStatus !== 'player-turn') return;
+ 
+ const newDeck = [...deck];
+ const newCard = newDeck.pop();
+ const newPlayerHand = [...playerHand, newCard];
+ const newPlayerTotal = calculateTotal(newPlayerHand);
+ 
+ setDeck(newDeck);
+ setPlayerHand(newPlayerHand);
+ setPlayerTotal(newPlayerTotal);
+ 
+ if (newPlayerTotal &gt; 21) {
+ setGameStatus('lose');
+ setMessage('Busted! You lose.');
+ setScore({ ...score, losses: score.losses + 1 });
+ } else if (newPlayerTotal === 21) {
+ setTimeout(stand, 500);
+ }
+ };
+
+ // Player ends their turn
+ const stand = () =&gt; {
+ if (gameStatus !== 'player-turn') return;
+ 
+ setGameStatus('dealer-turn');
+ setMessage("Dealer's turn");
+ 
+ // Reveal dealer's hidden card after a short delay
+ setTimeout(() =&gt; {
+ const newDealerTotal = calculateTotal(dealerHand);
+ setDealerTotal(newDealerTotal);
+ 
+ let currentDeck = [...deck];
+ let currentDealerHand = [...dealerHand];
+ let currentDealerTotal = newDealerTotal;
+ 
+ // Dealer draws until they have at least 17
+ const dealerDraw = () =&gt; {
+ if (currentDealerTotal &lt; 17) {
+ setTimeout(() =&gt; {
+ const newCard = currentDeck.pop();
+ currentDealerHand.push(newCard);
+ currentDealerTotal = calculateTotal(currentDealerHand);
+ 
+ setDeck(currentDeck);
+ setDealerHand(currentDealerHand);
+ setDealerTotal(currentDealerTotal);
+ 
+ dealerDraw();
+ }, 800);
+ } else {
+ // Determine winner after dealer finishes drawing
+ setTimeout(determineWinner, 500);
+ }
+ };
+ 
+ dealerDraw();
+ }, 800);
+ };
+
+ // Determine the winner
+ const determineWinner = () =&gt; {
+ if (dealerTotal &gt; 21) {
+ setGameStatus('win');
+ setMessage('Dealer busts! You win!');
+ setScore({ ...score, wins: score.wins + 1 });
+ } else if (dealerTotal &gt; playerTotal) {
+ setGameStatus('lose');
+ setMessage('Dealer wins!');
+ setScore({ ...score, losses: score.losses + 1 });
+ } else if (dealerTotal &lt; playerTotal) {
+ setGameStatus('win');
+ setMessage('You win!');
+ setScore({ ...score, wins: score.wins + 1 });
+ } else {
+ setGameStatus('push');
+ setMessage("It's a push!");
+ setScore({ ...score, pushes: score.pushes + 1 });
+ }
+ };
+
+ // Start a new game
+ const newGame = () =&gt; {
+ setPlayerHand([]);
+ setDealerHand([]);
+ setPlayerTotal(0);
+ setDealerTotal(0);
+ setGameStatus('waiting');
+ setMessage('Place your bet and deal cards');
+ };
+
+ return (
+ &lt;div className="game-container"&gt;
+ &lt;h1&gt;Blackjack&lt;/h1&gt;
+ 
+ &lt;div className="score-board"&gt;
+ &lt;div className="score score-wins"&gt;Wins: {score.wins}&lt;/div&gt;
+ &lt;div className="score score-losses"&gt;Losses: {score.losses}&lt;/div&gt;
+ &lt;div className="score score-pushes"&gt;Pushes: {score.pushes}&lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div className="hands-container"&gt;
+ &lt;Hand 
+ cards={dealerHand} 
+ title="Dealer" 
+ total={gameStatus !== 'player-turn' ? dealerTotal : 0}
+ isDealer={gameStatus === 'player-turn'}
+ /&gt;
+ 
+ &lt;Hand 
+ cards={playerHand} 
+ title="Player" 
+ total={playerTotal}
+ isDealer={false}
+ /&gt;
+ &lt;/div&gt;
+ 
+ &lt;div className="message"&gt;{message}&lt;/div&gt;
+ 
+ &lt;div className="controls"&gt;
+ {gameStatus === 'waiting' ? (
+ &lt;button className="btn btn-deal" onClick={dealCards}&gt;
+ Deal Cards
+ &lt;/button&gt;
+ ) : gameStatus === 'player-turn' ? (
+ &lt;&gt;
+ &lt;button className="btn btn-hit" onClick={hit}&gt;
+ Hit
+ &lt;/button&gt;
+ &lt;button className="btn btn-stand" onClick={stand}&gt;
+ Stand
+ &lt;/button&gt;
+ &lt;/&gt;
+ ) : (
+ &lt;button className="btn btn-deal" onClick={newGame}&gt;
+ New Game
+ &lt;/button&gt;
+ )}
+ &lt;/div&gt;
+ 
+ &lt;div className="instructions"&gt;
+ &lt;h3&gt;How to Play:&lt;/h3&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Try to get as close to 21 as possible without going over&lt;/li&gt;
+ &lt;li&gt;Dealer must hit until they reach at least 17&lt;/li&gt;
+ &lt;li&gt;Aces count as 1 or 11&lt;/li&gt;
+ &lt;li&gt;Face cards (J, Q, K) are worth 10&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ );
+ };
+
+ ReactDOM.createRoot(document.getElementById('root')).render(&lt;BlackjackGame /&gt;);
+ &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/blackjack_embed/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/blackjack_embed/</guid><description>&lt;iframe 
+ src="blackjack.html" 
+ width="650" 
+ height="800" 
+ frameborder="0"
+ style="border: none; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);"
+ allowfullscreen&gt;
+&lt;/iframe&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/circle_clicker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/circle_clicker/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+ &lt;title&gt;Quick Reflex: Circle Clicker&lt;/title&gt;
+ &lt;style&gt;
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ body {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+ padding: 20px;
+ overflow: hidden;
+ }
+ 
+ .game-container {
+ background-color: rgba(255, 255, 255, 0.95);
+ border-radius: 20px;
+ box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+ padding: 30px;
+ max-width: 800px;
+ width: 100%;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+ 
+ h1 {
+ color: #333;
+ margin-bottom: 15px;
+ font-size: 2.8rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+ background: linear-gradient(to right, #6a11cb, #2575fc);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+ 
+ .game-info {
+ display: flex;
+ justify-content: space-around;
+ margin-bottom: 20px;
+ font-size: 1.3rem;
+ font-weight: bold;
+ background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+ padding: 15px;
+ border-radius: 15px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .info-item {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ .info-value {
+ font-size: 2rem;
+ color: #6a11cb;
+ margin-top: 5px;
+ }
+ 
+ .game-area {
+ height: 400px;
+ background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+ border-radius: 15px;
+ margin: 20px 0;
+ position: relative;
+ overflow: hidden;
+ box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1);
+ border: 3px solid #e0e6f0;
+ }
+ 
+ .target {
+ position: absolute;
+ border-radius: 50%;
+ cursor: pointer;
+ transition: transform 0.1s;
+ box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ background: radial-gradient(circle at 30% 30%, #ff9a9e, #fad0c4);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ color: white;
+ font-weight: bold;
+ text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+ }
+ 
+ .target:hover {
+ transform: scale(1.05);
+ }
+ 
+ .target:active {
+ transform: scale(0.95);
+ }
+ 
+ .controls {
+ margin-top: 20px;
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+ }
+ 
+ button {
+ background: linear-gradient(to right, #6a11cb, #2575fc);
+ border: none;
+ color: white;
+ padding: 14px 35px;
+ text-align: center;
+ text-decoration: none;
+ font-size: 1.1rem;
+ font-weight: bold;
+ cursor: pointer;
+ border-radius: 50px;
+ transition: all 0.3s;
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+ letter-spacing: 1px;
+ }
+ 
+ button:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+ }
+ 
+ button:active {
+ transform: translateY(1px);
+ }
+ 
+ button:disabled {
+ background: linear-gradient(to right, #cccccc, #999999);
+ cursor: not-allowed;
+ transform: none;
+ box-shadow: none;
+ }
+ 
+ #start-btn {
+ background: linear-gradient(to right, #00b09b, #96c93d);
+ }
+ 
+ #reset-btn {
+ background: linear-gradient(to right, #ff5e62, #ff9966);
+ }
+ 
+ .message {
+ font-size: 1.5rem;
+ font-weight: bold;
+ margin: 20px 0;
+ min-height: 40px;
+ padding: 10px;
+ border-radius: 10px;
+ transition: all 0.3s;
+ }
+ 
+ .game-start {
+ color: #00b09b;
+ background-color: rgba(0, 176, 155, 0.1);
+ }
+ 
+ .correct {
+ color: #00b09b;
+ background-color: rgba(0, 176, 155, 0.1);
+ }
+ 
+ .game-over {
+ font-size: 2.2rem;
+ color: #ff5e62;
+ background-color: rgba(255, 94, 98, 0.1);
+ padding: 15px;
+ margin: 20px 0;
+ }
+ 
+ .instructions {
+ background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+ padding: 20px;
+ border-radius: 15px;
+ margin-top: 25px;
+ text-align: left;
+ font-size: 1rem;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .instructions h3 {
+ color: #6a11cb;
+ margin-bottom: 10px;
+ text-align: center;
+ }
+ 
+ .instructions ul {
+ padding-left: 20px;
+ }
+ 
+ .instructions li {
+ margin-bottom: 8px;
+ }
+ 
+ .combo {
+ position: absolute;
+ font-size: 2rem;
+ font-weight: bold;
+ color: #ff5e62;
+ animation: floatUp 1s ease-out forwards;
+ pointer-events: none;
+ }
+ 
+ @keyframes floatUp {
+ 0% {
+ opacity: 1;
+ transform: translateY(0);
+ }
+ 100% {
+ opacity: 0;
+ transform: translateY(-50px);
+ }
+ }
+ 
+ @media (max-width: 600px) {
+ h1 {
+ font-size: 2.2rem;
+ }
+ 
+ .game-info {
+ flex-direction: column;
+ gap: 10px;
+ }
+ 
+ .game-area {
+ height: 300px;
+ }
+ 
+ .controls {
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ button {
+ width: 80%;
+ }
+ }
+ &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;div class="game-container"&gt;
+ &lt;h1&gt;Quick Reflex: Circle Clicker&lt;/h1&gt;
+ 
+ &lt;div class="game-info"&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div&gt;Score&lt;/div&gt;
+ &lt;div class="info-value" id="score"&gt;0&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div&gt;Time&lt;/div&gt;
+ &lt;div class="info-value" id="time"&gt;30&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div&gt;Level&lt;/div&gt;
+ &lt;div class="info-value" id="level"&gt;1&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div&gt;Combo&lt;/div&gt;
+ &lt;div class="info-value" id="combo"&gt;1x&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="message" id="message"&gt;Click Start to begin the game!&lt;/div&gt;
+ 
+ &lt;div class="game-area" id="game-area"&gt;
+ &lt;!-- Circles will be generated here --&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="controls"&gt;
+ &lt;button id="start-btn"&gt;Start Game&lt;/button&gt;
+ &lt;button id="reset-btn"&gt;Reset Game&lt;/button&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="instructions"&gt;
+ &lt;h3&gt;How to Play:&lt;/h3&gt;
+ &lt;ul&gt;
+ &lt;li&gt;Click on the circles as quickly as possible before they disappear&lt;/li&gt;
+ &lt;li&gt;Each circle gives you points based on its size and your current combo&lt;/li&gt;
+ &lt;li&gt;Smaller circles are worth more points but harder to click&lt;/li&gt;
+ &lt;li&gt;Click circles consecutively to build your combo multiplier&lt;/li&gt;
+ &lt;li&gt;The game gets faster as you level up!&lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+
+ &lt;script&gt;
+ // Game variables
+ let score = 0;
+ let timeLeft = 30;
+ let level = 1;
+ let gameActive = false;
+ let timer;
+ let circleInterval;
+ let combo = 1;
+ let circlesClicked = 0;
+ let circlesMissed = 0;
+ 
+ // DOM elements
+ const scoreElement = document.getElementById('score');
+ const timeElement = document.getElementById('time');
+ const levelElement = document.getElementById('level');
+ const comboElement = document.getElementById('combo');
+ const gameArea = document.getElementById('game-area');
+ const messageElement = document.getElementById('message');
+ const startButton = document.getElementById('start-btn');
+ const resetButton = document.getElementById('reset-btn');
+ 
+ // Initialize the game
+ function initGame() {
+ score = 0;
+ timeLeft = 30;
+ level = 1;
+ gameActive = false;
+ combo = 1;
+ circlesClicked = 0;
+ circlesMissed = 0;
+ 
+ scoreElement.textContent = score;
+ timeElement.textContent = timeLeft;
+ levelElement.textContent = level;
+ comboElement.textContent = combo + 'x';
+ messageElement.textContent = 'Click Start to begin the game!';
+ messageElement.className = 'message';
+ 
+ clearInterval(timer);
+ clearInterval(circleInterval);
+ gameArea.innerHTML = '';
+ 
+ startButton.disabled = false;
+ }
+ 
+ // Create a new circle
+ function createCircle() {
+ if (!gameActive) return;
+ 
+ const circle = document.createElement('div');
+ circle.className = 'target';
+ 
+ // Random size based on level (smaller circles are harder to click)
+ const minSize = Math.max(40, 70 - level * 5);
+ const maxSize = Math.max(60, 90 - level * 5);
+ const size = Math.floor(Math.random() * (maxSize - minSize + 1)) + minSize;
+ 
+ circle.style.width = `${size}px`;
+ circle.style.height = `${size}px`;
+ 
+ // Random position within game area
+ const maxX = gameArea.offsetWidth - size;
+ const maxY = gameArea.offsetHeight - size;
+ const x = Math.floor(Math.random() * maxX);
+ const y = Math.floor(Math.random() * maxY);
+ 
+ circle.style.left = `${x}px`;
+ circle.style.top = `${y}px`;
+ 
+ // Points based on size (smaller circles = more points)
+ const points = Math.floor(100 / (size / 50)) * combo;
+ circle.dataset.points = points;
+ 
+ // Display points on circle
+ circle.textContent = points;
+ 
+ // Random color gradient
+ const color1 = `hsl(${Math.random() * 360}, 70%, 65%)`;
+ const color2 = `hsl(${Math.random() * 360}, 70%, 55%)`;
+ circle.style.background = `radial-gradient(circle at 30% 30%, ${color1}, ${color2})`;
+ 
+ // Circle disappears after a time based on level
+ const disappearTime = Math.max(1000, 2500 - level * 150);
+ 
+ circle.addEventListener('click', () =&gt; {
+ if (gameActive) {
+ circleClicked(circle, points);
+ }
+ });
+ 
+ gameArea.appendChild(circle);
+ 
+ // Remove circle after time if not clicked
+ setTimeout(() =&gt; {
+ if (circle.parentNode) {
+ circle.parentNode.removeChild(circle);
+ circleMissed();
+ }
+ }, disappearTime);
+ }
+ 
+ // Handle circle click
+ function circleClicked(circle, points) {
+ // Add to score
+ score += points;
+ scoreElement.textContent = score;
+ 
+ // Increase combo
+ combo++;
+ comboElement.textContent = combo + 'x';
+ circlesClicked++;
+ 
+ // Show combo text
+ const comboText = document.createElement('div');
+ comboText.className = 'combo';
+ comboText.textContent = `+${points} (${combo}x Combo!)`;
+ comboText.style.left = circle.style.left;
+ comboText.style.top = circle.style.top;
+ gameArea.appendChild(comboText);
+ 
+ // Remove combo text after animation
+ setTimeout(() =&gt; {
+ if (comboText.parentNode) {
+ comboText.parentNode.removeChild(comboText);
+ }
+ }, 1000);
+ 
+ // Remove circle
+ circle.parentNode.removeChild(circle);
+ 
+ // Level up every 500 points
+ if (score &gt;= level * 500) {
+ levelUp();
+ }
+ 
+ // Positive feedback message
+ if (combo % 5 === 0) {
+ messageElement.textContent = `Awesome! ${combo}x Combo!`;
+ messageElement.className = 'message correct';
+ }
+ }
+ 
+ // Handle missed circle
+ function circleMissed() {
+ circlesMissed++;
+ 
+ // Reset combo when missing a circle
+ if (combo &gt; 1) {
+ messageElement.textContent = `Combo broken!`;
+ messageElement.className = 'message incorrect';
+ }
+ 
+ combo = 1;
+ comboElement.textContent = combo + 'x';
+ }
+ 
+ // Level up
+ function levelUp() {
+ level++;
+ levelElement.textContent = level;
+ messageElement.textContent = `Level ${level}! Circles are getting smaller and faster!`;
+ messageElement.className = 'message correct';
+ 
+ // Increase game speed
+ clearInterval(circleInterval);
+ const interval = Math.max(300, 1000 - level * 80);
+ circleInterval = setInterval(createCircle, interval);
+ }
+ 
+ // Start the game
+ function startGame() {
+ if (gameActive) return;
+ 
+ gameActive = true;
+ startButton.disabled = true;
+ messageElement.textContent = 'Click the circles quickly!';
+ messageElement.className = 'message game-start';
+ 
+ // Start the timer
+ timer = setInterval(() =&gt; {
+ timeLeft--;
+ timeElement.textContent = timeLeft;
+ 
+ if (timeLeft &lt;= 0) {
+ endGame();
+ }
+ }, 1000);
+ 
+ // Start generating circles
+ const initialInterval = 1000;
+ circleInterval = setInterval(createCircle, initialInterval);
+ 
+ // Create first circle immediately
+ setTimeout(createCircle, 300);
+ }
+ 
+ // End the game
+ function endGame() {
+ gameActive = false;
+ clearInterval(timer);
+ clearInterval(circleInterval);
+ startButton.disabled = false;
+ 
+ const accuracy = circlesClicked + circlesMissed &gt; 0
+ ? Math.round((circlesClicked / (circlesClicked + circlesMissed)) * 100)
+ : 0;
+ 
+ messageElement.innerHTML = `
+ Game Over!&lt;br&gt;
+ Final Score: ${score}&lt;br&gt;
+ Accuracy: ${accuracy}%
+ `;
+ messageElement.className = 'message game-over';
+ }
+ 
+ // Event listeners
+ startButton.addEventListener('click', startGame);
+ resetButton.addEventListener('click', initGame);
+ 
+ // Initialize the game on load
+ window.onload = initGame;
+ &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/color_match/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/color_match/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+ &lt;title&gt;Color Match Challenge&lt;/title&gt;
+ &lt;style&gt;
+ /* Reset everything more aggressively */
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ html, body {
+ width: 100%;
+ height: 100%;
+ overflow: hidden; /* Prevent scrollbars */
+ }
+ 
+ body {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+ padding: 20px;
+ }
+ 
+ .game-container {
+ background-color: rgba(255, 255, 255, 0.95);
+ border-radius: 20px;
+ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+ padding: 30px;
+ max-width: 600px;
+ width: 100%;
+ text-align: center;
+ position: relative;
+ z-index: 1000; /* Ensure it stays on top */
+ }
+ 
+ /* Rest of your CSS remains the same */
+ h1 {
+ color: #333;
+ margin-bottom: 20px;
+ font-size: 2.5rem;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .game-info {
+ display: flex;
+ justify-content: space-between;
+ margin-bottom: 20px;
+ font-size: 1.2rem;
+ font-weight: bold;
+ }
+ 
+ .target-color {
+ width: 150px;
+ height: 80px;
+ margin: 0 auto 20px;
+ border-radius: 10px;
+ border: 3px solid #333;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .color-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 15px;
+ margin: 30px 0;
+ }
+ 
+ .color-option {
+ height: 120px;
+ border-radius: 10px;
+ cursor: pointer;
+ transition: transform 0.2s, box-shadow 0.2s;
+ border: 3px solid transparent;
+ }
+ 
+ .color-option:hover {
+ transform: scale(1.05);
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .controls {
+ margin-top: 20px;
+ }
+ 
+ button {
+ background: linear-gradient(to right, #4CAF50, #45a049);
+ border: none;
+ color: white;
+ padding: 12px 30px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 18px;
+ margin: 10px 5px;
+ cursor: pointer;
+ border-radius: 50px;
+ transition: all 0.3s;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ button:hover {
+ transform: translateY(-3px);
+ box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+ }
+ 
+ button:active {
+ transform: translateY(1px);
+ }
+ 
+ #start-btn {
+ background: linear-gradient(to right, #2196F3, #21b0f3);
+ }
+ 
+ #reset-btn {
+ background: linear-gradient(to right, #f44336, #f46b36);
+ }
+ 
+ .message {
+ font-size: 1.5rem;
+ font-weight: bold;
+ margin: 20px 0;
+ min-height: 40px;
+ }
+ 
+ .correct {
+ color: #4CAF50;
+ }
+ 
+ .incorrect {
+ color: #f44336;
+ }
+ 
+ .game-over {
+ font-size: 2rem;
+ color: #f44336;
+ margin: 20px 0;
+ }
+ 
+ .instructions {
+ background-color: #f9f9f9;
+ padding: 15px;
+ border-radius: 10px;
+ margin-top: 20px;
+ text-align: left;
+ font-size: 0.9rem;
+ }
+ 
+ @media (max-width: 500px) {
+ .color-grid {
+ grid-template-columns: repeat(2, 1fr);
+ }
+ 
+ h1 {
+ font-size: 2rem;
+ }
+ }
+ &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;div class="game-container"&gt;
+ &lt;h1&gt;Color Match Challenge&lt;/h1&gt;
+ 
+ &lt;div class="game-info"&gt;
+ &lt;div&gt;Score: &lt;span id="score"&gt;0&lt;/span&gt;&lt;/div&gt;
+ &lt;div&gt;Time: &lt;span id="time"&gt;60&lt;/span&gt;s&lt;/div&gt;
+ &lt;div&gt;Level: &lt;span id="level"&gt;1&lt;/span&gt;&lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="target-color" id="target-color"&gt;&lt;/div&gt;
+ 
+ &lt;div class="message" id="message"&gt;Match the color above!&lt;/div&gt;
+ 
+ &lt;div class="color-grid" id="color-grid"&gt;
+ &lt;!-- Color options will be generated here --&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="controls"&gt;
+ &lt;button id="start-btn"&gt;Start Game&lt;/button&gt;
+ &lt;button id="reset-btn"&gt;Reset Game&lt;/button&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="instructions"&gt;
+ &lt;h3&gt;How to Play:&lt;/h3&gt;
+ &lt;p&gt;Click on the square that matches the target color at the top. The game gets faster as you level up!&lt;/p&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/ride-sharing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/ride-sharing/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+ &lt;title&gt;RideShare Entertainment Center&lt;/title&gt;
+ &lt;style&gt;
+ :root {
+ --primary: #4a6fa5;
+ --secondary: #6b8cbc;
+ --accent: #ff7e5f;
+ --light: #f5f7fa;
+ --dark: #2c3e50;
+ --success: #2ecc71;
+ --warning: #f39c12;
+ --danger: #e74c3c;
+ --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ --radius: 12px;
+ }
+ 
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ body {
+ background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+ color: var(--dark);
+ min-height: 100vh;
+ display: flex;
+ flex-direction: column;
+ overflow-x: hidden;
+ }
+ 
+ .app-container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+ flex: 1;
+ display: flex;
+ flex-direction: column;
+ }
+ 
+ header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 15px 0;
+ margin-bottom: 20px;
+ border-bottom: 2px solid var(--secondary);
+ }
+ 
+ .logo {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+ 
+ .logo-icon {
+ font-size: 2rem;
+ color: var(--primary);
+ }
+ 
+ .logo-text {
+ font-size: 1.8rem;
+ font-weight: 700;
+ color: var(--dark);
+ }
+ 
+ .ride-info {
+ background: white;
+ padding: 10px 20px;
+ border-radius: var(--radius);
+ box-shadow: var(--shadow);
+ display: flex;
+ gap: 15px;
+ }
+ 
+ .info-item {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ 
+ .info-label {
+ font-size: 0.8rem;
+ color: var(--dark);
+ opacity: 0.7;
+ }
+ 
+ .info-value {
+ font-size: 1.1rem;
+ font-weight: 600;
+ color: var(--primary);
+ }
+ 
+ .main-content {
+ display: grid;
+ grid-template-columns: 1fr 300px;
+ gap: 20px;
+ flex: 1;
+ }
+ 
+ .tab-container {
+ background: white;
+ border-radius: var(--radius);
+ box-shadow: var(--shadow);
+ overflow: hidden;
+ }
+ 
+ .tab-buttons {
+ display: flex;
+ background: var(--primary);
+ }
+ 
+ .tab-button {
+ flex: 1;
+ padding: 15px;
+ background: none;
+ border: none;
+ color: white;
+ font-size: 1rem;
+ font-weight: 600;
+ cursor: pointer;
+ transition: background 0.3s;
+ }
+ 
+ .tab-button.active {
+ background: var(--secondary);
+ }
+ 
+ .tab-button:hover:not(.active) {
+ background: rgba(255, 255, 255, 0.1);
+ }
+ 
+ .tab-content {
+ padding: 20px;
+ min-height: 400px;
+ }
+ 
+ .tab-pane {
+ display: none;
+ }
+ 
+ .tab-pane.active {
+ display: block;
+ animation: fadeIn 0.5s;
+ }
+ 
+ @keyframes fadeIn {
+ from { opacity: 0; }
+ to { opacity: 1; }
+ }
+ 
+ .games-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+ gap: 20px;
+ }
+ 
+ .game-card {
+ background: var(--light);
+ border-radius: var(--radius);
+ padding: 15px;
+ text-align: center;
+ cursor: pointer;
+ transition: transform 0.3s, box-shadow 0.3s;
+ box-shadow: var(--shadow);
+ }
+ 
+ .game-card:hover {
+ transform: translateY(-5px);
+ box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .game-icon {
+ font-size: 2.5rem;
+ margin-bottom: 10px;
+ color: var(--primary);
+ }
+ 
+ .game-title {
+ font-weight: 600;
+ margin-bottom: 5px;
+ }
+ 
+ .game-desc {
+ font-size: 0.9rem;
+ color: var(--dark);
+ opacity: 0.7;
+ }
+ 
+ .climate-controls {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 20px;
+ }
+ 
+ .control-panel {
+ background: var(--light);
+ border-radius: var(--radius);
+ padding: 20px;
+ text-align: center;
+ }
+ 
+ .control-title {
+ font-weight: 600;
+ margin-bottom: 15px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 10px;
+ }
+ 
+ .control-icon {
+ font-size: 1.5rem;
+ color: var(--primary);
+ }
+ 
+ .temp-display {
+ font-size: 2.5rem;
+ font-weight: 700;
+ color: var(--primary);
+ margin: 15px 0;
+ }
+ 
+ .temp-controls {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: 15px;
+ }
+ 
+ .temp-btn {
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ border: none;
+ background: var(--primary);
+ color: white;
+ font-size: 1.5rem;
+ cursor: pointer;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: background 0.3s;
+ }
+ 
+ .temp-btn:hover {
+ background: var(--secondary);
+ }
+ 
+ .fan-controls {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ }
+ 
+ .fan-speed {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+ 
+ .speed-btn {
+ padding: 8px 15px;
+ border: none;
+ background: var(--light);
+ border-radius: 20px;
+ cursor: pointer;
+ transition: background 0.3s, color 0.3s;
+ }
+ 
+ .speed-btn.active {
+ background: var(--primary);
+ color: white;
+ }
+ 
+ .qa-container {
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
+ }
+ 
+ .question-input {
+ display: flex;
+ gap: 10px;
+ }
+ 
+ #question-input {
+ flex: 1;
+ padding: 12px;
+ border: 1px solid #ddd;
+ border-radius: var(--radius);
+ font-size: 1rem;
+ }
+ 
+ #ask-btn {
+ padding: 12px 20px;
+ background: var(--primary);
+ color: white;
+ border: none;
+ border-radius: var(--radius);
+ cursor: pointer;
+ font-weight: 600;
+ transition: background 0.3s;
+ }
+ 
+ #ask-btn:hover {
+ background: var(--secondary);
+ }
+ 
+ .answer-display {
+ background: var(--light);
+ padding: 15px;
+ border-radius: var(--radius);
+ min-height: 150px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ }
+ 
+ .faq-section {
+ margin-top: 20px;
+ }
+ 
+ .faq-title {
+ font-weight: 600;
+ margin-bottom: 10px;
+ padding-bottom: 5px;
+ border-bottom: 1px solid #ddd;
+ }
+ 
+ .faq-item {
+ margin-bottom: 10px;
+ cursor: pointer;
+ padding: 10px;
+ border-radius: var(--radius);
+ transition: background 0.3s;
+ }
+ 
+ .faq-item:hover {
+ background: rgba(0, 0, 0, 0.05);
+ }
+ 
+ .faq-question {
+ font-weight: 600;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+ 
+ .faq-answer {
+ margin-top: 5px;
+ font-size: 0.9rem;
+ display: none;
+ }
+ 
+ .faq-item.active .faq-answer {
+ display: block;
+ }
+ 
+ .sidebar {
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+ }
+ 
+ .widget {
+ background: white;
+ border-radius: var(--radius);
+ box-shadow: var(--shadow);
+ padding: 20px;
+ }
+ 
+ .widget-title {
+ font-weight: 600;
+ margin-bottom: 15px;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+ 
+ .widget-icon {
+ color: var(--primary);
+ }
+ 
+ .music-player {
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
+ }
+ 
+ .music-controls {
+ display: flex;
+ justify-content: center;
+ gap: 15px;
+ }
+ 
+ .music-btn {
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ border: none;
+ background: var(--primary);
+ color: white;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ transition: background 0.3s;
+ }
+ 
+ .music-btn:hover {
+ background: var(--secondary);
+ }
+ 
+ .play-btn {
+ width: 50px;
+ height: 50px;
+ font-size: 1.2rem;
+ }
+ 
+ .volume-control {
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ }
+ 
+ .volume-slider {
+ flex: 1;
+ }
+ 
+ .news-item {
+ padding: 10px 0;
+ border-bottom: 1px solid #eee;
+ }
+ 
+ .news-item:last-child {
+ border-bottom: none;
+ }
+ 
+ .news-title {
+ font-weight: 600;
+ margin-bottom: 5px;
+ }
+ 
+ .news-date {
+ font-size: 0.8rem;
+ color: var(--dark);
+ opacity: 0.7;
+ }
+ 
+ footer {
+ text-align: center;
+ padding: 15px;
+ margin-top: 20px;
+ border-top: 1px solid #ddd;
+ font-size: 0.9rem;
+ color: var(--dark);
+ opacity: 0.7;
+ }
+ 
+ /* Game specific styles */
+ .game-screen {
+ display: none;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 100%;
+ }
+ 
+ #tic-tac-toe-board {
+ display: grid;
+ grid-template-columns: repeat(3, 80px);
+ grid-template-rows: repeat(3, 80px);
+ gap: 5px;
+ margin: 20px 0;
+ }
+ 
+ .ttt-cell {
+ background: var(--light);
+ border: 2px solid var(--primary);
+ border-radius: 5px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 2rem;
+ font-weight: bold;
+ cursor: pointer;
+ transition: background 0.3s;
+ }
+ 
+ .ttt-cell:hover {
+ background: #e0e7ff;
+ }
+ 
+ .game-controls {
+ display: flex;
+ gap: 10px;
+ margin-top: 20px;
+ }
+ 
+ .game-btn {
+ padding: 8px 15px;
+ background: var(--primary);
+ color: white;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ }
+ 
+ #trivia-question {
+ font-size: 1.2rem;
+ margin-bottom: 20px;
+ text-align: center;
+ }
+ 
+ #trivia-options {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ width: 100%;
+ max-width: 400px;
+ }
+ 
+ .trivia-option {
+ padding: 12px;
+ background: var(--light);
+ border-radius: 5px;
+ cursor: pointer;
+ transition: background 0.3s;
+ }
+ 
+ .trivia-option:hover {
+ background: #e0e7ff;
+ }
+ 
+ .trivia-option.correct {
+ background: var(--success);
+ color: white;
+ }
+ 
+ .trivia-option.incorrect {
+ background: var(--danger);
+ color: white;
+ }
+ 
+ #memory-game {
+ display: grid;
+ grid-template-columns: repeat(4, 80px);
+ grid-template-rows: repeat(3, 80px);
+ gap: 10px;
+ margin: 20px 0;
+ }
+ 
+ .memory-card {
+ background: var(--primary);
+ border-radius: 5px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 1.5rem;
+ color: white;
+ cursor: pointer;
+ transform-style: preserve-3d;
+ transition: transform 0.5s;
+ }
+ 
+ .memory-card.flipped {
+ transform: rotateY(180deg);
+ }
+ 
+ .memory-card .front, .memory-card .back {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ backface-visibility: hidden;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 5px;
+ }
+ 
+ .memory-card .front {
+ background: var(--primary);
+ }
+ 
+ .memory-card .back {
+ background: white;
+ color: var(--dark);
+ transform: rotateY(180deg);
+ }
+ 
+ /* Responsive design */
+ @media (max-width: 768px) {
+ .main-content {
+ grid-template-columns: 1fr;
+ }
+ 
+ .sidebar {
+ order: -1;
+ }
+ 
+ .climate-controls {
+ grid-template-columns: 1fr;
+ }
+ 
+ .games-grid {
+ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+ }
+ }
+ &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;div class="app-container"&gt;
+ &lt;header&gt;
+ &lt;div class="logo"&gt;
+ &lt;div class="logo-icon"&gt;🚗&lt;/div&gt;
+ &lt;div class="logo-text"&gt;RideShare Entertainment&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="ride-info"&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div class="info-label"&gt;Driver&lt;/div&gt;
+ &lt;div class="info-value"&gt;Kevin Delong&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div class="info-label"&gt;ETA&lt;/div&gt;
+ &lt;div class="info-value"&gt;15 min&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="info-item"&gt;
+ &lt;div class="info-label"&gt;Vehicle&lt;/div&gt;
+ &lt;div class="info-value"&gt;Ford Fusion&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/header&gt;
+ 
+ &lt;div class="main-content"&gt;
+ &lt;div class="tab-container"&gt;
+ &lt;div class="tab-buttons"&gt;
+ &lt;button class="tab-button active" data-tab="games"&gt;Games&lt;/button&gt;
+ &lt;button class="tab-button" data-tab="climate"&gt;Climate Control&lt;/button&gt;
+ &lt;button class="tab-button" data-tab="assistant"&gt;Ask Questions&lt;/button&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="tab-content"&gt;
+ &lt;!-- Games Tab --&gt;
+ &lt;div id="games" class="tab-pane active"&gt;
+ &lt;div class="games-grid"&gt;
+ &lt;div class="game-card" data-game="tic-tac-toe"&gt;
+ &lt;div class="game-icon"&gt;⭕&lt;/div&gt;
+ &lt;div class="game-title"&gt;Tic Tac Toe&lt;/div&gt;
+ &lt;div class="game-desc"&gt;Classic X and O game&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="game-card" data-game="trivia"&gt;
+ &lt;div class="game-icon"&gt;❓&lt;/div&gt;
+ &lt;div class="game-title"&gt;Trivia Challenge&lt;/div&gt;
+ &lt;div class="game-desc"&gt;Test your knowledge&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="game-card" data-game="memory"&gt;
+ &lt;div class="game-icon"&gt;🧠&lt;/div&gt;
+ &lt;div class="game-title"&gt;Memory Game&lt;/div&gt;
+ &lt;div class="game-desc"&gt;Match pairs of cards&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;!-- Tic Tac Toe Game Screen --&gt;
+ &lt;div id="tic-tac-toe-screen" class="game-screen"&gt;
+ &lt;h2&gt;Tic Tac Toe&lt;/h2&gt;
+ &lt;div id="tic-tac-toe-board"&gt;
+ &lt;!-- Cells will be generated by JavaScript --&gt;
+ &lt;/div&gt;
+ &lt;div id="ttt-status"&gt;Your turn (X)&lt;/div&gt;
+ &lt;div class="game-controls"&gt;
+ &lt;button class="game-btn" id="ttt-restart"&gt;Restart&lt;/button&gt;
+ &lt;button class="game-btn" id="ttt-back"&gt;Back to Games&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;!-- Trivia Game Screen --&gt;
+ &lt;div id="trivia-screen" class="game-screen"&gt;
+ &lt;h2&gt;Trivia Challenge&lt;/h2&gt;
+ &lt;div id="trivia-question"&gt;Loading question...&lt;/div&gt;
+ &lt;div id="trivia-options"&gt;
+ &lt;!-- Options will be generated by JavaScript --&gt;
+ &lt;/div&gt;
+ &lt;div id="trivia-status"&gt;&lt;/div&gt;
+ &lt;div class="game-controls"&gt;
+ &lt;button class="game-btn" id="trivia-next"&gt;Next Question&lt;/button&gt;
+ &lt;button class="game-btn" id="trivia-back"&gt;Back to Games&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;!-- Memory Game Screen --&gt;
+ &lt;div id="memory-screen" class="game-screen"&gt;
+ &lt;h2&gt;Memory Game&lt;/h2&gt;
+ &lt;div id="memory-game"&gt;
+ &lt;!-- Cards will be generated by JavaScript --&gt;
+ &lt;/div&gt;
+ &lt;div id="memory-status"&gt;Matches: 0/6&lt;/div&gt;
+ &lt;div class="game-controls"&gt;
+ &lt;button class="game-btn" id="memory-restart"&gt;Restart&lt;/button&gt;
+ &lt;button class="game-btn" id="memory-back"&gt;Back to Games&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;!-- Climate Control Tab --&gt;
+ &lt;div id="climate" class="tab-pane"&gt;
+ &lt;div class="climate-controls"&gt;
+ &lt;div class="control-panel"&gt;
+ &lt;div class="control-title"&gt;
+ &lt;span class="control-icon"&gt;🌡️&lt;/span&gt;
+ Temperature
+ &lt;/div&gt;
+ &lt;div class="temp-display" id="current-temp"&gt;72°F&lt;/div&gt;
+ &lt;div class="temp-controls"&gt;
+ &lt;button class="temp-btn" id="temp-down"&gt;-&lt;/button&gt;
+ &lt;div id="temp-scale"&gt;
+ &lt;button class="speed-btn active"&gt;°F&lt;/button&gt;
+ &lt;button class="speed-btn"&gt;°C&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;button class="temp-btn" id="temp-up"&gt;+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="control-panel"&gt;
+ &lt;div class="control-title"&gt;
+ &lt;span class="control-icon"&gt;💨&lt;/span&gt;
+ Fan Speed
+ &lt;/div&gt;
+ &lt;div class="fan-controls"&gt;
+ &lt;div class="fan-speed"&gt;
+ &lt;button class="speed-btn active"&gt;Low&lt;/button&gt;
+ &lt;button class="speed-btn"&gt;Medium&lt;/button&gt;
+ &lt;button class="speed-btn"&gt;High&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="control-title"&gt;
+ &lt;span class="control-icon"&gt;🌀&lt;/span&gt;
+ Air Circulation
+ &lt;/div&gt;
+ &lt;div class="fan-speed"&gt;
+ &lt;button class="speed-btn active"&gt;Internal&lt;/button&gt;
+ &lt;button class="speed-btn"&gt;External&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div style="margin-top: 20px; text-align: center;"&gt;
+ &lt;button id="climate-request" style="padding: 12px 30px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer;"&gt;
+ Send Climate Request to Driver
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;!-- Assistant Tab --&gt;
+ &lt;div id="assistant" class="tab-pane"&gt;
+ &lt;div class="qa-container"&gt;
+ &lt;div class="question-input"&gt;
+ &lt;input type="text" id="question-input" placeholder="Ask a question about your ride..."&gt;
+ &lt;button id="ask-btn"&gt;Ask&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="answer-display" id="answer-display"&gt;
+ Ask me anything about your ride, the area, or your driver!
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="faq-section"&gt;
+ &lt;div class="faq-title"&gt;Frequently Asked Questions&lt;/div&gt;
+ &lt;div class="faq-item"&gt;
+ &lt;div class="faq-question"&gt;How long will the ride take? &lt;span&gt;+&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="faq-answer"&gt;Based on current traffic conditions, your estimated arrival time is 15 minutes.&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="faq-item"&gt;
+ &lt;div class="faq-question"&gt;Can I change the destination? &lt;span&gt;+&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="faq-answer"&gt;Please communicate any destination changes directly with your driver.&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="faq-item"&gt;
+ &lt;div class="faq-question"&gt;Is there a charging port in the vehicle? &lt;span&gt;+&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="faq-answer"&gt;Yes, there are USB charging ports available in the backseat.&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="faq-item"&gt;
+ &lt;div class="faq-question"&gt;What's the wifi password? &lt;span&gt;+&lt;/span&gt;&lt;/div&gt;
+ &lt;div class="faq-answer"&gt;The wifi network is "RideShare_Guest" and the password is "comfortride2023".&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="sidebar"&gt;
+ &lt;div class="widget"&gt;
+ &lt;div class="widget-title"&gt;
+ &lt;span class="widget-icon"&gt;🎵&lt;/span&gt;
+ Music Player
+ &lt;/div&gt;
+ &lt;div class="music-player"&gt;
+ &lt;div id="now-playing"&gt;Now Playing: Chill Vibes Playlist&lt;/div&gt;
+ &lt;div class="music-controls"&gt;
+ &lt;button class="music-btn" id="prev-btn"&gt;⏮️&lt;/button&gt;
+ &lt;button class="music-btn play-btn" id="play-btn"&gt;▶️&lt;/button&gt;
+ &lt;button class="music-btn" id="next-btn"&gt;⏭️&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="volume-control"&gt;
+ &lt;span&gt;🔈&lt;/span&gt;
+ &lt;input type="range" class="volume-slider" min="0" max="100" value="70"&gt;
+ &lt;span&gt;🔊&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="widget"&gt;
+ &lt;div class="widget-title"&gt;
+ &lt;span class="widget-icon"&gt;📰&lt;/span&gt;
+ News &amp; Updates
+ &lt;/div&gt;
+ &lt;div class="news-item"&gt;
+ &lt;div class="news-title"&gt;Local Event This Weekend&lt;/div&gt;
+ &lt;div class="news-date"&gt;Sep 15, 2023&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="news-item"&gt;
+ &lt;div class="news-title"&gt;Weather Alert: Clear Skies&lt;/div&gt;
+ &lt;div class="news-date"&gt;Sep 14, 2023&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="news-item"&gt;
+ &lt;div class="news-title"&gt;New Features in RideShare App&lt;/div&gt;
+ &lt;div class="news-date"&gt;Sep 10, 2023&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div class="widget"&gt;
+ &lt;div class="widget-title"&gt;
+ &lt;span class="widget-icon"&gt;⭐&lt;/span&gt;
+ Rate Your Ride
+ &lt;/div&gt;
+ &lt;div style="text-align: center; padding: 10px 0;"&gt;
+ &lt;div style="font-size: 2rem; margin-bottom: 10px;"&gt;
+ &lt;span class="star" data-rating="1"&gt;☆&lt;/span&gt;
+ &lt;span class="star" data-rating="2"&gt;☆&lt;/span&gt;
+ &lt;span class="star" data-rating="3"&gt;☆&lt;/span&gt;
+ &lt;span class="star" data-rating="4"&gt;☆&lt;/span&gt;
+ &lt;span class="star" data-rating="5"&gt;☆&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;button style="padding: 8px 15px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;"&gt;
+ Submit Rating
+ &lt;/button&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;footer&gt;
+ RideShare Entertainment Center • For Passenger Use Only • v1.0
+ &lt;/footer&gt;
+
+ &lt;script&gt;
+ // Tab functionality
+ document.querySelectorAll('.tab-button').forEach(button =&gt; {
+ button.addEventListener('click', () =&gt; {
+ // Remove active class from all tabs and buttons
+ document.querySelectorAll('.tab-button').forEach(btn =&gt; btn.classList.remove('active'));
+ document.querySelectorAll('.tab-pane').forEach(pane =&gt; pane.classList.remove('active'));
+ 
+ // Add active class to clicked tab
+ button.classList.add('active');
+ document.getElementById(button.dataset.tab).classList.add('active');
+ 
+ // If returning to games tab, hide all game screens
+ if (button.dataset.tab === 'games') {
+ document.querySelectorAll('.game-screen').forEach(screen =&gt; {
+ screen.style.display = 'none';
+ });
+ document.querySelector('.games-grid').style.display = 'grid';
+ }
+ });
+ });
+ 
+ // FAQ functionality
+ document.querySelectorAll('.faq-item').forEach(item =&gt; {
+ item.addEventListener('click', () =&gt; {
+ item.classList.toggle('active');
+ });
+ });
+ 
+ // Climate control functionality
+ let currentTemp = 72;
+ let isFahrenheit = true;
+ 
+ document.getElementById('temp-up').addEventListener('click', () =&gt; {
+ currentTemp++;
+ updateTempDisplay();
+ });
+ 
+ document.getElementById('temp-down').addEventListener('click', () =&gt; {
+ currentTemp--;
+ updateTempDisplay();
+ });
+ 
+ document.querySelectorAll('#temp-scale .speed-btn').forEach(btn =&gt; {
+ btn.addEventListener('click', () =&gt; {
+ document.querySelectorAll('#temp-scale .speed-btn').forEach(b =&gt; b.classList.remove('active'));
+ btn.classList.add('active');
+ isFahrenheit = btn.textContent === '°F';
+ updateTempDisplay();
+ });
+ });
+ 
+ function updateTempDisplay() {
+ let displayTemp = isFahrenheit ? currentTemp : Math.round((currentTemp - 32) * 5/9);
+ document.getElementById('current-temp').textContent = `${displayTemp}°${isFahrenheit ? 'F' : 'C'}`;
+ }
+ 
+ // Fan speed buttons
+ document.querySelectorAll('.fan-speed .speed-btn').forEach(btn =&gt; {
+ btn.addEventListener('click', () =&gt; {
+ btn.parentElement.querySelectorAll('.speed-btn').forEach(b =&gt; b.classList.remove('active'));
+ btn.classList.add('active');
+ });
+ });
+ 
+ // Climate request button
+ document.getElementById('climate-request').addEventListener('click', () =&gt; {
+ alert('Climate control request sent to driver!');
+ });
+ 
+ // Question answering functionality
+ document.getElementById('ask-btn').addEventListener('click', askQuestion);
+ document.getElementById('question-input').addEventListener('keypress', (e) =&gt; {
+ if (e.key === 'Enter') askQuestion();
+ });
+ 
+ function askQuestion() {
+ const question = document.getElementById('question-input').value.trim();
+ if (!question) return;
+ 
+ const answerDisplay = document.getElementById('answer-display');
+ answerDisplay.innerHTML = '&lt;div&gt;Thinking...&lt;/div&gt;';
+ 
+ // Simple mock AI response based on keywords
+ setTimeout(() =&gt; {
+ let answer = "I'm not sure about that. Please ask your driver for assistance.";
+ 
+ if (question.toLowerCase().includes('eta') || question.toLowerCase().includes('time')) {
+ answer = "Based on current traffic, your estimated arrival time is 15 minutes.";
+ } else if (question.toLowerCase().includes('stop') || question.toLowerCase().includes('break')) {
+ answer = "Please discuss any stops or breaks directly with your driver.";
+ } else if (question.toLowerCase().includes('music') || question.toLowerCase().includes('volume')) {
+ answer = "You can control the music using the player on the right. For volume adjustments, please ask the driver.";
+ } else if (question.toLowerCase().includes('charge') || question.toLowerCase().includes('port')) {
+ answer = "USB charging ports are available in the backseat area.";
+ } else if (question.toLowerCase().includes('wi-fi') || question.toLowerCase().includes('wifi')) {
+ answer = "The wifi network is 'RideShare_Guest' and the password is 'comfortride2023'.";
+ } else if (question.toLowerCase().includes('temperature') || question.toLowerCase().includes('climate')) {
+ answer = "You can adjust the climate settings using the Climate Control tab.";
+ }
+ 
+ answerDisplay.innerHTML = `&lt;div&gt;${answer}&lt;/div&gt;`;
+ }, 1000);
+ 
+ document.getElementById('question-input').value = '';
+ }
+ 
+ // Music player functionality
+ let isPlaying = false;
+ 
+ document.getElementById('play-btn').addEventListener('click', () =&gt; {
+ isPlaying = !isPlaying;
+ document.getElementById('play-btn').textContent = isPlaying ? '⏸️' : '▶️';
+ });
+ 
+ // Star rating functionality
+ document.querySelectorAll('.star').forEach(star =&gt; {
+ star.addEventListener('click', () =&gt; {
+ const rating = parseInt(star.dataset.rating);
+ document.querySelectorAll('.star').forEach(s =&gt; {
+ if (parseInt(s.dataset.rating) &lt;= rating) {
+ s.textContent = '★';
+ } else {
+ s.textContent = '☆';
+ }
+ });
+ });
+ });
+ 
+ // Game functionality
+ document.querySelectorAll('.game-card').forEach(card =&gt; {
+ card.addEventListener('click', () =&gt; {
+ const game = card.dataset.game;
+ document.querySelector('.games-grid').style.display = 'none';
+ document.getElementById(`${game}-screen`).style.display = 'flex';
+ 
+ // Initialize the selected game
+ if (game === 'tic-tac-toe') {
+ initTicTacToe();
+ } else if (game === 'trivia') {
+ initTrivia();
+ } else if (game === 'memory') {
+ initMemoryGame();
+ }
+ });
+ });
+ 
+ // Back buttons for games
+ document.querySelectorAll('[id$="-back"]').forEach(button =&gt; {
+ button.addEventListener('click', () =&gt; {
+ document.querySelectorAll('.game-screen').forEach(screen =&gt; {
+ screen.style.display = 'none';
+ });
+ document.querySelector('.games-grid').style.display = 'grid';
+ });
+ });
+ 
+ // Tic Tac Toe Game
+ function initTicTacToe() {
+ const board = document.getElementById('tic-tac-toe-board');
+ board.innerHTML = '';
+ 
+ for (let i = 0; i &lt; 9; i++) {
+ const cell = document.createElement('div');
+ cell.className = 'ttt-cell';
+ cell.dataset.index = i;
+ cell.addEventListener('click', handleTicTacToeClick);
+ board.appendChild(cell);
+ }
+ 
+ document.getElementById('ttt-status').textContent = "Your turn (X)";
+ document.getElementById('ttt-restart').addEventListener('click', initTicTacToe);
+ 
+ ticTacToeState = {
+ board: Array(9).fill(''),
+ currentPlayer: 'X',
+ gameOver: false
+ };
+ }
+ 
+ function handleTicTacToeClick(e) {
+ if (ticTacToeState.gameOver) return;
+ 
+ const index = parseInt(e.target.dataset.index);
+ if (ticTacToeState.board[index] !== '') return;
+ 
+ ticTacToeState.board[index] = ticTacToeState.currentPlayer;
+ e.target.textContent = ticTacToeState.currentPlayer;
+ 
+ if (checkTicTacToeWin()) {
+ document.getElementById('ttt-status').textContent = `Player ${ticTacToeState.currentPlayer} wins!`;
+ ticTacToeState.gameOver = true;
+ return;
+ }
+ 
+ if (ticTacToeState.board.every(cell =&gt; cell !== '')) {
+ document.getElementById('ttt-status').textContent = "It's a tie!";
+ ticTacToeState.gameOver = true;
+ return;
+ }
+ 
+ ticTacToeState.currentPlayer = ticTacToeState.currentPlayer === 'X' ? 'O' : 'X';
+ document.getElementById('ttt-status').textContent = `Player ${ticTacToeState.currentPlayer}'s turn`;
+ }
+ 
+ function checkTicTacToeWin() {
+ const winPatterns = [
+ [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+ [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+ [0, 4, 8], [2, 4, 6] // diagonals
+ ];
+ 
+ return winPatterns.some(pattern =&gt; {
+ const [a, b, c] = pattern;
+ return ticTacToeState.board[a] !== '' &amp;&amp;
+ ticTacToeState.board[a] === ticTacToeState.board[b] &amp;&amp;
+ ticTacToeState.board[a] === ticTacToeState.board[c];
+ });
+ }
+ 
+ // Trivia Game
+ const triviaQuestions = [
+ {
+ question: "What is the capital of France?",
+ options: ["London", "Berlin", "Paris", "Madrid"],
+ correct: 2
+ },
+ {
+ question: "Which planet is known as the Red Planet?",
+ options: ["Venus", "Mars", "Jupiter", "Saturn"],
+ correct: 1
+ },
+ {
+ question: "What is the largest mammal in the world?",
+ options: ["Elephant", "Blue Whale", "Giraffe", "Polar Bear"],
+ correct: 1
+ }
+ ];
+ 
+ let currentTriviaIndex = 0;
+ 
+ function initTrivia() {
+ showTriviaQuestion();
+ document.getElementById('trivia-next').addEventListener('click', nextTriviaQuestion);
+ }
+ 
+ function showTriviaQuestion() {
+ const question = triviaQuestions[currentTriviaIndex];
+ document.getElementById('trivia-question').textContent = question.question;
+ 
+ const optionsContainer = document.getElementById('trivia-options');
+ optionsContainer.innerHTML = '';
+ 
+ question.options.forEach((option, index) =&gt; {
+ const optionElement = document.createElement('div');
+ optionElement.className = 'trivia-option';
+ optionElement.textContent = option;
+ optionElement.addEventListener('click', () =&gt; checkTriviaAnswer(index));
+ optionsContainer.appendChild(optionElement);
+ });
+ 
+ document.getElementById('trivia-status').textContent = '';
+ }
+ 
+ function checkTriviaAnswer(selectedIndex) {
+ const question = triviaQuestions[currentTriviaIndex];
+ const options = document.querySelectorAll('.trivia-option');
+ 
+ options.forEach((option, index) =&gt; {
+ option.classList.remove('correct', 'incorrect');
+ if (index === question.correct) {
+ option.classList.add('correct');
+ } else if (index === selectedIndex) {
+ option.classList.add('incorrect');
+ }
+ option.style.pointerEvents = 'none';
+ });
+ 
+ if (selectedIndex === question.correct) {
+ document.getElementById('trivia-status').textContent = "Correct!";
+ } else {
+ document.getElementById('trivia-status').textContent = "Incorrect!";
+ }
+ }
+ 
+ function nextTriviaQuestion() {
+ currentTriviaIndex = (currentTriviaIndex + 1) % triviaQuestions.length;
+ showTriviaQuestion();
+ }
+ 
+ // Memory Game
+ function initMemoryGame() {
+ const symbols = ['🍎', '🍌', '🍒', '🍇', '🍊', '🍓'];
+ const cards = [...symbols, ...symbols];
+ 
+ // Shuffle cards
+ for (let i = cards.length - 1; i &gt; 0; i--) {
+ const j = Math.floor(Math.random() * (i + 1));
+ [cards[i], cards[j]] = [cards[j], cards[i]];
+ }
+ 
+ const gameContainer = document.getElementById('memory-game');
+ gameContainer.innerHTML = '';
+ 
+ cards.forEach((symbol, index) =&gt; {
+ const card = document.createElement('div');
+ card.className = 'memory-card';
+ card.innerHTML = `
+ &lt;div class="front"&gt;?&lt;/div&gt;
+ &lt;div class="back"&gt;${symbol}&lt;/div&gt;
+ `;
+ card.dataset.symbol = symbol;
+ card.addEventListener('click', () =&gt; flipMemoryCard(card));
+ gameContainer.appendChild(card);
+ });
+ 
+ memoryGameState = {
+ flippedCards: [],
+ matchedPairs: 0,
+ canFlip: true
+ };
+ 
+ document.getElementById('memory-status').textContent = `Matches: 0/${symbols.length}`;
+ document.getElementById('memory-restart').addEventListener('click', initMemoryGame);
+ }
+ 
+ function flipMemoryCard(card) {
+ if (!memoryGameState.canFlip || card.classList.contains('flipped') || memoryGameState.flippedCards.includes(card)) {
+ return;
+ }
+ 
+ card.classList.add('flipped');
+ memoryGameState.flippedCards.push(card);
+ 
+ if (memoryGameState.flippedCards.length === 2) {
+ memoryGameState.canFlip = false;
+ checkMemoryMatch();
+ }
+ }
+ 
+ function checkMemoryMatch() {
+ const [card1, card2] = memoryGameState.flippedCards;
+ 
+ if (card1.dataset.symbol === card2.dataset.symbol) {
+ memoryGameState.matchedPairs++;
+ document.getElementById('memory-status').textContent = `Matches: ${memoryGameState.matchedPairs}/6`;
+ memoryGameState.flippedCards = [];
+ memoryGameState.canFlip = true;
+ 
+ if (memoryGameState.matchedPairs === 6) {
+ document.getElementById('memory-status').textContent = "Congratulations! You've matched all pairs!";
+ }
+ } else {
+ setTimeout(() =&gt; {
+ card1.classList.remove('flipped');
+ card2.classList.remove('flipped');
+ memoryGameState.flippedCards = [];
+ memoryGameState.canFlip = true;
+ }, 1000);
+ }
+ }
+ 
+ // Initialize the first game state variables
+ let ticTacToeState, memoryGameState;
+ 
+ // Initialize the app with Tic Tac Toe ready
+ initTicTacToe();
+ &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/tictactoe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/tictactoe/</guid><description>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+ &lt;meta charset="UTF-8"&gt;
+ &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+ &lt;title&gt;Professional Tic Tac Toe&lt;/title&gt;
+ &lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;
+ &lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"&gt;&lt;/script&gt;
+ &lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;
+ &lt;style&gt;
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+ 
+ body {
+ background: linear-gradient(135deg, #2c3e50 0%, #1a1a1a 100%);
+ min-height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 20px;
+ }
+ 
+ #root {
+ width: 100%;
+ max-width: 500px;
+ margin: 0 auto;
+ }
+ 
+ .game-container {
+ background: rgba(35, 35, 35, 0.95);
+ border-radius: 12px;
+ box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+ padding: 25px;
+ text-align: center;
+ border: 1px solid #444;
+ }
+ 
+ h1 {
+ color: #ffffff;
+ margin-bottom: 20px;
+ font-size: 2.2rem;
+ text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+ font-weight: 300;
+ letter-spacing: 1px;
+ }
+ 
+ .status {
+ font-size: 1.2rem;
+ margin-bottom: 20px;
+ color: #ffffff;
+ font-weight: 400;
+ padding: 12px;
+ border-radius: 8px;
+ background: rgba(50, 50, 50, 0.8);
+ border: 1px solid #555;
+ }
+ 
+ .board {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ grid-gap: 8px;
+ margin: 0 auto 25px;
+ max-width: 320px;
+ }
+ 
+ .square {
+ background: linear-gradient(145deg, #2a2a2a, #3a3a3a);
+ border: 1px solid #555;
+ border-radius: 6px;
+ color: #ffffff;
+ font-size: 2.5rem;
+ font-weight: bold;
+ height: 90px;
+ width: 90px;
+ cursor: pointer;
+ transition: all 0.2s ease;
+ box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .square:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+ background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+ }
+ 
+ .square:active {
+ transform: translateY(1px);
+ }
+ 
+ .square.X {
+ color: #ff7a7a;
+ text-shadow: 0 0 10px rgba(255, 122, 122, 0.5);
+ }
+ 
+ .square.O {
+ color: #7a9fff;
+ text-shadow: 0 0 10px rgba(122, 159, 255, 0.5);
+ }
+ 
+ .reset-btn {
+ background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+ border: 1px solid #555;
+ border-radius: 6px;
+ color: #ffffff;
+ cursor: pointer;
+ font-size: 1rem;
+ font-weight: 500;
+ padding: 12px 30px;
+ margin-top: 10px;
+ transition: all 0.3s ease;
+ box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+ letter-spacing: 0.5px;
+ }
+ 
+ .reset-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+ background: linear-gradient(145deg, #444, #333);
+ }
+ 
+ .reset-btn:active {
+ transform: translateY(1px);
+ }
+ 
+ .winning-square {
+ animation: pulse 1.5s infinite;
+ position: relative;
+ }
+ 
+ .winning-square::after {
+ content: '';
+ position: absolute;
+ top: -2px;
+ left: -2px;
+ right: -2px;
+ bottom: -2px;
+ border-radius: 8px;
+ background: linear-gradient(45deg, #ff7a7a, #7a9fff);
+ z-index: -1;
+ animation: border-pulse 1.5s infinite;
+ }
+ 
+ @keyframes pulse {
+ 0% { transform: scale(1); }
+ 50% { transform: scale(1.05); }
+ 100% { transform: scale(1); }
+ }
+ 
+ @keyframes border-pulse {
+ 0% { opacity: 0.7; }
+ 50% { opacity: 1; }
+ 100% { opacity: 0.7; }
+ }
+ 
+ .score-board {
+ display: flex;
+ justify-content: space-around;
+ margin-top: 20px;
+ padding: 15px;
+ background: rgba(50, 50, 50, 0.8);
+ border-radius: 8px;
+ border: 1px solid #555;
+ }
+ 
+ .score {
+ font-size: 1.1rem;
+ font-weight: 500;
+ color: #ffffff;
+ }
+ 
+ .score-x {
+ color: #ff7a7a;
+ }
+ 
+ .score-o {
+ color: #7a9fff;
+ }
+ 
+ .draws {
+ color: #dddddd;
+ }
+ 
+ .turns-indicator {
+ display: flex;
+ justify-content: center;
+ margin-bottom: 15px;
+ gap: 20px;
+ }
+ 
+ .player-indicator {
+ padding: 8px 15px;
+ border-radius: 6px;
+ font-weight: 500;
+ background: #2a2a2a;
+ border: 1px solid #555;
+ color: #ffffff;
+ }
+ 
+ .active-player {
+ background: #333;
+ box-shadow: 0 0 10px rgba(122, 159, 255, 0.3);
+ color: #ffffff;
+ }
+ 
+ .instructions {
+ color: #cccccc;
+ font-size: 0.9rem;
+ margin-top: 20px;
+ padding: 10px;
+ border-top: 1px solid #555;
+ }
+ &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;div id="root"&gt;&lt;/div&gt;
+
+ &lt;script type="text/babel"&gt;
+ const { useState, useEffect } = React;
+
+ const Square = ({ value, onClick, isWinning }) =&gt; {
+ return (
+ &lt;button 
+ className={`square ${value} ${isWinning ? 'winning-square' : ''}`} 
+ onClick={onClick}
+ &gt;
+ {value}
+ &lt;/button&gt;
+ );
+ };
+
+ const Board = () =&gt; {
+ const [squares, setSquares] = useState(Array(9).fill(null));
+ const [isXNext, setIsXNext] = useState(true);
+ const [winner, setWinner] = useState(null);
+ const [winningLine, setWinningLine] = useState([]);
+ const [scores, setScores] = useState({ X: 0, O: 0, draws: 0 });
+
+ useEffect(() =&gt; {
+ // Check for winner after each move
+ const gameWinner = calculateWinner(squares);
+ if (gameWinner) {
+ setWinner(gameWinner.winner);
+ setWinningLine(gameWinner.line);
+ // Update scores
+ setScores(prev =&gt; ({
+ ...prev,
+ [gameWinner.winner]: prev[gameWinner.winner] + 1
+ }));
+ } else if (!squares.includes(null)) {
+ setWinner('Draw');
+ setScores(prev =&gt; ({
+ ...prev,
+ draws: prev.draws + 1
+ }));
+ }
+ }, [squares]);
+
+ const calculateWinner = (squares) =&gt; {
+ const lines = [
+ [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+ [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+ [0, 4, 8], [2, 4, 6] // diagonals
+ ];
+ 
+ for (let i = 0; i &lt; lines.length; i++) {
+ const [a, b, c] = lines[i];
+ if (squares[a] &amp;&amp; squares[a] === squares[b] &amp;&amp; squares[a] === squares[c]) {
+ return {
+ winner: squares[a],
+ line: lines[i]
+ };
+ }
+ }
+ return null;
+ };
+
+ const handleClick = (i) =&gt; {
+ if (squares[i] || winner) return;
+ 
+ const newSquares = squares.slice();
+ newSquares[i] = isXNext ? 'X' : 'O';
+ setSquares(newSquares);
+ setIsXNext(!isXNext);
+ };
+
+ const resetGame = () =&gt; {
+ setSquares(Array(9).fill(null));
+ setIsXNext(true);
+ setWinner(null);
+ setWinningLine([]);
+ };
+
+ const renderSquare = (i) =&gt; {
+ return (
+ &lt;Square
+ value={squares[i]}
+ onClick={() =&gt; handleClick(i)}
+ isWinning={winningLine.includes(i)}
+ /&gt;
+ );
+ };
+
+ const getStatus = () =&gt; {
+ if (winner === 'Draw') {
+ return 'Game ended in a draw!';
+ } else if (winner) {
+ return `Winner: ${winner}`;
+ } else {
+ return `Next player: ${isXNext ? 'X' : 'O'}`;
+ }
+ };
+
+ return (
+ &lt;div className="game-container"&gt;
+ &lt;h1&gt;Tic Tac Toe&lt;/h1&gt;
+ 
+ &lt;div className="turns-indicator"&gt;
+ &lt;div className={`player-indicator ${isXNext &amp;&amp; !winner ? 'active-player' : ''}`}&gt;
+ Player X
+ &lt;/div&gt;
+ &lt;div className={`player-indicator ${!isXNext &amp;&amp; !winner ? 'active-player' : ''}`}&gt;
+ Player O
+ &lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div className="status"&gt;{getStatus()}&lt;/div&gt;
+ 
+ &lt;div className="board"&gt;
+ {renderSquare(0)}
+ {renderSquare(1)}
+ {renderSquare(2)}
+ {renderSquare(3)}
+ {renderSquare(4)}
+ {renderSquare(5)}
+ {renderSquare(6)}
+ {renderSquare(7)}
+ {renderSquare(8)}
+ &lt;/div&gt;
+ 
+ &lt;button className="reset-btn" onClick={resetGame}&gt;
+ {winner ? 'New Game' : 'Reset Board'}
+ &lt;/button&gt;
+ 
+ &lt;div className="score-board"&gt;
+ &lt;div className="score score-x"&gt;X: {scores.X}&lt;/div&gt;
+ &lt;div className="score draws"&gt;Draws: {scores.draws}&lt;/div&gt;
+ &lt;div className="score score-o"&gt;O: {scores.O}&lt;/div&gt;
+ &lt;/div&gt;
+ 
+ &lt;div className="instructions"&gt;
+ Click on a square to place your mark. Get three in a row to win!
+ &lt;/div&gt;
+ &lt;/div&gt;
+ );
+ };
+
+ const App = () =&gt; {
+ return &lt;Board /&gt;;
+ };
+
+ ReactDOM.createRoot(document.getElementById('root')).render(&lt;App /&gt;);
+ &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</description></item><item><title/><link>https://kevindouglasdelong.net/tictactoe_embed/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://kevindouglasdelong.net/tictactoe_embed/</guid><description>&lt;iframe 
+ src="tictactoe.html" 
+ width="550" 
+ height="800" 
+ frameborder="0"
+ allowfullscreen&gt;
+&lt;/iframe&gt;</description></item></channel></rss>
