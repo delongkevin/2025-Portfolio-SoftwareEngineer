@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://localhost:52702/about/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>http://localhost:52702/contact/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/donate/</loc>
+    <loc>http://localhost:52702/donate/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>http://localhost:52702/projects/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/resume/</loc>
+    <loc>http://localhost:52702/resume/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://localhost:52702/</loc>
     <lastmod>2025-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blackjack/</loc>
+    <loc>http://localhost:52702/blackjack/</loc>
   </url><url>
-    <loc>http://localhost:1313/blackjack_embed/</loc>
+    <loc>http://localhost:52702/blackjack_embed/</loc>
   </url><url>
-    <loc>http://localhost:1313/color_match/</loc>
+    <loc>http://localhost:52702/color_match/</loc>
   </url><url>
-    <loc>http://localhost:1313/tictactoe/</loc>
+    <loc>http://localhost:52702/tictactoe/</loc>
   </url><url>
-    <loc>http://localhost:1313/tictactoe_embed/</loc>
+    <loc>http://localhost:52702/tictactoe_embed/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://localhost:52702/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://localhost:52702/tags/</loc>
   </url>
 </urlset>
