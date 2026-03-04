@@ -57,19 +57,27 @@ def _strip_line_comments(text: str) -> str:
 
 
 def _strip_block_comments(text: str) -> str:
-    """Remove /* … */ block comments."""
+    """Remove /* … */ block comments (but not inside strings)."""
     result = []
     i = 0
+    in_string = False
     while i < len(text):
-        if text[i:i + 2] == '/*':
+        ch = text[i]
+        # Track string literal state to avoid stripping comment markers inside strings.
+        if ch == '"' and (i == 0 or text[i - 1] != '\\'):
+            in_string = not in_string
+        # Only treat /* as a comment start when we're not inside a string.
+        if not in_string and text[i:i + 2] == '/*':
             i += 2
             while i < len(text) and text[i:i + 2] != '*/':
                 if text[i] == '\n':
                     result.append('\n')  # preserve line numbers
                 i += 1
-            i += 2
+            # Skip the closing */
+            if i < len(text):
+                i += 2
         else:
-            result.append(text[i])
+            result.append(ch)
             i += 1
     return ''.join(result)
 
@@ -183,15 +191,9 @@ def check_includes(filepath: Path, text: str) -> list[str]:
 # Check 3 – function declaration / opening brace
 # ---------------------------------------------------------------------------
 
-# Matches: [export] testfunction NAME(...) or testcase NAME()
-_DECL_RE = re.compile(
-    r'(?:export\s+)?(?:testfunction|testcase)\s+(\w+)\s*\([^)]*\)\s*(?:\{|$)',
-    re.MULTILINE,
-)
-# Variant that ends with ) but no { yet (body on next line)
+# Matches declarations ending on the same line with no opening brace yet
 _DECL_NO_BRACE_RE = re.compile(
-    r'(?:export\s+)?(?:testfunction|testcase)\s+(\w+)\s*\([^)]*\)\s*$',
-    re.MULTILINE,
+    r'^(?:export\s+)?(?:testfunction|testcase)\s+(\w+)\s*\([^)]*\)\s*$'
 )
 
 
@@ -205,10 +207,7 @@ def check_declarations(filepath: Path, text: str) -> list[str]:
     for lineno, line in enumerate(lines, start=1):
         stripped = line.strip()
         # Check for declaration pattern without opening brace on same line
-        m = re.match(
-            r'^(?:export\s+)?(?:testfunction|testcase)\s+(\w+)\s*\([^)]*\)\s*$',
-            stripped,
-        )
+        m = _DECL_NO_BRACE_RE.match(stripped)
         if not m:
             continue
         func_name = m.group(1)

@@ -581,7 +581,7 @@ void E_DBGR_CheckConnection()
   }
   else
   {
-    snprintf(chFailText, elcount(chFailText), "Lauterbach debugger NOT connected (T32 state: %ld). Check hardware connection and T32 startup.", lState);
+    snprintf(chFailText, elcount(chFailText), "Lauterbach debugger NOT connected (T32 state: %ld). %s Check hardware connection and T32 startup.", lState, msgInfo);
     if ((byte)DebugFuncInternal & bDebugFlag)
       writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
     vFctn_REPORTStepEvaluation(chFailText, FAIL);
