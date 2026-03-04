@@ -3018,9 +3018,9 @@ testcase Testcase_Verify_BINVDM_Initial_Write_Status()
                                               // Test Case Info
   /***************************************************************************************************************/
   setWriteDbgLevel(DebugOff);
-  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Default_Read_Status_Until_Operation_Completion_in_Blocking_Mode" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Read status as InProgress from the time of the read request operation until Completed, MemoryError or Canceled statuses have been determined.");
-  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36728636", chTestDescription );
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_BINVDM_Initial_Write_Status" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall set the BINVDM write status to Idle during Reset Initialization until an operation is requested.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614263", chTestDescription );
   /***************************************************************************************************************/    
                                               // Start of Test Case
   /***************************************************************************************************************/
@@ -3035,27 +3035,953 @@ testcase Testcase_Verify_BINVDM_Initial_Write_Status()
   A_DBGR_RnGo();
   E_DBGR_CheckState(T32_State_Running);
   
-  
-  
-    
-   
   /*******************************************************************************************************************************************************/    
-    // Test Step 2: Set a breakpoint at "TstReadstatus = ( Binvdmreadstatus )ReadHWIO_h_BatNonVltl( BLOCKING_MODE, &binvdmaddr, 72U, ( BYTE *)&Nvmdataread );" and run the application
+    // Test Step 2: Set a breakpoint at TestBinvdm_NonblockingWrite and run the application
   /*******************************************************************************************************************************************************/
   
-   snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TstWritestatus = ( Binvdmreadstatus )WriteHWIO_h_BatNonVltl( BLOCKING_MODE, &binvdmaddr, 72U, ( BYTE *)&Nvmdataread ); and run the application"); 
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TstWritestatus = ( Binvdmwritestatus )WriteHWIO_h_BatNonVltl( BLOCKING_MODE, &binvdmaddr, 72U, ( BYTE *)&Nvmdatawrite ); and run the application"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  //A_DBGR_R();
   A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\5");  
   A_DBGR_Go();
   E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\5");
- 
-   
   
-  snprintf( chActionText, elCount(chActionText), "Verify  TstWritestatus value in trace32 watch window"); 
-  snprintf( chExpectedText, elCount(chExpectedText), " TstWritestatus= BINVDM_WRITE_IDLE"); 
+  snprintf( chActionText, elCount(chActionText), "Verify TstWritestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "TstWritestatus = BINVDM_WRITE_IDLE"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   E_DBGR_VariableCheck("TstWritestatus",0,Equal);
   
+}
+
+
+testcase Testcase_Verify_Default_Write_Status_Until_Operation_Completion_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Default_Write_Status_Until_Operation_Completion_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as InProgress from the time of the write request operation until Completed, MemoryError or Canceled statuses have been determined.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36729258", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  /*******************************************************************************************************************************************************/    
+    // Test Step 2: Set breakpoint at write entry point
+  /*******************************************************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite entry and run the application"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\14 and run the application"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\14");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\14");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmSchmode = 0 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmSchmode = 0"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmSchmode", "0"); 
+  E_DBGR_VariableCheck("binvdmSchmode",0,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\32 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\32");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\32");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_INPROGRESS"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",2,Equal);
+}
+
+
+testcase Testcase_Verify_Default_Write_Status_Until_Operation_Completion_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Default_Write_Status_Until_Operation_Completion_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as InProgress in non-blocking mode from write request until Completed, MemoryError or Canceled statuses are determined.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36729259", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\5 and run the application"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\5");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\5");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\14 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\14");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\14");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\32 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\32");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\32");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_INPROGRESS"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",2,Equal);
+}
+
+
+testcase Testcase_Verify_Successful_Write_Operation_Status_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Successful_Write_Operation_Status_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Complete upon a successful write operation in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614269", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\20 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\20");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\20");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmSchmode = 0 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmSchmode = 0"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmSchmode", "0"); 
+  E_DBGR_VariableCheck("binvdmSchmode",0,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_COMPLETE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run for idle check"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_IDLE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",0,Equal);
+}
+
+
+testcase Testcase_Verify_Successful_Write_Operation_Status_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Successful_Write_Operation_Status_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Complete upon a successful write operation in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614270", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_COMPLETE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\4 for idle check"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_IDLE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",0,Equal);
+}
+
+
+testcase Testcase_Verify_Cancel_Write_Operation_Status_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Cancel_Write_Operation_Status_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Canceled when the write operation is canceled in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614271", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\32 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\32");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\32");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_WriteCancel\\2 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_WriteCancel\\2");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_WriteCancel\\2");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwritecancel = 1 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwritecancel = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwritecancel", "1"); 
+  E_DBGR_VariableCheck("binvdmwritecancel",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_WriteCancel\\5 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_WriteCancel\\5");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_WriteCancel\\5");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_CANCELED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",5,Equal);
+}
+
+
+testcase Testcase_Verify_Cancel_Write_Operation_Status_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Cancel_Write_Operation_Status_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Canceled when the write operation is canceled in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614272", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\5 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\5");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\5");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\32 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\32");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\32");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_WriteCancel\\2 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_WriteCancel\\2");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_WriteCancel\\2");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwritecancel = 1 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwritecancel = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwritecancel", "1"); 
+  E_DBGR_VariableCheck("binvdmwritecancel",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_WriteCancel\\5 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_WriteCancel\\5");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_WriteCancel\\5");
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_CANCELED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",5,Equal);
+}
+
+
+testcase Testcase_Verify_Memory_Error_during_Write_Operation_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Memory_Error_during_Write_Operation_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as MemoryError when a memory error occurs during write operation in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36728678", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\20 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\20");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\20");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmSchmode = 0 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmSchmode = 0"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmSchmode", "0"); 
+  E_DBGR_VariableCheck("binvdmSchmode",0,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and inject memory error"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Set ret = MEMACC_WRITE_MEMORY_ERROR in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ret = MEMACC_WRITE_MEMORY_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("ret", "3"); 
+  E_DBGR_VariableCheck("ret",3,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_MEMORY_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",3,Equal);
+}
+
+
+testcase Testcase_Verify_Memory_Error_during_Write_Operation_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Memory_Error_during_Write_Operation_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as MemoryError when a memory error occurs during write operation in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614279", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and inject memory error"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Set ret = MEMACC_WRITE_MEMORY_ERROR in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ret = MEMACC_WRITE_MEMORY_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("ret", "3"); 
+  E_DBGR_VariableCheck("ret",3,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_MEMORY_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",3,Equal);
+}
+
+
+testcase Testcase_Verify_Error_for_Write_Operation_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Error_for_Write_Operation_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Error when an error occurs during write operation in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36614273", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\14 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\14");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\14");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmSchmode = 0 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmSchmode = 0"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmSchmode", "0"); 
+  E_DBGR_VariableCheck("binvdmSchmode",0,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",4,Equal);
+}
+
+
+testcase Testcase_Verify_Error_for_Write_Operation_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Error_for_Write_Operation_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Error when an error occurs during write operation in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36728679", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_ERROR"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",4,Equal);
+}
+
+
+testcase Testcase_Verify_Failed_Write_Operation_Status_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Failed_Write_Operation_Status_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Failed when the write operation fails in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36619093", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and inject failure"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Set ret = MEMACC_WRITE_FAILED in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ret = MEMACC_WRITE_FAILED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("ret", "2"); 
+  E_DBGR_VariableCheck("ret",2,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_FAILED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",6,Equal);
+}
+
+
+testcase Testcase_Verify_Failed_Write_Operation_Status_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Failed_Write_Operation_Status_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall return the BINVDM Write status as Failed when the write operation fails in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36619094", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWrite\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWrite\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWrite\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriterequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriterequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriterequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriterequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\46 and inject failure"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Set ret = MEMACC_WRITE_FAILED in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ret = MEMACC_WRITE_FAILED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("ret", "2"); 
+  E_DBGR_VariableCheck("ret",2,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltl\\124 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltl\\124");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltl\\124");
+
+  snprintf( chActionText, elCount(chActionText), "Verify Writestatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Writestatus = BINVDM_WRITE_FAILED"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Writestatus",6,Equal);
+}
+
+
+testcase Testcase_Verify_BINVDM_Write_Data_Extend_in_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_BINVDM_Write_Data_Extend_in_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall support BINVDM extended write operation correctly in blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36729201", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_BlockingWriteExtend\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_BlockingWriteExtend\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_BlockingWriteExtend\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriteextrequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriteextrequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriteextrequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriteextrequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltlEx\\20 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltlEx\\20");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltlEx\\20");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmSchmode = 0 in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmSchmode = 0"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmSchmode", "0"); 
+  E_DBGR_VariableCheck("binvdmSchmode",0,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltlEx\\46 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltlEx\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltlEx\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Verify WriteExtstatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "WriteExtstatus = BINVDM_WRITE_COMPLETE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("WriteExtstatus",1,Equal);
+}
+
+
+testcase Testcase_Verify_BINVDM_Write_Data_Extend_in_NON_Blocking_Mode()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_BINVDM_Write_Data_Extend_in_NON_Blocking_Mode" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:The software shall support BINVDM extended write operation correctly in non-blocking mode.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36729202", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at TestBinvdm_NonblockingWriteExtend\\4 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("TestBinvdm_NonblockingWriteExtend\\4");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("TestBinvdm_NonblockingWriteExtend\\4");
+
+  snprintf( chActionText, elCount(chActionText), "Set binvdmwriteextrequest = TRUE in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "binvdmwriteextrequest = TRUE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("binvdmwriteextrequest", "1"); 
+  E_DBGR_VariableCheck("binvdmwriteextrequest",1,Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint at WriteHWIO_h_BatNonVltlEx\\46 and run"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("WriteHWIO_h_BatNonVltlEx\\46");  
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("WriteHWIO_h_BatNonVltlEx\\46");
+
+  snprintf( chActionText, elCount(chActionText), "Verify WriteExtstatus value in trace32 watch window"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "WriteExtstatus = BINVDM_WRITE_COMPLETE"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("WriteExtstatus",1,Equal);
 }

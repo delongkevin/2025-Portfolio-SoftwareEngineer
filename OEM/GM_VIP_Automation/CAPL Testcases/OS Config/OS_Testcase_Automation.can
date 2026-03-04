@@ -29507,3 +29507,599 @@ void MainTest ()
   
 }
 */
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU0()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU0" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU0.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646772", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  /***************************************************************************************************************/    
+                                              // Test Step 2: Set breakpoint in init function
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  /***************************************************************************************************************/    
+                                              // Test Step 3: Set flag and check semaphore lock for CPU0 during init mode
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core0=1 to check semaphore lock for core0 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core0=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core0", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core0", 1, Equal);
+
+  /***************************************************************************************************************/    
+                                              // Test Step 4: Verify Smsts_lock values during init for all 31 semaphore IDs
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core0[0]=1 - semaphore lock during init for CPU0"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core0[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core0[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU0"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core0 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core0", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU1()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU1" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU1.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646773", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core1=1 to check semaphore lock for core1 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core1=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core1", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core1", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core1[0]=1 - semaphore lock during init for CPU1"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core1[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core1[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU1"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core1 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core1", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU2()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU2" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU2.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646775", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core2=1 to check semaphore lock for core2 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core2=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core2", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core2", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core2[0]=1 - semaphore lock during init for CPU2"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core2[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core2[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU2"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core2 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core2", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU3()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU3" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU3.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646776", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core3=1 to check semaphore lock for core3 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core3=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core3", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core3", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core3[0]=1 - semaphore lock during init for CPU3"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core3[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core3[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU3"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core3 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core3", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU4()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU4" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU4.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646777", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core4=1 to check semaphore lock for core4 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core4=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core4", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core4", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core4[0]=1 - semaphore lock during init for CPU4"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core4[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core4[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU4"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core4 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core4", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU5()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU5" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_init_mode_for_all_31_Semaphore_IDS_for_CPU5.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646778", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is in init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in init mode"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_Init to capture init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_Init is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_Init\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_Init\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_init_flag_core5=1 to check semaphore lock for core5 during init mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_init_flag_core5=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_init_flag_core5", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_init_flag_core5", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_init_lock_core5[0]=1 - semaphore lock during init for CPU5"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_lock_core5[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_lock_core5[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during init mode for CPU5"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_init_unlock_core5 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_init_unlock_core5", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU0()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU0" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU0.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646772", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core0=1 to check semaphore lock for core0 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core0=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core0", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core0", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core0[0]=1 - semaphore lock during shutdown for CPU0"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core0[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core0[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU0"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core0 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core0", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU1()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU1" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU1.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646774", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core1=1 to check semaphore lock for core1 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core1=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core1", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core1", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core1[0]=1 - semaphore lock during shutdown for CPU1"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core1[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core1[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU1"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core1 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core1", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU2()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU2" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU2.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646779", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core2=1 to check semaphore lock for core2 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core2=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core2", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core2", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core2[0]=1 - semaphore lock during shutdown for CPU2"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core2[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core2[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU2"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core2 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core2", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU3()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU3" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU3.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646780", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core3=1 to check semaphore lock for core3 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core3=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core3", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core3", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core3[0]=1 - semaphore lock during shutdown for CPU3"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core3[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core3[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU3"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core3 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core3", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU4()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU4" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU4.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646781", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core4=1 to check semaphore lock for core4 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core4=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core4", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core4", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core4[0]=1 - semaphore lock during shutdown for CPU4"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core4[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core4[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU4"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core4 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core4", 0, Equal);
+}
+
+
+testcase verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU5()
+{
+  /***************************************************************************************************************/    
+                                                // Variable Definition
+  /***************************************************************************************************************/ 
+  long taskvalue;
+  /***************************************************************************************************************/    
+                                              // Test Case Info
+  /***************************************************************************************************************/
+  setWriteDbgLevel(DebugOff);
+  snprintf( chTestTitle, elCount(chTestTitle), "verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU5" );
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:verify_the_functionality_of_interface_to_check_lock_unlock_status_during_shutdown_mode_for_all_31_Semaphore_IDS_for_CPU5.");
+  TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_37646782", chTestDescription );
+  /***************************************************************************************************************/    
+                                              // Test Step 1 PRECONDITIONS
+  /***************************************************************************************************************/
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+
+  A_DBGR_BreakpointDeleteAll();
+  A_DBGR_RnGo();
+  E_DBGR_CheckState(T32_State_Running);
+
+  snprintf( chActionText, elCount(chActionText), "Set a breakpoint in Os_ShutdownAllCores to capture shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint in Os_ShutdownAllCores is set."); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_BreakpointSet("Os_ShutdownAllCores\\1");
+  A_DBGR_Go();
+  E_DBGR_BreakpointCheckForHalt("Os_ShutdownAllCores\\1");
+
+  snprintf( chActionText, elCount(chActionText), "Set flag lock_unlock_status_shutdown_flag_core5=1 to check semaphore lock for core5 during shutdown mode"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Verify flag lock_unlock_status_shutdown_flag_core5=1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  A_DBGR_VariableSet("lock_unlock_status_shutdown_flag_core5", "1");
+  E_DBGR_VariableCheck("lock_unlock_status_shutdown_flag_core5", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify Smsts_shutdown_lock_core5[0]=1 - semaphore lock during shutdown for CPU5"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_lock_core5[0] = 1"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_lock_core5[0]", 1, Equal);
+
+  snprintf( chActionText, elCount(chActionText), "Verify semaphore unlock status during shutdown mode for CPU5"); 
+  snprintf( chExpectedText, elCount(chExpectedText), "Smsts_shutdown_unlock_core5 = expected unlock state"); 
+  TestStepAddActionExpected( chActionText, chExpectedText );
+  E_DBGR_VariableCheck("Smsts_shutdown_unlock_core5", 0, Equal);
+}

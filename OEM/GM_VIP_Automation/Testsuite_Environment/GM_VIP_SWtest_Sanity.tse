@@ -171,7 +171,7 @@ End_Of_ReportFilter_Items
 0 
 NULL
 NULL
-8
+12
 <VFileName V9 QL> 1 "..\CAPL Testcases\CAN\CAN_Testcase_Automation.can" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\Battery_Connection_Status\Battery_Automation.can" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\BINVDM\BINVDM_Testcase_Automation.can" 
@@ -180,6 +180,10 @@ NULL
 <VFileName V9 QL> 1 "..\CAPL Testcases\Wake_up\Wakeup.can" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\Lockstep\SWQT_LockStep_Dual_CPU_Test_Cases_Scripts.can" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\SWQT_SP_Device_Support\SWQT_SP_Device_Support.can" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\FPU\FPU_Testcase_Automation.can" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\HW_CRC\HW_CRC.can" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\Internal_bus\Internal_bus.can" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\Stack\Stack_SWQT.can" 
 EOF_CAPLLIBS
 <VFileName V9 QL> 1 "..\Test Reports\Sanity\Sanity_report.xml" 
 1 0 1
@@ -268,6 +272,10 @@ End_Of_Object VConfigurationBox 6
 <VFileName V9 QL> 1 "..\CAPL Testcases\Wake_up\Wakeup2.cbf" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\Lockstep\SWQT_LockStep_Dual_CPU_Test_Cases_Scripts.cbf" 
 <VFileName V9 QL> 1 "..\CAPL Testcases\SWQT_SP_Device_Support\SWQT_SP_Device_Support.cbf" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\FPU\FPU_Testcase_Automation.cbf" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\HW_CRC\HW_CRC.cbf" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\Internal_bus\Internal_bus.cbf" 
+<VFileName V9 QL> 1 "..\CAPL Testcases\Stack\Stack_SWQT.cbf" 
 NULL
 0
 0
