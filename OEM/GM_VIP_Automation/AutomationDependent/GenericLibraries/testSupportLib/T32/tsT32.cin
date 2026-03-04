@@ -92,6 +92,10 @@ export testfunction A_DBGR_Go()
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
 
+  // Brief wait to ensure ECU has actually started executing before the caller proceeds.
+  // For example, a downstream call to E_DBGR_BreakpointCheckForHalt (which calls
+  // waitForNotRunning) could observe a not-running state prematurely if the ECU
+  // has not yet transitioned into Running state after GO was issued.
   waitForRunning(250);
 }
 
@@ -102,7 +106,8 @@ export testfunction A_DBGR_GoUp()
   char chApiMessage[512];
 
   lFctn_CallT32API("\"Go.Up\"", chApiMessage, lApiExitCode);
-  waitForNotRunning(10000);
+  // cc_dwT32_MaxTimeout (3 s) is sufficient; the original 10 s was excessive.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 }
 
 export testfunction  A_DBGR_StepOver()
@@ -111,7 +116,8 @@ export testfunction  A_DBGR_StepOver()
     char chApiMessage[512];
 
     lFctn_CallT32API("\"STEP.OVER\"", chApiMessage, lApiExitCode);
-    waitForNotRunning(10000);
+    // cc_dwT32_MaxTimeout (3 s) is sufficient; the original 10 s was excessive.
+    waitForNotRunning(cc_dwT32_MaxTimeout);
 }
 
 
@@ -210,9 +216,6 @@ export testfunction A_DBGR_Go_Safe()
     if((byte)DebugFuncInternal & bDebugFlag)
       writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
-
-  // `Go` is used to either `Go` or `Proceed to next breakpoint`.  Doing a `Is running` - `Is not running` should shorten when breakpoints are intended to be hit
-  waitForRunning(250);  // Ensure T32 has given PLENTY of opportunity to start.  (overkill)
 }
 
 
@@ -312,6 +315,10 @@ void A_DBGR_R()
   
   snprintf(chT32Cmd, elcount(chT32Cmd),"\"SYStem.RESetTarget\"");
   lResult = lFctn_CallT32API(chT32Cmd, chApiMessage, lApiExitCode);
+  // Brief wait to allow SYStem.RESetTarget to complete the target reset transition.
+  // After reset the ECU briefly passes through Down state (0) before reaching Halted/Stopped.
+  // isRunning() checks STATE.RUN()==TRUE(), so both Down and Halted satisfy "not running".
+  // This wait ensures the state machine has advanced past any transient Running phase.
   testWaitForTimeoutSilent(250);
 
   //Print the action text to the raport
@@ -598,9 +605,7 @@ export testfunction A_DBGR_BreakpointSet(char aAddress[])
       writeDbgLevel (DebugFuncInternal, "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
-  
-  //timeout after execution
-   waitForNotRunning(5000);
+  // No wait needed: BREAK.SET does not change ECU run state.
 }
 
 /// <BREAKPOINTS>
@@ -663,7 +668,7 @@ void A_DBGR_BreakpointWrite(char aAddress[])
       writeDbgLevel (DebugFuncInternal, "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
-   waitForNotRunning(5000);
+  // No wait needed: VAR.BREAK.SET does not change ECU run state.
 }
 
 /// <BREAKPOINTS>
@@ -694,7 +699,8 @@ void A_DBGR_BreakpointRead(char aAddress[])
   bResultAction = NotOk;
   snprintf(chT32Cmd, elcount(chT32Cmd), "\"VAR.BREAK.SET %s /R\"", aAddress);
 
-   waitForNotRunning(5000);
+  // Hardware read-access BPs require ECU to be halted on some targets; wait at most cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   writeDbgLevel (DebugFuncCalls , "Function A_DBGR_BreakpointRead() entered.");
   
@@ -885,7 +891,7 @@ void E_DBGR_BreakpointCheckForHalt(char aAddress[])
   writeDbgLevel(DebugFuncCalls , "Function E_DBGR_BreakpointCheckForHalt() entered.");
 
   // Poll for not running with timeout
-  if ( waitForNotRunning(15000))
+  if ( waitForNotRunning(cc_dwT32_BP_HaltTimeout))
   {
     snprintf(chT32Cmd, elcount(chT32Cmd),"\"EVAL (P:R(PC)==%s)\"", aAddress);
     lFctn_CallT32API(chT32Cmd, chApiMessage, lApiExitCode);
@@ -921,7 +927,7 @@ void E_DBGR_BreakpointCheckForHalt(char aAddress[])
   }
   else 
   {
-    snprintf(chFailText, elcount(chFailText), "Timeout: ECU did not halt (STATE.RUN()!=FALSE) within %d ms.", cc_dwT32_MaxTimeout);
+    snprintf(chFailText, elcount(chFailText), "Timeout: ECU did not halt (STATE.RUN()!=FALSE) within %d ms.", cc_dwT32_BP_HaltTimeout);
     if((byte)DebugFuncInternal & bDebugFlag)
       writeDbgLevel (DebugFuncInternal, "FAIL: %s.", chFailText);
     vFctn_REPORTStepEvaluation(chFailText, FAIL);
@@ -953,7 +959,7 @@ void E_DBGR_BreakpointCheckForHaltCore(char aAddress[], char aCore[])
   char chFailText[250];
 
   bDebugFlag = NotOk;
-  if( waitForNotRunning(5000))
+  if( waitForNotRunning(cc_dwT32_BP_HaltTimeout))
   {
     snprintf(chT32Cmd, elcount(chT32Cmd),"\"EVAL P:R(PC)==%s&&CORE()==%s\"", aAddress, aCore);
     lFctn_CallT32API(chT32Cmd, chApiMessage, lApiExitCode);
@@ -1021,7 +1027,8 @@ void A_DBGR_VariableSet(char aAddress[], char aValue[])
   char chAction[500];
   char chT32Cmd[500] = "";
 
-   waitForNotRunning(5000);  // Risk that assignment is ran to trigger BP.  Optimization risk mitigation.
+  // ECU must be halted for VAR.SET; wait up to cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   bDebugFlag = NotOk;
   bResultAction = NotOk;
@@ -1059,9 +1066,7 @@ void A_DBGR_VariableSet(char aAddress[], char aValue[])
       writeDbgLevel (DebugFuncInternal, "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
-
-  //timeout after execution
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // No post-write wait: ECU remains halted after VAR.SET.
 }
 
 /// <VARIABLE>
@@ -1092,7 +1097,8 @@ void  A_DBGR_VariableRead( char aAddress[], long& aVarValue)
   bDebugFlag = NotOk;
   bResultAction = NotOk;
 
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // ECU must be halted for var.PRINT; wait up to cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   snprintf(chT32Cmd, elcount(chT32Cmd),"\"var.PRINT %s\"", aAddress);
   writeDbgLevel (DebugFuncCalls , "Function A_DBGR_VariableRead() entered.");
@@ -1159,7 +1165,8 @@ void E_DBGR_VariableCheck(char aAddress[], long aValueToCompare, enum eCompareTy
 
   bDebugFlag = cc_bT32_GlobalDebugFlag;
 
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // ECU must be halted for var.value read; wait up to cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   writeDbgLevel(DebugFuncCalls , "Function E_DBGR_VariableCheck() entered.");
   
@@ -1298,7 +1305,7 @@ void E_DBGR_VariableCheck_until(char aAddress[], long aValueToCompare, enum eCom
   for (nRetryCount = 0; nRetryCount < nMaxRetries; nRetryCount++)
   {
     // Wait for ECU to stop at breakpoint
-    if (!waitForNotRunning(5000))
+    if (!waitForNotRunning(cc_dwT32_BP_HaltTimeout))
     {
       write("Retry %d/%d: ECU did not halt within timeout, issuing GO.", nRetryCount + 1, nMaxRetries);
       snprintf(chT32Cmd, elcount(chT32Cmd), "\"GO\"");
@@ -1411,7 +1418,8 @@ void E_DBGR_VariableCheckArrayElement(char aAddress[], long aIndex, long aValueT
 
   bDebugFlag = NotOk;
 
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // ECU must be halted for var.PRINT; wait up to cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   snprintf(chT32Cmd, elcount(chT32Cmd),  "\"var.PRINT %s[%d]\"", aAddress, aIndex);
  
@@ -1475,7 +1483,8 @@ void A_DBGR_RegisterSet(char aAddress[], char aValue[])
   bDebugFlag = NotOk;
   bResultAction = NotOk;
 
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // ECU must be halted for PER.Set.simple; wait up to cc_dwT32_MaxTimeout.
+  waitForNotRunning(cc_dwT32_MaxTimeout);
 
   snprintf(chT32Cmd, elcount(chT32Cmd),  "\"PER.Set.simple %s %% Long %s\"", aAddress, aValue);
   
@@ -1511,7 +1520,7 @@ void A_DBGR_RegisterSet(char aAddress[], char aValue[])
       writeDbgLevel (DebugFuncInternal, "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
-   waitForNotRunning(5000);  // Reading is typically only ever wanted when stopped at a breakpoint.  Optimization risk mitigation.
+  // No post-write wait: ECU remains halted after PER.Set.simple.
 }
 
 /// <REGISTER>
@@ -1586,7 +1595,7 @@ void A_DBGR_RegisterSetByMask(char aAddress[], char aMask[])
       writeDbgLevel (DebugFuncInternal, "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
     vFctn_REPORTActionEvaluation(chFailText, FAIL);
   }
-   waitForNotRunning(5000);
+  // No post-write wait: ECU remains halted after PER.Set.simple mask operation.
 }
 
 /// <REGISTER>
@@ -1725,6 +1734,7 @@ void E_DBGR_RegisterCheckBitStatus(char aAddress[], byte aBit_Number, enum eBitS
 /**
  * Helper function to poll for STATE.RUN()==FALSE() with timeout
  * Returns 1 if not running, 0 if still running after timeout
+ * Poll interval is 250 ms (reduced from 500 ms) to detect halt state faster.
  */
 long waitForNotRunning(long timeoutMs)
 {
@@ -1733,7 +1743,7 @@ long waitForNotRunning(long timeoutMs)
   long pollInterval;
   int apiWait = 60;
 
-  pollInterval = 500;
+  pollInterval = 250;
   elapsed = 0;
   result = 0;
 

@@ -36,6 +36,10 @@ variables
 
   const dword cc_dwT32_MaxTimeout = 3000;//ms
 
+  // Timeout used when waiting for a breakpoint to be reached after GO.
+  // Longer than cc_dwT32_MaxTimeout to allow for RTOS scheduling latency.
+  const dword cc_dwT32_BP_HaltTimeout = 5000;//ms
+
 }
 
  
