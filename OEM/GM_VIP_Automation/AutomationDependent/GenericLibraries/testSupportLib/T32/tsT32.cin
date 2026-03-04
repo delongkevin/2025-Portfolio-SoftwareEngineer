@@ -545,6 +545,49 @@ void E_DBGR_CheckState(enum eT32State aT32State)
     writeDbgLevel (DebugFuncInternal, msgInfo);
 }
 
+/// <GENERIC>
+/*! void E_DBGR_CheckConnection()
+*  \brief Verifies that the Lauterbach Trace32 debugger is connected to the ECU.
+*         T32 is considered connected when its state is Halted (1), Stopped (2),
+*         or Running (3). A Down (0) or Error (-1) state indicates the debugger is
+*         not attached. Use at bench startup to confirm hardware is ready before
+*         running tests.
+*
+*  \return no return
+*
+* Change History:
+* Date(DD.MM.YY)        Author          Change info
+*
+* 04.03.26              Copilot         Created for bench pre-deployment consistency check.
+*/
+void E_DBGR_CheckConnection()
+{
+  long lState;
+  char chPassText[250];
+  char chFailText[250];
+  byte bDebugFlag;
+
+  bDebugFlag = NotOk;
+  writeDbgLevel(DebugFuncCalls, "Function E_DBGR_CheckConnection() entered.");
+
+  lState = lFctn_G_T32_GET_STATE(msgInfo);
+
+  if (lState == T32_State_Halted || lState == T32_State_Stopped || lState == T32_State_Running)
+  {
+    snprintf(chPassText, elcount(chPassText), "Lauterbach debugger connected. %s", msgInfo);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "PASS: %s.", chPassText);
+    vFctn_REPORTStepEvaluation(chPassText, PASS);
+  }
+  else
+  {
+    snprintf(chFailText, elcount(chFailText), "Lauterbach debugger NOT connected (T32 state: %ld). %s Check hardware connection and T32 startup.", lState, msgInfo);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
+}
+
 /// <BREAKPOINTS>
 /*! void  A_DBGR_BreakpointSet(char aAddress[])
 *  \brief Function that SET a specific BP.
@@ -1735,31 +1778,25 @@ void E_DBGR_RegisterCheckBitStatus(char aAddress[], byte aBit_Number, enum eBitS
  * Helper function to poll for STATE.RUN()==FALSE() with timeout
  * Returns 1 if not running, 0 if still running after timeout
  * Poll interval is 250 ms (reduced from 500 ms) to detect halt state faster.
+ * Each failed iteration advances elapsed by pollInterval only (avoids double-counting
+ * apiWait on top of pollInterval, which previously caused premature timeout expiry).
  */
 long waitForNotRunning(long timeoutMs)
 {
   long elapsed;
-  long result;
   long pollInterval;
   int apiWait = 60;
 
   pollInterval = 250;
   elapsed = 0;
-  result = 0;
 
   while (elapsed < timeoutMs)
   {
-    result = !isRunning();
-    elapsed += apiWait;
-
-    if (result)
+    if (!isRunning())
       return 1; // Not running
 
-    if (pollInterval > apiWait)
-    {
-      testWaitForTimeoutSilent(pollInterval - apiWait);
-      elapsed += pollInterval;
-    }
+    testWaitForTimeoutSilent(pollInterval - apiWait);
+    elapsed += pollInterval; // one full poll interval per iteration
   }
   return 0; // Timed out, still running
 }
@@ -1767,27 +1804,19 @@ long waitForNotRunning(long timeoutMs)
 long waitForRunning(long timeoutMs)
 {
   long elapsed;
-  long result;
   long pollInterval;
   int apiWait = 60;
 
   pollInterval = 100;
   elapsed = 0;
-  result = 0;
 
   while (elapsed < timeoutMs)
   {
-    result = isRunning();
-    elapsed += apiWait;
-
-    if (result)
+    if (isRunning())
       return 1; // Running
 
-    if (pollInterval > apiWait)
-    {
-      testWaitForTimeoutSilent(pollInterval - apiWait);
-      elapsed += pollInterval;
-    }
+    testWaitForTimeoutSilent(pollInterval - apiWait);
+    elapsed += pollInterval; // one full poll interval per iteration
   }
   return 0; // Timed out, still not running
 }
@@ -1824,5 +1853,80 @@ void readPPRegister(char aResult[])
 
   lFctn_CallT32API(chT32Cmd, chApiMessage, lApiExitCode);
   strncpy(aResult, chApiMessage, elcount(aResult));
+}
+
+/// <GENERIC>
+/*! void E_DBGR_CheckCmmScriptResult(char aScript[], char aCore[], long aTimeOut, char aParams[])
+*  \brief Runs a CMM script via lFctn_G_T32_RUN_CMM_CORE() and records the result as a
+*         PASS or FAIL step in the CANoe test report. This guarantees that every CMM
+*         script invocation is consistently captured in the report, making it straightforward
+*         to verify reporting accuracy across all 20 benches.
+*
+*  \param[in] aScript   - CMM script filename (relative to the Cmm_Commands folder)
+*  \param[in] aCore     - Target core identifier (e.g., "0", "1")
+*  \param[in] aTimeOut  - Maximum wait time in ms for the CMM script to complete
+*  \param[in] aParams   - Parameters to pass to the CMM script (use "" for none)
+*
+*  \return no return
+*
+* Change History:
+* Date(DD.MM.YY)        Author          Change info
+*
+* 04.03.26              Copilot         Created for CMM script reporting consistency check.
+*/
+void E_DBGR_CheckCmmScriptResult(char aScript[], char aCore[], long aTimeOut, char aParams[])
+{
+  long lResult;
+  char chPassText[250];
+  char chFailText[250];
+  byte bDebugFlag;
+
+  bDebugFlag = NotOk;
+  writeDbgLevel(DebugFuncCalls, "Function E_DBGR_CheckCmmScriptResult() entered.");
+
+  lResult = lFctn_G_T32_RUN_CMM_CORE(aScript, aCore, aTimeOut, aParams);
+
+  if (lResult == Ok)
+  {
+    snprintf(chPassText, elcount(chPassText), "CMM script '%s' completed successfully.", aScript);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "PASS: %s.", chPassText);
+    vFctn_REPORTStepEvaluation(chPassText, PASS);
+  }
+  else if (lResult == NotOk)
+  {
+    snprintf(chFailText, elcount(chFailText), "CMM script '%s' did not complete within timeout (%ld ms).", aScript, aTimeOut);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
+  else if (lResult == Error)
+  {
+    snprintf(chFailText, elcount(chFailText), "CMM script '%s' could not be started. Check path and T32 connection.", aScript);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
+  else if (lResult == -2)
+  {
+    snprintf(chFailText, elcount(chFailText), "CMM script '%s' exited with an unexpected exit code.", aScript);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
+  else if (lResult == -999)
+  {
+    snprintf(chFailText, elcount(chFailText), "CMM script '%s' aborted: measurement ended before script completed.", aScript);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
+  else
+  {
+    snprintf(chFailText, elcount(chFailText), "CMM script '%s' returned unexpected result: %ld.", aScript, lResult);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "FAIL: %s.", chFailText);
+    vFctn_REPORTStepEvaluation(chFailText, FAIL);
+  }
 }
 
