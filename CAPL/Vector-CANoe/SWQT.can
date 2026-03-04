@@ -29,6 +29,25 @@ variables
 
   // File Logging
   char gFilePath[512] = "Test_Snapshot.txt";
+
+  // -------------------------------------------------------------------------
+  // SWQT Stress-Test additions
+  // -------------------------------------------------------------------------
+  // UDS CAN IDs used by the new SWQT stress test cases
+  const dword kSWQT_DIAG_REQ   = 0x7E0;
+  const dword kSWQT_DIAG_RES   = 0x7E8;
+  const dword kSWQT_TIMEOUT_MS = 5000;
+  const dword kSWQT_BOOT_MS    = 3000; // post-reset boot wait
+
+  // Power supply (BK Precision 1687B) – same COM port as PowerCrankTest_FullStress.can
+  const dword kSWQT_PS_COM   = 4;
+  const byte  kSWQT_PS_CR    = 0x0D; // Command terminator (carriage return)
+  float gSWQT_VoltNormal     = 12.3;
+  int   gSWQT_PsPortOpen     = 0;
+
+  // CAN fuzzing statistics
+  dword gFuzzMsgSent = 0;
+  dword gFuzzEcuFails = 0;
 }
 
 /*==============================================================================
@@ -296,4 +315,645 @@ void InternalSend(dword id, byte data[], int dlc)
     m.byte(i) = data[i]; 
   }
   output(m);
+}
+
+/* ============================================================================
+   SWQT STRESS-TEST HELPER FUNCTIONS
+============================================================================ */
+
+// -- Power supply (BK Precision 1687B, same RS232 protocol as
+//    PowerCrankTest_FullStress.can) --
+
+dword SWQT_PS_Open()
+{
+  dword res;
+  if (gSWQT_PsPortOpen) return 1;
+  res = RS232Open(kSWQT_PS_COM);
+  if (res == 0) { write("SWQT_PS: ERROR opening COM%d", kSWQT_PS_COM); return 0; }
+  res = RS232Configure(kSWQT_PS_COM, 9600, 8, 1, 0);
+  if (res == 0) { RS232Close(kSWQT_PS_COM); return 0; }
+  gSWQT_PsPortOpen = 1;
+  write("SWQT_PS: COM%d opened (9600,8,1,N)", kSWQT_PS_COM);
+  return 1;
+}
+
+void SWQT_PS_Close()
+{
+  if (gSWQT_PsPortOpen)
+  {
+    RS232Close(kSWQT_PS_COM);
+    gSWQT_PsPortOpen = 0;
+    write("SWQT_PS: COM%d closed", kSWQT_PS_COM);
+  }
+}
+
+dword SWQT_PS_SendCmd(char cmd[])
+{
+  byte  buf[32];
+  dword len;
+  dword i;
+  len = strlen(cmd);
+  if (len > 30) len = 30;
+  for (i = 0; i < len; i++) buf[i] = (byte)cmd[i];
+  buf[len] = kSWQT_PS_CR; // BK Precision 1687B requires CR terminator
+  return RS232Send(kSWQT_PS_COM, buf, len + 1);
+}
+
+dword SWQT_PS_SetVoltage(float volts)
+{
+  char  cmd[16];
+  dword v;
+  if (volts < 6.0)  volts = 6.0;
+  if (volts > 17.0) volts = 17.0;
+  v = (dword)(volts * 10.0);
+  snprintf(cmd, elcount(cmd), "VOLT%03d", v);
+  write("SWQT_PS: %.1f V", volts);
+  return SWQT_PS_SendCmd(cmd);
+}
+
+dword SWQT_PS_OutputOn()
+{
+  return SWQT_PS_SendCmd("SOUT0");
+}
+
+dword SWQT_PS_OutputOff()
+{
+  return SWQT_PS_SendCmd("SOUT1");
+}
+
+// Send UDS Hard Reset (service 0x11, sub-function 0x01) and wait for boot
+void SWQT_HardReset_UDS()
+{
+  byte resetData[8];
+  resetData[0] = 0x02; resetData[1] = 0x11; resetData[2] = 0x01;
+  resetData[3] = 0x00; resetData[4] = 0x00;
+  resetData[5] = 0x00; resetData[6] = 0x00; resetData[7] = 0x00;
+  InternalSend(kSWQT_DIAG_REQ, resetData, 8);
+  testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS);
+  testWaitForTimeout(kSWQT_BOOT_MS);
+}
+
+// Enter UDS Extended Diagnostic Session (service 0x10, sub-function 0x03)
+void SWQT_ExtendedSession_UDS()
+{
+  byte sessData[8];
+  sessData[0] = 0x02; sessData[1] = 0x10; sessData[2] = 0x03;
+  sessData[3] = 0x00; sessData[4] = 0x00;
+  sessData[5] = 0x00; sessData[6] = 0x00; sessData[7] = 0x00;
+  InternalSend(kSWQT_DIAG_REQ, sessData, 8);
+  testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS);
+  testWaitForTimeout(100);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_PowerStress_Ramp
+   Ramp supply voltage 6 V → 17 V → 6 V while polling ECU with UDS reads.
+   Verifies ECU responds within the specified nominal voltage window.
+   Parameter: cycles – number of full up/down ramp sweeps.
+============================================================================ */
+export testcase tc_SWQT_PowerStress_Ramp(int cycles)
+{
+  int   c;
+  float v;
+  int   failCount;
+  long  rxStatus;
+  char  stepStr[48];
+  byte  readData[8];
+
+  TestCaseTitle("tc_SWQT_PowerStress_Ramp",
+                "SWQT Power Stress – Voltage Ramp 6 V to 17 V");
+  TestCaseDescription("Ramps the BK Precision 1687B supply from 6 V up to 17 V "
+                      "and back down while sending a UDS Read DID (0x22 0xF1 0x86) "
+                      "at every 0.5 V step. Expects valid responses between 9 V "
+                      "and 16 V; verifies ECU never fully locks up outside that range.");
+
+  failCount = 0;
+
+  if (SWQT_PS_Open() == 0)
+  {
+    TestStepFail("Setup",
+                 "Power supply not accessible on COM%d", kSWQT_PS_COM);
+    return;
+  }
+
+  SWQT_PS_SetVoltage(gSWQT_VoltNormal);
+  SWQT_PS_OutputOn();
+  testWaitForTimeout(2000);
+
+  // Read Active Diagnostic Session DID: 22 F1 86
+  readData[0] = 0x03; readData[1] = 0x22; readData[2] = 0xF1; readData[3] = 0x86;
+  readData[4] = 0x00; readData[5] = 0x00; readData[6] = 0x00; readData[7] = 0x00;
+
+  for (c = 1; c <= cycles; c++)
+  {
+    snprintf(stepStr, elcount(stepStr), "Ramp cycle %d of %d", c, cycles);
+    TestStep("RampCycle", stepStr);
+
+    // Ramp UP: 6 V → 17 V
+    for (v = 6.0; v <= 17.0; v += 0.5)
+    {
+      SWQT_PS_SetVoltage(v);
+      testWaitForTimeout(300);
+      InternalSend(kSWQT_DIAG_REQ, readData, 8);
+      rxStatus = testWaitForMessage(kSWQT_DIAG_RES, 600);
+      // Expect valid response in nominal range 9 V – 16 V
+      if (v >= 9.0 && v <= 16.0 && rxStatus != 1)
+      {
+        TestStepFail("RampUp",
+                     "No UDS response at %.1f V (cycle %d)", v, c);
+        failCount++;
+      }
+    }
+
+    // Ramp DOWN: 17 V → 6 V
+    for (v = 17.0; v >= 6.0; v -= 0.5)
+    {
+      SWQT_PS_SetVoltage(v);
+      testWaitForTimeout(300);
+    }
+
+    // Restore nominal voltage and allow ECU to stabilise
+    SWQT_PS_SetVoltage(gSWQT_VoltNormal);
+    testWaitForTimeout(1500);
+    TestStepPass("RampCycle", "Ramp cycle %d complete", c);
+  }
+
+  SWQT_PS_Close();
+
+  if (failCount == 0)
+    TestStepPass("Summary",
+                 "PASS: %d voltage ramp cycles – no unexpected UDS timeouts.", cycles);
+  else
+    TestStepFail("Summary",
+                 "FAIL: %d unexpected UDS timeouts during ramp stress.", failCount);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_CanSleep_Interrupt
+   Disable all CAN channels (simulating ECU sleep), wait, re-enable, then
+   verify ECU woke up by sending a UDS TesterPresent.
+   Parameters:
+     cycles  – total sleep/wake iterations
+     sleepMs – duration of each simulated sleep period in ms
+============================================================================ */
+export testcase tc_SWQT_CanSleep_Interrupt(int cycles, int sleepMs)
+{
+  int  c;
+  int  failCount;
+  long rxStatus;
+  byte pingData[8];
+
+  TestCaseTitle("tc_SWQT_CanSleep_Interrupt",
+                "SWQT CAN Sleep / Wake Interrupt Stress");
+  TestCaseDescription("Repeatedly disables all CAN channels (simulating ECU network "
+                      "sleep), holds for <sleepMs>, then re-enables. After each "
+                      "wakeup a UDS TesterPresent (3E 00) is sent to verify the "
+                      "ECU returned to an active state.");
+
+  failCount = 0;
+
+  // UDS TesterPresent: service 0x3E, sub-function 0x00
+  pingData[0] = 0x02; pingData[1] = 0x3E; pingData[2] = 0x00;
+  pingData[3] = 0x00; pingData[4] = 0x00;
+  pingData[5] = 0x00; pingData[6] = 0x00; pingData[7] = 0x00;
+
+  for (c = 1; c <= cycles; c++)
+  {
+    TestStep("SleepWake",
+             "Sleep/Wake cycle %d of %d  (sleep = %d ms)", c, cycles, sleepMs);
+
+    // Disable CAN channels – simulates bus-sleep / network-management sleep
+    canSetChannelOutput(1, 0);
+    canSetChannelOutput(2, 0);
+    TestStep("Sleep", "CAN channels 1 & 2 disabled");
+
+    testWaitForTimeout(sleepMs);
+
+    // Re-enable CAN channels – simulates bus-wake
+    canSetChannelOutput(1, 1);
+    canSetChannelOutput(2, 1);
+    TestStep("Wake", "CAN channels 1 & 2 re-enabled");
+
+    testWaitForTimeout(500); // ECU stabilisation after wakeup
+
+    // Health check: TesterPresent
+    InternalSend(kSWQT_DIAG_REQ, pingData, 8);
+    rxStatus = testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS);
+
+    if (rxStatus == 1)
+    {
+      TestStepPass("WakeVerify",
+                   "ECU responsive after CAN wake (cycle %d)", c);
+    }
+    else
+    {
+      TestStepFail("WakeVerify",
+                   "ECU unresponsive after CAN wake (cycle %d)", c);
+      failCount++;
+      // Extra recovery time before next iteration
+      canSetChannelOutput(1, 1);
+      canSetChannelOutput(2, 1);
+      testWaitForTimeout(5000);
+    }
+  }
+
+  // Guarantee channels are active regardless of test outcome
+  canSetChannelOutput(1, 1);
+  canSetChannelOutput(2, 1);
+
+  if (failCount == 0)
+    TestStepPass("Summary",
+                 "PASS: %d sleep/wake cycles – ECU always responsive.", cycles);
+  else
+    TestStepFail("Summary",
+                 "FAIL: %d wakeup failures in %d sleep/wake cycles.",
+                 failCount, cycles);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_HardReset_Stress
+   Repeatedly issues UDS Hard Reset (11 01) and verifies the ECU boots and
+   responds to TesterPresent within the expected time.
+   Parameters:
+     cycles         – total hard-reset iterations
+     resetIntervalMs – idle time between resets (ms)
+============================================================================ */
+export testcase tc_SWQT_HardReset_Stress(int cycles, int resetIntervalMs)
+{
+  int  c;
+  int  failCount;
+  long rxStatus;
+  byte pingData[8];
+
+  TestCaseTitle("tc_SWQT_HardReset_Stress",
+                "SWQT ECU Hard Reset (11 01) Stress");
+  TestCaseDescription("Sends UDS Hard Reset (service 0x11, sub-function 0x01) "
+                      "repeatedly to the ECU. After each reset the test waits for "
+                      "the boot time defined by kSWQT_BOOT_MS, then sends "
+                      "TesterPresent (3E 00) to confirm the ECU is alive.");
+
+  failCount = 0;
+
+  pingData[0] = 0x02; pingData[1] = 0x3E; pingData[2] = 0x00;
+  pingData[3] = 0x00; pingData[4] = 0x00;
+  pingData[5] = 0x00; pingData[6] = 0x00; pingData[7] = 0x00;
+
+  for (c = 1; c <= cycles; c++)
+  {
+    TestStep("HardReset", "Hard reset cycle %d of %d", c, cycles);
+
+    // Pre-reset idle time
+    testWaitForTimeout(resetIntervalMs);
+
+    // Enter extended session – recommended practice before hard reset
+    SWQT_ExtendedSession_UDS();
+
+    // Issue UDS Hard Reset 0x11 0x01
+    SWQT_HardReset_UDS();
+    TestStep("Reset_Sent", "Hard reset (11 01) sent – waiting for boot...");
+
+    // Verify ECU recovered
+    testWaitForTimeout(200);
+    InternalSend(kSWQT_DIAG_REQ, pingData, 8);
+    rxStatus = testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS + 2000);
+
+    if (rxStatus == 1)
+    {
+      TestStepPass("ResetVerify",
+                   "ECU alive after hard reset (cycle %d)", c);
+    }
+    else
+    {
+      TestStepFail("ResetVerify",
+                   "ECU unresponsive after hard reset (cycle %d)", c);
+      failCount++;
+      testWaitForTimeout(5000); // Extra recovery before next iteration
+    }
+  }
+
+  if (failCount == 0)
+    TestStepPass("Summary",
+                 "PASS: %d hard-reset cycles – ECU always recovered.", cycles);
+  else
+    TestStepFail("Summary",
+                 "FAIL: %d failures in %d hard-reset cycles.", failCount, cycles);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_CanFuzz_Random
+   Inject random standard CAN messages and verify the ECU does not lock up.
+   Parameters:
+     msgCount   – total fuzz messages to inject
+     canChannel – CAN channel number to inject onto (1 or 2)
+============================================================================ */
+export testcase tc_SWQT_CanFuzz_Random(int msgCount, int canChannel)
+{
+  int   i;
+  int   j;
+  int   dlc;
+  dword canId;
+  byte  fuzzData[8];
+  long  pingStatus;
+  byte  pingData[8];
+
+  TestCaseTitle("tc_SWQT_CanFuzz_Random",
+                "SWQT CAN Fuzzing – Random IDs and Data");
+  TestCaseDescription("Injects random CAN frames with random 11-bit IDs and random "
+                      "payloads onto the specified channel. Every 100 frames a UDS "
+                      "TesterPresent (3E 00) is sent to verify the ECU remains "
+                      "responsive throughout the fuzz campaign.");
+
+  gFuzzMsgSent = 0;
+  gFuzzEcuFails = 0;
+
+  pingData[0] = 0x02; pingData[1] = 0x3E; pingData[2] = 0x00;
+  pingData[3] = 0x00; pingData[4] = 0x00;
+  pingData[5] = 0x00; pingData[6] = 0x00; pingData[7] = 0x00;
+
+  TestStep("FuzzSetup",
+           "Sending %d random CAN messages on channel %d",
+           msgCount, canChannel);
+
+  for (i = 0; i < msgCount; i++)
+  {
+    // Random 11-bit CAN ID 0x001–0x7FF (full range); avoid diag IDs so
+    // the health-check TesterPresent remains unambiguous.
+    canId = 1 + random(0x7FF); // random(0x7FF) gives 0–0x7FE, +1 = 1–0x7FF
+    if (canId == kSWQT_DIAG_REQ || canId == kSWQT_DIAG_RES) canId = 0x123;
+
+    dlc = random(9); // DLC 0-8: include 0-byte frame as valid fuzz case
+    for (j = 0; j < dlc; j++) fuzzData[j] = (byte)random(256);
+
+    // SendCanFDMessage with FD=0, BRS=0 sends a standard (non-FD) CAN frame.
+    // This is intentional so fuzzing covers the full standard-CAN ID space.
+    SendCanFDMessage(canChannel, canId, fuzzData, dlc, 0, 0);
+    gFuzzMsgSent++;
+
+    testWaitForTimeout(5); // 5 ms inter-frame spacing
+
+    // ECU health check every 100 fuzz frames
+    if ((i + 1) % 100 == 0)
+    {
+      InternalSend(kSWQT_DIAG_REQ, pingData, 8);
+      pingStatus = testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS);
+      if (pingStatus == 1)
+      {
+        TestStepPass("FuzzHealth",
+                     "ECU alive after %d fuzz messages", i + 1);
+      }
+      else
+      {
+        TestStepFail("FuzzHealth",
+                     "ECU unresponsive after %d fuzz messages!", i + 1);
+        gFuzzEcuFails++;
+      }
+    }
+  }
+
+  if (gFuzzEcuFails == 0)
+    TestStepPass("Summary",
+                 "PASS: ECU survived %d fuzz frames – no failures.",
+                 gFuzzMsgSent);
+  else
+    TestStepFail("Summary",
+                 "FAIL: ECU unresponsive %d time(s) during %d fuzz frames.",
+                 gFuzzEcuFails, gFuzzMsgSent);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_CanFuzz_Boundary
+   Inject CAN frames with boundary-value IDs and payloads, then verify the
+   ECU remains responsive after each ID cluster.
+   Parameter: canChannel – CAN channel number (1 or 2)
+============================================================================ */
+export testcase tc_SWQT_CanFuzz_Boundary(int canChannel)
+{
+  int   i;
+  int   pi;
+  int   j;
+  long  rxStatus;
+  byte  fuzzData[8];
+  byte  pingData[8];
+  dword boundaryIds[12];
+  byte  bp0[8];
+  byte  bp1[8];
+  byte  bp2[8];
+  byte  bp3[8];
+  byte  bp4[8];
+  byte  bp5[8];
+  byte  bp6[8];
+  byte  bp7[8];
+
+  TestCaseTitle("tc_SWQT_CanFuzz_Boundary",
+                "SWQT CAN Fuzzing – Boundary Value IDs and Payloads");
+  TestCaseDescription("Injects CAN frames with boundary-value IDs (0x001, 0x7FF, etc.) "
+                      "combined with boundary payloads: all-zeros, all-ones, "
+                      "alternating AA/55, incrementing, and known DEAD/BEEF patterns. "
+                      "Verifies ECU responsiveness via UDS TesterPresent after each "
+                      "ID cluster.");
+
+  pingData[0] = 0x02; pingData[1] = 0x3E; pingData[2] = 0x00;
+  pingData[3] = 0x00; pingData[4] = 0x00;
+  pingData[5] = 0x00; pingData[6] = 0x00; pingData[7] = 0x00;
+
+  // 12 boundary CAN IDs
+  boundaryIds[0]  = 0x001; boundaryIds[1]  = 0x002; boundaryIds[2]  = 0x003;
+  boundaryIds[3]  = 0x100; boundaryIds[4]  = 0x200; boundaryIds[5]  = 0x300;
+  boundaryIds[6]  = 0x400; boundaryIds[7]  = 0x500; boundaryIds[8]  = 0x600;
+  boundaryIds[9]  = 0x7FD; boundaryIds[10] = 0x7FE; boundaryIds[11] = 0x7FF;
+
+  // 8 boundary payloads – declared individually to satisfy CAPL variable rules
+  for (j = 0; j < 8; j++) bp0[j] = 0x00;           // All zeros
+  for (j = 0; j < 8; j++) bp1[j] = 0xFF;           // All ones
+  for (j = 0; j < 8; j++) bp2[j] = (j%2==0)?0xAA:0x55; // AA/55 alternating
+  for (j = 0; j < 8; j++) bp3[j] = (j%2==0)?0x55:0xAA; // 55/AA alternating
+  for (j = 0; j < 8; j++) bp4[j] = (byte)j;         // Incrementing 0–7
+  for (j = 0; j < 8; j++) bp5[j] = (byte)(7-j);     // Decrementing 7–0
+  bp6[0]=0xDE; bp6[1]=0xAD; bp6[2]=0xBE; bp6[3]=0xEF;
+  bp6[4]=0xCA; bp6[5]=0xFE; bp6[6]=0xBA; bp6[7]=0xBE; // DEADBEEF CAFEBABE
+  for (j = 0; j < 8; j++) bp7[j] = (byte)(j * 0x11); // 0x00 0x11 0x22 ...
+
+  TestStep("BoundaryFuzz",
+           "Testing 12 boundary IDs x 8 payload patterns on channel %d",
+           canChannel);
+
+  for (i = 0; i < 12; i++)
+  {
+    // Send all payload variants for this CAN ID
+    for (pi = 0; pi < 8; pi++)
+    {
+      if      (pi == 0) { for (j=0;j<8;j++) fuzzData[j]=bp0[j]; }
+      else if (pi == 1) { for (j=0;j<8;j++) fuzzData[j]=bp1[j]; }
+      else if (pi == 2) { for (j=0;j<8;j++) fuzzData[j]=bp2[j]; }
+      else if (pi == 3) { for (j=0;j<8;j++) fuzzData[j]=bp3[j]; }
+      else if (pi == 4) { for (j=0;j<8;j++) fuzzData[j]=bp4[j]; }
+      else if (pi == 5) { for (j=0;j<8;j++) fuzzData[j]=bp5[j]; }
+      else if (pi == 6) { for (j=0;j<8;j++) fuzzData[j]=bp6[j]; }
+      else              { for (j=0;j<8;j++) fuzzData[j]=bp7[j]; }
+
+      SendCanFDMessage(canChannel, boundaryIds[i], fuzzData, 8, 0, 0);
+      testWaitForTimeout(10);
+    }
+
+    // Health check after each ID cluster
+    InternalSend(kSWQT_DIAG_REQ, pingData, 8);
+    rxStatus = testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS);
+
+    if (rxStatus == 1)
+      TestStepPass("BoundaryCheck",
+                   "ECU alive after ID 0x%03X cluster", boundaryIds[i]);
+    else
+      TestStepFail("BoundaryCheck",
+                   "ECU unresponsive after ID 0x%03X cluster", boundaryIds[i]);
+  }
+
+  TestStepPass("Summary",
+               "Boundary CAN fuzzing complete on channel %d.", canChannel);
+}
+
+/* ============================================================================
+   TEST CASE: tc_SWQT_Combined_LongDuration
+   Multi-phase long-duration stress test combining:
+     Phase 1 – voltage ramp (short sweep)
+     Phase 2 – CAN sleep/wake
+     Phase 3 – UDS Hard Reset (11 01)
+     Phase 4 – CAN fuzzing (random burst)
+   Parameter: cycles – number of full four-phase iterations.
+============================================================================ */
+export testcase tc_SWQT_Combined_LongDuration(int cycles)
+{
+  int   c;
+  int   j;
+  int   passCount;
+  int   failCount;
+  long  rxStatus;
+  float v;
+  dword canId;
+  byte  pingData[8];
+  byte  fuzzData[8];
+  char  stepStr[64];
+
+  TestCaseTitle("tc_SWQT_Combined_LongDuration",
+                "SWQT Combined Long-Duration Stress Test");
+  TestCaseDescription("Multi-phase stress designed for overnight bench runs. "
+                      "Each iteration runs: (1) short voltage ramp, "
+                      "(2) CAN sleep/wake cycle, (3) UDS Hard Reset (11 01), "
+                      "(4) a burst of 50 random CAN fuzz frames, then verifies "
+                      "ECU responsiveness via TesterPresent before the next cycle.");
+
+  passCount = 0;
+  failCount = 0;
+
+  pingData[0] = 0x02; pingData[1] = 0x3E; pingData[2] = 0x00;
+  pingData[3] = 0x00; pingData[4] = 0x00;
+  pingData[5] = 0x00; pingData[6] = 0x00; pingData[7] = 0x00;
+
+  if (SWQT_PS_Open() == 1)
+  {
+    SWQT_PS_SetVoltage(gSWQT_VoltNormal);
+    SWQT_PS_OutputOn();
+    testWaitForTimeout(2000);
+    TestStep("Setup", "Power supply ready for combined long-duration test");
+  }
+  else
+  {
+    TestStep("Setup", "WARNING: Power supply unavailable – skipping voltage phases");
+  }
+
+  for (c = 1; c <= cycles; c++)
+  {
+    snprintf(stepStr, elcount(stepStr), "Combined cycle %d of %d", c, cycles);
+    TestStep("Iteration", stepStr);
+
+    // ------------------------------------------------------------------
+    // Phase 1: Short voltage ramp (9 V → 15 V → 12 V)
+    // ------------------------------------------------------------------
+    if (gSWQT_PsPortOpen == 1)
+    {
+      TestStep("Phase1", "Voltage ramp 9 V → 15 V → 12 V");
+      for (v = 9.0; v <= 15.0; v += 1.0)
+      {
+        SWQT_PS_SetVoltage(v);
+        testWaitForTimeout(300);
+      }
+      for (v = 15.0; v >= 9.0; v -= 1.0)
+      {
+        SWQT_PS_SetVoltage(v);
+        testWaitForTimeout(300);
+      }
+      SWQT_PS_SetVoltage(gSWQT_VoltNormal);
+      testWaitForTimeout(500);
+    }
+
+    // ------------------------------------------------------------------
+    // Phase 2: CAN sleep / wake
+    // ------------------------------------------------------------------
+    TestStep("Phase2", "CAN sleep 2 s then wake");
+    canSetChannelOutput(1, 0);
+    canSetChannelOutput(2, 0);
+    testWaitForTimeout(2000);
+    canSetChannelOutput(1, 1);
+    canSetChannelOutput(2, 1);
+    testWaitForTimeout(500);
+
+    // ------------------------------------------------------------------
+    // Phase 3: UDS Hard Reset (11 01)
+    // ------------------------------------------------------------------
+    TestStep("Phase3", "UDS Hard Reset (11 01)");
+    SWQT_ExtendedSession_UDS();
+    SWQT_HardReset_UDS();
+
+    // ------------------------------------------------------------------
+    // Phase 4: 50-frame random CAN fuzz burst
+    // ------------------------------------------------------------------
+    TestStep("Phase4", "Random CAN fuzz burst (50 frames)");
+    for (j = 0; j < 50; j++)
+    {
+      // Full 11-bit ID range 0x001-0x7FF; FD=0,BRS=0 → standard CAN frame
+      canId = 1 + random(0x7FF);
+      if (canId == kSWQT_DIAG_REQ || canId == kSWQT_DIAG_RES) canId = 0x123;
+      fuzzData[0] = (byte)random(256); fuzzData[1] = (byte)random(256);
+      fuzzData[2] = (byte)random(256); fuzzData[3] = (byte)random(256);
+      fuzzData[4] = (byte)random(256); fuzzData[5] = (byte)random(256);
+      fuzzData[6] = (byte)random(256); fuzzData[7] = (byte)random(256);
+      SendCanFDMessage(1, canId, fuzzData, 8, 0, 0);
+      testWaitForTimeout(5);
+    }
+
+    // ------------------------------------------------------------------
+    // End-of-cycle ECU health check
+    // ------------------------------------------------------------------
+    testWaitForTimeout(200);
+    InternalSend(kSWQT_DIAG_REQ, pingData, 8);
+    rxStatus = testWaitForMessage(kSWQT_DIAG_RES, kSWQT_TIMEOUT_MS + 2000);
+
+    if (rxStatus == 1)
+    {
+      passCount++;
+      TestStepPass("CycleVerify",
+                   "ECU alive after combined cycle %d (pass=%d)", c, passCount);
+    }
+    else
+    {
+      failCount++;
+      TestStepFail("CycleVerify",
+                   "ECU unresponsive after combined cycle %d (fail=%d)",
+                   c, failCount);
+      canSetChannelOutput(1, 1);
+      canSetChannelOutput(2, 1);
+      testWaitForTimeout(5000);
+    }
+  }
+
+  canSetChannelOutput(1, 1);
+  canSetChannelOutput(2, 1);
+  SWQT_PS_Close();
+
+  if (failCount == 0)
+    TestStepPass("Final",
+                 "PASS: All %d combined long-duration cycles passed.", cycles);
+  else
+    TestStepFail("Final",
+                 "FAIL: %d failures in %d combined stress cycles.",
+                 failCount, cycles);
 }

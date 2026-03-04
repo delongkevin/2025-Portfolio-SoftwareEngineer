@@ -63,6 +63,22 @@ variables
   
   // Timestamp buffer
   char gTimeStamp[64];
+
+  // -------------------------------------------------------------------------
+  // QNX terminal configuration
+  // -------------------------------------------------------------------------
+  // COM_PORT_1 (COM16) is the QNX core that has a full shell (terminal access).
+  // All other ports are listener-only cores that only emit serial prints.
+  // Use the QNX_CMD_PORT constant when you need to send commands.
+  const dword QNX_CMD_PORT = 16;         // COM16 = QNX terminal with shell access
+
+  // Last partial line received from the QNX port (for response capture)
+  char gQnxLastLine[1024];
+  dword gQnxLastLineLen;
+
+  // Auto-save session log: master log that aggregates all ports with timestamps
+  char gMasterLogName[100] = "SerialComLog_Master.txt";
+  dword gMasterLogHandle;
 }
 
 /*==============================================================================
@@ -990,6 +1006,450 @@ export testcase TC_SendToAllPorts(char command[], int waitMs)
   
   write("==================================================");
   write("  Test complete - check individual log files");
+  write("==================================================");
+  testStepPass();
+}
+
+/* ============================================================================
+   MASTER LOG HELPERS
+   The master log aggregates output from all ports into one time-stamped file.
+============================================================================ */
+
+void MasterLog_Open()
+{
+  char initMsg[256];
+  char sessionTs[64];
+  char masterPath[200];
+
+  if (gMasterLogHandle != 0) return; // already open
+
+  // Build a session-stamped filename so successive runs never overwrite.
+  // getLocalTimeString() returns a string like "hh:mm:ss" – replace colons
+  // with underscores to make it file-system safe.
+  getLocalTimeString(sessionTs);
+  sessionTs[2] = '_';
+  sessionTs[5] = '_';
+  snprintf(gMasterLogName, elcount(gMasterLogName),
+           "SerialComLog_Master_%s.txt", sessionTs);
+
+  snprintf(masterPath, elcount(masterPath), "%s", gMasterLogName);
+
+  gMasterLogHandle = openFileWrite(masterPath, 2); // append mode
+  if (gMasterLogHandle != 0)
+  {
+    getLocalTimeString(gTimeStamp);
+    snprintf(initMsg, elcount(initMsg),
+             "===========================================\n"
+             "Master Serial Log Started: %s\n"
+             "Ports: COM%d(QNX) COM%d COM%d COM%d\n"
+             "===========================================\n",
+             gTimeStamp,
+             QNX_CMD_PORT, COM_PORT_2, COM_PORT_3, COM_PORT_4);
+    filePutString(initMsg, strlen(initMsg), gMasterLogHandle);
+    write("Master log opened: %s", gMasterLogName);
+  }
+  else
+  {
+    write("ERROR: Could not open master log: %s", gMasterLogName);
+  }
+}
+
+void MasterLog_Write(dword port, char msg[])
+{
+  char entry[1200];
+  getLocalTimeString(gTimeStamp);
+  snprintf(entry, elcount(entry), "[%s] COM%d: %s\n", gTimeStamp, port, msg);
+  if (gMasterLogHandle != 0)
+    filePutString(entry, strlen(entry), gMasterLogHandle);
+}
+
+void MasterLog_Close()
+{
+  char closeMsg[128];
+  if (gMasterLogHandle != 0)
+  {
+    getLocalTimeString(gTimeStamp);
+    snprintf(closeMsg, elcount(closeMsg),
+             "===========================================\n"
+             "Master Log Closed: %s\n"
+             "===========================================\n\n",
+             gTimeStamp);
+    filePutString(closeMsg, strlen(closeMsg), gMasterLogHandle);
+    fileClose(gMasterLogHandle);
+    gMasterLogHandle = 0;
+    write("Master log closed.");
+  }
+}
+
+/* ============================================================================
+   QNX TERMINAL FUNCTIONS
+   These functions target exclusively COM_PORT_1 / QNX_CMD_PORT because
+   that is the only port with a shell (all other ports are listen-only).
+============================================================================ */
+
+/*------------------------------------------------------------------------------
+  QNX_SendCommand
+  Send a single shell command to the QNX terminal port.
+  Automatically opens the port if not already open.
+  Returns 1 on success, 0 on failure.
+------------------------------------------------------------------------------*/
+dword QNX_SendCommand(char cmd[])
+{
+  dword result;
+  char  logMsg[300];
+
+  if (gPortOpened[GetPortIndex(QNX_CMD_PORT)] == 0)
+  {
+    if (SerialPort_Open(QNX_CMD_PORT) != 1)
+    {
+      write("QNX: ERROR – COM%d not open and cannot be opened", QNX_CMD_PORT);
+      return 0;
+    }
+    // Register receive so the response is captured
+    SerialPort_Receive(QNX_CMD_PORT, BUFFER_SIZE);
+  }
+
+  result = SerialPort_SendString(QNX_CMD_PORT, cmd);
+
+  snprintf(logMsg, elcount(logMsg), "QNX CMD: %s", cmd);
+  LogToFile(QNX_CMD_PORT, logMsg);
+  MasterLog_Write(QNX_CMD_PORT, logMsg);
+
+  write("QNX -> COM%d: %s", QNX_CMD_PORT, cmd);
+  return result;
+}
+
+/*------------------------------------------------------------------------------
+  QNX_SendCommandAndWait
+  Send a single command to the QNX port and wait <waitMs> for a response.
+  Returns 1 on send success, 0 on failure.
+------------------------------------------------------------------------------*/
+dword QNX_SendCommandAndWait(char cmd[], int waitMs)
+{
+  dword result;
+  char  logMsg[300];
+
+  result = QNX_SendCommand(cmd);
+  if (result == 1)
+  {
+    write("QNX: Waiting %d ms for response to: %s", waitMs, cmd);
+    testWaitForTimeout(waitMs);
+    snprintf(logMsg, elcount(logMsg),
+             "QNX WAIT DONE (%d ms): %s", waitMs, cmd);
+    LogToFile(QNX_CMD_PORT, logMsg);
+    MasterLog_Write(QNX_CMD_PORT, logMsg);
+  }
+  return result;
+}
+
+/*------------------------------------------------------------------------------
+  QNX_SendBreak
+  Send Ctrl+C (ASCII 0x03) to the QNX terminal to interrupt a running command.
+------------------------------------------------------------------------------*/
+dword QNX_SendBreak()
+{
+  write("QNX: Sending Ctrl+C (break) to COM%d", QNX_CMD_PORT);
+  MasterLog_Write(QNX_CMD_PORT, "QNX CMD: Ctrl+C (break)");
+  return SerialPort_SendBreak(QNX_CMD_PORT);
+}
+
+/* ============================================================================
+   TEST CASE: TC_QNX_SendCommand
+   Send a single command to the QNX terminal port (COM16) and capture any
+   response printed within the specified wait window.
+   Parameters:
+     cmd    – shell command string (e.g. "cat /proc/meminfo")
+     waitMs – milliseconds to wait for response after sending
+============================================================================ */
+export testcase TC_QNX_SendCommand(char cmd[], int waitMs)
+{
+  dword result;
+
+  write("==================================================");
+  write("Test Case: Send QNX Command");
+  write("Port    : COM%d (QNX terminal)", QNX_CMD_PORT);
+  write("Command : %s", cmd);
+  write("Wait    : %d ms", waitMs);
+  write("==================================================");
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  result = QNX_SendCommandAndWait(cmd, waitMs);
+
+  MasterLog_Close();
+  CloseLogger();
+
+  if (result == 1)
+  {
+    write("  PASS: Command sent successfully");
+    testStepPass();
+  }
+  else
+  {
+    write("  FAIL: Failed to send command to COM%d", QNX_CMD_PORT);
+    testStepFail();
+  }
+}
+
+/* ============================================================================
+   TEST CASE: TC_QNX_MultiCommand
+   Send a predefined sequence of diagnostic shell commands to the QNX
+   terminal, pausing between each for the response to be logged.
+   Parameter: waitBetweenMs – delay between consecutive commands (ms)
+============================================================================ */
+export testcase TC_QNX_MultiCommand(int waitBetweenMs)
+{
+  write("==================================================");
+  write("Test Case: QNX Multi-Command Sequence");
+  write("==================================================");
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  // Open QNX port with receive registered
+  SerialPort_Open(QNX_CMD_PORT);
+  SerialPort_Receive(QNX_CMD_PORT, BUFFER_SIZE);
+
+  // --- Command sequence ---
+  // 1. Check system uptime
+  QNX_SendCommandAndWait("uptime", waitBetweenMs);
+
+  // 2. Check free memory
+  QNX_SendCommandAndWait("pidin mem", waitBetweenMs);
+
+  // 3. List running processes
+  QNX_SendCommandAndWait("pidin", waitBetweenMs);
+
+  // 4. Read CPU load (sysctl)
+  QNX_SendCommandAndWait("sysctl -a | grep cpu", waitBetweenMs);
+
+  // 5. Dump NVM DID check (if a helper script exists on QNX target)
+  QNX_SendCommandAndWait("cat /dev/nvm_status 2>/dev/null || echo NVM_STATUS_NA",
+                         waitBetweenMs);
+
+  // 6. Check for any kernel errors
+  QNX_SendCommandAndWait("slog2info -b | tail -20", waitBetweenMs);
+
+  // 7. Echo a sentinel to confirm shell is responsive
+  QNX_SendCommandAndWait("echo QNX_HEALTH_OK", waitBetweenMs);
+
+  SerialPort_Close(QNX_CMD_PORT);
+  MasterLog_Close();
+  CloseLogger();
+
+  write("==================================================");
+  write("  QNX multi-command sequence complete.");
+  write("  Check SerialComLog_COM16.txt and SerialComLog_Master.txt");
+  write("==================================================");
+  testStepPass();
+}
+
+/* ============================================================================
+   TEST CASE: TC_QNX_MonitorSystem
+   Open all four COM ports and passively monitor all output for <durationMs>.
+   All data is written to per-port log files AND to the master log.
+   Parameter: durationMs – total monitoring duration in ms
+============================================================================ */
+export testcase TC_QNX_MonitorSystem(int durationMs)
+{
+  dword openCount;
+  dword recvCount;
+
+  write("==================================================");
+  write("Test Case: Monitor All 4 COM Ports");
+  write("  COM%d – QNX core (command + print)", QNX_CMD_PORT);
+  write("  COM%d – Listener core 2", COM_PORT_2);
+  write("  COM%d – Listener core 3", COM_PORT_3);
+  write("  COM%d – Listener core 4", COM_PORT_4);
+  write("Duration: %d ms", durationMs);
+  write("==================================================");
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  openCount = SerialPort_OpenAll();
+  if (openCount == 0)
+  {
+    write("  FAIL: No serial ports could be opened");
+    MasterLog_Close();
+    CloseLogger();
+    testStepFail();
+    return;
+  }
+
+  recvCount = SerialPort_ReceiveAll();
+  write("  Opened %d port(s), registered receive on %d port(s)",
+        openCount, recvCount);
+  write("  Monitoring for %d ms...", durationMs);
+
+  testWaitForTimeout(durationMs);
+
+  SerialPort_CloseAll();
+  MasterLog_Close();
+  CloseLogger();
+
+  write("==================================================");
+  write("  Monitoring complete – check log files:");
+  write("    %s", gLogFileName1);
+  write("    %s", gLogFileName2);
+  write("    %s", gLogFileName3);
+  write("    %s", gLogFileName4);
+  write("    %s", gMasterLogName);
+  write("==================================================");
+  testStepPass();
+}
+
+/* ============================================================================
+   TEST CASE: TC_QNX_DiagnosticCapture
+   Opens all four ports, sends a predefined diagnostic command sequence to
+   the QNX terminal, and captures all serial output for <captureMs> ms.
+   Useful for capturing system state before/after CAN or NVM stress tests.
+   Parameter: captureMs – total capture window in ms
+============================================================================ */
+export testcase TC_QNX_DiagnosticCapture(int captureMs)
+{
+  int waitCmd;
+
+  write("==================================================");
+  write("Test Case: QNX Diagnostic Capture (all 4 ports)");
+  write("Capture duration: %d ms", captureMs);
+  write("==================================================");
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  SerialPort_OpenAll();
+  SerialPort_ReceiveAll();
+
+  // Stagger command wait so total does not exceed captureMs
+  waitCmd = captureMs / 7;
+  if (waitCmd < 500) waitCmd = 500;
+
+  // Diagnostic command sequence on QNX terminal
+  QNX_SendCommandAndWait("echo === DiagCapture Start ===", waitCmd);
+  QNX_SendCommandAndWait("date",                            waitCmd);
+  QNX_SendCommandAndWait("uptime",                          waitCmd);
+  QNX_SendCommandAndWait("pidin mem",                       waitCmd);
+  QNX_SendCommandAndWait("slog2info -b | tail -30",         waitCmd);
+  QNX_SendCommandAndWait("pidin | wc -l",                   waitCmd);
+  QNX_SendCommandAndWait("echo === DiagCapture End ===",    waitCmd);
+
+  SerialPort_CloseAll();
+  MasterLog_Close();
+  CloseLogger();
+
+  write("==================================================");
+  write("  Diagnostic capture complete.");
+  write("  Master log: %s", gMasterLogName);
+  write("==================================================");
+  testStepPass();
+}
+
+/* ============================================================================
+   TEST CASE: TC_QNX_NVM_Check
+   Sends NVM-inspection commands to the QNX terminal and monitors all
+   listener ports for any NVM-related print output.
+   Parameter: waitMs – time to wait after each command for output (ms)
+============================================================================ */
+export testcase TC_QNX_NVM_Check(int waitMs)
+{
+  write("==================================================");
+  write("Test Case: QNX NVM Status Check");
+  write("==================================================");
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  SerialPort_OpenAll();
+  SerialPort_ReceiveAll();
+
+  // Query NVM block status via QNX shell
+  QNX_SendCommandAndWait("echo === NVM Check ===",                          waitMs);
+  QNX_SendCommandAndWait("cat /dev/nvm_block 2>/dev/null || echo NOT_AVAIL", waitMs);
+  QNX_SendCommandAndWait("nvmctl status 2>/dev/null || echo NVM_CTL_NA",    waitMs);
+  QNX_SendCommandAndWait("slog2info -b | grep -i nvm | tail -20",           waitMs);
+  QNX_SendCommandAndWait("echo === NVM Check Complete ===",                 waitMs);
+
+  SerialPort_CloseAll();
+  MasterLog_Close();
+  CloseLogger();
+
+  write("NVM check commands sent. Review %s for results.", gMasterLogName);
+  testStepPass();
+}
+
+/* ============================================================================
+   TEST CASE: TC_LongDuration_AllPorts
+   Continuous long-duration monitoring and periodic QNX health-check suitable
+   for overnight runs alongside NVM or SWQT stress tests.
+   Sends a health-ping to QNX every <pingIntervalMs> and logs all four COM
+   ports continuously for <totalDurationMs> milliseconds.
+   Parameters:
+     totalDurationMs  – total run time in ms  (e.g. 28800000 = 8 hours)
+     pingIntervalMs   – interval between QNX health pings in ms (e.g. 60000)
+============================================================================ */
+export testcase TC_LongDuration_AllPorts(int totalDurationMs, int pingIntervalMs)
+{
+  int   elapsed;
+  int   pingCount;
+  dword openCount;
+
+  write("==================================================");
+  write("Test Case: Long-Duration All-Port Monitor");
+  write("Duration : %d ms (%.1f hours)",
+        totalDurationMs, totalDurationMs / 3600000.0);
+  write("Ping interval: %d ms", pingIntervalMs);
+  write("==================================================");
+
+  elapsed   = 0;
+  pingCount = 0;
+
+  InitializeLogger();
+  MasterLog_Open();
+
+  openCount = SerialPort_OpenAll();
+  if (openCount == 0)
+  {
+    write("  FAIL: No serial ports opened");
+    MasterLog_Close();
+    CloseLogger();
+    testStepFail();
+    return;
+  }
+
+  SerialPort_ReceiveAll();
+  write("  Monitoring %d port(s)...", openCount);
+
+  while (elapsed < totalDurationMs)
+  {
+    // Wait one ping interval
+    testWaitForTimeout(pingIntervalMs);
+    elapsed += pingIntervalMs;
+    pingCount++;
+
+    // Send health ping to QNX terminal
+    write("LongDuration: ping %d at elapsed %d ms", pingCount, elapsed);
+    QNX_SendCommandAndWait("echo HEALTH_PING", 1000);
+
+    // Log progress to master log every 10 pings
+    if (pingCount % 10 == 0)
+    {
+      char progressMsg[128];
+      snprintf(progressMsg, elcount(progressMsg),
+               "PROGRESS: elapsed=%d ms, pings=%d", elapsed, pingCount);
+      MasterLog_Write(QNX_CMD_PORT, progressMsg);
+      write("LongDuration progress: %s", progressMsg);
+    }
+  }
+
+  SerialPort_CloseAll();
+  MasterLog_Close();
+  CloseLogger();
+
+  write("==================================================");
+  write("  Long-duration run complete. %d pings sent.", pingCount);
+  write("  Check %s for full log.", gMasterLogName);
   write("==================================================");
   testStepPass();
 }
