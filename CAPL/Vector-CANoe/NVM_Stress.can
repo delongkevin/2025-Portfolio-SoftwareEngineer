@@ -1,0 +1,100 @@
+﻿/*@!Encoding:65001*/
+/* ============================================================================
+   NVM Stress Test Scenario - CVADAS_MAGNA 
+   ----------------------------------------------------------------------------
+   Description: Syntax-error-free template. Uses raw CAN messages (UDS) 
+   to guarantee a clean compile in vTestStudio without a CDD attached.
+   Utilizes Service 0x2E/0x22 on DID 0xFD1E (FD1E_OvrWriteSts).
+============================================================================ */
+
+variables
+{
+  const int kMAX_STRESS_CYCLES = 10000;
+  const int kTIMEOUT_MS = 5000;
+  const int kBOOT_WAIT_MS = 2000;
+  
+  // UDS CAN IDs (Update to match physical addressing for the CVADAS ECU)
+  const dword kDIAG_REQ_ID = 0x7E0; 
+  const dword kDIAG_RES_ID = 0x7E8; 
+}
+
+export testcase tc_NVM_Stress_FD1E_Block()
+{
+  int cycle;
+  long testStatus;
+  
+  // Raw UDS Requests (Single Frame)
+  // 1. Write Data By Identifier (0x2E) to DID 0xFD1E
+  message kDIAG_REQ_ID msgWrite = {dlc = 8, byte(0) = 0x05, byte(1) = 0x2E, byte(2) = 0xFD, byte(3) = 0x1E, byte(4) = 0xAA, byte(5) = 0x00, byte(6) = 0x00, byte(7) = 0x00};
+  
+  // 2. ECU Reset (0x11) - Hard Reset (0x01)
+  message kDIAG_REQ_ID msgReset = {dlc = 8, byte(0) = 0x02, byte(1) = 0x11, byte(2) = 0x01, byte(3) = 0x00, byte(4) = 0x00, byte(5) = 0x00, byte(6) = 0x00, byte(7) = 0x00};
+  
+  // 3. Read Data By Identifier (0x22) from DID 0xFD1E
+  message kDIAG_REQ_ID msgRead  = {dlc = 8, byte(0) = 0x03, byte(1) = 0x22, byte(2) = 0xFD, byte(3) = 0x1E, byte(4) = 0x00, byte(5) = 0x00, byte(6) = 0x00, byte(7) = 0x00};
+  
+  TestCaseTitle("tc_NVM_Stress_CVADAS", "NVM Stress Test - CVADAS_MAGNA Variant");
+  TestCaseDescription("Stress test NVM by repeatedly writing to DID 0xFD1E, resetting, and verifying data.");
+
+  for (cycle = 1; cycle <= kMAX_STRESS_CYCLES; ++cycle)
+  {
+    char cycleStr[32];
+    snprintf(cycleStr, elcount(cycleStr), "Cycle %d / %d", cycle, kMAX_STRESS_CYCLES);
+    TestStep("Cycle_Start", cycleStr);
+
+    // ------------------------------------------------------------------
+    // STEP 1: Write Data to NVM (Toggle payload to force flash wear)
+    // ------------------------------------------------------------------
+    if (cycle % 2 == 0) msgWrite.byte(4) = 0xAA;
+    else                msgWrite.byte(4) = 0x55;
+
+    output(msgWrite);
+    testStatus = testWaitForMessage(kDIAG_RES_ID, kTIMEOUT_MS);
+    
+    if (testStatus != 1)
+    {
+      TestStepFail("Write_NVM", "ECU did not respond to Write request on DID 0xFD1E.");
+      break; 
+    }
+
+    // ------------------------------------------------------------------
+    // STEP 2: Trigger ECU Reset 
+    // ------------------------------------------------------------------
+    output(msgReset);
+    testWaitForMessage(kDIAG_RES_ID, kTIMEOUT_MS); 
+    testWaitForTimeout(kBOOT_WAIT_MS);
+
+    // ------------------------------------------------------------------
+    // STEP 3: Read Data from NVM and Verify
+    // ------------------------------------------------------------------
+    output(msgRead);
+    testStatus = testWaitForMessage(kDIAG_RES_ID, kTIMEOUT_MS);
+    
+    if (testStatus == 1)
+    {
+      message kDIAG_RES_ID rxMsg;
+      testGetWaitEventMsgData(rxMsg);
+      
+      // Verify byte 4 of the Read response matches what was written
+      if ((cycle % 2 == 0 && rxMsg.byte(4) == 0xAA) || 
+          (cycle % 2 != 0 && rxMsg.byte(4) == 0x55))
+      {
+        TestStepPass("Read_NVM", "Data read matches written data for DID 0xFD1E.");
+      }
+      else
+      {
+        TestStepFail("Read_NVM", "NVM Corruption detected on DID 0xFD1E!");
+        
+        // Optional: Trigger TRACE32 Debugger Halt
+        // sysSetVariable(sysvar::VTS::TriggerOutPin, 1); 
+        
+        break; 
+      }
+    }
+    else
+    {
+      TestStepFail("Read_NVM", "ECU did not respond to Read request after reset.");
+      break;
+    }
+  }
+}

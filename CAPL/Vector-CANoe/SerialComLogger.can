@@ -1,0 +1,995 @@
+/*@!Encoding:1252*/
+/*==============================================================================
+  File: SerialComLogger_MultiPort.can
+  Description: Multi-Port Serial COM Communication with Automatic Logging
+  Compatible with: Vector VTestStudio CAPL Compiler (Test Unit)
+  
+  Features:
+  - Support for up to 4 COM ports simultaneously (COM13, COM14, COM15, COM16)
+  - Each port logs to its own separate text file
+  - Open/Close individual or all serial ports
+  - Send data to specific port with automatic newline termination (\r\n)
+  - Send break signal (Ctrl+C) to interrupt commands on specific port
+  - Receive data from all ports with callbacks
+  - Automatic logging to individual text files per port
+  
+  IMPORTANT CONFIGURATION:
+  - Baud Rate: 115200 (standard rate) - CHANGE if your devices use different rate
+  - COM Ports: 13, 14, 15, 16 - CHANGE to match your devices
+  - Enable/disable ports by setting PORT_X_ENABLED = 1 or 0
+==============================================================================*/
+
+includes
+{
+}
+
+variables
+{
+  // Multi-port configuration - ENABLE/DISABLE PORTS HERE
+  const dword PORT_1_ENABLED = 1;        // Set to 1 to enable, 0 to disable
+  const dword PORT_2_ENABLED = 1;
+  const dword PORT_3_ENABLED = 1;
+  const dword PORT_4_ENABLED = 1;
+  
+  // COM port numbers
+  const dword COM_PORT_1 = 16;           // First COM port
+  const dword COM_PORT_2 = 15;           // Second COM port
+  const dword COM_PORT_3 = 14;           // Third COM port
+  const dword COM_PORT_4 = 13;           // Fourth COM port
+  
+  // Serial port configuration (same for all ports)
+  const dword BAUD_RATE = 115200;        // Baud rate: 115200 (standard rate)
+  const dword DATA_BITS = 8;             // Number of data bits
+  const dword STOP_BITS = 1;             // Number of stop bits (1 or 2)
+  const dword PARITY = 0;                // Parity: 0=None, 1=Even, 2=Odd
+  
+  // File logging - separate file for each port
+  dword gLogFileHandle[4];               // File handles for each port
+  char gLogFileName1[100] = "SerialComLog_COM16.txt";
+  char gLogFileName2[100] = "SerialComLog_COM15.txt";
+  char gLogFileName3[100] = "SerialComLog_COM14.txt";
+  char gLogFileName4[100] = "SerialComLog_COM13.txt";
+  
+  // Serial port state
+  dword gPortOpened[4];                  // Port status flags for each port
+  
+  // Buffer for data operations - separate buffer for each port
+  const dword BUFFER_SIZE = 5000;
+  byte gReceiveBuffer1[256];
+  byte gReceiveBuffer2[256];
+  byte gReceiveBuffer3[256];
+  byte gReceiveBuffer4[256];
+  byte gSendBuffer[256];                 // Shared send buffer
+  
+  // Timestamp buffer
+  char gTimeStamp[64];
+}
+
+/*==============================================================================
+  Helper Functions: Get port index and file handle
+==============================================================================*/
+dword GetPortIndex(dword port)
+{
+  if (port == COM_PORT_1) return 0;
+  if (port == COM_PORT_2) return 1;
+  if (port == COM_PORT_3) return 2;
+  if (port == COM_PORT_4) return 3;
+  return 0;
+}
+
+dword GetFileHandle(dword port)
+{
+  return gLogFileHandle[GetPortIndex(port)];
+}
+
+void GetFileName(dword port, char fileName[])
+{
+  dword idx;
+  idx = GetPortIndex(port);
+  if (idx == 0) snprintf(fileName, 100, "%s", gLogFileName1);
+  else if (idx == 1) snprintf(fileName, 100, "%s", gLogFileName2);
+  else if (idx == 2) snprintf(fileName, 100, "%s", gLogFileName3);
+  else snprintf(fileName, 100, "%s", gLogFileName4);
+}
+
+void CopyToReceiveBuffer(dword port, byte buffer[], dword size)
+{
+  dword idx;
+  dword i;
+  idx = GetPortIndex(port);
+  
+  if (idx == 0) 
+  {
+    for (i = 0; i < size && i < 256; i++) buffer[i] = gReceiveBuffer1[i];
+  }
+  else if (idx == 1) 
+  {
+    for (i = 0; i < size && i < 256; i++) buffer[i] = gReceiveBuffer2[i];
+  }
+  else if (idx == 2) 
+  {
+    for (i = 0; i < size && i < 256; i++) buffer[i] = gReceiveBuffer3[i];
+  }
+  else 
+  {
+    for (i = 0; i < size && i < 256; i++) buffer[i] = gReceiveBuffer4[i];
+  }
+}
+
+dword IsPortEnabled(dword port)
+{
+  if (port == COM_PORT_1) return PORT_1_ENABLED;
+  if (port == COM_PORT_2) return PORT_2_ENABLED;
+  if (port == COM_PORT_3) return PORT_3_ENABLED;
+  if (port == COM_PORT_4) return PORT_4_ENABLED;
+  return 0;
+}
+
+/*==============================================================================
+  Function: LogToFile
+  Description: Write a message to the log file for specific port
+  Parameters: port - COM port number
+              msg - String to log
+  Returns: void
+==============================================================================*/
+void LogToFile(dword port, char msg[])
+{
+  char logEntry[512];
+  dword fileHandle;
+  
+  fileHandle = GetFileHandle(port);
+  
+  if (fileHandle != 0)
+  {
+    getLocalTimeString(gTimeStamp);
+    snprintf(logEntry, elcount(logEntry), "[%s] %s\n", gTimeStamp, msg);
+    filePutString(logEntry, elcount(logEntry), fileHandle);
+  }
+}
+
+/*==============================================================================
+  Function: InitializeLogger
+  Description: Initialize log files for all enabled serial ports
+  Parameters: None
+  Returns: void
+==============================================================================*/
+void InitializeLogger()
+{
+  char initMessage[200];
+  char fileName[100];
+  dword i;
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  
+  // Initialize all handles and status
+  for (i = 0; i < 4; i++)
+  {
+    gLogFileHandle[i] = 0;
+    gPortOpened[i] = 0;
+  }
+  
+  // Open log file for each enabled port
+  for (i = 0; i < 4; i++)
+  {
+    if (!IsPortEnabled(ports[i])) continue;
+    
+    GetFileName(ports[i], fileName);
+    
+    // Open log file in append mode
+    gLogFileHandle[i] = openFileWrite(fileName, 2);
+    
+    if (gLogFileHandle[i] != 0)
+    {
+      // Write header to log file
+      getLocalTimeString(gTimeStamp);
+      snprintf(initMessage, elcount(initMessage), 
+               "===========================================\n");
+      filePutString(initMessage, elcount(initMessage), gLogFileHandle[i]);
+      
+      snprintf(initMessage, elcount(initMessage),
+               "Serial COM Logger Started: %s\n", gTimeStamp);
+      filePutString(initMessage, elcount(initMessage), gLogFileHandle[i]);
+      
+      snprintf(initMessage, elcount(initMessage),
+               "Port: COM%d, Baud Rate: %d\n", ports[i], BAUD_RATE);
+      filePutString(initMessage, elcount(initMessage), gLogFileHandle[i]);
+      
+      snprintf(initMessage, elcount(initMessage),
+               "===========================================\n");
+      filePutString(initMessage, elcount(initMessage), gLogFileHandle[i]);
+      
+      write("Log file initialized for COM%d: %s", ports[i], fileName);
+    }
+    else
+    {
+      write("ERROR: Failed to open log file for COM%d: %s", ports[i], fileName);
+    }
+  }
+}
+
+/*==============================================================================
+  Function: CloseLogger
+  Description: Close all log files
+  Parameters: None
+  Returns: void
+==============================================================================*/
+void CloseLogger()
+{
+  char logMsg[200];
+  dword i;
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  
+  for (i = 0; i < 4; i++)
+  {
+    if (gLogFileHandle[i] != 0)
+    {
+      snprintf(logMsg, elcount(logMsg), "Logger closed");
+      LogToFile(ports[i], logMsg);
+      
+      getLocalTimeString(gTimeStamp);
+      snprintf(logMsg, elcount(logMsg),
+               "===========================================\n");
+      filePutString(logMsg, elcount(logMsg), gLogFileHandle[i]);
+      
+      snprintf(logMsg, elcount(logMsg),
+               "Serial COM Logger Stopped: %s\n", gTimeStamp);
+      filePutString(logMsg, elcount(logMsg), gLogFileHandle[i]);
+      
+      snprintf(logMsg, elcount(logMsg),
+               "===========================================\n\n");
+      filePutString(logMsg, elcount(logMsg), gLogFileHandle[i]);
+      
+      fileClose(gLogFileHandle[i]);
+      gLogFileHandle[i] = 0;
+      write("Log file closed for COM%d", ports[i]);
+    }
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_Open
+  Description: Opens and configures a specific serial COM port
+  Parameters: port - COM port number to open
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_Open(dword port)
+{
+  dword result;
+  char logMsg[200];
+  dword idx;
+  
+  if (!IsPortEnabled(port))
+  {
+    write("COM%d is disabled in configuration", port);
+    return 0;
+  }
+  
+  idx = GetPortIndex(port);
+  
+  if (gPortOpened[idx] == 1)
+  {
+    write("Serial port COM%d is already open", port);
+    snprintf(logMsg, elcount(logMsg), 
+             "Attempted to open already opened port COM%d", port);
+    LogToFile(port, logMsg);
+    return 1;
+  }
+  
+  result = RS232Open(port);
+  
+  if (result == 1)
+  {
+    write("Serial port COM%d opened successfully", port);
+    snprintf(logMsg, elcount(logMsg), "Port COM%d opened successfully", port);
+    LogToFile(port, logMsg);
+    
+    result = RS232Configure(port, BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
+    
+    if (result == 1)
+    {
+      write("Serial port COM%d configured: Baud=%d, Data=%d, Stop=%d, Parity=%d",
+            port, BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
+      snprintf(logMsg, elcount(logMsg),
+               "Port COM%d configured: Baud=%d, Data=%d, Stop=%d, Parity=%d",
+               port, BAUD_RATE, DATA_BITS, STOP_BITS, PARITY);
+      LogToFile(port, logMsg);
+      
+      gPortOpened[idx] = 1;
+      return 1;
+    }
+    else
+    {
+      write("ERROR: Failed to configure serial port COM%d", port);
+      snprintf(logMsg, elcount(logMsg), 
+               "ERROR: Failed to configure port COM%d", port);
+      LogToFile(port, logMsg);
+      return 0;
+    }
+  }
+  else
+  {
+    write("ERROR: Failed to open serial port COM%d", port);
+    write("Please check if the port exists and is not in use");
+    snprintf(logMsg, elcount(logMsg), 
+             "ERROR: Failed to open port COM%d - port may not exist or is in use", 
+             port);
+    LogToFile(port, logMsg);
+    return 0;
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_OpenAll
+  Description: Opens all enabled COM ports
+  Parameters: None
+  Returns: Number of ports successfully opened
+==============================================================================*/
+dword SerialPort_OpenAll()
+{
+  dword count = 0;
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  dword i;
+  
+  write("Opening all enabled COM ports...");
+  
+  for (i = 0; i < 4; i++)
+  {
+    if (IsPortEnabled(ports[i]))
+    {
+      if (SerialPort_Open(ports[i]) == 1)
+      {
+        count++;
+      }
+    }
+  }
+  
+  write("Opened %d port(s) successfully", count);
+  return count;
+}
+
+/*==============================================================================
+  Function: SerialPort_Close
+  Description: Closes a specific serial COM port
+  Parameters: port - COM port number to close
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_Close(dword port)
+{
+  dword result;
+  char logMsg[200];
+  dword idx;
+  
+  idx = GetPortIndex(port);
+  
+  if (gPortOpened[idx] == 0)
+  {
+    write("Serial port COM%d is not open", port);
+    return 1;
+  }
+  
+  result = RS232Close(port);
+  
+  if (result == 1)
+  {
+    write("Serial port COM%d closed successfully", port);
+    snprintf(logMsg, elcount(logMsg), "Port COM%d closed successfully", port);
+    LogToFile(port, logMsg);
+    gPortOpened[idx] = 0;
+    return 1;
+  }
+  else
+  {
+    write("ERROR: Failed to close serial port COM%d", port);
+    snprintf(logMsg, elcount(logMsg), 
+             "ERROR: Failed to close port COM%d", port);
+    LogToFile(port, logMsg);
+    return 0;
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_CloseAll
+  Description: Closes all open COM ports
+  Parameters: None
+  Returns: Number of ports successfully closed
+==============================================================================*/
+dword SerialPort_CloseAll()
+{
+  dword count = 0;
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  dword i;
+  
+  write("Closing all open COM ports...");
+  
+  for (i = 0; i < 4; i++)
+  {
+    if (gPortOpened[i] == 1)
+    {
+      if (SerialPort_Close(ports[i]) == 1)
+      {
+        count++;
+      }
+    }
+  }
+  
+  write("Closed %d port(s) successfully", count);
+  return count;
+}
+
+/*==============================================================================
+  Function: SerialPort_Send
+  Description: Send data to a specific serial port with \r\n line termination
+  Parameters: port - COM port number
+              data - String to send
+              length - Length of data to send
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_Send(dword port, char data[], dword length)
+{
+  dword result;
+  dword i;
+  dword totalLength;
+  char logMsg[1024];
+  char dataStr[1024];
+  char hexDump[512];  // Moved to top for CAPL compliance
+  dword idx;
+  
+  idx = GetPortIndex(port);
+  
+  if (gPortOpened[idx] == 0)
+  {
+    write("ERROR: Cannot send data - COM%d is not open", port);
+    return 0;
+  }
+  
+  // Copy data to buffer
+  for (i = 0; i < length && i < (BUFFER_SIZE - 2); i++)
+  {
+    gSendBuffer[i] = (byte)data[i];
+  }
+  
+  // Append \r\n to the end of the data
+  gSendBuffer[i] = 13;  // \r (Carriage Return)
+  i++;
+  gSendBuffer[i] = 10;  // \n (Line Feed)
+  i++;
+  
+  totalLength = i;
+  
+  result = RS232Send(port, gSendBuffer, totalLength);
+  
+  if (result == 1)
+  {
+    write("COM%d: Data sent successfully: %d bytes (including \\r\\n)", port, totalLength);
+    
+    // Build readable ASCII string for logging
+    snprintf(dataStr, elcount(dataStr), "");
+    for (i = 0; i < length && i < 512; i++)
+    {
+      if (data[i] >= 32 && data[i] <= 126)
+      {
+        snprintf(dataStr, elcount(dataStr), "%s%c", dataStr, data[i]);
+      }
+      else
+      {
+        snprintf(dataStr, elcount(dataStr), "%s[0x%02X]", dataStr, (byte)data[i]);
+      }
+    }
+    
+    // DIAGNOSTIC: Show actual bytes being sent
+    snprintf(hexDump, elcount(hexDump), "");
+    for (i = 0; i < totalLength && i < 50; i++)
+    {
+      snprintf(hexDump, elcount(hexDump), "%s %02X", hexDump, gSendBuffer[i]);
+    }
+    write("COM%d SENT BYTES (hex):%s", port, hexDump);
+    
+    write("COM%d SENT: %s", port, dataStr);
+    snprintf(logMsg, elcount(logMsg), "SENT: %s", dataStr);
+    LogToFile(port, logMsg);
+    
+    return 1;
+  }
+  else
+  {
+    write("ERROR: COM%d failed to send data", port);
+    snprintf(logMsg, elcount(logMsg), "ERROR: Failed to send data");
+    LogToFile(port, logMsg);
+    return 0;
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_SendString
+  Description: Send a string to a specific serial port
+  Parameters: port - COM port number
+              text - String to send
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_SendString(dword port, char text[])
+{
+  dword length;
+  length = strlen(text);
+  return SerialPort_Send(port, text, length);
+}
+
+/*==============================================================================
+  Function: SerialPort_SendBreak
+  Description: Send Ctrl+C to a specific port to interrupt running command
+  Parameters: port - COM port number
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_SendBreak(dword port)
+{
+  dword result;
+  char logMsg[200];
+  dword idx;
+  
+  idx = GetPortIndex(port);
+  
+  if (gPortOpened[idx] == 0)
+  {
+    write("ERROR: Cannot send break - COM%d is not open", port);
+    return 0;
+  }
+  
+  // Send Ctrl+C character (ASCII 3)
+  gSendBuffer[0] = 3;
+  
+  result = RS232Send(port, gSendBuffer, 1);
+  
+  if (result == 1)
+  {
+    write("COM%d: Break signal (Ctrl+C) sent successfully", port);
+    snprintf(logMsg, elcount(logMsg), "SENT: Ctrl+C (Break Signal)");
+    LogToFile(port, logMsg);
+    return 1;
+  }
+  else
+  {
+    write("ERROR: COM%d failed to send break signal", port);
+    snprintf(logMsg, elcount(logMsg), "ERROR: Failed to send Ctrl+C");
+    LogToFile(port, logMsg);
+    return 0;
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_Receive
+  Description: Register to receive data from a specific serial port
+  Parameters: port - COM port number
+              expectedLength - Expected number of bytes to receive
+  Returns: 1 = Success, 0 = Failure
+==============================================================================*/
+dword SerialPort_Receive(dword port, dword expectedLength)
+{
+  dword result;
+  dword idx;
+  
+  idx = GetPortIndex(port);
+  
+  if (gPortOpened[idx] == 0)
+  {
+    write("ERROR: Cannot receive data - COM%d is not open", port);
+    return 0;
+  }
+  
+  // Register receive based on port index
+  if (idx == 0)
+  {
+    result = RS232Receive(port, gReceiveBuffer1, expectedLength);
+  }
+  else if (idx == 1)
+  {
+    result = RS232Receive(port, gReceiveBuffer2, expectedLength);
+  }
+  else if (idx == 2)
+  {
+    result = RS232Receive(port, gReceiveBuffer3, expectedLength);
+  }
+  else
+  {
+    result = RS232Receive(port, gReceiveBuffer4, expectedLength);
+  }
+  
+  if (result == 1)
+  {
+    write("COM%d: Receive registered for %d bytes", port, expectedLength);
+    return 1;
+  }
+  else
+  {
+    write("ERROR: COM%d failed to register receive", port);
+    return 0;
+  }
+}
+
+/*==============================================================================
+  Function: SerialPort_ReceiveAll
+  Description: Register receive callbacks for all open ports
+  Parameters: None
+  Returns: Number of ports with receive registered
+==============================================================================*/
+dword SerialPort_ReceiveAll()
+{
+  dword count = 0;
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  dword i;
+  
+  write("Registering receive callbacks for all open ports...");
+  
+  for (i = 0; i < 4; i++)
+  {
+    if (gPortOpened[i] == 1)
+    {
+      if (SerialPort_Receive(ports[i], BUFFER_SIZE) == 1)
+      {
+        count++;
+      }
+    }
+  }
+  
+  write("Registered receive for %d port(s)", count);
+  return count;
+}
+
+/*==============================================================================
+  Callback: RS232OnReceive
+  Description: Callback triggered when data is received on any port
+==============================================================================*/
+RS232OnReceive(dword port, byte buffer[], dword number)
+{
+  char dataAscii[2048];
+  char logLine[2048];
+  dword i;
+  dword linePos;
+  char currentLine[1024];
+  char hexStr[10];  // Moved to top for CAPL compliance
+  dword j;          // Moved to top for CAPL compliance
+  
+  write("COM%d: Data received: %d bytes", port, number);
+  
+  // Build ASCII representation for console output
+  snprintf(dataAscii, elcount(dataAscii), "");
+  for (i = 0; i < number && i < 1024; i++)
+  {
+    if (buffer[i] >= 32 && buffer[i] <= 126)
+    {
+      snprintf(dataAscii, elcount(dataAscii), "%s%c", dataAscii, buffer[i]);
+    }
+    else if (buffer[i] == 10)  // LF
+    {
+      snprintf(dataAscii, elcount(dataAscii), "%s<LF>", dataAscii);
+    }
+    else if (buffer[i] == 13)  // CR
+    {
+      snprintf(dataAscii, elcount(dataAscii), "%s<CR>", dataAscii);
+    }
+    else if (buffer[i] == 9)   // TAB
+    {
+      snprintf(dataAscii, elcount(dataAscii), "%s<TAB>", dataAscii);
+    }
+    else
+    {
+      snprintf(dataAscii, elcount(dataAscii), "%s[0x%02X]", dataAscii, buffer[i]);
+    }
+  }
+  
+  write("COM%d RECV: %s", port, dataAscii);
+  
+  // Save to log file as actual ASCII text with real newlines
+  // Process data line by line
+  linePos = 0;
+  
+  for (i = 0; i < number; i++)
+  {
+    if (buffer[i] == 13)  // Carriage return - skip it
+    {
+      continue;
+    }
+    else if (buffer[i] == 10)  // Line feed - end of line
+    {
+      // Save the current line
+      currentLine[linePos] = 0;  // Null terminate
+      
+      if (linePos > 0)  // Only log non-empty lines
+      {
+        snprintf(logLine, elcount(logLine), "RECV: %s", currentLine);
+        LogToFile(port, logLine);
+      }
+      
+      // Reset for next line
+      linePos = 0;
+    }
+    else if (buffer[i] >= 32 && buffer[i] <= 126)  // Printable ASCII
+    {
+      if (linePos < 1023)
+      {
+        currentLine[linePos] = buffer[i];
+        linePos++;
+      }
+    }
+    else if (buffer[i] == 9)  // Tab
+    {
+      if (linePos < 1023)
+      {
+        currentLine[linePos] = '\t';
+        linePos++;
+      }
+    }
+    else  // Non-printable character - represent as hex
+    {
+      snprintf(hexStr, elcount(hexStr), "[0x%02X]", buffer[i]);
+      
+      for (j = 0; j < strlen(hexStr) && linePos < 1023; j++)
+      {
+        currentLine[linePos] = hexStr[j];
+        linePos++;
+      }
+    }
+  }
+  
+  // Log any remaining data that didn't end with newline
+  if (linePos > 0)
+  {
+    currentLine[linePos] = 0;  // Null terminate
+    snprintf(logLine, elcount(logLine), "RECV: %s", currentLine);
+    LogToFile(port, logLine);
+  }
+  
+  // Re-register to receive more data
+  SerialPort_Receive(port, BUFFER_SIZE);
+}
+
+/*==============================================================================
+  Callback: RS232OnSend
+  Description: Callback triggered when data is sent on any port
+==============================================================================*/
+RS232OnSend(dword port, byte buffer[], dword number)
+{
+  char logMsg[200];
+  
+  getLocalTimeString(gTimeStamp);
+  write("COM%d [%s] Data transmission confirmed: %d bytes", port, gTimeStamp, number);
+  snprintf(logMsg, elcount(logMsg), "SEND CONFIRMED: %d bytes", number);
+  LogToFile(port, logMsg);
+}
+
+/*==============================================================================
+  Callback: RS232OnError
+  Description: Callback triggered on error on any port
+==============================================================================*/
+RS232OnError(dword port, dword errorFlags)
+{
+  char logMsg[200];
+  
+  write("ERROR on COM%d: Error flags = 0x%X", port, errorFlags);
+  
+  if (errorFlags & 1)
+  {
+    write("  - Send error");
+    snprintf(logMsg, elcount(logMsg), "ERROR: Send error (flags=0x%X)", errorFlags);
+    LogToFile(port, logMsg);
+  }
+  
+  if (errorFlags & 2)
+  {
+    write("  - Receive error");
+    snprintf(logMsg, elcount(logMsg), "ERROR: Receive error (flags=0x%X)", errorFlags);
+    LogToFile(port, logMsg);
+  }
+  
+  if (errorFlags & 4)
+  {
+    write("  - Configuration error");
+    snprintf(logMsg, elcount(logMsg), "ERROR: Configuration error (flags=0x%X)", errorFlags);
+    LogToFile(port, logMsg);
+  }
+}
+
+/*==============================================================================
+  Test Function: Setup_SerialComLogger
+==============================================================================*/
+export testfunction Setup_SerialComLogger()
+{
+  InitializeLogger();
+  write("========================================");
+  write("Multi-Port SerialComLogger Setup Complete");
+  write("========================================");
+  write("CONFIGURATION:");
+  if (PORT_1_ENABLED) write("  COM%d: ENABLED -> %s", COM_PORT_1, gLogFileName1);
+  if (PORT_2_ENABLED) write("  COM%d: ENABLED -> %s", COM_PORT_2, gLogFileName2);
+  if (PORT_3_ENABLED) write("  COM%d: ENABLED -> %s", COM_PORT_3, gLogFileName3);
+  if (PORT_4_ENABLED) write("  COM%d: ENABLED -> %s", COM_PORT_4, gLogFileName4);
+  write("  Baud Rate: %d", BAUD_RATE);
+  write("========================================");
+  write("Functions available:");
+  write("  - SerialPort_Open(port)");
+  write("  - SerialPort_OpenAll()");
+  write("  - SerialPort_Close(port)");
+  write("  - SerialPort_CloseAll()");
+  write("  - SerialPort_SendString(port, text)");
+  write("  - SerialPort_SendBreak(port)");
+  write("  - SerialPort_Receive(port, length)");
+  write("  - SerialPort_ReceiveAll()");
+  write("========================================");
+  write("Test Cases available:");
+  write("  - TC_OpenAllPorts()");
+  write("  - TC_SendToPort(port, command, waitMs)");
+  write("  - TC_MonitorAllPorts(waitMs)");
+  write("  - TC_CloseAllPorts()");
+  write("========================================");
+}
+
+/*==============================================================================
+  Test Function: Teardown_SerialComLogger
+==============================================================================*/
+export testfunction Teardown_SerialComLogger()
+{
+  SerialPort_CloseAll();
+  CloseLogger();
+  write("Multi-Port SerialComLogger Teardown Complete");
+}
+
+/*==============================================================================
+  Test Case: TC_OpenAllPorts
+==============================================================================*/
+export testcase TC_OpenAllPorts()
+{
+  dword count;
+  
+  write("==================================================");
+  write("Test Case: Open All Enabled COM Ports");
+  write("==================================================");
+  
+  count = SerialPort_OpenAll();
+  
+  if (count > 0)
+  {
+    write("  PASS: Opened %d port(s)", count);
+    
+    // Register receive for all ports
+    SerialPort_ReceiveAll();
+  }
+  else
+  {
+    write("  FAIL: No ports opened");
+  }
+  
+  testWaitForTimeout(100);
+}
+
+/*==============================================================================
+  Test Case: TC_CloseAllPorts
+==============================================================================*/
+export testcase TC_CloseAllPorts()
+{
+  dword count;
+  
+  write("==================================================");
+  write("Test Case: Close All COM Ports");
+  write("==================================================");
+  
+  count = SerialPort_CloseAll();
+  
+  write("  Closed %d port(s)", count);
+}
+
+/*==============================================================================
+  Test Case: TC_SendToPort
+  Description: Send a command to a specific port and wait for response
+==============================================================================*/
+export testcase TC_SendToPort(dword port, char command[], int waitMs)
+{
+  dword result;
+  
+  write("==================================================");
+  write("Test Case: Send Command to COM%d", port);
+  write("Command: %s", command);
+  write("==================================================");
+  
+  result = SerialPort_Open(port);
+  if (result != 1)
+  {
+    write("  FAIL: Could not open COM%d", port);
+    return;
+  }
+  
+  result = SerialPort_Receive(port, BUFFER_SIZE);
+  if (result != 1)
+  {
+    write("  FAIL: Could not register receive on COM%d", port);
+    SerialPort_Close(port);
+    testStepFail();
+    return;
+  }
+  
+  result = SerialPort_SendString(port, command);
+  if (result != 1)
+  {
+    write("  FAIL: Failed to send to COM%d", port);
+    SerialPort_Close(port);
+    testStepFail();
+    return;
+  }
+  
+  write("  Waiting %d ms for response...", waitMs);
+  testWaitForTimeout(waitMs);
+  
+  SerialPort_Close(port);
+  write("==================================================");
+  testStepPass();
+}
+
+/*==============================================================================
+  Test Case: TC_MonitorAllPorts
+  Description: Monitor all enabled ports simultaneously
+==============================================================================*/
+export testcase TC_MonitorAllPorts(int monitorMs)
+{
+  dword openCount;
+  dword recvCount;
+  
+  write("==================================================");
+  write("Test Case: Monitor All Enabled Ports");
+  write("Duration: %d ms", monitorMs);
+  write("==================================================");
+  
+  openCount = SerialPort_OpenAll();
+  if (openCount == 0)
+  {
+    write("  FAIL: No ports opened");
+    testStepFail();
+    return;
+  }
+  
+  write("  Opened %d port(s)", openCount);
+  
+  recvCount = SerialPort_ReceiveAll();
+  write("  Registered receive on %d port(s)", recvCount);
+  
+  write("  Monitoring all ports for %d ms...", monitorMs);
+  testWaitForTimeout(monitorMs);
+  
+  SerialPort_CloseAll();
+  
+  write("==================================================");
+  write("  Test complete - check individual log files");
+  write("==================================================");
+  testStepPass();
+}
+
+/*==============================================================================
+  Test Case: TC_SendToAllPorts
+  Description: Send a command to all enabled ports
+==============================================================================*/
+export testcase TC_SendToAllPorts(char command[], int waitMs)
+{
+  dword ports[4] = {COM_PORT_1, COM_PORT_2, COM_PORT_3, COM_PORT_4};
+  dword i;
+  
+  write("==================================================");
+  write("Test Case: Send Command to All Ports");
+  write("Command: %s", command);
+  write("==================================================");
+  
+  SerialPort_OpenAll();
+  SerialPort_ReceiveAll();
+  
+  for (i = 0; i < 4; i++)
+  {
+    if (IsPortEnabled(ports[i]) && gPortOpened[i] == 1)
+    {
+      SerialPort_SendString(ports[i], command);
+    }
+  }
+  
+  write("  Waiting %d ms for responses...", waitMs);
+  testWaitForTimeout(waitMs);
+  
+  SerialPort_CloseAll();
+  
+  write("==================================================");
+  write("  Test complete - check individual log files");
+  write("==================================================");
+  testStepPass();
+}

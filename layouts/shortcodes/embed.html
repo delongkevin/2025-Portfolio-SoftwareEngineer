@@ -1,7 +1,0 @@
-<iframe src="{{ with .Get "src" }}{{ . }}{{ else }}{{ .Get 0 }}{{ end }}"
-        width="{{ .Get "width" | default "100%" }}"
-        height="{{ .Get "height" | default "400px" }}"
-        frameborder="{{ .Get "frameborder" | default "0" }}"
-        allowfullscreen
-        style="{{ with .Get "style" }}{{ . }}{{ end }}">
-</iframe>

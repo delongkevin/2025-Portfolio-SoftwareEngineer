@@ -1,0 +1,299 @@
+﻿/*@!Encoding:65001*/
+variables
+{
+  // Test Control Variables
+  int gTestRunning = 0;
+  int gTestPassed = 0; 
+  int gTestFailed = 0;
+  int gVerboseLogging = 1;
+  char gFileName[64] = "Test_Snapshot.txt";
+
+  // Message Monitoring Variables
+  msTimer gRxTimeoutTimer;
+  dword gRxTimeout = 1000;
+  int gWaitingForRx = 0;
+  dword gExpectedCanId = 0;
+  byte gExpectedData[64];
+  byte gDataMask[64];
+  int gExpectedDLC = 0;
+  int gExpectedBusChannel = 0;
+
+  // Statistics
+  dword gTxCount[2] = {0, 0}; 
+  dword gRxCount[2] = {0, 0}; 
+  dword gErrorCount = 0;
+
+  // CAN-FD Flags
+  int gUseFD = 1;
+  int gUseBRS = 1; 
+
+  // File Logging
+  char gFilePath[512] = "Test_Snapshot.txt";
+}
+
+/*==============================================================================
+  UTILITY FUNCTIONS
+==============================================================================*/
+
+// Save snapshot to root directory
+void SaveSnapshot(char logData[])
+{
+  dword fileHandle;
+  char absPath[512];
+  
+  // Resolves to the directory where the .cfg/CANoe project is stored
+  getAbsFilePath("", absPath, elcount(absPath)); 
+  strncat(absPath, gFilePath, elcount(absPath));
+
+  fileHandle = openFileWrite(absPath, 1); // 1 = Append mode
+  if (fileHandle != 0)
+  {
+    filePutString(logData, elcount(logData), fileHandle);
+    filePutString("\n", 2, fileHandle);
+    fileClose(fileHandle);
+  }
+}
+
+/*==============================================================================
+  UPDATED UTILITY FUNCTIONS
+==============================================================================*/
+void PrintLog(char level[], char msg[])
+{
+  char timestamp[50];
+  long currentTime;
+  char outputStr[1200];
+  
+  currentTime = timeNow(); // Returns time in 10 microsecond ticks 
+  
+  snprintf(timestamp, elcount(timestamp), "[%d.%03d]", 
+           currentTime / 100000, (currentTime / 100) % 1000); 
+
+  // Combine for Write Window and File
+  snprintf(outputStr, elcount(outputStr), "%s %s %s", timestamp, level, msg);
+
+  // Check verbosity or importance before logging 
+  if (gVerboseLogging || strncmp(level, "ERROR", 5) == 0 || 
+      strncmp(level, "PASS", 4) == 0 || strncmp(level, "FAIL", 4) == 0)
+  {
+    write(outputStr); 
+    
+    // Auto-save to file if it is a test result
+    if (strncmp(level, "INFO", 4) != 0) 
+    {
+      SaveSnapshot(outputStr);
+    }
+  }
+}
+
+void ByteArrayToHex(byte data[], int length, char output[])
+{
+  int i;
+  char temp[10];
+  output[0] = 0; 
+  
+  for (i = 0; i < length && i < 64; i++)
+  {
+    snprintf(temp, elcount(temp), "%02X ", data[i]); 
+    strncat(output, temp, elcount(output)); 
+  }
+}
+
+// Initialize data mask
+void InitMask(byte mask[], int length, byte defaultValue)
+{
+  int i;
+  for (i = 0; i < length && i < 64; i++) 
+  {
+    mask[i] = defaultValue; 
+  }
+}
+
+/*==============================================================================
+  CAN-FD MESSAGE SENDING FUNCTIONS
+==============================================================================*/
+
+int SendCanFDMessage(int channel, dword canId, byte data[], int dlc, 
+                     int useFD, int useBRS)
+{
+  message * txMsg; 
+  char logMsg[300];
+  char dataStr[200];
+  int i;
+  
+  // Use 'message' keyword for dynamic allocation in CANoe 18
+  txMsg.id = canId;
+  txMsg.dlc = dlc;
+  
+  if (useFD) { txMsg.FDF = 1; } 
+  if (useBRS) { txMsg.BRS = 1; } 
+  
+  for (i = 0; i < dlc && i < 64; i++)
+  {
+    txMsg.byte(i) = data[i]; 
+  }
+  
+  txMsg.can = channel;
+  output(txMsg); 
+  
+  if(channel == 1) gTxCount[0]++; else gTxCount[1]++; 
+  
+  ByteArrayToHex(data, dlc, dataStr);
+  snprintf(logMsg, elcount(logMsg), "TX CH%d: ID=0x%X, DLC=%d, Data=%s", channel, canId, dlc, dataStr);
+  PrintLog("INFO", logMsg);
+  
+  return 1;
+}
+
+/*==============================================================================
+  DIAGNOSTIC FUNCTIONS
+==============================================================================*/
+
+int SendDiagRequest(int channel, dword reqId, byte service, byte subFunction,
+                    byte additionalData[], int dataLen)
+{
+  byte diagData[64];
+  int i;
+  
+  diagData[0] = service; 
+  diagData[1] = subFunction; 
+  
+  for (i = 0; i < dataLen && i < 62; i++)
+  {
+    diagData[i + 2] = additionalData[i]; 
+  }
+  
+  return SendCanFDMessage(channel, reqId, diagData, 2 + dataLen, gUseFD, gUseBRS); 
+}
+
+/*==============================================================================
+  EVENT HANDLERS
+==============================================================================*/
+
+on preStart
+{
+
+}
+
+on message CAN1.*
+{
+  gRxCount[0]++; 
+  
+  if (gWaitingForRx && gExpectedBusChannel == 1 && this.id == gExpectedCanId) 
+  {
+    gWaitingForRx = 0;
+    cancelTimer(gRxTimeoutTimer); 
+    testStepPass("PASS", "Message received and verified"); 
+  }
+}
+
+on timer gRxTimeoutTimer
+{
+  if (gWaitingForRx) 
+  {
+    gWaitingForRx = 0;
+    testStepPass("ERROR", "Timeout waiting for message");
+    gErrorCount++;
+  }
+}
+
+/*==============================================================================
+  EXPORTED TEST FUNCTIONS (Visible in vTestStudio)
+==============================================================================*/
+
+/**
+ * @testfunction: tf_SimpleSendAndVerify
+ * @description: Sends a CAN-FD message and verifies response ID
+ */
+export testfunction tf_SimpleSendAndVerify(int channel, dword txId, dword rxId, dword timeout)
+{
+  message 0x0 txMsg;
+  long waitResult;
+  char logBuffer[256];
+  
+  txMsg.id = txId;
+  txMsg.dlc = 8;
+  txMsg.can = channel;
+  txMsg.FDF = 1; 
+  txMsg.BRS = 1; 
+  
+  output(txMsg); 
+  
+  snprintf(logBuffer, elcount(logBuffer), "TX: 0x%X | Waiting for: 0x%X", txId, rxId);
+  write(logBuffer);
+  
+  // Wait for response
+  waitResult = testWaitForMessage(rxId, timeout);
+
+  if (waitResult == 1) 
+  {
+    testStepPass("Verification", "Response 0x%X received.", rxId);
+    SaveToRoot("PASS: Message Verified");
+  }
+  else 
+  {
+    testStepFail("Verification", "Timeout waiting for 0x%X", rxId);
+    SaveToRoot("FAIL: Message Timeout");
+  }
+}
+
+/**
+ * @testfunction: tf_SendExtendedSession
+ * @description: Specifically sends UDS 10 03 (Extended Session)
+ */
+export testfunction tf_SendExtendedSession(dword reqId, dword respId)
+{
+  // Hardcoded to 10 03 (Service 0x10, Sub-function 0x03)
+  byte diagData[8] = {0x02, 0x10, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00};
+  long waitResult;
+  
+  InternalSend(reqId, diagData, 8);
+  
+  waitResult = testWaitForMessage(respId, 1000);
+  
+  if (waitResult == 1)
+  {
+    testStepPass("UDS", "Extended Session (0x03) Accepted");
+    SaveToRoot("UDS Session 0x03: PASS");
+  }
+  else
+  {
+    testStepFail("UDS", "Extended Session (0x03) Failed or Timed Out");
+    SaveToRoot("UDS Session 0x03: FAIL");
+  }
+}
+
+/*==============================================================================
+  INTERNAL UTILITY FUNCTIONS
+==============================================================================*/
+
+void SaveToRoot(char text[])
+{
+  dword fileHandle;
+  char path[512];
+  
+  // Resolves to the folder where the CANoe .cfg file is saved
+  getAbsFilePath("", path, elcount(path));
+  strncat(path, gFileName, elcount(path));
+  
+  fileHandle = openFileWrite(path, 1); // 1 = Append mode
+  if (fileHandle != 0)
+  {
+    filePutString(text, elcount(text), fileHandle);
+    filePutString("\n", elcount(3), fileHandle);
+    fileClose(fileHandle);
+  }
+}
+
+void InternalSend(dword id, byte data[], int dlc)
+{
+  message 0x0 m;
+  int i;
+  m.id = id;
+  m.dlc = dlc;
+  m.FDF = 1;
+  for(i = 0; i < dlc && i < 64; i++) 
+  { 
+    m.byte(i) = data[i]; 
+  }
+  output(m);
+}
