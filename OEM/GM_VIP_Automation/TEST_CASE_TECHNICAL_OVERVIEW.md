@@ -25,6 +25,8 @@
 14. [Module: Wake-Up Signal Management](#14-module-wake-up-signal-management)
 15. [Cross-Cutting Coverage Analysis](#15-cross-cutting-coverage-analysis)
 16. [Future Improvement Recommendations](#16-future-improvement-recommendations)
+17. [Recent Code Fixes and Improvements](#17-recent-code-fixes-and-improvements)
+18. [Jenkins CI/CD Pipeline](#18-jenkins-cicd-pipeline)
 
 ---
 
@@ -722,5 +724,303 @@ Every test case calls `TestCaseAddInfo(chTestTitle, "TC_L30SW_QT_XXXXXXXX", chTe
 
 ---
 
-*Document generated from source analysis of `OEM/GM_VIP_Automation/CAPL Testcases/` – 12 `.can` files, 745 test cases total.*  
-* For test content questions contact the GM VIP software Test Team.*
+## 17. Recent Code Fixes and Improvements
+
+The changes below were applied to `CAPL Testcases/Wake_up/Wakeup.can` and related
+files. Every fix is surgical – no test logic was altered beyond the stated scope.
+
+### 17.1 T32 Logic – Missing `waitForNotRunning` After `A_DBGR_Go_Safe()`
+
+**Problem:** Five test cases called `A_DBGR_Go_Safe()` and then immediately called
+`E_DBGR_BreakpointCheckForHalt()` with no intervening wait. Because `A_DBGR_Go_Safe()`
+only waits 200 ms for the ECU to start running (not to reach a breakpoint), the halt
+check could execute while the ECU was still executing — causing intermittent false
+failures.
+
+**Fix:** Inserted `waitForNotRunning(cc_dwWakeup_BP_PollTimeout)` immediately after
+`A_DBGR_Go_Safe()` (or after `A_DBGR_BreakpointSet()` when the breakpoint is set
+after `Go_Safe`) in **TC1, TC3, TC11, TC13, and TC14**.
+
+| Location | Test Case |
+|----------|-----------|
+| After `A_DBGR_BreakpointSet("Test_GetHWIO_e_WakeupSigSt\\33")` | TC1 – no wakeup detected |
+| After `A_DBGR_Go_Safe()` (TC3) | TC3 – CAN A scenario 1 |
+| After `A_DBGR_Go_Safe()` (TC11) | TC11 – multiple wakeup |
+| After `A_DBGR_Go_Safe()` (TC13) | TC13 – CAN2 error overflow |
+| After `A_DBGR_BreakpointSet("TestCanTrcv_Init")` (TC14) | TC14 – CAN8 error overflow |
+
+### 17.2 Voltage Waveform / Sleep Cycle Coverage – `StartPowerDown` Verification
+
+**Problem:** Every test case that triggers a power-down sequence calls
+`A_DBGR_VariableSet("StartPowerDown","1")` to initiate sleep but then had
+`// E_DBGR_VariableCheck("StartPowerDown",1,Equal)` commented out. Without this
+check the test cannot confirm the T32 variable write actually succeeded; a silent
+failure would let the test proceed and falsely pass.
+
+**Fix:** Uncommented `E_DBGR_VariableCheck("StartPowerDown",1,Equal)` in all
+**17 test cases** that were missing it (TC2–TC9, TC11, TC13–TC16, TC18–TC21).
+Only TC10 already had this check active; it is now consistent across the module.
+
+### 17.3 Sleep Stress Test – Wrong `TestCaseAddInfo` Metadata
+
+**Problem:** `Stress_for_WakeUp_Sleep` (TC22) reported itself as
+`"Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initialization_for_CANA_CAN2"`
+in test reports — copy-paste leftover from an adjacent test case. This makes
+traceability links in the GM requirements system point to the wrong requirement.
+
+**Fix:** Corrected `chTestTitle` to `"Stress_for_WakeUp_Sleep"` and `chTestDescription`
+to `"Purpose:To verify repeated WakeUp/Sleep cycling stress test"`.
+
+### 17.4 Power Cycle Test Fixes (TC23 – `Stres_Test_Power_Reset`)
+
+Three separate bugs were corrected in the power-reset stress loop:
+
+| Bug | Root Cause | Fix |
+|-----|-----------|-----|
+| **10 ms OFF hold** | `testWaitForTimeout(10)` between power-off and power-on was too short for the ECU's bulk capacitors to discharge below the reset threshold (~450 ms measured). | Changed to `testWaitForTimeout(cc_dwWakeup_PowerCycleOffTime)` (500 ms). |
+| **`CANID[i]` wrong index** | `i` is a module-level loop counter in `Power_ctrl.can`; after any `Power_OFF_ON()` call it holds the character count of the RS-232 command string (always 5), not the cycle counter. | Changed to `CANID[Stress]` so each of the 50 cycles uses a different CAN ID. |
+| **1 000 ms CAN-resume timeout** | After power-on the ECU needs up to ~8 s to boot and begin transmitting. A 1 000 ms timeout caused nearly every cycle to report a false miss. | Changed to `cc_dwWakeup_ResumeTimeout` (10 000 ms). |
+
+A `Read_voltage(powersupply_port)` call was also added immediately after
+`Power_OFF_ON(powersupply_port,1)` to verify that the supply rail was actually
+restored before waiting for CAN activity.
+
+### 17.5 Error-Counter Loop Bug – Uninitialized `i` (TC13–TC16)
+
+**Problem:** TC13–TC16 each contain a `while(1)` loop that uses `i` as a frame
+counter. Because `i` is declared in `Power_ctrl.can` and is set to the character
+count of the last RS-232 command (typically 5 after a `Power_OFF_ON` call), the
+loop started at 5 instead of 0, injecting 5 fewer error frames than intended.
+
+**Fix:** Added `i = 0;` immediately before each loop.
+
+### 17.6 Timing Constants – Single-Point-of-Edit Variables
+
+**Problem:** Timeout durations (e.g. `10000`, `25000`, `100000`) were hard-coded
+as numeric literals at 83 separate call sites. Tuning a timeout for a slow bench
+required finding and editing every occurrence by hand.
+
+**Fix:** Added 13 named `const long` / `const int` constants to the `variables`
+block and replaced all 83 literal occurrences with the corresponding constant name.
+Every constant has an inline comment justifying why that specific duration is needed.
+
+| Constant | Value | Purpose |
+|----------|-------|---------|
+| `cc_dwWakeup_BP_PollTimeout` | 20 000 ms | Wait for ECU to halt at a T32 breakpoint after GO |
+| `cc_dwWakeup_SleepDetectTimeout` | 10 000 ms | Wait for ECU to stop sending CAN (NM timeout = 8 s) |
+| `cc_dwWakeup_BootCycleTimeout` | 100 000 ms | Wait for CAN after full power-on reset |
+| `cc_dwWakeup_ResumeTimeout` | 10 000 ms | Wait for CAN after normal wakeup stimulus |
+| `cc_dwWakeup_ResumeExtTimeout` | 15 000 ms | Extended resume for CAN-A scenario 1 (longer init path) |
+| `cc_dwWakeup_UARTCaptureDelay` | 3 000 ms | Pre-warm delay for `serial_logging.ps1` to open COM port |
+| `cc_dwWakeup_UARTLogTimeout` | 25 000 ms | Max wait for expected UART log line (full NM cycle) |
+| `cc_dwWakeup_UARTLogShortTimeout` | 20 000 ms | Reduced UART wait for init/shutdown contexts |
+| `cc_dwWakeup_PeriodicMsgWait` | 2 000 ms | Pre-send window before asserting ECU shutdown |
+| `cc_dwWakeup_StressCycleDelay` | 1 000 ms | Idle gap between stress iterations (bus settle time) |
+| `cc_dwWakeup_TimerFlushDelay` | 1 000 ms | Drain in-flight frames after `cancelTimer()` |
+| `cc_dwWakeup_PowerCycleOffTime` | 500 ms | Capacitor discharge hold between power-off and power-on |
+| `cc_nWakeup_StressIterations` | 50 | Iteration count for both stress test cases |
+| `cc_nWakeup_ErrFramesCAN1` | 100 | Error frames needed to overflow the CAN1 error counter |
+| `cc_nWakeup_ErrFramesCAN2` | 200 | Error frames needed to overflow the CAN2 error counter |
+
+### 17.7 Bounded Loop Replacement – All `while(1)` Eliminated
+
+**Problem:** Six `while(1)` loops existed in `Wakeup.can`. All relied on an internal
+`break` for termination. Two stress loops used `if(Stress == 50) break` — the `==`
+check means the loop never terminates if `Stress` enters the loop at any value > 50
+(e.g. if a previous test was interrupted mid-run and left `Stress` at 51).
+
+**Fix and justification per loop:**
+
+| Loop | Original | Replacement | Justification |
+|------|----------|-------------|---------------|
+| TC13 – CAN1 error frames | `while(1)` + `if (i==100) break; i++` | `for (i=0; i<cc_nWakeup_ErrFramesCAN1; i++)` | Fixed, bounded; `i` is a pure counter with no loop-body use beyond incrementing |
+| TC14 – CAN2 error frames | `while(1)` + `if (i==200) break; i++` | `for (i=0; i<cc_nWakeup_ErrFramesCAN2; i++)` | Same rationale; `for` expresses intent directly |
+| TC15 – CAN1 error frames (init) | same as TC13 | same fix | same rationale |
+| TC16 – CAN2 error frames (init) | same as TC14 | same fix | same rationale |
+| TC22 – WakeUp/Sleep stress | `while(1)` + `if(Stress==50){Stress=0;break;}` | `Stress=0; while(Stress < cc_nWakeup_StressIterations)` + `Stress=0` after | `Stress` drives both odd/even bus selector and the iteration count; a `while` with `<` is clearer than a `for`. Reset before **and** after guarantees no carry-over to subsequent tests. |
+| TC23 – Power Reset stress | same as TC22 | same fix | Same rationale; `Stress` also used as `CANID[Stress]` index |
+
+---
+
+## 18. Jenkins CI/CD Pipeline
+
+### 18.1 Why a Jenkinsfile (Not Docker)
+
+Docker was evaluated and rejected for three reasons:
+
+1. **Vector CANoe is Windows-only commercial software** — it cannot run inside a
+   Linux container; the licensing daemon requires a specific Windows host.
+2. **Lauterbach Trace32 requires a USB/Ethernet hardware probe** — container
+   isolation blocks direct hardware access.
+3. **`validate_capl.py` and `merge_reports.py` have zero pip dependencies** (stdlib
+   only) — containerising them adds complexity without benefit.
+
+A `Jenkinsfile` with labeled Windows agents gives everything needed: static
+validation on any Windows node, DLL compilation wherever CANoe is installed, and
+full Flash + BVT + test execution on the dedicated bench PC.
+
+### 18.2 Path Design Rules
+
+| Scope | How it is resolved |
+|-------|--------------------|
+| Path **to** `GM_VIP_Automation` | Discovered at runtime by scanning the Jenkins workspace with `Get-ChildItem`. Works wherever the repo is cloned on any PC. |
+| Paths **inside** `GM_VIP_Automation` | Fixed relative sub-paths (`REL_*` constants) appended to `AUTO_ROOT` at runtime. The folder structure inside `GM_VIP_Automation` is stable and never changes. |
+| External tools (CANoe, T32) | Located via the Windows `where` command, which searches the Windows `PATH` variable — no drive letter or install path is written in the Jenkinsfile. |
+| Hardware config (COM port) | Set as a Jenkins agent node environment variable (`POWERSUPPLY_PORT`) because a COM port number is not discoverable through `PATH`. |
+
+### 18.3 What Each PC Needs in Its Windows PATH
+
+These entries must be added to the Windows PATH on the respective agent PCs.
+Jenkins picks them up automatically — no Jenkinsfile changes required when tool
+versions change or when a new bench PC is provisioned.
+
+| Executable | Folder to add to PATH | Used by |
+|------------|-----------------------|---------|
+| `CANoe64.exe` | `...\Vector CANoe xx\Exec64` | Build .NET DLL, Execute Test Suite |
+| `t32rem.exe` | `...\Lauterbach\T32` | BVT T32 connectivity check |
+| `python.exe` | Python install folder | All Python stages |
+| `dotnet.exe` | .NET SDK folder | Build .NET DLL |
+
+> **Note:** The `NETDev` sub-folder path (needed to build `dotnetT32dll`) is
+> derived automatically from the resolved `CANoe64.exe` location — no separate
+> configuration is needed.
+
+### 18.4 Jenkins Agent Node Variables
+
+Set these in **Manage Jenkins → Nodes → \<node\> → Environment variables**. These
+are the only values that cannot be discovered through `PATH`.
+
+| Variable | Required on | Example value | Description |
+|----------|-------------|---------------|-------------|
+| `POWERSUPPLY_PORT` | `windows-bench` | `COM3` | COM port for the Tenma power supply |
+| `FLASH_TOOL_EXE` | `windows-bench` | `flash_tool.exe` | Flash tool exe name (if in PATH) or full path. Set when flashing scripts are added to the repo. |
+| `BENCH_STAGING_DIR` | `windows-bench` | `C:\BenchApps\GM_VIP_Automation` | Optional: if set, `GM_VIP_Automation` is copied here before testing so CANoe/T32 always reference a fixed path. If absent, tests run directly from the workspace. |
+
+### 18.5 File Locations
+
+```
+Portfolio-SoftwareEngineer/
+└── Jenkinsfile                              <- pipeline definition (repo root)
+
+OEM/GM_VIP_Automation/
+└── requirements.txt                         <- pyserial (only pip dependency)
+```
+
+### 18.6 Agent Labels
+
+| Label | Minimum Requirements | Stages |
+|-------|---------------------|--------|
+| `windows-agent` | `python`, `dotnet`, `git` in PATH | Checkout, Install Dependencies, Discover Paths, CAPL Validation, Build .NET DLL |
+| `windows-bench` | Same as above **plus** `CANoe64.exe` and `t32rem.exe` in PATH, physical ECU, `POWERSUPPLY_PORT` set | Deploy, Flash ECU, BVT, Execute Test Suite, Aggregate Reports |
+
+### 18.7 Pipeline Stages
+
+```
+Checkout
+  -> cleanWs() + git checkout
+
+Install Python Dependencies
+  -> python -m pip install --upgrade pip
+
+Discover Paths                              <- resolves all runtime paths
+  -> Scans workspace for GM_VIP_Automation  (sets AUTO_ROOT)
+  -> 'where CANoe64.exe'                    (sets CANOE_EXE_RESOLVED, CANOE_EXEC_PATH)
+  -> 'where t32rem.exe'                     (sets T32_REMOTE_EXE)
+  -> Derives REPORT_DIR, CANOE_CFG_FULL, BVT_T32_SCRIPT from AUTO_ROOT
+  -> pip install requirements.txt           (pyserial)
+  -> Warns if POWERSUPPLY_PORT / FLASH_TOOL_EXE not set
+
+CAPL Validation                             <- fast-fail gate
+  -> python validate_capl.py --root AUTO_ROOT
+  -> Checks bracket balance, #include resolution, declarations, XML consistency
+  -> Exit 1 aborts pipeline before bench time is used
+
+Build .NET DLL
+  -> Build-dotnetT32dll.ps1 (CANOE_EXEC_PATH derived from where CANoe64.exe)
+  -> Skips gracefully (UNSTABLE) when CANoe not in PATH
+  -> Archives dotnetT32dll.dll
+
+Deploy to Bench                             [skipped if RUN_ON_BENCH=false]
+  -> Copies AUTO_ROOT to BENCH_STAGING_DIR if set; otherwise runs in-place
+
+Flash ECU                   [skipped if RUN_ON_BENCH=false or FLASH_ECU=false]
+  -> PLACEHOLDER - flashing scripts to be added to the repo
+  -> Flash tool resolved via PATH or FLASH_TOOL_EXE agent variable
+  -> Firmware: FIRMWARE_FILE param or AUTO_ROOTirmwareirmware.hex default
+
+BVT - Bench Verification Test               [skipped if RUN_ON_BENCH=false]
+  -> Check 1: POWERSUPPLY_PORT COM port reachable via pyserial
+  -> Check 2: T32 PRACTICE script (miscvt_t32_check.cmm) via t32rem.exe
+  -> FAILS FAST if ECU unresponsive
+
+Execute Test Suite  [skipped if RUN_ON_BENCH=false or SKIP_TEST_SUITE=true]
+  -> CANoe64.exe /Start /RunTestModules /Quit CANOE_CFG_FULL
+  -> Publishes JUnit XML to Jenkins trend graph
+
+Aggregate Reports                           [skipped if RUN_ON_BENCH=false]
+  -> python merge_reports.py --root AUTO_ROOT --out merged_report.html
+  -> Publishes HTML report to Jenkins build page
+  -> Archives all XML + HTML artefacts
+```
+
+### 18.8 Pipeline Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `RUN_ON_BENCH` | `true` | Uncheck for validation-only build (no bench hardware needed) |
+| `FLASH_ECU` | `true` | Uncheck to skip flashing (ECU already has correct firmware) |
+| `FIRMWARE_FILE` | _(blank)_ | Firmware path override; blank → `AUTO_ROOTirmwareirmware.hex` |
+| `SKIP_TEST_SUITE` | `false` | Stop after BVT for a Flash + smoke-check-only run |
+| `TEST_SUITE` | `Sanity` | Suite to run: `Sanity`, `Full`, `Wakeup`, `OS`, `FPU`, `BINVDM` |
+
+### 18.9 Flash Stage — Adding Your Scripts
+
+When the flashing scripts are ready:
+
+1. Add scripts under `GM_VIP_Automation\misclash\` (relative to `AUTO_ROOT`).
+2. Add the flash tool directory to the **Windows PATH** on the bench PC.
+3. Set `FLASH_TOOL_EXE` on the agent node to the exe name (e.g. `flash_tool.exe`).
+4. Replace the placeholder block in the **Flash ECU** stage with the real command:
+   ```groovy
+   bat "\"${env.FLASH_TOOL_EXE}\" --image \"${firmware}\""
+   ```
+5. Remove the `currentBuild.result = 'UNSTABLE'` line from that stage.
+
+### 18.10 BVT — Adding the T32 Check Script
+
+Create `GM_VIP_Automation\miscvt_t32_check.cmm` in the repository:
+
+```cmm
+; bvt_t32_check.cmm - minimal T32 connectivity check for BVT
+; Called by t32rem.exe (found via Windows PATH).
+; Exits 0 on success, 1 on failure.
+SYStem.Mode.Attach
+IF STATE.RUN()
+(
+  PRINT "BVT T32 CHECK PASS: CPU is running"
+  ENDDO 0
+)
+ELSE
+(
+  PRINT "BVT T32 CHECK FAIL: CPU state: " STATE()
+  ENDDO 1
+)
+```
+
+### 18.11 Quick-Start: Connecting Jenkins to This Repo
+
+1. **Create a new Pipeline job** in Jenkins.
+2. Under *Pipeline*, choose **Pipeline script from SCM**.
+3. Set *SCM* = Git, enter the repo URL, set *Script Path* = `Jenkinsfile`.
+4. Add a Windows node labelled `windows-agent` (no CANoe needed).
+5. Add a Windows node labelled `windows-bench` for each test bench PC.
+6. On **every agent node**, ensure `python`, `dotnet`, and `git` are in PATH.
+7. On **bench nodes only**, add the CANoe `Exec64` and Trace32 folders to PATH,
+   and set `POWERSUPPLY_PORT` in the node environment variables.
+8. Trigger a build — **CAPL Validation** runs on any Windows agent immediately;
+   bench stages activate only when `RUN_ON_BENCH = true`.
+
+---
+
+*Document generated from source analysis of `OEM/GM_VIP_Automation/CAPL Testcases/` — 12 `.can` files, 745 test cases total.*  
+*For test content questions contact the GM VIP software Test Team.*

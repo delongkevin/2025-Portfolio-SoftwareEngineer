@@ -35,7 +35,7 @@ variables
   msTimer periodic_error_2;
 
   /* ---------------------------------------------------------------
-   * Timing constants – change values here to tune bench behaviour.
+   * Timing constants - change values here to tune bench behaviour.
    * --------------------------------------------------------------- */
   /* T32 breakpoint poll: max wait after GO for ECU to halt (20 s).
    * Necessary: ECU boot + init must complete before the test breakpoint
@@ -2502,15 +2502,12 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "Transmit CAN error frame counter overflow"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN error frame counter overflow transmitted."); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  i = 0;
-  while(1)
+  /* Injects exactly cc_nWakeup_ErrFramesCAN1 (100) error frames on CAN1 to trigger
+   * the error-counter overflow wakeup path.  Loop count is compile-time fixed;
+   * the loop always terminates. */
+  for (i = 0; i < cc_nWakeup_ErrFramesCAN1; i++)
   {
     canOutputErrorFrame(CAN1.errorFrame, 12, 0);
-    if (i == 100)
-    {
-      break;
-    }
-    i++;
   }
   /***************************************************************************************************************/    
                                               // Test Step 6  Verify Transceiver wakeUp or not.
@@ -2655,15 +2652,12 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "Transmit CAN error frame counter overflow"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN error frame counter overflow transmitted."); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  i = 0;
-  while(1)
+  /* Injects exactly cc_nWakeup_ErrFramesCAN2 (200) error frames on CAN2 to trigger
+   * the error-counter overflow wakeup path.  Loop count is compile-time fixed;
+   * the loop always terminates. */
+  for (i = 0; i < cc_nWakeup_ErrFramesCAN2; i++)
   {
     canOutputErrorFrame(CAN2.errorFrame, 12, 0);
-    if (i == 200)
-    {
-      break;
-    }
-    i++;
   }
   /***************************************************************************************************************/    
                                               // Test Step 6  Verify Transceiver wakeUp or not.
@@ -2818,15 +2812,12 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Transmit CAN error frame counter overflow"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN error frame counter overflow transmitted."); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  i = 0;
-  while(1)
+  /* Injects exactly cc_nWakeup_ErrFramesCAN1 (100) error frames on CAN1 to trigger
+   * the error-counter overflow wakeup path.  Loop count is compile-time fixed;
+   * the loop always terminates. */
+  for (i = 0; i < cc_nWakeup_ErrFramesCAN1; i++)
   {
     canOutputErrorFrame(CAN1.errorFrame, 12, 0);
-    if (i == 100)
-    {
-      break;
-    }
-    i++;
   }
   /***************************************************************************************************************/    
                                               // Test Step 6  Verify Transceiver wakeUp or not.
@@ -2995,15 +2986,12 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Transmit CAN error frame counter overflow"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN error frame counter overflow transmitted."); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  i = 0;
-  while(1)
+  /* Injects exactly cc_nWakeup_ErrFramesCAN2 (200) error frames on CAN2 to trigger
+   * the error-counter overflow wakeup path.  Loop count is compile-time fixed;
+   * the loop always terminates. */
+  for (i = 0; i < cc_nWakeup_ErrFramesCAN2; i++)
   {
     canOutputErrorFrame(CAN2.errorFrame, 12, 0);
-    if (i == 200)
-    {
-      break;
-    }
-    i++;
   }
   /***************************************************************************************************************/    
                                               // Test Step 6  Verify Transceiver wakeUp or not.
@@ -4058,9 +4046,17 @@ testcase Stress_for_WakeUp_Sleep()
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_Go();
-  while(1)
+  /* Bounded stress loop: runs exactly cc_nWakeup_StressIterations (50) wakeup/sleep
+   * cycles alternating CAN-A and CAN-B wakeup stimuli.
+   * Justification for while vs for: Stress must be readable inside the body for the
+   * odd/even CAN-bus selector, so a while loop is clearest.  The < operator (not ==)
+   * guarantees the loop always terminates even if Stress was non-zero on entry or is
+   * incremented by more than 1.  Stress is reset to 0 before AND after the loop so
+   * there is no carry-over to subsequent test cases. */
+  Stress = 0;
+  while (Stress < cc_nWakeup_StressIterations)
   {
-  /***************************************************************************************************************/    
+  /***************************************************************************************************************/
                                               // Test Step 3  Call the function Test_SetHWIO_PowerDown by setting StartPowerDown to 1 then check transceiver is in the SLEEP mode and PMIC to STANDBY mode
   /***************************************************************************************************************/
   if(Stress != 0)
@@ -4077,17 +4073,17 @@ testcase Stress_for_WakeUp_Sleep()
   snprintf( chExpectedText, elCount(chExpectedText), "ECU is in sleep mode");
   TestStepAddActionExpected( chActionText, chExpectedText );
   E_DBGR_CheckState(T32_State_Down);
-  /***************************************************************************************************************/    
+  /***************************************************************************************************************/
                                               // Test Step Verify Transceiver is in sleep or not.
   /***************************************************************************************************************/
 
-  /***************************************************************************************************************/    
+  /***************************************************************************************************************/
                                               // Test Step 4  This step involves sending a CAN wakeup frame with ID 0x123 and 8 bytes of data from Canoe.
   /***************************************************************************************************************/
   if(Stress % 2 == 1)
   {
-  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x123"); 
-  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x123"); 
+  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x123");
+  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x123");
   TestStepAddActionExpected( chActionText, chExpectedText );
 // setTimer(periodicTimer_CAN2, 1);
   A_CAN_SendMessage(0x123, CANA_Wakeup, 8, 1);
@@ -4095,33 +4091,24 @@ testcase Stress_for_WakeUp_Sleep()
   }
   else
   {
-  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x456"); 
-  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x456"); 
+  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x456");
+  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x456");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_CAN_SendMessage(0x456, CANB_Wakeup, 4, 2);
   A_CAN_SendMessage(0x456, CANB_Wakeup, 4, 2);
   //testWaitForTimeout(1500);
 
   }
-  /***************************************************************************************************************/    
+  /***************************************************************************************************************/
                                               // Test Step 5  Verify Transceiver wakeUp or not.
   /***************************************************************************************************************/
   snprintf(chActionText, elCount(chActionText), "ECU wakeup Stress Test count %d",Stress);
 	snprintf(chExpectedText, elCount(chExpectedText), "ECU is running Stress Test count %d",Stress);
   //TestStepAddActionExpected( chActionText, chExpectedText );
   E_CAN_WaitForMessageByID(0x105,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
-  Stress = Stress+1;
-
-  /***************************************************************************************************************/    
-                                              // Test Step 1 debugger Running
-  /***************************************************************************************************************/
-
-  if(Stress == 50)
-  {
-    Stress =0;
-    break;
+  Stress = Stress + 1;
   }
-  }
+  Stress = 0; /* reset so the next test case always starts from iteration 0 */
 }
 
 testcase Stres_Test_Power_Reset()
@@ -4159,53 +4146,56 @@ testcase Stres_Test_Power_Reset()
   
   A_DBGR_BreakpointDeleteAll();
   
-  while(1)
+  /* Bounded stress loop: runs exactly cc_nWakeup_StressIterations (50) power-reset
+   * cycles.  Each cycle: power-off -> wait for ECU silence -> power-on -> verify CAN
+   * resumption -> send a CANID-indexed message to vary traffic per cycle.
+   * Justification for while vs for: Stress is used as an array index (CANID[Stress])
+   * inside the body, so a while loop with explicit Stress management is clearest.
+   * The < operator guarantees termination; Stress is reset before AND after the loop. */
+  Stress = 0;
+  while (Stress < cc_nWakeup_StressIterations)
   {
-  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running "); 
-  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
- 
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
+
   A_DBGR_R();
   A_DBGR_Go();
-  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running "); 
-  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state"); 
+  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
+  snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
  // TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_Go();
-  
-  /***************************************************************************************************************/    
+
+  /***************************************************************************************************************/
                                               // Test Step 2 Disconnect the Battery and verify battery is disconnected
   /***************************************************************************************************************/
   Power_OFF_ON(powersupply_port,0);
-  
-  /***************************************************************************************************************/    
+
+  /***************************************************************************************************************/
                                               // Test Step 5  Verify Transceiver wakeUp or not.
   /***************************************************************************************************************/
-  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
-  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
-  //TestStepAddActionExpected( chActionText, chExpectedText ); 
+  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01");
+  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01");
+  //TestStepAddActionExpected( chActionText, chExpectedText );
   E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
-  
-  /***************************************************************************************************************/    
+
+  /***************************************************************************************************************/
                                               // Test Step 3 Reconnect the battery power and set the supply voltage to 12V.
   /***************************************************************************************************************/
   testWaitForTimeout(cc_dwWakeup_PowerCycleOffTime);
   Power_OFF_ON(powersupply_port,1);
   Read_voltage(powersupply_port);
-  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
-  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
-  TestStepAddActionExpected( chActionText, chExpectedText ); 
+  snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01");
+  snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01");
+  TestStepAddActionExpected( chActionText, chExpectedText );
   E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
-  
-  Stress = Stress+1;
+
+  Stress = Stress + 1;
   snprintf(chActionText, elCount(chActionText), "Stress Test count %d",Stress);
 	snprintf(chExpectedText, elCount(chExpectedText), "Stress Test count %d",Stress);
   TestStepAddActionExpected( chActionText, chExpectedText );
 	A_CAN_SendMessage(CANID[Stress], dat_64byte, 8, 2);
-    
-  if(Stress == 50)
-  {
-    Stress =0;
-    break;
+
   }
-  }
+  Stress = 0; /* reset so the next test case always starts from iteration 0 */
 }
 
