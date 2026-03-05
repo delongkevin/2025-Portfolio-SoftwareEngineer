@@ -723,4 +723,4 @@ Every test case calls `TestCaseAddInfo(chTestTitle, "TC_L30SW_QT_XXXXXXXX", chTe
 ---
 
 *Document generated from source analysis of `OEM/GM_VIP_Automation/CAPL Testcases/` – 12 `.can` files, 745 test cases total.*  
-*For questions on the automation framework contact the GenericLibraries maintainer (D2H7520_GENLIB). For test content questions contact the GM VIP software quality team.*
+* For test content questions contact the GM VIP software Test Team.*
