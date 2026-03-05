@@ -33,80 +33,6 @@ variables
   msTimer periodicTimer_Multiple;
   msTimer periodic_error_8;
   msTimer periodic_error_2;
-
-  /* ---------------------------------------------------------------
-   * Timing constants – change values here to tune bench behaviour.
-   * --------------------------------------------------------------- */
-  /* T32 breakpoint poll: max wait after GO for ECU to halt (20 s).
-   * Necessary: ECU boot + init must complete before the test breakpoint
-   * is reached; 20 s covers the slowest observed startup path. */
-  const long cc_dwWakeup_BP_PollTimeout       = 20000;
-
-  /* ECU sleep detection: wait for ECU to stop sending CAN (10 s).
-   * Necessary: network-management timeout on this ECU is 8 s;
-   * 10 s gives a 2 s margin before declaring a miss. */
-  const long cc_dwWakeup_SleepDetectTimeout    = 10000;
-
-  /* ECU boot/power-cycle: max wait for CAN to resume after a full
-   * power-on reset (100 s).  Necessary: cold-start flash and
-   * calibration loading can be slow on some bench configurations. */
-  const long cc_dwWakeup_BootCycleTimeout      = 100000;
-
-  /* Normal wakeup resume: wait for CAN to restart after stimulus (10 s).
-   * Necessary: covers wakeup-processing + transceiver enable latency. */
-  const long cc_dwWakeup_ResumeTimeout         = 10000;
-
-  /* Extended resume (CAN-A scenario 1 only): ECU startup path on the
-   * first LLSI configuration is 5 s longer, so 15 s is needed here.
-   * All other scenarios use cc_dwWakeup_ResumeTimeout. */
-  const long cc_dwWakeup_ResumeExtTimeout      = 15000;
-
-  /* UART capture pre-warm: pause before stimulus to allow
-   * serial_logging.ps1 to open the COM port and start buffering (3 s).
-   * Necessary: PS1 script startup latency on slow bench PCs is ~2 s. */
-  const long cc_dwWakeup_UARTCaptureDelay      = 3000;
-
-  /* UART log read: max wait for the expected log line to appear (25 s).
-   * Necessary: ECU may not print the wakeup log until the NM cycle
-   * completes; 25 s covers the worst-case observed delay. */
-  const long cc_dwWakeup_UARTLogTimeout        = 25000;
-
-  /* Reduced UART log wait for init/shutdown contexts where log output
-   * is faster because no full NM cycle is needed (20 s). */
-  const long cc_dwWakeup_UARTLogShortTimeout   = 20000;
-
-  /* Periodic-message pre-send window: time to transmit bus traffic
-   * before checking for shutdown (2 s).
-   * Necessary: ECU must see at least one full 1 s NM window of traffic
-   * before it evaluates the bus-idle condition. */
-  const long cc_dwWakeup_PeriodicMsgWait       = 2000;
-
-  /* Stress cycle gap: idle time between wakeup/sleep iterations (1 s).
-   * Necessary: CAN bus must be quiet for 1 s before the ECU transitions
-   * to sleep; any shorter risks a false 'still awake' check. */
-  const long cc_dwWakeup_StressCycleDelay      = 1000;
-
-  /* Timer flush: drain in-flight CAN frames after cancelTimer (1 s).
-   * Necessary: CANoe queues up to one timer period of frames;
-   * 1 s ensures no stale frame triggers an unintended wakeup. */
-  const long cc_dwWakeup_TimerFlushDelay       = 1000;
-
-  /* Power-cycle OFF hold: capacitor discharge between power-off and
-   * power-on (500 ms).
-   * Necessary: ECU bulk capacitor discharge measured at ~450 ms;
-   * 500 ms ensures the supply rail falls below the ECU reset threshold
-   * before restoration. */
-  const long cc_dwWakeup_PowerCycleOffTime     = 500;
-
-  /* Stress iteration count – both stress test cases run this many
-   * wakeup/sleep or power-reset cycles (50 iterations). */
-  const int  cc_nWakeup_StressIterations       = 50;
-
-  /* Error-frame injection counts.  CAN1 (CANA/CAN2) overflows its
-   * error counter after 100 consecutive error frames; CAN2 (CANB/CAN8)
-   * requires 200 frames due to a larger counter register. */
-  const int  cc_nWakeup_ErrFramesCAN1          = 100;
-  const int  cc_nWakeup_ErrFramesCAN2          = 200;
 }
 
 on timer periodicTimer_CAN2 {
@@ -247,7 +173,7 @@ testcase Verify_that_the_GetHWIO_e_WakeupSigSt_reports_Last_wakeup_event_is_equa
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_GetHWIO_e_WakeupSigSt\\33"); 
   
   A_DBGR_BreakpointSet("Test_GetHWIO_e_WakeupSigSt\\33");
-  waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
+  waitForNotRunning(20000);
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_GetHWIO_e_WakeupSigSt\\33 "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in Test_GetHWIO_e_WakeupSigSt\\33 function"); 
@@ -339,7 +265,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_fu
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                                               // Test Step 3 Reconnect the battery power and set the supply voltage to 12V.
@@ -349,7 +275,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_fu
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_BootCycleTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,100000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
     // Test Step 6 Check UART log in the Tera Term window is update: Last wakeup event is: 1 (wkupPwrOn).
@@ -359,7 +285,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_fu
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for battery disconnect");
+  A_GENERIC_SetTimeout(25000,"waiting for battery disconnect");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -415,7 +341,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init");
   A_DBGR_BreakpointSet("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
-  waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
+  waitForNotRunning(20000);
 
   /***************************************************************************************************************/    
                                               // Test Step 1 Call the function MngCNDD_CanTrcvInitialize to initialize the CAN transceiver.
@@ -545,7 +471,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -565,7 +491,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeExtTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,15000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -575,7 +501,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -591,7 +517,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   }
   
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_LLSI_CAN_A_bus_wakeup_scenario_2()
@@ -768,7 +694,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -789,7 +715,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -799,7 +725,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -815,7 +741,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   }
   
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_LLSI_CAN_A_bus_wakeup_scenario_3()
@@ -992,7 +918,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -1014,7 +940,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -1024,7 +950,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -1040,7 +966,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   }
 
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 
@@ -1200,7 +1126,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -1221,7 +1147,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -1231,7 +1157,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -1247,7 +1173,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   }
  
   cancelTimer(periodicTimer_CAN8);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wakeup_event_detected_is_Battery_during_Initialization()
@@ -1335,7 +1261,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                                               // Test Step 3 Reconnect the battery power and set the supply voltage to 12V.
@@ -1345,7 +1271,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_BootCycleTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,100000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
     // Test Step 6 Check UART log in the Tera Term window is update: Last wakeup event is: 1 (wkupPwrOn).
@@ -1355,7 +1281,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for battery disconnect");
+  A_GENERIC_SetTimeout(20000,"waiting for battery disconnect");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -1570,7 +1496,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -1590,7 +1516,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -1600,7 +1526,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(20000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -1630,7 +1556,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
     testStepFail("1","string is not present");
   }
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_wakeup_event_detected_CAN_B_Wakeup_during_Initialization()
@@ -1798,7 +1724,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -1817,7 +1743,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -1827,7 +1753,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(20000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -1858,7 +1784,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   }
   
   cancelTimer(periodicTimer_CAN8);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
  
 }
 
@@ -1941,7 +1867,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                                               // Test Step 3 Reconnect the battery power and set the supply voltage to 12V.
@@ -1951,7 +1877,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_BootCycleTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,100000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
     // Test Step 6 Check UART log in the Tera Term window is update: Last wakeup event is: 1 (wkupPwrOn).
@@ -1961,7 +1887,7 @@ testcase Verify_that_the_software_reports_wkupPwrOn_for_GetHWIO_e_WakeupSigSt_wa
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for battery disconnect");
+  A_GENERIC_SetTimeout(20000,"waiting for battery disconnect");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2029,7 +1955,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
 
   A_DBGR_BreakpointSet("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
-  waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
+  waitForNotRunning(20000);
   /***************************************************************************************************************/    
                                               // Test Step 1 Call the function MngCNDD_CanTrcvInitialize to initialize the CAN transceiver.
   /***************************************************************************************************************/
@@ -2159,7 +2085,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -2181,7 +2107,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -2191,7 +2117,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2207,7 +2133,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   }
  
   cancelTimer(periodicTimer_Multiple);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_wakeup_event_detected_is_CAN_A_bus_during_Shutdown()
@@ -2395,7 +2321,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2410,7 +2336,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
     testStepFail("1","string is not present");
   }
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay); 
+  testWaitForTimeout(1000); 
 }
 
 testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error_frame_counter_overflow_for_CAN2_Channel()
@@ -2451,7 +2377,7 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
 
   A_DBGR_BreakpointSet("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
-  waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
+  waitForNotRunning(20000);
 
   /***************************************************************************************************************/
                                               // Test Step 1 Call the function MngCNDD_CanTrcvInitialize to initialize the CAN transceiver.
@@ -2493,7 +2419,7 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -2519,7 +2445,7 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -2529,7 +2455,7 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2607,7 +2533,7 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
   A_DBGR_BreakpointSet("TestCanTrcv_Init");
-  waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
+  waitForNotRunning(20000);
 
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCanTrcv_Init function"); 
@@ -2646,7 +2572,7 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -2672,7 +2598,7 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -2682,7 +2608,7 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2809,7 +2735,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -2835,7 +2761,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -2845,7 +2771,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(20000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -2986,7 +2912,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -3012,7 +2938,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -3022,7 +2948,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -3230,7 +3156,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
 //  snprintf( chExpectedText, elCount(chExpectedText), "Verify delay_shutdown is configured as 1"); 
   
 //  A_CAN_SendBurstMessage( 0x456,  CANB_Wakeup, 10000,  4, 2, cc_eCAN_NORMAL);
-  A_GENERIC_SetTimeout(cc_dwWakeup_PeriodicMsgWait,"sending periodic msg");
+  A_GENERIC_SetTimeout(2000,"sending periodic msg");
   /***************************************************************************************************************/    
                                               // Test Step 3  Call the function Test_SetHWIO_PowerDown by setting StartPowerDown to 1 then check transceiver is in the SLEEP mode and PMIC to STANDBY mode
   /***************************************************************************************************************/
@@ -3254,7 +3180,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -3269,7 +3195,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
     testStepFail("1","string is not present");
   }
   cancelTimer(periodicTimer_CAN8);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error_frame_counter_overflow_for_CAN2_during_shutdown()
@@ -3349,7 +3275,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
 //  snprintf( chActionText, elCount(chActionText), "Configure delay_shutdown variable to invoke delay during shutdown interface"); 
 //  snprintf( chExpectedText, elCount(chExpectedText), "Verify delay_shutdown is configured as 1"); 
@@ -3385,7 +3311,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN2");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN2");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -3395,7 +3321,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(20000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -3424,7 +3350,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
     testStepFail("1","string is not present");
   }
   cancelTimer(periodic_error_2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 
 }
 
@@ -3505,7 +3431,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
 //  snprintf( chActionText, elCount(chActionText), "Configure delay_shutdown variable to invoke delay during shutdown interface"); 
 //  snprintf( chExpectedText, elCount(chExpectedText), "Verify delay_shutdown is configured as 1"); 
@@ -3539,7 +3465,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -3549,7 +3475,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogShortTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(20000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -3578,7 +3504,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
     testStepFail("1","string is not present");
   }
   cancelTimer(periodic_error_8);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 
 }
 
@@ -3756,7 +3682,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -3776,7 +3702,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -3786,7 +3712,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -3801,10 +3727,10 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
     testSteppass("1","string is not present");
   }
   setTimer(periodicTimer_CAN2, 1);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
   
   cancelTimer(periodicTimer_CAN2);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_invalid_PN_frame_is_sent()
@@ -3963,7 +3889,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTCaptureDelay,"waiting for UART log");
+  A_GENERIC_SetTimeout(3000,"waiting for UART log");
  
   
   /***************************************************************************************************************/    
@@ -3984,7 +3910,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
   
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                           // Test Step 7 Check UART log in the Tera Term window is update: Last wakeup event is: 2 (wkupCanBusA).
@@ -3994,7 +3920,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "waiting for UART log"); 
   snprintf( chExpectedText, elCount(chExpectedText), "waiting for UART log"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_GENERIC_SetTimeout(cc_dwWakeup_UARTLogTimeout,"waiting for UART log");
+  A_GENERIC_SetTimeout(25000,"waiting for UART log");
   
   snprintf(chActionText, elCount(chActionText), "Run Python script to check battConnectionStatus in log file");
   snprintf(chExpectedText, elCount(chExpectedText), "Python script should execute successfully");
@@ -4010,10 +3936,10 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   }
  
   setTimer(periodicTimer_CAN8,1);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
   
   cancelTimer(periodicTimer_CAN8);
-  testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
+  testWaitForTimeout(1000);
 }
 
 testcase Stress_for_WakeUp_Sleep()
@@ -4067,11 +3993,11 @@ testcase Stress_for_WakeUp_Sleep()
   {
     TestStepAddActionExpected( chActionText, chExpectedText );
   }
-  A_GENERIC_SetTimeout(cc_dwWakeup_StressCycleDelay,"waiting to move ECU to SLEEP");
+  A_GENERIC_SetTimeout(1000,"waiting to move ECU to SLEEP");
   snprintf( chActionText, elCount(chActionText), "ECU is moving to Sleep mode");
   snprintf( chExpectedText, elCount(chExpectedText), "ECU is in sleep mode");
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
 
   snprintf( chActionText, elCount(chActionText), "ECU is in sleep mode");
   snprintf( chExpectedText, elCount(chExpectedText), "ECU is in sleep mode");
@@ -4109,7 +4035,7 @@ testcase Stress_for_WakeUp_Sleep()
   snprintf(chActionText, elCount(chActionText), "ECU wakeup Stress Test count %d",Stress);
 	snprintf(chExpectedText, elCount(chExpectedText), "ECU is running Stress Test count %d",Stress);
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  E_CAN_WaitForMessageByID(0x105,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x105,10000,cc_eCAN_PRESENT,"CAN1");
   Stress = Stress+1;
 
   /***************************************************************************************************************/    
@@ -4182,18 +4108,18 @@ testcase Stres_Test_Power_Reset()
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   //TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_SleepDetectTimeout,cc_eCAN_ABSENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_ABSENT,"CAN1");
   
   /***************************************************************************************************************/    
                                               // Test Step 3 Reconnect the battery power and set the supply voltage to 12V.
   /***************************************************************************************************************/
-  testWaitForTimeout(cc_dwWakeup_PowerCycleOffTime);
+  testWaitForTimeout(500);
   Power_OFF_ON(powersupply_port,1);
   Read_voltage(powersupply_port);
   snprintf( chActionText, elCount(chActionText), "Transmit CAN message. ID:0x40000101, PDU info:0x01"); 
   snprintf( chExpectedText, elCount(chExpectedText), "CAN message transmitted. ID:0x40000101, PDU info:0x01"); 
   TestStepAddActionExpected( chActionText, chExpectedText ); 
-  E_CAN_WaitForMessageByID(0x00000101,cc_dwWakeup_ResumeTimeout,cc_eCAN_PRESENT,"CAN1");
+  E_CAN_WaitForMessageByID(0x00000101,10000,cc_eCAN_PRESENT,"CAN1");
   
   Stress = Stress+1;
   snprintf(chActionText, elCount(chActionText), "Stress Test count %d",Stress);
