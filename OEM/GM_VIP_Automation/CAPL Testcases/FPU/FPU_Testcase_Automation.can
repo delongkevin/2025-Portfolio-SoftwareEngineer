@@ -3,7 +3,7 @@
 includes
 {
   
-  #include "..\..\ProjectSpecific\GenLib_Includes.cin"
+  #include "..\..\AutomationDependent\ProjectSpecific\GenLib_Includes.cin"
 
 }
 
@@ -34,7 +34,7 @@ variables
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425892: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core0()
@@ -57,7 +57,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core0()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425892", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -150,7 +150,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core0()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425893: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core0()
@@ -173,7 +173,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core0()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425893", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -266,7 +266,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core0()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425894: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core0()
@@ -289,7 +289,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core0()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425894", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1282,7 +1282,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core0()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425903: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core0()
@@ -1305,7 +1305,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core0()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425903", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1391,7 +1391,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core0()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425904: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core0()
@@ -1414,7 +1414,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core0()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425904", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1506,7 +1506,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core0()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425905: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core0()
@@ -1529,7 +1529,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425905", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1615,7 +1615,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425906: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core0()
@@ -1638,7 +1638,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425906", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1725,7 +1725,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425907: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core0()
@@ -1748,7 +1748,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425907", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -1841,7 +1841,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36425908: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core0()
@@ -1864,7 +1864,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core0" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36425908", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -2890,7 +2890,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Scenerio_2_Cor
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645507: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core1()
@@ -2913,7 +2913,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core1()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645507", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -3006,7 +3006,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core1()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645508: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core1()
@@ -3029,7 +3029,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core1()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645508", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -3122,7 +3122,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core1()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645509: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core1()
@@ -3145,7 +3145,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core1()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645509", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4138,7 +4138,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core1()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645518: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core1()
@@ -4161,7 +4161,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core1()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645518", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4247,7 +4247,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core1()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645519: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core1()
@@ -4270,7 +4270,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core1()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645519", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4362,7 +4362,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core1()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645520: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core1()
@@ -4385,7 +4385,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645520", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4472,7 +4472,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645521: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core1()
@@ -4495,7 +4495,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645521", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4582,7 +4582,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645522: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core1()
@@ -4605,7 +4605,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645522", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -4698,7 +4698,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645523: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core1()
@@ -4721,7 +4721,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core1" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645523", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -5747,7 +5747,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Scenerio_2_Cor
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645823: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core2()
@@ -5770,7 +5770,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core2()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645823", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -5863,7 +5863,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core2()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645824: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core2()
@@ -5886,7 +5886,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core2()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645824", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -5979,7 +5979,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core2()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645825: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core2()
@@ -6002,7 +6002,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core2()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645825", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -6995,7 +6995,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core2()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645834: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core2()
@@ -7018,7 +7018,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core2()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645834", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -7104,7 +7104,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core2()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645835: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core2()
@@ -7127,7 +7127,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core2()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645835", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -7219,7 +7219,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core2()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645836: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core2()
@@ -7242,7 +7242,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645836", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -7329,7 +7329,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645837: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core2()
@@ -7352,7 +7352,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645837", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -7439,7 +7439,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645838: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core2()
@@ -7462,7 +7462,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645838", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -7554,7 +7554,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645839: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core2()
@@ -7577,7 +7577,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core2" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645839", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -8602,7 +8602,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Scenerio_2_Cor
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645842: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core3()
@@ -8625,7 +8625,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core3()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645842", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -8718,7 +8718,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core3()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645843: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core3()
@@ -8741,7 +8741,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core3()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645843", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -8834,7 +8834,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core3()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645844: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core3()
@@ -8857,7 +8857,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core3()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645844", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -9851,7 +9851,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core3()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645853: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core3()
@@ -9874,7 +9874,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core3()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645853", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -9960,7 +9960,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core3()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645854: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core3()
@@ -9983,7 +9983,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core3()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645854", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -10075,7 +10075,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core3()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645855: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core3()
@@ -10098,7 +10098,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645855", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -10185,7 +10185,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645856: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core3()
@@ -10208,7 +10208,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645856", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -10294,7 +10294,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645857: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core3()
@@ -10317,7 +10317,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645857", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -10410,7 +10410,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645858: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core3()
@@ -10433,7 +10433,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core3" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645858", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -11459,7 +11459,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Scenerio_2_Cor
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645785: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core4()
@@ -11482,7 +11482,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core4()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645785", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -11575,7 +11575,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core4()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645786: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core4()
@@ -11598,7 +11598,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core4()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645786", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -11691,7 +11691,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core4()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645787: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core4()
@@ -11714,7 +11714,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core4()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645787", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -12708,7 +12708,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core4()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645796: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core4()
@@ -12731,7 +12731,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core4()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645796", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -12817,7 +12817,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core4()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645797: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core4()
@@ -12840,7 +12840,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core4()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645797", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -12932,7 +12932,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core4()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645798: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core4()
@@ -12955,7 +12955,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645798", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -13042,7 +13042,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645799: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core4()
@@ -13065,7 +13065,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645799", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -13152,7 +13152,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645800: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core4()
@@ -13175,7 +13175,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645800", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -13268,7 +13268,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645801: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core4()
@@ -13291,7 +13291,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core4" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645801", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -14317,7 +14317,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Scenerio_2_Cor
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645804: Verify Divide by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core5()
@@ -14340,7 +14340,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core5()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_1_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645804", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -14433,7 +14433,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_1_Core5()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645805: Verify Divide by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core5()
@@ -14456,7 +14456,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core5()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_2_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645805", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -14549,7 +14549,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_2_Core5()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645806: Verify Divide by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
+Description:   Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core5()
@@ -14572,7 +14572,7 @@ testcase Testcase_Verify_Divide_by_Zero_Scenerio_3_Core5()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Divide_by_Zero_Scenerio_3_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of a division by zero exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645806", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -15567,7 +15567,7 @@ testcase Testcase_Verify_Underflow_Scenerio_3_Core5()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645815: Verify Overflow Scenerio Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_1_Core5()
@@ -15590,7 +15590,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core5()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_1_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645815", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -15676,7 +15676,7 @@ testcase Testcase_Verify_Overflow_Scenerio_1_Core5()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645816: Verify Overflow Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
+Description:   Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Overflow_Scenerio_2_Core5()
@@ -15699,7 +15699,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core5()
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Overflow_Scenerio_2_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the format’s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of the formatï¿½s largest finite number with the sign of the intermediate result, upon the occurrence of an overflow exception.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645816", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -15791,7 +15791,7 @@ testcase Testcase_Verify_Overflow_Scenerio_2_Core5()
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645817: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 1
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core5()
@@ -15814,7 +15814,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_1_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645817", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -15900,7 +15900,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645818: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 2
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core5()
@@ -15923,7 +15923,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_2_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645818", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -16010,7 +16010,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645819: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 3
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core5()
@@ -16033,7 +16033,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_3_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645819", chTestDescription );
 
   /***************************************************************************************************************/    
@@ -16126,7 +16126,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
 ----------------------------------------------------------------------------------------------------
 Test case name:  TC_L30SW_QT_36645820: Verify Invalid Operations without running reset Divide Zero by Zero Scenerio 4
 ----------------------------------------------------------------------------------------------------
-Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.
+Description:   Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.
 
 ***************************************************************************************************/
 testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core5()
@@ -16149,7 +16149,7 @@ testcase Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by
   
   setWriteDbgLevel(DebugOff);
   snprintf( chTestTitle, elCount(chTestTitle), "Testcase_Verify_Invalid_Operations_without_running_reset_Divide_Zero_by_Zero_Scenerio_4_Core5" );
-  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operands’ signs, for an invalid operation of 0/0.");
+  snprintf( chTestDescription, elCount(chTestDescription), "Purpose:Verify the software shall be configured to provide a result of 0 with a sign of the Exclusive-OR of the operandsï¿½ signs, for an invalid operation of 0/0.");
   TestCaseAddInfo( chTestTitle, "TC_L30SW_QT_36645820", chTestDescription );
 
   /***************************************************************************************************************/    
