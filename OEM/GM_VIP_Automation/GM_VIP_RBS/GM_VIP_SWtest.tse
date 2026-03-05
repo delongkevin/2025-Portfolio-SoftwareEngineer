@@ -65,7 +65,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_InternalBus.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_InternalBus.xml
+
 
 
 5
@@ -416,7 +416,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_Config_registor.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_Config_registor.xml
+
 
 
 5
@@ -767,7 +767,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_Battery.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_Battery.xml
+
 
 
 5
@@ -1118,7 +1118,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_Wakeup.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_Wakeup.xml
+
 
 
 5
@@ -1533,7 +1533,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_HW_CRC.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_HW_CRC.xml
+
 
 
 5
@@ -1924,7 +1924,7 @@ VConfigurationRoot 7 Begin_Of_Object
 End_Of_Object VConfigurationRoot 7
 <VFileName V9 QL> 1 "..\Testsuite_Environment\SWQT_CAN.xml" 
 1
-C:\L2H7890_SWTestBSW\GM_VIP_Automation\Testsuite_Environment\SWQT_CAN.xml
+
 
 
 5

@@ -38,7 +38,7 @@ VConfigurationRoot 6 Begin_Of_Object
 End_Of_Object VConfigurationRoot 6
 <VFileName V9 QL> 1 "..\GenericLibraries\SupportNodes\PowerSupply\PowerSupply.can" 
 1
-C:\git\L2H7890_Software\SWTest\GM_VIP_Automation\AutomationDependent\GenericLibraries\SupportNodes\PowerSupply\PowerSupply.cbf
+
 << default >>
 
 5
@@ -142,7 +142,7 @@ VConfigurationRoot 6 Begin_Of_Object
 End_Of_Object VConfigurationRoot 6
 <VFileName V9 QL> 1 "..\GenericLibraries\SupportNodes\TestMain\TestMainPanel.can" 
 1
-C:\git\L2H7890_Software\SWTest\GM_VIP_Automation\AutomationDependent\GenericLibraries\SupportNodes\TestMain\TestMainPanel.cbf
+
 << default >>
 
 5

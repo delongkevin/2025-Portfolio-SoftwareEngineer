@@ -1038,7 +1038,7 @@ void E_DBGR_BreakpointCheckForHaltCore(char aAddress[], char aCore[])
   }
   else 
   {
-    snprintf(chFailText, elcount(chFailText), "API error message: %s", chApiMessage);
+    snprintf(chFailText, elcount(chFailText), "Timeout: ECU did not halt (STATE.RUN()!=FALSE) within %d ms.", cc_dwT32_BP_HaltTimeout);
     if((byte)DebugFuncInternal & bDebugFlag)
       writeDbgLevel (DebugFuncInternal, "FAIL: %s.", chFailText);
     vFctn_REPORTStepEvaluation(chFailText, FAIL);
