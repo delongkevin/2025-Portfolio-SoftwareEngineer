@@ -382,8 +382,9 @@ $found.FullName
                         returnStatus: true
                     )
                     if (rc != 0) {
-                        echo "Simulation WARNING: ${rc} testcase ref(s) could not be " +
-                             "resolved to a .can definition. " +
+                        echo "Simulation WARNING: simulate_tests.py exited with code ${rc}. " +
+                             "One or more <capltestcase> references could not be resolved " +
+                             "to a .can definition. " +
                              "See output above for details. " +
                              "Marking build UNSTABLE so the report is still generated."
                         currentBuild.result = 'UNSTABLE'

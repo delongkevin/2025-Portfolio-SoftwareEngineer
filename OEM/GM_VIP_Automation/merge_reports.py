@@ -282,8 +282,10 @@ def discover_reports(root: Path, xml_dir: Optional[Path] = None) -> List[ReportM
     Discover all report XML files under *root* and return parsed modules.
 
     If *xml_dir* is provided, only the files directly inside that directory
-    (recursively) are scanned – useful for the simulated-report workflow where
-    only ``Test Reports/simulation/*.xml`` should be included.
+    (non-recursive, top-level only) are scanned – useful for the
+    simulated-report workflow where only ``Test Reports/simulation/*.xml``
+    should be included (the ``junit/`` sub-directory is automatically
+    excluded).
 
     Search order when *xml_dir* is None (determines display order in HTML):
       1. Test Reports/**/*.xml  (CANoe per-module reports)
