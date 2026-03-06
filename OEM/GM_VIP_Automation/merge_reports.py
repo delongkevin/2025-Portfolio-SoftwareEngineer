@@ -345,31 +345,436 @@ def discover_reports(root: Path, xml_dir: Optional[Path] = None) -> List[ReportM
 # ---------------------------------------------------------------------------
 
 _CSS = """
-:root { --color-pass: #1a7d1a; --color-fail: #b30000; --color-brand: #003580;
-        --color-sim: #856404; }
-body  { font-family: Arial, sans-serif; margin: 20px; color: #222; }
-h1    { color: var(--color-brand); }
-h2    { color: var(--color-brand); border-bottom: 2px solid var(--color-brand); padding-bottom: 4px; }
-h3    { color: #555; margin-top: 12px; }
-table { border-collapse: collapse; width: 100%; margin-bottom: 24px; }
-th    { background: var(--color-brand); color: #fff; padding: 8px 12px; text-align: left; }
-td    { padding: 6px 12px; border-bottom: 1px solid #ddd; }
-tr:nth-child(even) { background: #f5f5f5; }
-.pass  { color: var(--color-pass); font-weight: bold; }
-.fail  { color: var(--color-fail); font-weight: bold; }
-.error { color: var(--color-fail); font-weight: bold; }
-.unknown   { color: #888; }
-.simulated { color: var(--color-sim); font-weight: bold; }
-.sim-banner { background: #fff3cd; border: 2px solid #e6b800; border-radius: 6px;
-              padding: 12px 24px; margin-bottom: 20px; font-size: 1.1em;
-              font-weight: bold; color: var(--color-sim); }
-.t32-section { background: #fffbe6; border-left: 4px solid #e6b800; padding: 4px 12px; }
-.summary-box { display: inline-block; background: #eef4ff; border: 1px solid var(--color-brand);
-               border-radius: 6px; padding: 12px 24px; margin-bottom: 20px; }
-.summary-box td { border: none; padding: 3px 16px; }
-.grand-pass      { color: var(--color-pass); font-size: 1.2em; font-weight: bold; }
-.grand-fail      { color: var(--color-fail); font-size: 1.2em; font-weight: bold; }
-.grand-simulated { color: var(--color-sim);  font-size: 1.2em; font-weight: bold; }
+/* ===== Reset & Base ===================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand:        #003580;
+  --brand-light:  #1a5cb5;
+  --brand-bg:     #eef4ff;
+  --pass:         #1a7d1a;
+  --pass-bg:      #eaffea;
+  --fail:         #b30000;
+  --fail-bg:      #fff0f0;
+  --sim:          #7a5200;
+  --sim-bg:       #fff8e6;
+  --sim-border:   #e6b800;
+  --warn:         #856404;
+  --unknown:      #6b7280;
+  --t32:          #6d28d9;
+  --t32-bg:       #f5f3ff;
+  --text:         #1a1a2e;
+  --muted:        #555;
+  --border:       #d1d5db;
+  --surface:      #ffffff;
+  --surface-alt:  #f8fafc;
+  --shadow:       0 2px 8px rgba(0,0,0,.10);
+  --radius:       8px;
+}
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: #f0f4f8;
+}
+
+/* ===== Page Layout ====================================================== */
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ========================================================== */
+.sidebar {
+  width: 260px;
+  min-width: 220px;
+  background: var(--brand);
+  color: #fff;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.sidebar-logo h1 {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.sidebar-logo .tagline {
+  font-size: .75em;
+  opacity: .75;
+  margin-top: 4px;
+}
+.sidebar nav { padding: 16px 0; }
+.sidebar nav ul { list-style: none; }
+.sidebar nav a {
+  display: block;
+  padding: 7px 20px;
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  font-size: .85em;
+  border-left: 3px solid transparent;
+  transition: background .15s, border-color .15s;
+}
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: rgba(255,255,255,.12);
+  border-left-color: #7eb8ff;
+  color: #fff;
+}
+.sidebar nav a .status-icon { margin-right: 6px; }
+.sidebar-footer {
+  padding: 16px 20px 0;
+  border-top: 1px solid rgba(255,255,255,.2);
+  font-size: .72em;
+  opacity: .65;
+}
+
+/* ===== Main Content ===================================================== */
+.main-content {
+  flex: 1;
+  padding: 28px 32px;
+  max-width: 1100px;
+  overflow-x: hidden;
+}
+
+/* ===== Page Header ====================================================== */
+.page-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--brand);
+}
+.page-header h1 {
+  font-size: 1.7em;
+  font-weight: 700;
+  color: var(--brand);
+}
+.page-header .meta {
+  color: var(--muted);
+  font-size: .85em;
+  margin-top: 4px;
+}
+
+/* ===== Simulated Banner ================================================= */
+.sim-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--sim-bg);
+  border: 2px solid var(--sim-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  color: var(--sim);
+}
+.sim-banner .sim-icon {
+  font-size: 2em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.sim-banner .sim-text { flex: 1; }
+.sim-banner .sim-title {
+  font-size: 1.05em;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.sim-banner .sim-desc { font-size: .88em; }
+
+/* ===== Summary Cards ==================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  text-align: center;
+  border-top: 4px solid var(--border);
+}
+.stat-card.pass-card  { border-top-color: var(--pass); }
+.stat-card.fail-card  { border-top-color: var(--fail); }
+.stat-card.sim-card   { border-top-color: var(--sim-border); }
+.stat-card.total-card { border-top-color: var(--brand); }
+.stat-card.overall-card.ok  { border-top-color: var(--pass); }
+.stat-card.overall-card.bad { border-top-color: var(--fail); }
+.stat-card.overall-card.sim { border-top-color: var(--sim-border); }
+.stat-card .stat-value {
+  font-size: 2.2em;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-card .stat-label {
+  font-size: .78em;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+.stat-card.pass-card  .stat-value { color: var(--pass); }
+.stat-card.fail-card  .stat-value { color: var(--fail); }
+.stat-card.sim-card   .stat-value { color: var(--warn); }
+.stat-card.total-card .stat-value { color: var(--brand); }
+.stat-card.overall-card.ok  .stat-value { color: var(--pass); }
+.stat-card.overall-card.bad .stat-value { color: var(--fail); }
+.stat-card.overall-card.sim .stat-value { color: var(--warn); }
+
+/* ===== Progress Bar ===================================================== */
+.progress-section {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+}
+.progress-section .progress-label {
+  font-size: .82em;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 8px;
+}
+.progress-bar {
+  height: 18px;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #e5e7eb;
+  display: flex;
+}
+.progress-bar .seg-pass { background: var(--pass); }
+.progress-bar .seg-fail { background: var(--fail); }
+.progress-bar .seg-sim  { background: var(--sim-border); }
+.progress-bar .seg-unk  { background: #9ca3af; }
+.progress-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: .8em;
+  color: var(--muted);
+}
+.progress-legend .leg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.progress-legend .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-pass { background: var(--pass); }
+.dot-fail { background: var(--fail); }
+.dot-sim  { background: var(--sim-border); }
+
+/* ===== Module Cards ===================================================== */
+.module-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.module-card.t32-card { border-left: 4px solid var(--t32); }
+.module-card.sim-card { border-left: 4px solid var(--sim-border); }
+
+.module-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--brand-bg);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+.module-card.t32-card .module-card-header { background: var(--t32-bg); }
+.module-card.sim-card .module-card-header { background: var(--sim-bg); }
+.module-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.module-title {
+  font-size: 1.02em;
+  font-weight: 700;
+  color: var(--brand);
+}
+.module-card.t32-card .module-title { color: var(--t32); }
+.module-badges {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: .75em;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.badge-pass { background: var(--pass-bg); color: var(--pass); }
+.badge-fail { background: var(--fail-bg); color: var(--fail); }
+.badge-sim  { background: var(--sim-bg);  color: var(--warn); border: 1px solid var(--sim-border); }
+.badge-t32  { background: var(--t32-bg);  color: var(--t32); }
+.toggle-icon {
+  font-size: .85em;
+  color: var(--muted);
+  transition: transform .2s;
+}
+.module-card.collapsed .toggle-icon { transform: rotate(-90deg); }
+
+.module-card-body { padding: 0 20px 16px; }
+.module-meta {
+  font-size: .78em;
+  color: var(--muted);
+  padding: 10px 0 12px;
+  word-break: break-all;
+}
+
+/* ===== Test Group ======================================================= */
+.group-title {
+  font-size: .88em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  padding: 10px 0 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
+/* ===== Test Case Table ================================================== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: .86em;
+}
+th {
+  background: var(--brand);
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: .82em;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #eef0f3;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: var(--surface-alt); }
+tr:hover td           { background: #e8effe; }
+
+.tc-name { font-family: 'Consolas', 'Courier New', monospace; font-size: .92em; }
+.tc-title { color: var(--muted); font-size: .88em; }
+
+.result-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: .78em;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.rb-pass      { background: var(--pass-bg); color: var(--pass); }
+.rb-fail      { background: var(--fail-bg); color: var(--fail); }
+.rb-error     { background: var(--fail-bg); color: var(--fail); }
+.rb-simulated { background: var(--sim-bg);  color: var(--warn); border: 1px solid var(--sim-border); }
+.rb-unknown   { background: #f3f4f6;        color: var(--unknown); }
+
+/* ===== Step Detail Rows ================================================= */
+.step-row td {
+  background: var(--fail-bg) !important;
+  font-size: .82em;
+  color: var(--fail);
+}
+.step-row .step-name { font-weight: 600; }
+.step-row .step-desc { color: #6b1a1a; margin-left: 4px; }
+
+/* ===== T32 Section ====================================================== */
+.t32-note {
+  font-size: .78em;
+  color: var(--t32);
+  background: var(--t32-bg);
+  border-left: 3px solid var(--t32);
+  padding: 6px 12px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 10px;
+}
+
+/* ===== Footer =========================================================== */
+.page-footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: .75em;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ===== Print ============================================================ */
+@media print {
+  .sidebar     { display: none; }
+  .main-content { padding: 12px; max-width: 100%; }
+  .module-card { box-shadow: none; border: 1px solid var(--border); break-inside: avoid; }
+  .module-card-header { cursor: default; }
+  .module-card.collapsed .module-card-body { display: block !important; }
+  body { background: #fff; }
+}
+
+/* ===== Responsive ======================================================= */
+@media (max-width: 700px) {
+  .page-wrapper { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: relative; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+"""
+
+_JS = """
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.module-card-header').forEach(function (hdr) {
+    function toggle() {
+      var card = hdr.closest('.module-card');
+      var body = card.querySelector('.module-card-body');
+      var collapsed = card.classList.toggle('collapsed');
+      body.style.display = collapsed ? 'none' : '';
+      hdr.setAttribute('aria-expanded', String(!collapsed));
+    }
+    hdr.addEventListener('click', toggle);
+    hdr.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+});
 """
 
 _RESULT_CLASS = {
@@ -381,9 +786,37 @@ _RESULT_CLASS = {
 }
 
 
+def _result_badge(result: str) -> str:
+    """Return a styled HTML badge span for the given result string."""
+    css = f"rb-{_RESULT_CLASS.get(result, 'unknown')}"
+    return f'<span class="result-badge {css}">{html.escape(result.upper())}</span>'
+
+
+# Keep legacy name used by callers that may exist outside this file.
 def _result_cell(result: str) -> str:
-    css = _RESULT_CLASS.get(result, "unknown")
-    return f'<span class="{css}">{html.escape(result.upper())}</span>'
+    return _result_badge(result)
+
+
+def _progress_bar_html(passed: int, failed: int, simulated: int, total: int) -> str:
+    """Return an HTML progress bar segment string."""
+    if total == 0:
+        return '<div class="progress-bar"><div class="seg-unk" style="width:100%"></div></div>'
+
+    def pct(n: int) -> str:
+        return f"{n * 100 / total:.1f}%"
+
+    segs = []
+    if passed:
+        segs.append(f'<div class="seg-pass" style="width:{pct(passed)}" title="{passed} passed"></div>')
+    if simulated:
+        segs.append(f'<div class="seg-sim" style="width:{pct(simulated)}" title="{simulated} simulated"></div>')
+    if failed:
+        segs.append(f'<div class="seg-fail" style="width:{pct(failed)}" title="{failed} failed/error"></div>')
+    rest = total - passed - simulated - failed
+    if rest > 0:
+        segs.append(f'<div class="seg-unk" style="width:{pct(rest)}" title="{rest} unknown"></div>')
+
+    return f'<div class="progress-bar">{"".join(segs)}</div>'
 
 
 def generate_html(modules: List[ReportModule], generated_at: datetime.datetime,
@@ -393,107 +826,265 @@ def generate_html(modules: List[ReportModule], generated_at: datetime.datetime,
     grand_failed    = sum(m.failed    for m in modules)
     grand_simulated = sum(m.simulated for m in modules)
 
-    lines: List[str] = []
-    lines.append("<!DOCTYPE html>")
-    lines.append("<html lang='en'><head>")
-    lines.append("<meta charset='UTF-8'>")
-    lines.append("<title>GM VIP Automation – Consolidated Test Report</title>")
-    lines.append(f"<style>{_CSS}</style>")
-    lines.append("</head><body>")
-    lines.append("<h1>GM VIP Automation – Consolidated Test Report</h1>")
-    if simulated:
-        lines.append(
-            '<div class="sim-banner">&#9888; SIMULATED REPORT – Syntax validated only. '
-            'Actual pass/fail results require physical hardware execution.</div>'
-        )
-    lines.append(f"<p>Generated: {html.escape(generated_at.strftime('%Y-%m-%d %H:%M:%S'))}</p>")
-
-    # Grand summary
+    # Determine overall verdict
     if simulated and grand_simulated > 0 and grand_failed == 0:
-        overall_class = "grand-simulated"
-        overall_text  = (f"{grand_simulated} SIMULATED "
-                         "(syntax validated; no hardware executed)")
+        overall_key  = "sim"
+        overall_text = f"{grand_simulated} SIMULATED"
+        overall_sub  = "Syntax validated — no hardware executed"
     elif grand_failed == 0:
-        overall_class = "grand-pass"
-        overall_text  = "ALL PASSED"
+        overall_key  = "ok"
+        overall_text = "ALL PASSED"
+        overall_sub  = f"{grand_passed} test(s) passed"
     else:
-        overall_class = "grand-fail"
-        overall_text  = f"{grand_failed} FAILURE(S)"
-    lines.append('<div class="summary-box"><table>')
-    lines.append(f'<tr><td>Total tests</td><td><b>{grand_total}</b></td></tr>')
-    lines.append(f'<tr><td>Passed</td><td class="pass"><b>{grand_passed}</b></td></tr>')
-    lines.append(f'<tr><td>Failed / Error</td><td class="fail"><b>{grand_failed}</b></td></tr>')
-    if grand_simulated > 0:
-        lines.append(
-            f'<tr><td>Simulated</td>'
-            f'<td class="simulated"><b>{grand_simulated}</b></td></tr>'
-        )
-    lines.append(f'<tr><td>Overall</td><td class="{overall_class}">{overall_text}</td></tr>')
-    lines.append("</table></div>")
+        overall_key  = "bad"
+        overall_text = f"{grand_failed} FAILURE(S)"
+        overall_sub  = f"{grand_passed} passed, {grand_failed} failed"
 
-    if not modules:
-        lines.append("<p><em>No test reports found. Run the test suites first.</em></p>")
-        lines.append("</body></html>")
-        return "\n".join(lines)
+    ts = html.escape(generated_at.strftime("%Y-%m-%d %H:%M:%S"))
 
-    # Table of contents
-    lines.append("<h2>Modules</h2><ul>")
+    L: List[str] = []
+
+    # ------------------------------------------------------------------ HEAD
+    L.append("<!DOCTYPE html>")
+    L.append("<html lang='en'>")
+    L.append("<head>")
+    L.append('<meta charset="UTF-8">')
+    L.append('<meta name="viewport" content="width=device-width, initial-scale=1.0">')
+    L.append("<title>GM VIP Automation \u2013 Test Report</title>")
+    L.append(f"<style>{_CSS}</style>")
+    L.append("</head>")
+    L.append("<body>")
+    L.append('<div class="page-wrapper">')
+
+    # --------------------------------------------------------------- SIDEBAR
+    L.append('<nav class="sidebar" aria-label="Module navigation">')
+    L.append('<div class="sidebar-logo">')
+    L.append('<h1>GM VIP Automation</h1>')
+    report_kind = "Simulation Report" if simulated else "Consolidated Test Report"
+    L.append(f'<div class="tagline">{html.escape(report_kind)}</div>')
+    L.append('</div>')
+    L.append('<nav>')
+    L.append('<ul>')
+    L.append('<li><a href="#summary">&#x1F4CA; Summary</a></li>')
     for idx, mod in enumerate(modules):
         anchor = f"mod-{idx}"
         if mod.failed > 0:
-            status = "❌"
+            icon = "&#x274C;"
         elif mod.simulated > 0 and mod.passed == 0:
-            status = "🔬"
+            icon = "&#x1F52C;"
         elif mod.total > 0:
-            status = "✅"
+            icon = "&#x2705;"
         else:
-            status = "–"
-        lines.append(
-            f'<li><a href="#{anchor}">{status} {html.escape(mod.title)}</a>'
-            f'  ({mod.passed}/{mod.total} passed)</li>'
+            icon = "&ndash;"
+        L.append(
+            f'<li><a href="#{anchor}">'
+            f'<span class="status-icon">{icon}</span>'
+            f'{html.escape(mod.title)}</a></li>'
         )
-    lines.append("</ul>")
+    L.append('</ul>')
+    L.append('</nav>')
+    L.append(f'<div class="sidebar-footer">Generated {ts}</div>')
+    L.append('</nav>')
 
-    # Per-module details
+    # ----------------------------------------------------------- MAIN CONTENT
+    L.append('<main class="main-content">')
+
+    # Page header
+    L.append('<div class="page-header">')
+    L.append('<h1>GM VIP Automation \u2013 Test Report</h1>')
+    L.append(f'<div class="meta">Generated: {ts} &nbsp;|&nbsp; '
+             f'{len(modules)} module(s) scanned</div>')
+    L.append('</div>')
+
+    # Simulated banner
+    if simulated:
+        L.append('<div class="sim-banner" role="status">')
+        L.append('<div class="sim-icon">&#9888;</div>')
+        L.append('<div class="sim-text">')
+        L.append('<div class="sim-title">Simulated Report &mdash; No Hardware Executed</div>')
+        L.append(
+            '<div class="sim-desc">This report was generated by static analysis of '
+            'CAPL test-case definitions. Each test&nbsp;case has been verified to '
+            'exist in a <code>.can</code> source file but <strong>has not been '
+            'executed on physical hardware</strong>. Verdicts shown as '
+            '<em>SIMULATED</em> require a real ECU bench run for actual '
+            'pass/fail results. Entries shown as <em>ERROR</em> indicate '
+            'missing definitions that must be resolved before bench execution.</div>'
+        )
+        L.append('</div>')
+        L.append('</div>')
+
+    # ---------------------------------------------------- Summary anchor
+    L.append('<a id="summary"></a>')
+
+    # Stat cards
+    L.append('<div class="stats-grid">')
+    L.append(
+        f'<div class="stat-card total-card">'
+        f'<div class="stat-value">{grand_total}</div>'
+        f'<div class="stat-label">Total Tests</div></div>'
+    )
+    L.append(
+        f'<div class="stat-card pass-card">'
+        f'<div class="stat-value">{grand_passed}</div>'
+        f'<div class="stat-label">Passed</div></div>'
+    )
+    L.append(
+        f'<div class="stat-card fail-card">'
+        f'<div class="stat-value">{grand_failed}</div>'
+        f'<div class="stat-label">Failed / Error</div></div>'
+    )
+    if grand_simulated > 0 or simulated:
+        L.append(
+            f'<div class="stat-card sim-card">'
+            f'<div class="stat-value">{grand_simulated}</div>'
+            f'<div class="stat-label">Simulated</div></div>'
+        )
+    L.append(
+        f'<div class="stat-card overall-card {overall_key}">'
+        f'<div class="stat-value" style="font-size:1.15em">{html.escape(overall_text)}</div>'
+        f'<div class="stat-label">{html.escape(overall_sub)}</div></div>'
+    )
+    L.append('</div>')  # stats-grid
+
+    # Progress bar
+    if grand_total > 0:
+        L.append('<div class="progress-section">')
+        L.append('<div class="progress-label">Test result distribution</div>')
+        L.append(_progress_bar_html(grand_passed, grand_failed, grand_simulated, grand_total))
+        L.append('<div class="progress-legend">')
+        if grand_passed:
+            L.append(f'<span class="leg"><span class="dot dot-pass"></span>'
+                     f'{grand_passed} passed</span>')
+        if grand_simulated:
+            L.append(f'<span class="leg"><span class="dot dot-sim"></span>'
+                     f'{grand_simulated} simulated</span>')
+        if grand_failed:
+            L.append(f'<span class="leg"><span class="dot dot-fail"></span>'
+                     f'{grand_failed} failed/error</span>')
+        L.append('</div>')  # legend
+        L.append('</div>')  # progress-section
+
+    if not modules:
+        L.append("<p><em>No test reports found. Run the test suites first.</em></p>")
+        L.append('</main></div>')
+        L.append("</body></html>")
+        return "\n".join(L)
+
+    # -------------------------------------------------- Per-module cards
     for idx, mod in enumerate(modules):
         anchor = f"mod-{idx}"
-        section_class = "t32-section" if mod.is_t32 else ""
-        lines.append(f'<h2 id="{anchor}">{html.escape(mod.title)}</h2>')
-        if section_class:
-            lines.append(f'<div class="{section_class}">')
-        sim_note = (f', {mod.simulated} simulated' if mod.simulated > 0 else '')
-        lines.append(
-            f'<p>Source: <code>{html.escape(str(mod.source_file))}</code> &nbsp;|&nbsp; '
-            f'{mod.passed} passed, {mod.failed} failed{sim_note} / {mod.total} total</p>'
-        )
+
+        # Card class
+        card_cls = "module-card"
+        if mod.is_t32:
+            card_cls += " t32-card"
+        elif mod.simulated > 0 and mod.passed == 0:
+            card_cls += " sim-card"
+
+        L.append(f'<div class="{card_cls}" id="{anchor}">')
+
+        # Card header (clickable toggle)
+        L.append('<div class="module-card-header" role="button" '
+                 'aria-expanded="true" tabindex="0">')
+        L.append('<div class="module-title-row">')
+
+        if mod.failed > 0:
+            hdr_icon = "&#x274C;"
+        elif mod.simulated > 0 and mod.passed == 0:
+            hdr_icon = "&#x1F52C;"
+        elif mod.total > 0:
+            hdr_icon = "&#x2705;"
+        else:
+            hdr_icon = "&ndash;"
+
+        L.append(f'<span>{hdr_icon}</span>')
+        L.append(f'<span class="module-title">{html.escape(mod.title)}</span>')
+        L.append('</div>')  # module-title-row
+
+        # Badges
+        L.append('<div class="module-badges">')
+        if mod.is_t32:
+            L.append('<span class="badge badge-t32">T32</span>')
+        if mod.passed > 0:
+            L.append(f'<span class="badge badge-pass">{mod.passed} passed</span>')
+        if mod.failed > 0:
+            L.append(f'<span class="badge badge-fail">{mod.failed} failed</span>')
+        if mod.simulated > 0:
+            L.append(f'<span class="badge badge-sim">{mod.simulated} simulated</span>')
+        L.append(f'<span style="font-size:.8em;color:var(--muted)">'
+                 f'{mod.passed}/{mod.total}</span>')
+        L.append('<span class="toggle-icon">&#x25BE;</span>')
+        L.append('</div>')  # module-badges
+
+        L.append('</div>')  # module-card-header
+
+        # Card body
+        L.append('<div class="module-card-body">')
+        L.append(f'<div class="module-meta">Source: '
+                 f'<code>{html.escape(str(mod.source_file))}</code></div>')
+
+        if mod.is_t32:
+            L.append('<div class="t32-note">&#x1F50C; Trace32 diagnostic results '
+                     '&ndash; hardware connection and breakpoint checks</div>')
 
         if not mod.groups:
-            lines.append("<p><em>No test-case data found in this report.</em></p>")
+            L.append("<p><em>No test-case data found in this report.</em></p>")
         else:
             for group in mod.groups:
-                lines.append(f"<h3>{html.escape(group.title)}</h3>")
-                lines.append("<table>")
-                lines.append("<tr><th>Test Case</th><th>Result</th></tr>")
+                L.append(f'<div class="group-title">{html.escape(group.title)}</div>')
+                L.append("<table>")
+                L.append(
+                    "<tr>"
+                    "<th style='width:55%'>Test Case</th>"
+                    "<th style='width:25%'>Function Name</th>"
+                    "<th style='width:20%'>Result</th>"
+                    "</tr>"
+                )
                 for case in group.cases:
-                    display = html.escape(case.title or case.name)
-                    lines.append(f"<tr><td>{display}</td><td>{_result_cell(case.result)}</td></tr>")
+                    title_str = html.escape(case.title or case.name)
+                    name_str  = html.escape(case.name)
+                    L.append(
+                        f"<tr>"
+                        f"<td class='tc-title'>{title_str}</td>"
+                        f"<td class='tc-name'>{name_str}</td>"
+                        f"<td>{_result_badge(case.result)}</td>"
+                        f"</tr>"
+                    )
 
-                    # Expand failing steps inline (T32 detail)
+                    # Expand failing / errored steps inline
                     for step in case.steps:
                         if step.result in ("fail", "error"):
-                            desc = html.escape(step.description or step.name)
-                            lines.append(
-                                f'<tr style="background:#fff0f0"><td>&nbsp;&nbsp;↳ '
-                                f'<em>{html.escape(step.name)}</em>: {desc}</td>'
-                                f'<td>{_result_cell(step.result)}</td></tr>'
+                            sname = html.escape(step.name)
+                            sdesc = html.escape(step.description or step.name)
+                            L.append(
+                                f'<tr class="step-row">'
+                                f'<td colspan="2">'
+                                f'&nbsp;&nbsp;&#x21B3;&nbsp;'
+                                f'<span class="step-name">{sname}</span>'
+                                f'<span class="step-desc">{sdesc}</span>'
+                                f'</td>'
+                                f'<td>{_result_badge(step.result)}</td>'
+                                f'</tr>'
                             )
-                lines.append("</table>")
+                L.append("</table>")
 
-        if section_class:
-            lines.append("</div>")
+        L.append('</div>')  # module-card-body
+        L.append('</div>')  # module-card
 
-    lines.append("</body></html>")
-    return "\n".join(lines)
+    # Footer
+    L.append(
+        f'<div class="page-footer">'
+        f'GM VIP Automation &mdash; {html.escape(report_kind)} &mdash; '
+        f'Generated {ts}'
+        f'</div>'
+    )
+    L.append('</main>')
+    L.append('</div>')  # page-wrapper
+
+    L.append(f'<script>{_JS}</script>')
+    L.append("</body></html>")
+    return "\n".join(L)
 
 
 # ---------------------------------------------------------------------------
