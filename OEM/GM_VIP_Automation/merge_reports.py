@@ -90,6 +90,10 @@ class TestGroup:
     def failed(self) -> int:
         return sum(1 for c in self.cases if c.result in ("fail", "error"))
 
+    @property
+    def simulated(self) -> int:
+        return sum(1 for c in self.cases if c.result == "simulated")
+
 
 @dataclass
 class ReportModule:
@@ -110,6 +114,10 @@ class ReportModule:
     def failed(self) -> int:
         return sum(g.failed for g in self.groups)
 
+    @property
+    def simulated(self) -> int:
+        return sum(g.simulated for g in self.groups)
+
 
 # ---------------------------------------------------------------------------
 # XML parsing helpers
@@ -124,6 +132,8 @@ def _normalise_result(raw: Optional[str]) -> str:
         return "pass"
     if lower in ("fail", "failed", "error", "ng", "0", "false"):
         return "fail"
+    if lower == "simulated":
+        return "simulated"
     return lower or "unknown"
 
 
@@ -267,17 +277,36 @@ def parse_report_xml(filepath: Path, is_t32: bool = False) -> Optional[ReportMod
 # Report discovery
 # ---------------------------------------------------------------------------
 
-def discover_reports(root: Path) -> List[ReportModule]:
+def discover_reports(root: Path, xml_dir: Optional[Path] = None) -> List[ReportModule]:
     """
     Discover all report XML files under *root* and return parsed modules.
 
-    Search order (determines display order in the HTML):
+    If *xml_dir* is provided, only the files directly inside that directory
+    (non-recursive, top-level only) are scanned – useful for the
+    simulated-report workflow where only ``Test Reports/simulation/*.xml``
+    should be included (the ``junit/`` sub-directory is automatically
+    excluded).
+
+    Search order when *xml_dir* is None (determines display order in HTML):
       1. Test Reports/**/*.xml  (CANoe per-module reports)
       2. GM_VIP_RBS/report.xml  (all-tests roll-up)
       3. Trace32/report.xml     (T32 diagnostics, optional)
     """
     modules: List[ReportModule] = []
     seen: set = set()
+
+    if xml_dir is not None:
+        # Direct-directory mode: scan only the top level of the specified
+        # folder (non-recursive) so that sub-directories such as junit/ are
+        # not included.
+        for xml_path in sorted(xml_dir.glob("*.xml")):
+            if xml_path.resolve() in seen:
+                continue
+            seen.add(xml_path.resolve())
+            mod = parse_report_xml(xml_path)
+            if mod is not None:
+                modules.append(mod)
+        return modules
 
     # 1. CANoe per-module reports
     test_reports_dir = root / "Test Reports"
@@ -316,7 +345,8 @@ def discover_reports(root: Path) -> List[ReportModule]:
 # ---------------------------------------------------------------------------
 
 _CSS = """
-:root { --color-pass: #1a7d1a; --color-fail: #b30000; --color-brand: #003580; }
+:root { --color-pass: #1a7d1a; --color-fail: #b30000; --color-brand: #003580;
+        --color-sim: #856404; }
 body  { font-family: Arial, sans-serif; margin: 20px; color: #222; }
 h1    { color: var(--color-brand); }
 h2    { color: var(--color-brand); border-bottom: 2px solid var(--color-brand); padding-bottom: 4px; }
@@ -328,20 +358,26 @@ tr:nth-child(even) { background: #f5f5f5; }
 .pass  { color: var(--color-pass); font-weight: bold; }
 .fail  { color: var(--color-fail); font-weight: bold; }
 .error { color: var(--color-fail); font-weight: bold; }
-.unknown { color: #888; }
+.unknown   { color: #888; }
+.simulated { color: var(--color-sim); font-weight: bold; }
+.sim-banner { background: #fff3cd; border: 2px solid #e6b800; border-radius: 6px;
+              padding: 12px 24px; margin-bottom: 20px; font-size: 1.1em;
+              font-weight: bold; color: var(--color-sim); }
 .t32-section { background: #fffbe6; border-left: 4px solid #e6b800; padding: 4px 12px; }
 .summary-box { display: inline-block; background: #eef4ff; border: 1px solid var(--color-brand);
                border-radius: 6px; padding: 12px 24px; margin-bottom: 20px; }
 .summary-box td { border: none; padding: 3px 16px; }
-.grand-pass  { color: var(--color-pass); font-size: 1.2em; font-weight: bold; }
-.grand-fail  { color: var(--color-fail); font-size: 1.2em; font-weight: bold; }
+.grand-pass      { color: var(--color-pass); font-size: 1.2em; font-weight: bold; }
+.grand-fail      { color: var(--color-fail); font-size: 1.2em; font-weight: bold; }
+.grand-simulated { color: var(--color-sim);  font-size: 1.2em; font-weight: bold; }
 """
 
 _RESULT_CLASS = {
-    "pass":    "pass",
-    "fail":    "fail",
-    "error":   "error",
-    "unknown": "unknown",
+    "pass":      "pass",
+    "fail":      "fail",
+    "error":     "error",
+    "unknown":   "unknown",
+    "simulated": "simulated",
 }
 
 
@@ -350,10 +386,12 @@ def _result_cell(result: str) -> str:
     return f'<span class="{css}">{html.escape(result.upper())}</span>'
 
 
-def generate_html(modules: List[ReportModule], generated_at: datetime.datetime) -> str:
-    grand_total  = sum(m.total  for m in modules)
-    grand_passed = sum(m.passed for m in modules)
-    grand_failed = sum(m.failed for m in modules)
+def generate_html(modules: List[ReportModule], generated_at: datetime.datetime,
+                  simulated: bool = False) -> str:
+    grand_total     = sum(m.total     for m in modules)
+    grand_passed    = sum(m.passed    for m in modules)
+    grand_failed    = sum(m.failed    for m in modules)
+    grand_simulated = sum(m.simulated for m in modules)
 
     lines: List[str] = []
     lines.append("<!DOCTYPE html>")
@@ -363,15 +401,33 @@ def generate_html(modules: List[ReportModule], generated_at: datetime.datetime) 
     lines.append(f"<style>{_CSS}</style>")
     lines.append("</head><body>")
     lines.append("<h1>GM VIP Automation – Consolidated Test Report</h1>")
+    if simulated:
+        lines.append(
+            '<div class="sim-banner">&#9888; SIMULATED REPORT – Syntax validated only. '
+            'Actual pass/fail results require physical hardware execution.</div>'
+        )
     lines.append(f"<p>Generated: {html.escape(generated_at.strftime('%Y-%m-%d %H:%M:%S'))}</p>")
 
     # Grand summary
-    overall_class = "grand-pass" if grand_failed == 0 else "grand-fail"
+    if simulated and grand_simulated > 0 and grand_failed == 0:
+        overall_class = "grand-simulated"
+        overall_text  = (f"{grand_simulated} SIMULATED "
+                         "(syntax validated; no hardware executed)")
+    elif grand_failed == 0:
+        overall_class = "grand-pass"
+        overall_text  = "ALL PASSED"
+    else:
+        overall_class = "grand-fail"
+        overall_text  = f"{grand_failed} FAILURE(S)"
     lines.append('<div class="summary-box"><table>')
     lines.append(f'<tr><td>Total tests</td><td><b>{grand_total}</b></td></tr>')
     lines.append(f'<tr><td>Passed</td><td class="pass"><b>{grand_passed}</b></td></tr>')
     lines.append(f'<tr><td>Failed / Error</td><td class="fail"><b>{grand_failed}</b></td></tr>')
-    overall_text = "ALL PASSED" if grand_failed == 0 else f"{grand_failed} FAILURE(S)"
+    if grand_simulated > 0:
+        lines.append(
+            f'<tr><td>Simulated</td>'
+            f'<td class="simulated"><b>{grand_simulated}</b></td></tr>'
+        )
     lines.append(f'<tr><td>Overall</td><td class="{overall_class}">{overall_text}</td></tr>')
     lines.append("</table></div>")
 
@@ -384,7 +440,14 @@ def generate_html(modules: List[ReportModule], generated_at: datetime.datetime) 
     lines.append("<h2>Modules</h2><ul>")
     for idx, mod in enumerate(modules):
         anchor = f"mod-{idx}"
-        status = "✅" if mod.failed == 0 and mod.total > 0 else ("❌" if mod.failed > 0 else "–")
+        if mod.failed > 0:
+            status = "❌"
+        elif mod.simulated > 0 and mod.passed == 0:
+            status = "🔬"
+        elif mod.total > 0:
+            status = "✅"
+        else:
+            status = "–"
         lines.append(
             f'<li><a href="#{anchor}">{status} {html.escape(mod.title)}</a>'
             f'  ({mod.passed}/{mod.total} passed)</li>'
@@ -395,13 +458,13 @@ def generate_html(modules: List[ReportModule], generated_at: datetime.datetime) 
     for idx, mod in enumerate(modules):
         anchor = f"mod-{idx}"
         section_class = "t32-section" if mod.is_t32 else ""
-        rel_path = mod.source_file.name
         lines.append(f'<h2 id="{anchor}">{html.escape(mod.title)}</h2>')
         if section_class:
             lines.append(f'<div class="{section_class}">')
+        sim_note = (f', {mod.simulated} simulated' if mod.simulated > 0 else '')
         lines.append(
             f'<p>Source: <code>{html.escape(str(mod.source_file))}</code> &nbsp;|&nbsp; '
-            f'{mod.passed} passed, {mod.failed} failed / {mod.total} total</p>'
+            f'{mod.passed} passed, {mod.failed} failed{sim_note} / {mod.total} total</p>'
         )
 
         if not mod.groups:
@@ -456,6 +519,28 @@ def main() -> int:
             "Default: <root>/Test Reports/consolidated_report.html"
         ),
     )
+    parser.add_argument(
+        "--simulated",
+        action="store_true",
+        default=False,
+        help=(
+            "Mark the report as a simulation run. "
+            "Adds a prominent SIMULATED banner and adjusts the summary to "
+            "show simulated counts instead of pass/fail. "
+            "Use together with --xml-dir to scope the report to simulation XMLs only."
+        ),
+    )
+    parser.add_argument(
+        "--xml-dir",
+        type=Path,
+        default=None,
+        help=(
+            "Scan only this directory (recursively) for XML report files "
+            "instead of the normal discovery logic under <root>/Test Reports. "
+            "Useful for generating a simulation-only report from "
+            "'Test Reports/simulation/'."
+        ),
+    )
     args = parser.parse_args()
     root: Path = args.root.resolve()
 
@@ -463,22 +548,31 @@ def main() -> int:
         print(f"ERROR: root directory not found: {root}", file=sys.stderr)
         return 1
 
+    xml_dir: Optional[Path] = args.xml_dir.resolve() if args.xml_dir else None
+
     out_path: Path = args.out or (root / "Test Reports" / "consolidated_report.html")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"Scanning for reports under: {root}")
-    modules = discover_reports(root)
+    scan_label = str(xml_dir) if xml_dir else str(root)
+    print(f"Scanning for reports under: {scan_label}")
+    modules = discover_reports(root, xml_dir=xml_dir)
 
     if not modules:
         print("  No report XML files found. Run the test suites first.", file=sys.stderr)
 
     for mod in modules:
-        status = "OK" if mod.failed == 0 else "FAIL"
+        sim_tag = " [SIM]" if mod.simulated > 0 and mod.passed == 0 else ""
+        status  = "OK" if mod.failed == 0 else "FAIL"
         t32_tag = " [T32]" if mod.is_t32 else ""
-        print(f"  [{status}]{t32_tag} {mod.source_file.relative_to(root)}"
+        try:
+            rel = mod.source_file.relative_to(root)
+        except ValueError:
+            rel = mod.source_file
+        print(f"  [{status}]{t32_tag}{sim_tag} {rel}"
               f"  –  {mod.passed}/{mod.total} passed")
 
-    html_content = generate_html(modules, datetime.datetime.now())
+    html_content = generate_html(modules, datetime.datetime.now(),
+                                 simulated=args.simulated)
 
     try:
         out_path.write_text(html_content, encoding="utf-8")
