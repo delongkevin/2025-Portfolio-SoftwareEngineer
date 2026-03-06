@@ -78,6 +78,7 @@ pipeline {
         REL_REPORT_DIR   = 'Test Reports'
         REL_BVT_T32      = 'misc\\bvt_t32_check.cmm'
         REL_FIRMWARE     = 'firmware\\firmware.hex'
+        REL_SIMULATE     = 'simulate_tests.py'
 
         // Non-path constants
         DOTNET_CONFIG           = 'Release'
@@ -120,6 +121,14 @@ pipeline {
             name:         'TEST_SUITE',
             choices:      ['Sanity', 'Full', 'Wakeup', 'OS', 'FPU', 'BINVDM'],
             description:  'Test suite to execute.  Sanity is the default smoke run.'
+        )
+        booleanParam(
+            name:         'SIMULATE',
+            defaultValue: true,
+            description:  'Generate a simulated test report from CAPL definitions. ' +
+                          'Runs on windows-agent only – no bench hardware required. ' +
+                          'Confirms all testcase definitions resolve before a bench run ' +
+                          'and provides stakeholders a pre-flight report.'
         )
     }
 
@@ -196,9 +205,11 @@ $found.FullName
                     // 2. Derive full paths from AUTO_ROOT + fixed sub-paths
                     env.REPORT_DIR     = "${env.AUTO_ROOT}\\${env.REL_REPORT_DIR}"
                     env.MERGED_REPORT  = "${env.AUTO_ROOT}\\${env.REL_REPORT_DIR}\\merged_report.html"
+                    env.SIM_REPORT_DIR = "${env.AUTO_ROOT}\\${env.REL_REPORT_DIR}\\simulation"
                     env.BVT_T32_SCRIPT = "${env.AUTO_ROOT}\\${env.REL_BVT_T32}"
                     env.CANOE_CFG_FULL = "${env.AUTO_ROOT}\\${env.REL_CANOE_CFG}"
                     echo "REPORT_DIR        : ${env.REPORT_DIR}"
+                    echo "SIM_REPORT_DIR    : ${env.SIM_REPORT_DIR}"
                     echo "CANOE_CFG_FULL    : ${env.CANOE_CFG_FULL}"
 
                     // 3. Find CANoe64.exe via Windows PATH
@@ -266,68 +277,175 @@ $found.FullName
         }
 
         // ---------------------------------------------------------------------
-        stage('CAPL Validation') {
+        stage('Validate and Build') {
         // ---------------------------------------------------------------------
-        // Fast-fail gate before any bench time is consumed.
-        // validate_capl.py checks:
-        //   1. Bracket balance in every .can / .cin file
-        //   2. Every #include path resolves on disk
-        //   3. Every testcase/testfunction declaration has a paired opening brace
-        //   4. Every XML <capltestcase> name matches a .can testcase definition
-        // Exit 1 -> stage fails and the pipeline aborts.
+        // Run CAPL Validation and Build .NET DLL in parallel to reduce total
+        // pipeline time.  Both stages are independent: validation only reads
+        // CAPL/XML source files; the DLL build only touches the dotnetT32dll
+        // project tree.  A failure in either branch fails the whole stage.
         // ---------------------------------------------------------------------
+            parallel {
+
+                // -----------------------------------------------------------------
+                stage('CAPL Validation') {
+                // -----------------------------------------------------------------
+                // Fast-fail gate before any bench time is consumed.
+                // validate_capl.py checks:
+                //   1. Bracket balance in every .can / .cin file
+                //   2. Every #include path resolves on disk
+                //   3. Every testcase/testfunction declaration has a paired opening brace
+                //   4. Every XML <capltestcase> name matches a .can testcase definition
+                // Exit 1 -> stage fails and the pipeline aborts.
+                // -----------------------------------------------------------------
+                    steps {
+                        bat "python \"%AUTO_ROOT%\\%REL_VALIDATE%\" --root \"%AUTO_ROOT%\""
+                    }
+                    post {
+                        failure {
+                            echo 'CAPL validation failed - fix reported issues before retrying.'
+                        }
+                    }
+                }
+
+                // -----------------------------------------------------------------
+                stage('Build .NET DLL') {
+                // -----------------------------------------------------------------
+                // Compiles dotnetT32dll.csproj (net47, x64) - the CAPL #pragma netlibrary
+                // bridge to the Lauterbach T32 API.
+                //
+                // CANoe64.exe must be in PATH.  CANOE_EXEC_PATH (NETDev folder) is
+                // derived from the where-resolved exe path in Discover Paths.
+                // No CANoe path is written in this file.
+                //
+                // Skips gracefully (UNSTABLE) when CANoe is not in PATH.
+                // -----------------------------------------------------------------
+                    steps {
+                        script {
+                            if (!env.CANOE_EXEC_PATH) {
+                                echo "Build .NET DLL skipped: CANoe64.exe not in PATH. " +
+                                     "Add the CANoe Exec64 folder to PATH on this agent."
+                                currentBuild.result = 'UNSTABLE'
+                                return
+                            }
+                            def threadingDll = "${env.CANOE_EXEC_PATH}\\v40\\Vector.CANoe.Threading.dll"
+                            def dllPresent = bat(
+                                script: "if exist \"${threadingDll}\" (exit 0) else (exit 1)",
+                                returnStatus: true
+                            ) == 0
+                            if (dllPresent) {
+                                bat """
+                                    powershell -ExecutionPolicy Bypass ^
+                                        -File "%AUTO_ROOT%\\%REL_DOTNET_PS1%" ^
+                                        -Configuration %DOTNET_CONFIG% ^
+                                        -CANoeExecPath "%CANOE_EXEC_PATH%"
+                                """
+                            } else {
+                                echo "WARNING: CANoe NETDev assemblies not found at ${env.CANOE_EXEC_PATH}."
+                                currentBuild.result = 'UNSTABLE'
+                            }
+                        }
+                    }
+                    post {
+                        success {
+                            archiveArtifacts(
+                                artifacts: '**\\dotnetT32dll\\bin\\**\\*.dll', allowEmptyArchive: true
+                            )
+                        }
+                    }
+                }
+
+            } // end parallel
+        }
+
+        // ---------------------------------------------------------------------
+        stage('Simulate Test Cases') {
+        // ---------------------------------------------------------------------
+        // Runs on windows-agent (no bench hardware required).
+        //
+        // simulate_tests.py:
+        //   1. Discovers every testcase definition in the .can source files.
+        //   2. Reads every Testsuite_Environment XML for <capltestcase> refs.
+        //   3. Writes per-suite CANoe-schema XMLs to Test Reports\simulation\
+        //      (verdict="simulated" when found, verdict="error" when not found).
+        //   4. Writes JUnit XMLs to Test Reports\simulation\junit\ for the
+        //      Jenkins test-results panel.
+        //
+        // Exit 0  – all refs resolved (all testcases found in .can files).
+        // Exit 1  – one or more refs unresolved (logged as UNSTABLE so the
+        //           pipeline can still proceed to Generate Simulation Report).
+        // ---------------------------------------------------------------------
+            when { expression { params.SIMULATE == true } }
             steps {
-                bat "python \"%AUTO_ROOT%\\%REL_VALIDATE%\" --root \"%AUTO_ROOT%\""
+                script {
+                    def rc = bat(
+                        script: "python \"%AUTO_ROOT%\\%REL_SIMULATE%\" --root \"%AUTO_ROOT%\"",
+                        returnStatus: true
+                    )
+                    if (rc != 0) {
+                        echo "Simulation WARNING: ${rc} testcase ref(s) could not be " +
+                             "resolved to a .can definition. " +
+                             "See output above for details. " +
+                             "Marking build UNSTABLE so the report is still generated."
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
             }
             post {
-                failure {
-                    echo 'CAPL validation failed - fix reported issues before retrying.'
+                always {
+                    junit(
+                        testResults:       '**\\Test Reports\\simulation\\junit\\*.xml',
+                        allowEmptyResults: true,
+                        keepLongStdio:     true
+                    )
                 }
             }
         }
 
         // ---------------------------------------------------------------------
-        stage('Build .NET DLL') {
+        stage('Generate Simulation Report') {
         // ---------------------------------------------------------------------
-        // Compiles dotnetT32dll.csproj (net47, x64) - the CAPL #pragma netlibrary
-        // bridge to the Lauterbach T32 API.
+        // Merges all per-suite simulated CANoe XMLs from Test Reports\simulation\
+        // into a single HTML report with a prominent SIMULATED banner.
         //
-        // CANoe64.exe must be in PATH.  CANOE_EXEC_PATH (NETDev folder) is
-        // derived from the where-resolved exe path in Discover Paths.
-        // No CANoe path is written in this file.
+        // The report is published via the HTML Publisher plugin and archived
+        // so stakeholders can review it immediately without bench hardware.
         //
-        // Skips gracefully (UNSTABLE) when CANoe is not in PATH.
+        // merge_reports.py exits 1 when any testcase has verdict="error"
+        // (i.e. an unresolved ref), which marks the build UNSTABLE.
         // ---------------------------------------------------------------------
+            when { expression { params.SIMULATE == true } }
             steps {
                 script {
-                    if (!env.CANOE_EXEC_PATH) {
-                        echo "Build .NET DLL skipped: CANoe64.exe not in PATH. " +
-                             "Add the CANoe Exec64 folder to PATH on this agent."
-                        currentBuild.result = 'UNSTABLE'
-                        return
-                    }
-                    def threadingDll = "${env.CANOE_EXEC_PATH}\\v40\\Vector.CANoe.Threading.dll"
-                    def dllPresent = bat(
-                        script: "if exist \"${threadingDll}\" (exit 0) else (exit 1)",
+                    def rc = bat(
+                        script: """
+                            python "%AUTO_ROOT%\\%REL_MERGE%" ^
+                                   --root    "%AUTO_ROOT%" ^
+                                   --simulated ^
+                                   --xml-dir "%SIM_REPORT_DIR%" ^
+                                   --out     "%SIM_REPORT_DIR%\\simulation_report.html"
+                        """,
                         returnStatus: true
-                    ) == 0
-                    if (dllPresent) {
-                        bat """
-                            powershell -ExecutionPolicy Bypass ^
-                                -File "%AUTO_ROOT%\\%REL_DOTNET_PS1%" ^
-                                -Configuration %DOTNET_CONFIG% ^
-                                -CANoeExecPath "%CANOE_EXEC_PATH%"
-                        """
-                    } else {
-                        echo "WARNING: CANoe NETDev assemblies not found at ${env.CANOE_EXEC_PATH}."
+                    )
+                    if (rc != 0) {
+                        echo "Simulation report contains errors (unresolved testcase refs)."
                         currentBuild.result = 'UNSTABLE'
                     }
                 }
             }
             post {
-                success {
+                always {
+                    publishHTML(target: [
+                        allowMissing:          true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll:               true,
+                        reportDir:             env.SIM_REPORT_DIR,
+                        reportFiles:           'simulation_report.html',
+                        reportName:            'GM VIP Simulation Report',
+                        reportTitles:          'GM VIP Simulated Test Results'
+                    ])
                     archiveArtifacts(
-                        artifacts: '**\\dotnetT32dll\\bin\\**\\*.dll', allowEmptyArchive: true
+                        artifacts:         '**\\Test Reports\\simulation\\*',
+                        allowEmptyArchive: true
                     )
                 }
             }
@@ -351,6 +469,7 @@ $found.FullName
                         env.AUTO_ROOT      = env.BENCH_STAGING_DIR
                         env.REPORT_DIR     = "${env.BENCH_STAGING_DIR}\\${env.REL_REPORT_DIR}"
                         env.MERGED_REPORT  = "${env.BENCH_STAGING_DIR}\\${env.REL_REPORT_DIR}\\merged_report.html"
+                        env.SIM_REPORT_DIR = "${env.BENCH_STAGING_DIR}\\${env.REL_REPORT_DIR}\\simulation"
                         env.CANOE_CFG_FULL = "${env.BENCH_STAGING_DIR}\\${env.REL_CANOE_CFG}"
                         echo "AUTO_ROOT updated to staging: ${env.AUTO_ROOT}"
                     } else {
