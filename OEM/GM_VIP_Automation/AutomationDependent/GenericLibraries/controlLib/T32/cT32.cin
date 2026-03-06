@@ -291,12 +291,15 @@ long lFctn_G_T32_GET_STATE(char aMsgInfo[])
 
 
 /*! long lFctn_G_T32_RUN_CMM_CORE(char aAddress[], char aCore[], long aTimeOut, char aNumberOfParameters[])
-*  \brief Function that start an external application and check its exit code.
+*  \brief Runs a CMM script via T32_API.exe using TestWaitForSyscall and checks the exit code.
+*         The script path is resolved relative to Generic_Tools\Lauterbach\TC4_Aurix\.
+*         T32_API.exe is resolved from AutomationDependent\GenericLibraries\.
 *
-*  \param[in] aAddress - The working directory for the external application. The directory name may include spaces.
-*  \param[in] aCore - The specific core.
-*  \param[in] aTimeOut - The maximum wait time at the end of which the application is expected to exit.
-*  \param[in] aNumberOfParameters - The parameters that should follow
+*  \param[in] aAddress - CMM script filename or sub-path relative to Generic_Tools\Lauterbach\TC4_Aurix\
+*                        (e.g. "StartUp_Scripts\\startup.cmm" or "Cmm_Commands\\cmd.cmm").
+*  \param[in] aCore - The specific core (reserved for future use).
+*  \param[in] aTimeOut - The maximum wait time in ms at the end of which the application is expected to exit.
+*  \param[in] aNumberOfParameters - Additional parameters to pass to the CMM script (use "" for none).
 *
 *  \return  1: The application exited with the expected exit code.
 *  \return  0: The application did not exit within the wait time.
@@ -308,12 +311,16 @@ long lFctn_G_T32_GET_STATE(char aMsgInfo[])
 * Date(DD.MM.YY)        Author          Change info                                                          
 *   
 * 09.09.20              CrJu         Refactoring the code.
+* 06.03.26              Copilot      Fixed T32_API.exe path: now resolved from GenericLibraries (was incorrectly
+*                                    placed inside Generic_Tools\Lauterbach\TC4_Aurix\). CMM script path now
+*                                    correctly built via vFctn_T32_CommandCreate_StartUpScripts separately.
 */
 long lFctn_G_T32_RUN_CMM_CORE(char aAddress[], char aCore[], long aTimeOut, char aNumberOfParameters[])
 {
   byte bDebugFlag;
   long lResult;
   char chCommand[1024];
+  char chCmmPath[1024];
   char chPassText[250];
   char chFailText[250];
   
@@ -321,10 +328,15 @@ long lFctn_G_T32_RUN_CMM_CORE(char aAddress[], char aCore[], long aTimeOut, char
   
   writeDbgLevel (DebugFuncCalls , "Function G_T32_RUN_CMM_CORE() entered.");
   
-  // Action Text
-  vFctn_T32_CommandCreate_StartUpScripts(chCommand,"T32_API.exe \"DO "); //create StartUpScript folder structure path
-   
-  strncat(chCommand, aAddress, 1000);
+  // Build the absolute path to T32_API.exe in GenericLibraries and start the DO command
+  vFctn_T32_ConfigPathCreate(chCommand);
+  strncat(chCommand, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe \"DO ", 1024);
+
+  // Build the full absolute path to the CMM startup script
+  vFctn_T32_CommandCreate_StartUpScripts(chCmmPath, aAddress);
+
+  // Append the CMM script path and any additional parameters
+  strncat(chCommand, chCmmPath, 1000);
   strncat(chCommand, " ", 1000);
   strncat(chCommand, aNumberOfParameters, 1000);
   
