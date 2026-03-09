@@ -79,6 +79,7 @@ pipeline {
         REL_BVT_T32      = 'misc\\bvt_t32_check.cmm'
         REL_FIRMWARE     = 'firmware\\firmware.hex'
         REL_SIMULATE     = 'simulate_tests.py'
+        REL_EMAIL        = 'email_report.py'
 
         // Non-path constants
         DOTNET_CONFIG           = 'Release'
@@ -732,15 +733,45 @@ except Exception as e:
         }
         failure {
             echo "Pipeline FAILED. Review stage logs for details."
-            // Uncomment and configure emailext for failure notifications:
+            // Optional: also send a plain-text alert via emailext on failure.
+            // Requires the Email Extension plugin and SMTP configured in
+            // Manage Jenkins -> Configure System -> E-mail Notification.
+            // Uncomment and set the recipient address to enable:
             // emailext(
             //     subject: "FAILED: GM VIP - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            //     body:    "Build URL: ${env.BUILD_URL}",
+            //     body:    "Build URL: ${env.BUILD_URL}\n\nReview the GM VIP Test Report for details.",
             //     to:      "your-team@example.com"
             // )
         }
         always {
             echo "Build: ${env.JOB_NAME} #${env.BUILD_NUMBER} | Result: ${currentBuild.currentResult}"
+            // -----------------------------------------------------------------
+            // Send the merged HTML report by e-mail.
+            //
+            // Requires these environment variables on the Jenkins agent node
+            // (Manage Jenkins -> Nodes -> <node> -> Environment variables):
+            //   EMAIL_SMTP_HOST      – SMTP server hostname
+            //   EMAIL_SMTP_PORT      – SMTP port (usually 587)
+            //   EMAIL_SMTP_USER      – sender address / SMTP username
+            //   EMAIL_USE_TLS        – true (STARTTLS) or false
+            //   EMAIL_RECIPIENTS     – comma-separated recipient list
+            //
+            // Store the SMTP password as a Jenkins "Secret text" credential
+            // (e.g. with ID "gm-vip-smtp-pass") so it is never logged.
+            //
+            // Replace 'gm-vip-smtp-pass' below with your credential ID and
+            // remove the surrounding /* ... */ block comment to activate.
+            /* withCredentials([string(credentialsId: 'gm-vip-smtp-pass',
+                                       variable:      'EMAIL_SMTP_PASS')]) {
+                script {
+                    def reportArg = (env.MERGED_REPORT?.trim())
+                        ? "--report \"${env.MERGED_REPORT}\""
+                        : ""
+                    bat """
+                        python "%AUTO_ROOT%\\%REL_EMAIL%" ${reportArg}
+                    """
+                }
+            } */
         }
     }
 }

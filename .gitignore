@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 *.pyo
 OEM/GM_VIP_Automation/Test Reports/simulation/
+
+# Local e-mail configuration – never commit real credentials
+OEM/GM_VIP_Automation/.env
