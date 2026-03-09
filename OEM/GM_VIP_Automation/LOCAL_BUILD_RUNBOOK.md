@@ -207,7 +207,7 @@ python merge_reports.py --root . --out "Test Reports\merged_report.html"
 Open the output file in any web browser:
 
 ```powershell
-start "Test Reports\merged_report.html"
+start "" "Test Reports\merged_report.html"
 ```
 
 The report includes:
@@ -564,7 +564,25 @@ python -m pip install -r requirements.txt
 * Verify `allowMissing: true` is set in `publishHTML` (already set in the
   Jenkinsfile) so the stage does not fail when no bench run occurred.
 * Check **Manage Jenkins → Configure System → Content Security Policy** if
-  the report opens but has no styling – relax the policy for the report path:
+  the report opens but has no styling.  The HTML Publisher plugin serves
+  reports as static files; relax **only `style-src`** to allow the inline
+  CSS written by `merge_reports.py`.  Do **not** add `script-src 'unsafe-inline'`
+  globally – that would weaken Jenkins' XSS protections across the entire
+  instance.  A safe starting point that enables inline styles without
+  loosening script execution:
   ```
-  sandbox; default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';
+  sandbox allow-same-origin; default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline';
+  ```
+  Apply the setting with the Jenkins Script Console
+  (**Manage Jenkins → Script Console**):
+  ```groovy
+  System.setProperty(
+      "hudson.model.DirectoryBrowserSupport.CSP",
+      "sandbox allow-same-origin; default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline';"
+  )
+  ```
+  This setting resets on Jenkins restart; make it permanent by adding a
+  `JAVA_OPTS` line to your Jenkins start-up configuration:
+  ```
+  -Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-same-origin; default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline';"
   ```

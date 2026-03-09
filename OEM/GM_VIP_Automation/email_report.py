@@ -219,10 +219,8 @@ def send_report(
 
     recipients = _recipients_from_env()
     if extra_recipients:
-        for r in extra_recipients:
-            if r not in recipients:
-                recipients.append(r)
-
+        # --recipients on the CLI replaces EMAIL_RECIPIENTS entirely.
+        recipients = extra_recipients
     if not recipients:
         print(
             "ERROR: No recipients configured.  "
