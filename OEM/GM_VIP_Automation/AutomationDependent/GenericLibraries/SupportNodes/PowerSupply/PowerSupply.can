@@ -867,7 +867,7 @@ vFctn_PrintVoltageToPanel(byte aArrayToPrint[], dword aNoElementsRead)
     for(iIdx = 0; iIdx < 4; iIdx++)
       chVoltStr[iIdx] = aArrayToPrint[iIdx];
     chVoltStr[4] = 0;
-    lVoltRaw = atoi(chVoltStr);
+    lVoltRaw = (long)_atoi64(chVoltStr);
     @sysvar::PowGeneral_Variables::OutputVal = (float)lVoltRaw / 100.0;
     write("OutputVal = %0.2f", @sysvar::PowGeneral_Variables::OutputVal);
   }
@@ -910,7 +910,7 @@ vFctn_PrintCurrentToPanel(byte aArrayToPrint[], dword aNoElementsRead)
     for(iIdx = 0; iIdx < 4; iIdx++)
       chCurrStr[iIdx] = aArrayToPrint[iIdx + 4];
     chCurrStr[4] = 0;
-    lCurrRaw = atoi(chCurrStr);
+    lCurrRaw = (long)_atoi64(chCurrStr);
     @sysvar::PowGeneral_Variables::OutputValCurrent = (float)lCurrRaw / 1000.0;
     write("OutputValCurrent = %0.3f", @sysvar::PowGeneral_Variables::OutputValCurrent);
   }
