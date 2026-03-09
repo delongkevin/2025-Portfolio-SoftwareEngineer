@@ -153,7 +153,12 @@ byte bFctn_POWSetVoltage(long lVoltage)
   dVoltageToSet = (float)(lVoltage); //transform the mV to V(with floating point)
   dVoltageToSet = dVoltageToSet / 1000;
   
-  snprintf(chValueToSet, elCount(chValueToSet), "%f", dVoltageToSet);
+  // BK Precision 1687b: voltage is sent as a 3-digit integer in units of 0.1 V
+  // e.g. 12.0 V (lVoltage = 12000 mV) -> lVoltage / 100 = 120 -> "VOLT120\r"
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+    snprintf(chValueToSet, elCount(chValueToSet), "%03d", (int)(lVoltage / 100));
+  else
+    snprintf(chValueToSet, elCount(chValueToSet), "%f", dVoltageToSet);
   bResult = bFctn_POW_SetCommand(eSetVoltage, chValueToSet, chMappedResponseInfo);
   
   if(bResult)
@@ -211,7 +216,12 @@ byte bFctn_POWSetCurrent(int iCurrent)
   dCurrentToSet = (float)(iCurrent); //transform the mV to V(with floating point)
   dCurrentToSet = dCurrentToSet / 1000;
   
-  snprintf(chValueToSet, elCount(chValueToSet), "%f", dCurrentToSet);
+  // BK Precision 1687b: current is sent as a 3-digit integer in units of 0.1 A
+  // e.g. 2.5 A (iCurrent = 2500 mA) -> iCurrent / 100 = 25 -> "CURR025\r"
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+    snprintf(chValueToSet, elCount(chValueToSet), "%03d", (int)(iCurrent / 100));
+  else
+    snprintf(chValueToSet, elCount(chValueToSet), "%f", dCurrentToSet);
   bResult = bFctn_POW_SetCommand(eSetCurrent, chValueToSet, chMappedResponseInfo);
   
   if(bResult)
@@ -752,9 +762,15 @@ byte bFctn_POW_SetCommand(enum cc_eCommandToSend aCommandToSend, char aValue[], 
 {
   byte bDebugFlag;
   char chCMD[50]; 
-  char chTerminates[4] = "\r\n";
+  char chTerminates[4];
   
   bDebugFlag = NotOk;
+  
+  // BK Precision 1687b uses CR (\r) only as command terminator; all others use CR+LF
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+    strncpy(chTerminates, "\r", elCount(chTerminates));
+  else
+    strncpy(chTerminates, "\r\n", elCount(chTerminates));
   
   writeDbgLevel (DebugFuncCalls, "Function bFctn_POW_SetCommand called.");
   if((byte)DebugFuncParam & bDebugFlag)
@@ -879,6 +895,9 @@ byte bFctn_POW_GetPSCommands(enum cc_ePStype aPStype, char aMappedResponseInfo[]
       break;
     case eSCPI :
       memcpy(cv_stGenericCommands, cc_stPS_SCPI);
+      break;
+    case eBKPrecision:
+      memcpy(cv_stGenericCommands, cc_stPS_BKPrecision);
       break;
     default :
       snprintf(aMappedResponseInfo, elCount(aMappedResponseInfo), "Commands for power supply are not defined %d", aPStype);

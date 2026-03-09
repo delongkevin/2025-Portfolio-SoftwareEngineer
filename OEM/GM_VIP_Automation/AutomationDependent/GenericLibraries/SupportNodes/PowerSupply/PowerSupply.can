@@ -27,6 +27,9 @@ variables
   int iSendConfirmed = 0;
   int iPanelActive = 0;
   
+  // BK Precision 1687b output state tracking (0 = OFF, 1 = ON)
+  byte bBKPrecisionOutputState = 0;
+  
   dword dwElementsRead = 0;
   long lUpdateValue;
   int iFlag = 0;
@@ -165,12 +168,28 @@ on timer TimerForSetCurrent
 on timer TimerForPowerOff
 {
   bFctn_POWSetOFF();
+  // Track output state for BK Precision 1687b LED feedback
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+  {
+    bBKPrecisionOutputState = 0;
+    @sysvar::PowGeneral_Variables::GreenLed = NotOk;
+    @sysvar::PowGeneral_Variables::RedLed = Ok;
+    iSourceOff = 1;
+  }
   setTimer(TimerForStatus, 500);
 }
 
 on timer TimerForPowerOn
 {
   bFctn_POWSetON();
+  // Track output state for BK Precision 1687b LED feedback
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+  {
+    bBKPrecisionOutputState = 1;
+    @sysvar::PowGeneral_Variables::GreenLed = Ok;
+    @sysvar::PowGeneral_Variables::RedLed = NotOk;
+    iSourceOff = 0;
+  }
   setTimer(TimerForStatus, 500);
 }
 
@@ -598,6 +617,57 @@ RS232OnReceive(dword port, byte buffer[], dword number)
       //if RS232 Power Supply is used
       if(cv_bPOWType != cc_bTypeSCPI)
       {
+        if(cv_bPOWType == cc_bTypeBKPrecision)
+        {
+          // BK Precision 1687b response handling
+          // All responses are terminated with CR (\r = 0x0D).
+          // Setter commands (SOUT0, SOUT1, VOLT, CURR) respond with "OK\r".
+          // GETD responds with 9 bytes of data + CR: VVVVAAAAOM
+          //   VVVV = actual voltage (units of 10 mV), AAAA = actual current (units of 1 mA)
+          //   M    = mode byte ('0' = CV, '1' = CC)
+          // GETS responds with set-value data + CR.
+
+          //Guard against buffer overflow
+          if(dwElementsRead < elCount(bReadData))
+          {
+            bReadData[dwElementsRead] = buffer[iIndex];
+            dwElementsRead++;
+          }
+          else
+          {
+            dwElementsRead = 0;
+          }
+
+          //Process complete response when CR is received
+          if(buffer[iIndex] == 0x0D) // CR = end of BK Precision response
+          {
+            iSentCommand = 0; // a response was received; clear the pending-command flag
+
+            if(iVoltageCommand)
+            {
+              vFctn_PrintVoltageToPanel(bReadData, dwElementsRead);
+              iVoltageCommand = 0;
+              iSentCommand = 0;
+            }
+            else if(iGetActualCurrentCommand)
+            {
+              vFctn_PrintCurrentToPanel(bReadData, dwElementsRead);
+              iGetActualCurrentCommand = 0;
+              iSentCommand = 0;
+            }
+            else if(iStatusCommand)
+            {
+              vFctn_StatusLeds(bReadData, dwElementsRead);
+              iStatusCommand = 0;
+              iSentCommand = 0;
+            }
+
+            //Reset buffer for next response
+            dwElementsRead = 0;
+          }
+        }
+        else
+        {
         //iVoltageCommand = Ok;
         //Verify what type of command has been requested
         if(buffer[iIndex] == 0x56) // Get Voltage command
@@ -666,6 +736,7 @@ RS232OnReceive(dword port, byte buffer[], dword number)
           //Restart the flag for the non-desired char
           bNoDesiredChar = 0;
         }
+        } // end else (non-BK Precision RS232)
       }
       else //SCPI Power Supply is used
       {
@@ -783,9 +854,25 @@ vFctn_PrintVoltageToPanel(byte aArrayToPrint[], dword aNoElementsRead)
   char chAnswer[250];
   char chConversionInformation[250];
   double aValue;
+  char chVoltStr[5];
+  long lVoltRaw;
+  int iIdx;
 
+  // BK Precision 1687b: GETD response – first 4 bytes are actual voltage in units of 10 mV
+  // e.g. "1200" = 1200 × 10 mV = 12000 mV = 12.0 V  → divide by 100 to get Volts
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+  {
+    if(aNoElementsRead < 4)
+      return;
+    for(iIdx = 0; iIdx < 4; iIdx++)
+      chVoltStr[iIdx] = aArrayToPrint[iIdx];
+    chVoltStr[4] = 0;
+    lVoltRaw = atoi(chVoltStr);
+    @sysvar::PowGeneral_Variables::OutputVal = (float)lVoltRaw / 100.0;
+    write("OutputVal = %0.2f", @sysvar::PowGeneral_Variables::OutputVal);
+  }
   //if RS232 Power Supply General Commands are used
-  if(cv_bPOWType != (enum cc_ePStype) eSCPI)
+  else if(cv_bPOWType != (enum cc_ePStype) eSCPI)
   {
     // If aArrayToPrint is 0x53 0x0A, then skip updating.  Exception for 'Korad' PSU status return.
     if((aNoElementsRead == 2) && (aArrayToPrint[0] == 0x53) && (aArrayToPrint[1] == 0x0A))
@@ -810,9 +897,25 @@ vFctn_PrintCurrentToPanel(byte aArrayToPrint[], dword aNoElementsRead)
   char chAnswer[250];
   char chConversionInformation[250];
   double aValue;
+  char chCurrStr[5];
+  long lCurrRaw;
+  int iIdx;
 
+  // BK Precision 1687b: GETD response – bytes 4-7 are actual current in units of 1 mA
+  // e.g. "2500" = 2500 mA = 2.500 A  → divide by 1000 to get Amps
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+  {
+    if(aNoElementsRead < 8)
+      return;
+    for(iIdx = 0; iIdx < 4; iIdx++)
+      chCurrStr[iIdx] = aArrayToPrint[iIdx + 4];
+    chCurrStr[4] = 0;
+    lCurrRaw = atoi(chCurrStr);
+    @sysvar::PowGeneral_Variables::OutputValCurrent = (float)lCurrRaw / 1000.0;
+    write("OutputValCurrent = %0.3f", @sysvar::PowGeneral_Variables::OutputValCurrent);
+  }
   //if RS232 Power Supply is used
-  if(cv_bPOWType != (enum cc_ePStype) eSCPI)
+  else if(cv_bPOWType != (enum cc_ePStype) eSCPI)
   {
     // If aArrayToPrint is 0x53 0x0A, then skip updating.  Exception for 'Korad' PSU status return.
     if((aNoElementsRead == 2) && (aArrayToPrint[0] == 0x53) && (aArrayToPrint[1] == 0x0A))
@@ -839,8 +942,30 @@ vFctn_StatusLeds(byte aReadData[], dword aNoElementsRead)
   byte bReadStatusCommand[10];
   
   iElementsToPrint = 0;
+
+  // BK Precision 1687b: output ON/OFF state is tracked via bBKPrecisionOutputState,
+  // which is updated whenever SOUT1 or SOUT0 commands are processed.
+  // The GETS response confirms the supply is communicating; LEDs reflect tracked state.
+  if(cv_bPOWType == cc_bTypeBKPrecision)
+  {
+    if(aNoElementsRead > 0) // valid response received; supply is communicating
+    {
+      if(bBKPrecisionOutputState)
+      {
+        iSourceOff = 0;
+        @sysvar::PowGeneral_Variables::GreenLed = Ok;
+        @sysvar::PowGeneral_Variables::RedLed = NotOk;
+      }
+      else
+      {
+        iSourceOff = 1;
+        @sysvar::PowGeneral_Variables::GreenLed = NotOk;
+        @sysvar::PowGeneral_Variables::RedLed = Ok;
+      }
+    }
+  }
   //if RS232 Power Supply is used
-  if(cv_bPOWType == cc_bTypeGeneral)
+  else if(cv_bPOWType == cc_bTypeGeneral)
   {
     for(iIndex = 0; iIndex < aNoElementsRead; iIndex++)
     {
