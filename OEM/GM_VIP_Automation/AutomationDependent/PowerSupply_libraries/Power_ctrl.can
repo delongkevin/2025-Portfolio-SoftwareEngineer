@@ -1,7 +1,9 @@
 /*@!Encoding:1252*/
 //********************************************************************************************
-//----------------- Initial version 1.0: created by : Ramagopal Bandi-------------------------
-//---------- this script works for Tenma programmable power supplies--------------------------
+//----------------- Updated to support BK Precision 1687b programmable power supply ---------
+//---------- Communication: RS232, 9600 baud, 8 data bits, no parity, 1 stop bit ------------
+//---------- Command terminator: \r (CR only, as per BK Precision 1687b programming rules) --
+//---------- SOUT1 = turn output ON,  SOUT0 = turn output OFF --------------------------------
 //*********************************************************************************************
 includes
 {
@@ -15,136 +17,153 @@ variables
   char buffer2[100];
   int i;
   byte buffer[100];
-  byte buffer3[10];
+  byte buffer3[20];  // Large enough for BK Precision GETD response (9 data bytes + CR)
   byte buffer4[10];
 }
 
-export testfunction Set_voltage(int port,float volt)      // Function is used to set to desired voltage port: Check the USB COM number in device manager
-                                                          //                                            volt: Voltage  
+export testfunction Set_voltage(int port, float volt)  // Function is used to set output voltage
+                                                       // port: COM port number (check Device Manager)
+                                                       // volt: desired voltage in Volts (e.g. 12.0)
 {
-  RS232_Initilize(port);
-  snprintf(buffer1,elCount(buffer1),"VSET1:%0.2f\n OUT1\n",volt);  
-  for(i=0;i<strlen(buffer1);i++)
+  RS232_Initialize(port);
+  // BK Precision 1687b: VOLTnnn where nnn = voltage x 10 (zero-padded 3-digit integer)
+  // e.g. 12.0 V -> VOLT120\r
+  snprintf(buffer1, elCount(buffer1), "VOLT%03d\r", (int)(volt * 10));
+  for(i = 0; i < strlen(buffer1); i++)
   {
     buffer[i] = buffer1[i];
   }
-  ret = RS232Send(port,buffer,strlen(buffer1));
+  ret = RS232Send(port, buffer, strlen(buffer1));
   if(ret == 1)
   {
-    testStepPass("","VOLTAGE Set to is %0.2f",volt);      
+    testStepPass("", "VOLTAGE set to %0.1f V", volt);
   }
   else
   {
-    testStepfail("","Not Able to set the Voltage due to error %d",ret);    
-  }  
-
+    testStepfail("", "Unable to set voltage due to error %d", ret);
+  }
 }
 
 
 
-export testfunction Read_voltage(int port)  // Function is used to read voltage (port: Check the USB COM number in device manager)                                           
+export testfunction Read_voltage(int port)  // Function is used to read actual output voltage
+                                            // port: COM port number (check Device Manager)
 {
-  RS232_Initilize(port);
-  snprintf(buffer1,elCount(buffer1),"VOUT1?\r\n");  
-  for(i=0;i<strlen(buffer1);i++)
+  RS232_Initialize(port);
+  // BK Precision 1687b: GETD returns actual display values
+  // Response format: VVVVAAAAOM\r (9 bytes + CR)
+  //   VVVV = voltage in units of 10 mV (e.g. "1200" = 1200 x 10 mV = 12.0 V)
+  snprintf(buffer1, elCount(buffer1), "GETD\r");
+  for(i = 0; i < strlen(buffer1); i++)
   {
     buffer[i] = buffer1[i];
   }
-  ret = RS232Send(port,buffer,elcount(buffer));
-    if(ret == 1)
+  ret = RS232Send(port, buffer, strlen(buffer1));
+  if(ret == 1)
   {
-    testStepPass("","VOLTAGE read request sent");      
+    testStepPass("", "Voltage read request sent");
   }
   else
   {
-    testStepfail("","VOLTAGE read request not sent");    
-  }  
-  ret1 =  RS232Receive(port,buffer3,elcount(buffer3));  
+    testStepfail("", "Voltage read request not sent due to error %d", ret);
+  }
+  ret1 = RS232Receive(port, buffer3, elcount(buffer3));
   testWaitForTimeout(2000);
-//  write("datrial port%c",buffer3[0]);
   if(ret1 == 1)
   {
-    for(i=0;i<elcount(buffer3);i++)
-   {
-    buffer2[i] = buffer3[i];    
+    // Extract first 4 bytes (voltage in units of 10 mV)
+    for(i = 0; i < 4; i++)
+    {
+      buffer2[i] = buffer3[i];
     }
-   Teststep("","Voltage is %s",buffer2);
+    buffer2[4] = 0;  // null-terminate
+    Teststep("", "Actual voltage raw value: %s (units of 10 mV)", buffer2);
   }
   else
-  Teststep("","read error");
+    Teststep("", "Voltage read error");
 }
 
-export testfunction Read_current(int port)  // Function is used to read Current (port: Check the USB COM number in device manager)                                           
+export testfunction Read_current(int port)  // Function is used to read actual output current
+                                            // port: COM port number (check Device Manager)
 {
-  RS232_Initilize(port);
-  snprintf(buffer1,elCount(buffer1),"IOUT1?\r\n");  
-  for(i=0;i<strlen(buffer1);i++)
+  RS232_Initialize(port);
+  // BK Precision 1687b: GETD returns actual display values
+  // Response format: VVVVAAAAOM\r (9 bytes + CR)
+  //   AAAA = current in units of 1 mA (e.g. "2500" = 2500 mA = 2.500 A)
+  snprintf(buffer1, elCount(buffer1), "GETD\r");
+  for(i = 0; i < strlen(buffer1); i++)
   {
     buffer[i] = buffer1[i];
   }
-  ret = RS232Send(port,buffer,elcount(buffer));
-    if(ret == 1)
+  ret = RS232Send(port, buffer, strlen(buffer1));
+  if(ret == 1)
   {
-    testStepPass("","CURRENT read request sent");      
+    testStepPass("", "Current read request sent");
   }
   else
   {
-    testStepfail("","CURRENT read request not sent");    
-  }  
-  ret1 =  RS232Receive(port,buffer3,elcount(buffer3));  
+    testStepfail("", "Current read request not sent due to error %d", ret);
+  }
+  ret1 = RS232Receive(port, buffer3, elcount(buffer3));
   testWaitForTimeout(2000);
-//  write("datrial port%c",buffer3[0]);
   if(ret1 == 1)
   {
-    for(i=0;i<elcount(buffer3);i++)
-   {
-    buffer2[i] = buffer3[i];    
+    // Extract bytes 4-7 (current in units of 1 mA)
+    for(i = 0; i < 4; i++)
+    {
+      buffer2[i] = buffer3[i + 4];
     }
-   Teststep("","Current is %s",buffer2);
+    buffer2[4] = 0;  // null-terminate
+    Teststep("", "Actual current raw value: %s (units of 1 mA)", buffer2);
   }
   else
-  Teststep("","read error");
+    Teststep("", "Current read error");
 }
 
-export testfunction Power_OFF_ON(int port,int ctrl) // Function is used to On and OFf the Power supply ctrl: 0 - OFF ad 1 - ON    
-{ 
-  RS232_Initilize(port);
-  snprintf(buffer1,elCount(buffer1),"OUT%d\n",ctrl);  
-  for(i=0;i<strlen(buffer1);i++)
+export testfunction Power_OFF_ON(int port, int ctrl)  // Function is used to turn On or Off the power supply
+                                                      // port: COM port number (check Device Manager)
+                                                      // ctrl: 0 = turn output OFF (SOUT0), 1 = turn output ON (SOUT1)
+{
+  RS232_Initialize(port);
+  // BK Precision 1687b: SOUT0 = output OFF, SOUT1 = output ON
+  // Each command receives an "OK\r" response from the supply
+  snprintf(buffer1, elCount(buffer1), "SOUT%d\r", ctrl);
+  for(i = 0; i < strlen(buffer1); i++)
   {
     buffer[i] = buffer1[i];
   }
-  ret = RS232Send(port,buffer,strlen(buffer1));
+  ret = RS232Send(port, buffer, strlen(buffer1));
   if(ret == 1)
   {
     if(ctrl == 0)
     {
-    testStep("","Power is OFF  %d",ctrl);  
-     testStepPass(); 
+      testStep("", "Power output turned OFF (SOUT0)");
+      testStepPass();
     }
     else
     {
-    testStep("","Power is ON %d",ctrl); 
-    testStepPass();
+      testStep("", "Power output turned ON (SOUT1)");
+      testStepPass();
     }
-   }
+  }
   else
   {
-    testStepfail("","Unable do On or OFF due to error %d",ret);
+    testStepfail("", "Unable to change power output state due to error %d", ret);
   }
 }
 
-void RS232_Initilize(int port)  // Initilization of RS232 port
+void RS232_Initialize(int port)  // Initialization of RS232 port for BK Precision 1687b
+                                // Settings: 9600 baud, 8 data bits, 1 stop bit, no parity (flow control = 0)
 {
-  RS232Configure(port,9600,8,1,0);  
-  port_open = RS232Open(port);  
+  RS232Configure(port, 9600, 8, 1, 0);
+  port_open = RS232Open(port);
   if(port_open == 1)
-    testStepPass("","Port %d succesfully opened",port);
+    testStepPass("", "Port %d successfully opened", port);
   else
-    testStepfail("","Port %d open not succesful",port);  
+    testStepfail("", "Port %d open not successful", port);
 }
 
-RS232OnReceive( dword port, byte buffer[], dword number )
+RS232OnReceive(dword port, byte buffer[], dword number)
 {
   
 }
