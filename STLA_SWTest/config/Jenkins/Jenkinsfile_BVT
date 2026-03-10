@@ -10,12 +10,12 @@ to_users = 'Saibhargav.Thottempudi@magna.com'
 
 pipeline {
     parameters {
-		string(name: 'ReleaseBuild',
+        string(name: 'ReleaseBuild',
             defaultValue: 'master',
             description: 'The name of the release build.'
         )
-        string(name: 'upstreamJobName', 
-            defaultValue: 'L2H4060/job/L2H4060_BS_branches/job/L2H4060_Software/job', 
+        string(name: 'upstreamJobName',
+            defaultValue: 'L2H4060/job/L2H4060_BS_branches/job/L2H4060_Software/job',
             description: 'The name of the upstream job.'
         )
         choice(name: 'buildMachine',
@@ -34,7 +34,7 @@ pipeline {
             defaultValue: '30000',
             description: 'Testing process timeout? (in seconds)'
         )
-		booleanParam(name: 'flashTarget',
+        booleanParam(name: 'flashTarget',
             defaultValue:   true,
             description: 'Flash the ECU with Bootloader/Application binaries?'
         )
@@ -42,19 +42,27 @@ pipeline {
             defaultValue:   true,
             description: 'Execute Build Verification Testing?'
         )
-		booleanParam(name: 'enableEBT',
+        booleanParam(name: 'enableQuickSanity',
             defaultValue:   false,
-            description: 'Execute ECU Bring Up Testing?'
+            description: 'Execute ECU Bring Up / PR Sanity Testing?'
         )
-		booleanParam(name: 'CPU_Load_Test',
+        booleanParam(name: 'CPU_Load_Test',
             defaultValue:   true,
             description: 'Execute CPU Load Test?'
         )
-		booleanParam(name: 'enable_Feature_Tests',
+        booleanParam(name: 'enableRobustness',
             defaultValue:   false,
-            description: 'Execute Feature Testing?'
+            description: 'Execute Robustness / Feature Testing?'
         )
-		string(name: 'Mail_To',
+        booleanParam(name: 'SIMULATE',
+            defaultValue:   true,
+            description: 'Generate a simulated test report (no bench hardware required)?'
+        )
+        booleanParam(name: 'RUN_ON_BENCH',
+            defaultValue:   true,
+            description: 'Run bench stages (Flash, BVT, SWQT)?'
+        )
+        string(name: 'Mail_To',
             defaultValue: 'Kevin.Delong@magna.com Azharul.Haque@magna.com saibhargav.thottempudi@magna.com gopinath.ramanathan@magna.com',
             description: 'Email notification send to'
         )
@@ -65,146 +73,241 @@ pipeline {
         FLASHING_EXE = "C:/prjtools/OdxPdxFlasher/v1.1.0/OdxPdxFlasher.exe"
         PAGEPYTHONPATH = "C:/prjtools/python/ver_3.7.6_p7/python.exe"
         GIT_PYTHON_GIT_EXECUTABLE = 'C:/prjtools/git/ver_1.3/bin/git.exe'
-		PY_EXE = "C:/prjtools/python/ver_3.7.6_p7/python.exe"
-		CANOE_CONTROL = '_bookshelf/autotest/CANoe/CANoeControl.py'
-		CANOE_TEST_CONTROL = '_bookshelf/autotest/CANoe/CANoeTestControl.py'
-        PATH = "C:/prjtools/python/ver_3.7.6_p7/python.exe;$PATH"		
+        PY_EXE = "C:/prjtools/python/ver_3.7.6_p7/python.exe"
+        CANOE_CONTROL = '_bookshelf/autotest/CANoe/CANoeControl.py'
+        CANOE_TEST_CONTROL = '_bookshelf/autotest/CANoe/CANoeTestControl.py'
+        PATH = "C:/prjtools/python/ver_3.7.6_p7/python.exe;$PATH"
         CURL_EXE = 'C:/prjtools/git/ver_1.3/mingw64/bin/curl.exe'
-        ZIP_EXE= 'C:/prjtools/7zip/ver_1.0/App/7-Zip64/7z.exe'    
+        ZIP_EXE = 'C:/prjtools/7zip/ver_1.0/App/7-Zip64/7z.exe'
         CONFIG_READER = 'Scripts\\ConfigurationManager.py'
-		FULL_PDX_NAME = 'FL_85E907217B_XXXX_DEV_V001_E.pdx'
-		OUTPUT_PATH = "${env.WORKSPACE}\\build\\TriCore_Debug"
+        FULL_PDX_NAME = 'FL_85E907217B_XXXX_DEV_V001_E.pdx'
+        // CT server path that supplies Python support files needed by CANoe
+        CT_PYTHON_SRC = 'C:\\JS\\CT_Server_Standard_files_Continous_Testing\\python'
         SED_EXE = 'C:/prjtools/git/ver_1.3/usr/bin/sed.exe'
         DIR_CYGWIN = 'C:\\prjtools\\cygwin\\ver_2.8.2\\bin'
-        JENKINS_URL="https://eahubjenkins02.magna.global:8443/view/L2H4060/job"
+        JENKINS_URL = "https://eahubjenkins02.magna.global:8443/view/L2H4060/job"
+        // STLA_ROOT is set dynamically in Discover Paths
+        STLA_ROOT = ''
     }
     agent {
         label params.buildMachine
     }
    // triggers {
-	//cron(env.BRANCH_NAME == 'develop' ? '00 18 * * *' : '')           
-  //  }
+   //     cron(env.BRANCH_NAME == 'develop' ? '00 18 * * *' : '')
+   // }
     options {
         timeout(time: 3, unit: 'HOURS')
-	      buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '15', artifactNumToKeepStr: '5'))
     }
     stages {
         stage('checkBuildEnvironment') {
             steps {
                 script {
-                    setEnvironment.executecheckBuildEnv(configPackageJsonPath :"config/Packager/config_package.json")
+                    setEnvironment.executecheckBuildEnv(configPackageJsonPath: "config/Packager/config_package.json")
                 }
             }
         }
+
+        stage('Discover Paths') {
+        // Locates STLA_SWTest under the workspace so all downstream stages
+        // can reference STLA_ROOT without hardcoded drive letters.
+            steps {
+                script {
+                    def findRoot = '''
+$found = Get-ChildItem -Path $env:WORKSPACE `
+             -Filter "STLA_SWTest" `
+             -Directory -Recurse `
+             -ErrorAction SilentlyContinue |
+         Select-Object -First 1
+if (-not $found) {
+    # Workspace IS the STLA_SWTest root (e.g. job SCM root = STLA_SWTest)
+    $found = Get-Item -Path $env:WORKSPACE
+}
+$found.FullName
+'''
+                    env.STLA_ROOT = powershell(
+                        returnStdout: true, script: findRoot
+                    ).trim()
+                    env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
+                    echo "STLA_ROOT       : ${env.STLA_ROOT}"
+                    echo "Report dir      : ${env.REPORT_DIR_FULL}"
+                }
+            }
+        }
+
+        stage('Simulate Test Cases') {
+        // simulate_tests.py lives at STLA_SWTest/simulate_tests.py.
+        // It discovers vTestStudio test sequences from .vtt.export.xml files
+        // and generates JUnit XML + HTML reports without any ECU hardware.
+        // Runs on the bench node (windows-agent is not required here) so it
+        // shares the same checkout.
+            when {
+                expression { params.SIMULATE == true }
+            }
+            steps {
+                script {
+                    def rc = bat(
+                        script: """
+                            python "%STLA_ROOT%\\simulate_tests.py" ^
+                                   --root    "%STLA_ROOT%" ^
+                                   --out-dir "%STLA_ROOT%\\Test Reports\\simulation"
+                        """,
+                        returnStatus: true
+                    )
+                    if (rc != 0) {
+                        echo "Simulation WARNING: simulate_tests.py exited ${rc}. Marking UNSTABLE."
+                        currentBuild.result = 'UNSTABLE'
+                    }
+                }
+            }
+            post {
+                always {
+                    junit(
+                        testResults:       'STLA_SWTest\\Test Reports\\simulation\\junit\\*.xml',
+                        allowEmptyResults: true
+                    )
+                    archiveArtifacts(
+                        artifacts:         'STLA_SWTest\\Test Reports\\simulation\\**\\*',
+                        allowEmptyArchive: true
+                    )
+                }
+            }
+        }
+
         stage('flashTarget') {
             when {
-                expression { params.flashTarget == true };
+                allOf {
+                    expression { params.RUN_ON_BENCH == true }
+                    expression { params.flashTarget == true }
+                }
             }
             steps {
                 echo 'Flash Target stage triggered'
-		        sleep 20
+                sleep 20
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Flashing', timeouts: """${params.flashingTimeout}""")
                     }
                 }
             }
         }
+
         stage('executeBVT') {
             when {
-                expression { params.enableBVT == true };
+                allOf {
+                    expression { params.RUN_ON_BENCH == true }
+                    expression { params.enableBVT == true }
+                }
             }
             steps {
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Sanity', timeouts: """${params.BVTTimeout}""")
                     }
                 }
             }
         }
+
         stage('QuickSanity') {
             when {
-                expression { params.enableEBT == true };
+                allOf {
+                    expression { params.RUN_ON_BENCH == true }
+                    expression { params.enableQuickSanity == true }
+                }
             }
             steps {
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'PR_Sanity', timeouts: """${params.flashingTimeout}""")
                     }
                 }
             }
         }
-		
-		stage('Robustness') {
+
+        stage('Robustness') {
             when {
-                expression { params.enable_Feature_Tests == true };
+                allOf {
+                    expression { params.RUN_ON_BENCH == true }
+                    expression { params.enableRobustness == true }
+                }
             }
             steps {
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Robustness', timeouts: """${params.BVTTimeout}""")
-							}
-						}
-				}
-		}
-		
+                    }
+                }
+            }
+        }
+
         stage('CPU_Load_Test') {
             when {
-                expression { params.CPU_Load_Test == true };
+                allOf {
+                    expression { params.RUN_ON_BENCH == true }
+                    expression { params.CPU_Load_Test == true }
+                }
             }
             steps {
                 script {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'CPU_Load_Test', timeouts: """${params.BVTTimeout}""")
-							}
-						}
-				}
-		}
-		
-		stage('Parse Data') {
-		steps {
-			script {
-				def pythonPath = "python"
-				def scriptPath = "${env.WORKSPACE}\\config\\Jenkins\\arg_parser.py"
-				bat '''
-				xcopy /E /I /Y "C:\\JS\\CT_Server_Standard_files_Continous_Testing\\python" "%WORKSPACE%\\BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC" || exit 0
-				'''
-				bat(script: "${pythonPath} ${scriptPath}")
-				}
-			}
-		}
-}
-    
+                    }
+                }
+            }
+        }
+
+        stage('Parse Data') {
+            when {
+                expression { params.RUN_ON_BENCH == true }
+            }
+            steps {
+                script {
+                    def pythonPath = "python"
+                    def scriptPath = "${env.STLA_ROOT}\\config\\Jenkins\\arg_parser.py"
+                    // Copy CT server Python support files into the report directory.
+                    // Repeated in post.always as a safety net in case this stage fails.
+                    bat """
+                    xcopy /E /I /Y "%CT_PYTHON_SRC%" "%REPORT_DIR_FULL%" || exit 0
+                    """
+                    bat(script: "${pythonPath} ${scriptPath}")
+                }
+            }
+        }
+    }
+
 
 post {
     always {
-		bat '''
-		xcopy /E /I /Y "C:\\JS\\CT_Server_Standard_files_Continous_Testing\\python" "%WORKSPACE%\\BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC" || exit 0
-		'''
-		publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC', reportFiles: 'index.html', reportName: 'L2H4060 CVADAS SWQT Report', reportTitles: 'SWQT results'])
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.html'
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.xml'
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.jpg'
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.txt'
-		archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.gif, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.avi, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.png, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.csv'
-		archiveArtifacts allowEmptyArchive: true, artifacts: '**/Software_Test_Report.html'
-	bat '''
-            %DIR_CYGWIN%\\find.exe . -name "*.xml" -wholename "Report_*" -exec %PY_EXE% Scripts\\report_parser.py {} ;
-        '''
-        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/03_VariantDependent/*/CVADAS_RBS_TRSC/*_jenkins.xml"
-	script{
-            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*" ,CanoeTestReportsPath: "BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC" )
-        	}
-			catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
-				cleanWs(disableDeferredWipeout: true)
-			}
-	}
-        
+        script {
+            // Safety-net xcopy: ensures Python support files are present even
+            // when the Parse Data stage fails or is skipped.
+            if (params.RUN_ON_BENCH) {
+                bat """
+                xcopy /E /I /Y "%CT_PYTHON_SRC%" "%REPORT_DIR_FULL%" || exit 0
+                """
+            }
+        }
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\CVADAS_RBS_TRSC', reportFiles: 'index.html', reportName: 'L2H4060 CVADAS SWQT Report', reportTitles: 'SWQT results'])
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.html'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.xml'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.jpg'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.txt'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/**/*.gif, BVTRBS/CVADAS_RBS_TRSC/**/*.avi, BVTRBS/CVADAS_RBS_TRSC/**/*.png, BVTRBS/CVADAS_RBS_TRSC/**/*.csv'
+        archiveArtifacts allowEmptyArchive: true, artifacts: '**/Software_Test_Report.html'
+        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/CVADAS_RBS_TRSC/*_jenkins.xml"
+        script {
+            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*", CanoeTestReportsPath: "BVTRBS/CVADAS_RBS_TRSC")
+        }
+        catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
+            cleanWs(disableDeferredWipeout: true)
+        }
+    }
+
     failure {
         script {
             def emailBody = generateEmailBody(currentBuild.currentResult)
@@ -215,9 +318,9 @@ post {
                 subject: "${JOB_NAME} : ${params.ReleaseBuild} : ${BUILD_NUMBER} Result : FAILED",
                 to: "${params.Mail_To}",
                 replyTo: "${to_users}"
-				)
-			}
-		}
+            )
+        }
+    }
 
     success {
         script {
@@ -229,13 +332,14 @@ post {
                 subject: "${JOB_NAME} : ${params.ReleaseBuild} : ${BUILD_NUMBER} Result : SUCCESS",
                 to: "${params.Mail_To}",
                 replyTo: "${to_users}"
-				)
-			}
-		}
-	}
+            )
+        }
+    }
+}
 }
 
 def generateEmailBody(String status) {
+    def color = (status == 'SUCCESS') ? 'green' : 'red'
     return """<!DOCTYPE html>
 <html>
 <head>
@@ -243,7 +347,7 @@ def generateEmailBody(String status) {
         body { font-family: Arial, sans-serif; color: #333; }
         h2 { color: #0073e6; }
         .status { font-size: 16px; font-weight: bold; padding: 8px; color: white;
-                  background-color: """ + (status == 'SUCCESS' ? 'green' : 'red') + """; }
+                  background-color: ${color}; }
         .report-link { font-size: 14px; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -254,22 +358,21 @@ def generateEmailBody(String status) {
 <body>
     <div class="container">
         <h2>Jenkins Build Report: L2H4060 CVADAS BEV SWQT</h2>
-        <p class="status">Build Status: """ + status + """</p>
+        <p class="status">Build Status: ${status}</p>
 
         <table>
             <tr><th>Build Number</th><td>${BUILD_NUMBER}</td></tr>
             <tr><th>Test Job</th><td>${JOB_NAME}</td></tr>
+            <tr><th>Release Build</th><td>${params.ReleaseBuild}</td></tr>
+            <tr><th>Upstream Build</th><td>${params.upstreamJobName} #${params.BuildNumber}</td></tr>
             <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
             <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
-            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
         </table>
-        <iframe src="${env.WORKSPACE}/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/{params.Report_File_Name}"
-                width="100%" height="400px"></iframe>
 
         <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>
         <p>Regards,<br>Jenkins</p>
     </div>
 </body>
-</html>""".stripIndent();
+</html>""".stripIndent()
 }
-
