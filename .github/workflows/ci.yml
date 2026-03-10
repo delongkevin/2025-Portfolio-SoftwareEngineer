@@ -20,7 +20,7 @@
 # They are defined in cd.yml and triggered when deploying a release.
 # =============================================================================
 
-name: CI
+name: GM VIP CI
 
 on:
   push:
@@ -29,10 +29,16 @@ on:
       - develop
       - 'feature/**'
       - 'fix/**'
+    paths:
+      - 'GM_VIP_Automation/**'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches:
       - main
       - develop
+    paths:
+      - 'GM_VIP_Automation/**'
+      - '.github/workflows/ci.yml'
 
 # Restrict default token permissions to read-only for the whole workflow.
 permissions:
