@@ -1,0 +1,190 @@
+# =============================================================================
+# GM VIP Automation – Continuous Delivery (CD)
+# =============================================================================
+#
+# Triggered when a version tag (v*) is pushed to the repository, or when a
+# GitHub Release is published.
+#
+# Pipeline overview
+# -----------------
+#   1. capl-validate  – same CAPL static-analysis gate as CI
+#   2. simulate       – test simulation + HTML report generation
+#   3. release        – attaches the consolidated simulation report and
+#                       the simulation summary as assets on the GitHub Release
+#
+# Bench stages (Flash ECU, BVT, Execute Test Suite) require a self-hosted
+# Windows runner with CANoe, Trace32, and physical ECU hardware.
+# Add a self-hosted runner with the label "windows-bench" to your repository
+# settings to enable hardware-in-loop testing.  When that runner is available,
+# uncomment the "bench-test" job below and set the required secrets:
+#   POWERSUPPLY_PORT   – e.g. COM3
+#   BENCH_STAGING_DIR  – optional staging path on the bench PC
+# =============================================================================
+
+name: CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+
+# Restrict default token permissions to read-only for the whole workflow.
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1 – CAPL Validation (fast-fail gate)
+  # ---------------------------------------------------------------------------
+  capl-validate:
+    name: CAPL Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Run CAPL syntax and consistency validation
+        run: |
+          python GM_VIP_Automation/validate_capl.py \
+            --root GM_VIP_Automation
+
+  # ---------------------------------------------------------------------------
+  # Job 2 – Test Simulation + HTML Report
+  # ---------------------------------------------------------------------------
+  simulate:
+    name: Simulate Test Cases
+    runs-on: ubuntu-latest
+    needs: capl-validate
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Run test simulation
+        run: |
+          python GM_VIP_Automation/simulate_tests.py \
+            --root    GM_VIP_Automation \
+            --out-dir GM_VIP_Automation/Test\ Reports/simulation
+
+      - name: Generate simulation HTML report
+        run: |
+          python GM_VIP_Automation/merge_reports.py \
+            --root      GM_VIP_Automation \
+            --simulated \
+            --xml-dir   "GM_VIP_Automation/Test Reports/simulation" \
+            --out       "GM_VIP_Automation/Test Reports/simulation/simulation_report.html"
+
+      - name: Upload simulation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulation-artifacts
+          path: |
+            GM_VIP_Automation/Test Reports/simulation/simulation_report.html
+            GM_VIP_Automation/Test Reports/simulation/simulation_summary.txt
+            GM_VIP_Automation/Test Reports/simulation/junit/*.xml
+          if-no-files-found: warn
+
+  # ---------------------------------------------------------------------------
+  # Job 3 – Attach release assets
+  # ---------------------------------------------------------------------------
+  release:
+    name: Publish Release Assets
+    runs-on: ubuntu-latest
+    needs: simulate
+    # Only run when a tag push created (or is creating) a GitHub Release.
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download simulation artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: simulation-artifacts
+          path: release-assets
+
+      - name: Attach assets to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release-assets/simulation_report.html
+            release-assets/simulation_summary.txt
+
+  # ---------------------------------------------------------------------------
+  # Job 4 – Bench Hardware-in-Loop (self-hosted, opt-in)
+  # ---------------------------------------------------------------------------
+  # Uncomment this job once a self-hosted Windows runner with label
+  # "windows-bench" is registered in your repository settings and the
+  # required hardware (CANoe, Trace32, ECU) is connected.
+  #
+  # bench-test:
+  #   name: Bench Hardware-in-Loop Test
+  #   runs-on: [self-hosted, windows-bench]
+  #   needs: simulate
+  #   environment: bench
+  #
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Install Python dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         python -m pip install -r GM_VIP_Automation\requirements.txt
+  #
+  #     - name: BVT – Bench Verification Test
+  #       run: |
+  #         python -c "
+  #         import serial, os, sys
+  #         port = os.environ.get('POWERSUPPLY_PORT', '')
+  #         if not port:
+  #             print('SKIP: POWERSUPPLY_PORT not set')
+  #             sys.exit(0)
+  #         s = serial.Serial(port, 9600, timeout=2)
+  #         s.close()
+  #         print('BVT PASS: COM port reachable -', port)
+  #         "
+  #       env:
+  #         POWERSUPPLY_PORT: ${{ secrets.POWERSUPPLY_PORT }}
+  #
+  #     - name: Execute CANoe Test Suite
+  #       run: |
+  #         CANoe64.exe /Start /RunTestModules /Quit ^
+  #           "GM_VIP_Automation\GM_VIP_RBS\GM_VIP_SWtest.cfg"
+  #
+  #     - name: Aggregate bench test reports
+  #       if: always()
+  #       run: |
+  #         python GM_VIP_Automation\merge_reports.py ^
+  #           --root "GM_VIP_Automation" ^
+  #           --out  "GM_VIP_Automation\Test Reports\merged_report.html"
+  #
+  #     - name: Upload bench report
+  #       if: always()
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: bench-report
+  #         path: GM_VIP_Automation/Test Reports/merged_report.html
