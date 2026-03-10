@@ -109,8 +109,14 @@ pipeline {
         }
 
         stage('Discover Paths') {
-        // Locates STLA_SWTest under the workspace so all downstream stages
-        // can reference STLA_ROOT without hardcoded drive letters.
+        // ---------------------------------------------------------------------
+        // 1. Locates STLA_SWTest anywhere under the workspace and sets
+        //    STLA_ROOT.  Falls back to the workspace root when the checkout
+        //    places STLA_SWTest content directly (no subfolder).
+        // 2. Derives every sub-path used by downstream stages so nothing is
+        //    hardcoded elsewhere in the pipeline.
+        // 3. Echoes a full directory-hierarchy summary for easy log reading.
+        // ---------------------------------------------------------------------
             steps {
                 script {
                     def findRoot = '''
@@ -119,28 +125,76 @@ $found = Get-ChildItem -Path $env:WORKSPACE `
              -Directory -Recurse `
              -ErrorAction SilentlyContinue |
          Select-Object -First 1
-if (-not $found) {
-    # Workspace IS the STLA_SWTest root (e.g. job SCM root = STLA_SWTest)
-    $found = Get-Item -Path $env:WORKSPACE
+if ($found) {
+    Write-Output $found.FullName
+} else {
+    # Workspace IS the STLA_SWTest root (SCM checks out into workspace directly)
+    Write-Output $env:WORKSPACE
 }
-$found.FullName
 '''
-                    env.STLA_ROOT = powershell(
-                        returnStdout: true, script: findRoot
-                    ).trim()
+                    // Guard against null returned by powershell() on some Jenkins
+                    // versions when stdout is empty or the script exits early.
+                    // Validate each candidate with fileExists() to avoid silently
+                    // using a non-existent path as STLA_ROOT.
+                    def rawRoot      = powershell(returnStdout: true, script: findRoot)
+                    def candidateRoot = rawRoot?.trim()
+                    def subfolderRoot = "${env.WORKSPACE}\\STLA_SWTest"
+
+                    if (!candidateRoot || !fileExists(candidateRoot)) {
+                        if (fileExists(subfolderRoot)) {
+                            candidateRoot = subfolderRoot
+                        } else if (fileExists(env.WORKSPACE)) {
+                            candidateRoot = env.WORKSPACE
+                        }
+                    }
+                    env.STLA_ROOT = candidateRoot
+
+                    if (!env.STLA_ROOT) {
+                        error "FATAL: Could not determine STLA_ROOT from workspace ${env.WORKSPACE}"
+                    }
+
+                    // Derive all sub-paths from STLA_ROOT (single source of truth)
                     env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
-                    echo "STLA_ROOT       : ${env.STLA_ROOT}"
-                    echo "Report dir      : ${env.REPORT_DIR_FULL}"
+                    env.SIM_OUT_FULL    = "${env.STLA_ROOT}\\Test Reports\\simulation"
+
+                    echo """
+======================================================
+  STLA Directory Hierarchy
+======================================================
+  STLA_ROOT
+  ${env.STLA_ROOT}
+  |
+  +-- BVTRBS\\CVADAS_RBS_TRSC\\
+  |     CANoe config + hardware test reports
+  |     -> ${env.REPORT_DIR_FULL}
+  |
+  +-- Test Reports\\simulation\\
+  |     Simulation output  (JUnit XML + HTML summary)
+  |     -> ${env.SIM_OUT_FULL}
+  |
+  +-- config\\Jenkins\\
+  |     Pipeline files (this Jenkinsfile)
+  |
+  +-- simulate_tests.py
+        Virtual bench simulation script
+======================================================"""
                 }
             }
         }
 
         stage('Simulate Test Cases') {
+        // ---------------------------------------------------------------------
         // simulate_tests.py lives at STLA_SWTest/simulate_tests.py.
         // It discovers vTestStudio test sequences from .vtt.export.xml files
-        // and generates JUnit XML + HTML reports without any ECU hardware.
-        // Runs on the bench node (windows-agent is not required here) so it
-        // shares the same checkout.
+        // in the CANoe .run cache and generates JUnit XML + HTML reports
+        // without any ECU hardware.
+        //
+        // Exit codes from simulate_tests.py:
+        //   0 – simulation complete (reports written; zero sequences found is
+        //       a valid first-run state when .run cache does not yet exist).
+        //   non-zero – fatal error (root directory not found, parse failure,
+        //              Python/argparse error).  Any non-zero exit marks UNSTABLE.
+        // ---------------------------------------------------------------------
             when {
                 expression { params.SIMULATE == true }
             }
@@ -150,24 +204,29 @@ $found.FullName
                         script: """
                             python "%STLA_ROOT%\\simulate_tests.py" ^
                                    --root    "%STLA_ROOT%" ^
-                                   --out-dir "%STLA_ROOT%\\Test Reports\\simulation"
+                                   --out-dir "%SIM_OUT_FULL%"
                         """,
                         returnStatus: true
                     )
                     if (rc != 0) {
-                        echo "Simulation WARNING: simulate_tests.py exited ${rc}. Marking UNSTABLE."
+                        echo "Simulation ERROR: simulate_tests.py exited with code ${rc}. " +
+                             "Check output above for details (root not found, " +
+                             "XML parse failure, or Python/argparse error). " +
+                             "Marking build UNSTABLE."
                         currentBuild.result = 'UNSTABLE'
                     }
                 }
             }
             post {
                 always {
+                    // Use a broad glob so the path resolves whether STLA_ROOT is
+                    // a subfolder of the workspace or the workspace root itself.
                     junit(
-                        testResults:       'STLA_SWTest\\Test Reports\\simulation\\junit\\*.xml',
+                        testResults:       '**/simulation/junit/*.xml',
                         allowEmptyResults: true
                     )
                     archiveArtifacts(
-                        artifacts:         'STLA_SWTest\\Test Reports\\simulation\\**\\*',
+                        artifacts:         '**/Test Reports/simulation/**/*',
                         allowEmptyArchive: true
                     )
                 }

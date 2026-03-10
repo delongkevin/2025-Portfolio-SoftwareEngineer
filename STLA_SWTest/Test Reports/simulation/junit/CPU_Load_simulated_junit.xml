@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CPU Load (with Stack) [Simulation]" tests="5" failures="0" errors="0" skipped="0" time="0" timestamp="2026-03-10T12:44:01">
+<testsuite name="CPU Load (with Stack) [Simulation]" tests="5" failures="0" errors="0" skipped="0" time="0" timestamp="2026-03-10T19:56:49">
     <testcase name="EOL_Calibration" classname="STLA.CVADAS.CPU_Load" time="0">
         <system-out>SIMULATED: test sequence definition found in vTestStudio export. Awaiting physical ADAS bench hardware execution for actual result.</system-out>
     </testcase>

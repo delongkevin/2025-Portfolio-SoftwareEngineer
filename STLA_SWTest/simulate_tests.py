@@ -27,8 +27,12 @@ What it does
 
 Exit codes
 ----------
-    0  –  simulation complete; at least one test suite found
-    1  –  root not found, no .vtt.export.xml files found, or parse error
+    0  –  simulation complete (reports written).  This includes the case
+           where no .vtt.export.xml files are found (e.g. no prior CANoe
+           session / fresh bench).  Zero sequences discovered is a valid
+           first-run state, not a pipeline error.
+    1  –  fatal error: root directory does not exist, or an unrecoverable
+           XML parse failure occurred.  The pipeline should mark UNSTABLE.
 
 Usage
 -----
@@ -441,7 +445,21 @@ def main() -> int:
     print(f"Simulation complete: {total_found} test sequences discovered across "
           f"{sum(1 for r in results if r['count'] > 0)} / {len(results)} suites")
 
-    return 0 if total_found > 0 else 1
+    if total_found == 0:
+        print(
+            "\nNOTE: Zero test sequences discovered.\n"
+            "  If the .run cache is absent, run CANoe on the bench at least once\n"
+            "  so that BVTRBS/CVADAS_RBS_TRSC/.run/ is populated with\n"
+            "  .vtt.export.xml files.  The simulation report has still been\n"
+            "  written with 'No export found' rows for each test unit.",
+            file=sys.stderr,
+        )
+
+    # Exit 0 – simulation script completed (zero sequences is a valid
+    #           'no cache yet' state, not a pipeline error).
+    # Exit 1 – reserved for fatal errors: root directory not found or
+    #           unrecoverable XML parse failures (returned earlier in main()).
+    return 0
 
 
 if __name__ == '__main__':
