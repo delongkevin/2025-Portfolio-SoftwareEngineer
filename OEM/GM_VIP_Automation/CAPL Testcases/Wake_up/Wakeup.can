@@ -246,7 +246,7 @@ testcase Verify_that_the_GetHWIO_e_WakeupSigSt_reports_Last_wakeup_event_is_equa
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_GetHWIO_e_WakeupSigSt\\33 "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_GetHWIO_e_WakeupSigSt\\33"); 
   
-  A_DBGR_BreakpointSet("Test_GetHWIO_e_WakeupSigSt\\33");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_e_WakeupSigSt\\33");
   waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_GetHWIO_e_WakeupSigSt\\33 "); 
@@ -413,7 +413,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init");
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
   waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
 
@@ -431,7 +431,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -640,7 +640,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -654,7 +654,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -864,7 +864,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -878,7 +878,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -1085,7 +1085,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -1098,7 +1098,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -1433,7 +1433,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -1447,7 +1447,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -1674,7 +1674,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -1687,7 +1687,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -2027,7 +2027,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   A_DBGR_BreakpointDeleteAll();
   A_DBGR_R();
 
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
   waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
   /***************************************************************************************************************/    
@@ -2045,7 +2045,7 @@ testcase Verify_that_the_software_reports_Multiple_for_GetHWIO_e_WakeupSigSt_wak
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -2256,7 +2256,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -2270,7 +2270,7 @@ testcase Verify_that_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -2449,7 +2449,7 @@ testcase Verify_the_software_reports_wkupCanBusA_for_GetHWIO_e_WakeupSigSt_Func_
   A_DBGR_BreakpointDeleteAll();
   A_DBGR_R();
 
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   A_DBGR_Go_Safe();
   waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
 
@@ -2603,7 +2603,7 @@ testcase Verify_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_Func_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   waitForNotRunning(cc_dwWakeup_BP_PollTimeout);
 
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -2753,7 +2753,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -2927,7 +2927,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3101,7 +3101,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3115,7 +3115,7 @@ testcase Verify_that_the_software_reports_wkupCanBusB_for_GetHWIO_e_WakeupSigSt_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -3306,7 +3306,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3462,7 +3462,7 @@ testcase Verify_the_software_reports_GetHWIO_e_WakeupSigSt_Func_due_to_CAN_error
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3616,7 +3616,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3630,7 +3630,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -3836,7 +3836,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -3849,7 +3849,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 

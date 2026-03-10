@@ -80,7 +80,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chActionText, elCount(chActionText), "set breakpoint in file test_lockstep_hwio.c in function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN");
 
   A_DBGR_Go_Safe();
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
@@ -109,7 +109,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -137,7 +137,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -151,7 +151,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -181,7 +181,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -265,7 +265,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -292,7 +292,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -320,7 +320,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -334,7 +334,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -364,7 +364,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -450,7 +450,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -477,7 +477,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -503,7 +503,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -517,7 +517,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -547,7 +547,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -634,7 +634,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -661,7 +661,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -689,7 +689,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -703,7 +703,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -733,7 +733,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -813,7 +813,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chActionText, elCount(chActionText), "set breakpoint in file test_lockstep_hwio.c in function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN");
 
   A_DBGR_Go_Safe();
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
@@ -841,7 +841,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -869,7 +869,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -883,7 +883,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -913,7 +913,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -1002,7 +1002,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -1029,7 +1029,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -1057,7 +1057,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_FAILURE;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\64");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\64");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\64");   
   
@@ -1071,7 +1071,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line LockstepStatus[cpuId].lockstepStatus = retval;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\69");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\69");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\69");    
   
@@ -1101,7 +1101,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoFailure_for
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -1178,7 +1178,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chActionText, elCount(chActionText), "set breakpoint in file test_lockstep_hwio.c in function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN");
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
 
 
@@ -1204,7 +1204,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -1317,7 +1317,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -1345,7 +1345,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -1373,7 +1373,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_LOCKSTEP;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\73");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\73");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\73");   
   
@@ -1391,7 +1391,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   
@@ -1477,7 +1477,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line retval = GetHWIO_b_LockstepSt();"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN"); 
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN");
   
@@ -1505,7 +1505,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line BYTE GetHWIO_b_LockstepStN( BYTE cpuId )"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN"); 
   
@@ -1533,7 +1533,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function BYTE GetHWIO_b_LockstepStN( BYTE cpuId ) at line retval = NO_LOCKSTEP;"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetHWIO_b_LockstepStN\\73");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_LockstepStN\\73");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("GetHWIO_b_LockstepStN\\73");   
   
@@ -1551,7 +1551,7 @@ testcase The_Software_shall_Report_GetHWIO_b_LockstepStN_status_as_NoLockstep_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint got hit at function void Test_GetHWIO_b_LockstepStN( void ) at line if (retval == 0u)"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("Test_GetHWIO_b_LockstepStN\\6");
+  A_DBGR_BreakpointSet_AbortOnFail("Test_GetHWIO_b_LockstepStN\\6");
   A_DBGR_Go(); 
   E_DBGR_BreakpointCheckForHalt("Test_GetHWIO_b_LockstepStN\\6");  
   

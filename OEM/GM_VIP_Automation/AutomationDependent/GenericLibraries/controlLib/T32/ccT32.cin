@@ -40,6 +40,15 @@ variables
   // Longer than cc_dwT32_MaxTimeout to allow for RTOS scheduling latency.
   const dword cc_dwT32_BP_HaltTimeout = 5000;//ms
 
+  // Retry constants for BREAK.SET when the symbol table is still loading.
+  // T32_API can transiently report symbol-not-found while ELF symbols are
+  // being resolved; retrying with a short delay avoids false failures.
+  const int   cc_nT32_BPSetMaxRetries      = 5;    // max BREAK.SET attempts
+  const dword cc_dwT32_BPSetRetryInterval  = 1000; // ms between attempts
+
+  // How long to wait for Trace32 to become connected after auto-launch.
+  const dword cc_dwT32_LaunchTimeout = 30000; // ms
+
 }
 
  

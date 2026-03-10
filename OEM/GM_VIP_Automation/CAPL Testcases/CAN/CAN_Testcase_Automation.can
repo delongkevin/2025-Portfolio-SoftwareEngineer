@@ -74,12 +74,12 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCan_Init");
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -133,7 +133,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -146,7 +146,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -159,7 +159,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -237,7 +237,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -293,7 +293,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -307,7 +307,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -321,7 +321,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -395,7 +395,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCan_Init");
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -489,7 +489,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -502,7 +502,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -515,7 +515,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -558,7 +558,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
 
 
 
@@ -627,7 +627,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -689,7 +689,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -702,7 +702,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -715,7 +715,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -784,7 +784,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -843,7 +843,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -856,7 +856,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -869,7 +869,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -938,7 +938,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -996,7 +996,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -1009,7 +1009,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -1022,7 +1022,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -1091,7 +1091,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1149,7 +1149,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -1162,7 +1162,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -1175,7 +1175,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -1244,7 +1244,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1303,7 +1303,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -1316,7 +1316,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -1329,7 +1329,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -1398,7 +1398,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -1447,7 +1447,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
  // A_DBGR_R();
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -1461,7 +1461,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -1475,7 +1475,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -1545,7 +1545,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1605,7 +1605,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -1619,7 +1619,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -1633,7 +1633,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -1703,7 +1703,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Maximum_Me
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1792,7 +1792,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Maximum_Me
   //TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1874,7 +1874,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -1955,7 +1955,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Minimum_Me
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
  // TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -2036,7 +2036,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -2079,7 +2079,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chActionText, elCount(chActionText), "set Breakpoint SetCANR_e_CanIfTxConfirmation callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_e_CanIfTxConfirmation");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
 
   A_DBGR_Go();
 
@@ -2139,7 +2139,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -2189,7 +2189,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chActionText, elCount(chActionText), "set Breakpoint SetCANR_e_CanIfTxConfirmation callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_e_CanIfTxConfirmation");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTxConfirmation");
 }
 
@@ -2227,7 +2227,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -2309,7 +2309,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -2396,7 +2396,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Minimum_Me
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -2481,7 +2481,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -2510,7 +2510,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -2578,7 +2578,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -2608,7 +2608,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetCANR_e_CanIfCntrlrModeIndication");
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");  
 
 
   snprintf( chActionText, elCount(chActionText), "Run software");
@@ -2698,7 +2698,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -2720,7 +2720,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -2787,7 +2787,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -2820,7 +2820,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetCANR_e_CanIfCntrlrModeIndication");
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");  
   snprintf( chActionText, elCount(chActionText), "Run software");
   snprintf( chExpectedText, elCount(chExpectedText), "verify Software is running");
   A_DBGR_Go();
@@ -2905,7 +2905,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -2927,7 +2927,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -2995,7 +2995,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3020,7 +3020,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -3088,7 +3088,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3110,7 +3110,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -3177,7 +3177,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3206,7 +3206,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetCANR_e_CanIfCntrlrModeIndication");
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");  
   snprintf( chActionText, elCount(chActionText), "Run software");
   snprintf( chExpectedText, elCount(chExpectedText), "verify Software is running");
   A_DBGR_Go();
@@ -3292,7 +3292,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3314,7 +3314,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
@@ -3381,7 +3381,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3410,7 +3410,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetCANR_e_CanIfCntrlrModeIndication");
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");  
   snprintf( chActionText, elCount(chActionText), "Run software");
   snprintf( chExpectedText, elCount(chExpectedText), "verify Software is running");
   A_DBGR_Go();
@@ -3497,7 +3497,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3519,7 +3519,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("MngCNDD_CanMainMode");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanMainMode");
 
   /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in MngCNDD_CanMainMode callback function.
@@ -3538,7 +3538,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
    /***************************************************************************************************************/
                                               // Test Step 3 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
   /***************************************************************************************************************/
@@ -3605,7 +3605,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3627,7 +3627,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("MngCNDD_CanMainMode");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanMainMode");
 
   /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in MngCNDD_CanMainMode callback function.
@@ -3646,7 +3646,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrModeIndication");
    /***************************************************************************************************************/
                                               // Test Step 3 Keep a breakpoint in SetCANR_e_CanIfCntrlrModeIndication callback function.
   /***************************************************************************************************************/
@@ -3715,7 +3715,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -3770,7 +3770,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -3783,7 +3783,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -3797,7 +3797,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint MngCNDD_CanMainRead callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in MngCNDD_CanMainRead");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MngCNDD_CanMainRead");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanMainRead");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in MngCNDD_CanMainRead ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainRead function");
@@ -3808,7 +3808,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
 
 
    /***************************************************************************************************************/
@@ -3881,7 +3881,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -3936,7 +3936,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   //A_DBGR_R();
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -3950,7 +3950,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -3965,7 +3965,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint MngCNDD_CanMainRead callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in MngCNDD_CanMainRead");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MngCNDD_CanMainRead");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanMainRead");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in MngCNDD_CanMainRead ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainRead function");
@@ -3976,7 +3976,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 5 set Breakpoint in SetCANR_h_CanIfRxIndication.
@@ -4052,7 +4052,7 @@ testcase Verify_MngCNDD_CanMainBusOff_Interface_CAN_Bus_Off_Detection_for_CANA_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfCntrlrBusOff ");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfCntrlrBusOff ");
   canConfigureBusOff(1, 0x101, 1);
   A_DBGR_R();
   A_DBGR_Go_Safe();
@@ -4112,7 +4112,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
   /***************************************************************************************************************/
@@ -4133,7 +4133,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4200,7 +4200,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4222,7 +4222,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4289,7 +4289,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4311,7 +4311,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4378,7 +4378,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4400,7 +4400,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4465,7 +4465,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4490,7 +4490,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4580,7 +4580,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4602,7 +4602,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4667,7 +4667,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4689,7 +4689,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4758,7 +4758,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4780,7 +4780,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
 
    /***************************************************************************************************************/
                                               // Test Step 2 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
@@ -4846,7 +4846,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go_Safe();
 
@@ -4878,7 +4878,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -4891,7 +4891,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -4905,7 +4905,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
   snprintf( chActionText, elCount(chActionText), "set Breakpoint SetCANR_e_CanIfTxConfirmation callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_e_CanIfTxConfirmation");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -4972,14 +4972,14 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chActionText, elCount(chActionText), "set Breakpoint DsblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_DisableInterrupt\\7");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt\\7");
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt\\7");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -5050,14 +5050,14 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chActionText, elCount(chActionText), "set Breakpoint DsblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_DisableInterrupt");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt");
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -5128,14 +5128,14 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint DsblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_DisableInterrupt");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt");
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -5166,7 +5166,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint EnblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_EnableInterrupt");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_EnableInterrupt");
   E_DBGR_BreakpointCheckForHalt("TestCan_EnableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5185,7 +5185,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANA_CAN2()
 //  snprintf( chActionText, elCount(chActionText), "Breakpoint SetCANR_e_CanIfTxConfirmation should set  ");
 //  snprintf( chExpectedText, elCount(chExpectedText), "SetCANR_e_CanIfTxConfirmation set");
 //  //TestStepAddActionExpected( chActionText, chExpectedText );
-//  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+//  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
 //  /***************************************************************************************************************/
 //                                              // Test Step 8 Breakpoint should hit in SetCANR_e_CanIfTxConfirmation
 //  /***************************************************************************************************************/
@@ -5256,14 +5256,14 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint DsblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_DisableInterrupt\\7");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt\\7");
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt\\7");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -5294,7 +5294,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "set Breakpoint EnblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_EnableInterrupt");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_EnableInterrupt");
   E_DBGR_BreakpointCheckForHalt("TestCan_EnableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5370,7 +5370,7 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chActionText, elCount(chActionText), "set Breakpoint DsblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("DsblCNDD_CanInterrupts");
+  A_DBGR_BreakpointSet_AbortOnFail("DsblCNDD_CanInterrupts");
   E_DBGR_BreakpointCheckForHalt("DsblCNDD_CanInterrupts");
 
   snprintf( chActionText, elCount(chActionText), "Configure channelid values ");
@@ -5465,14 +5465,14 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint EnblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("EnblCNDD_CanInterrupts");
+  A_DBGR_BreakpointSet_AbortOnFail("EnblCNDD_CanInterrupts");
   E_DBGR_BreakpointCheckForHalt("EnblCNDD_CanInterrupts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
   A_DBGR_Go();
 
    /***************************************************************************************************************/
@@ -5543,7 +5543,7 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint EnblCNDD_CanInterrupts callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("EnblCNDD_CanInterrupts");
+  A_DBGR_BreakpointSet_AbortOnFail("EnblCNDD_CanInterrupts");
 
   /***************************************************************************************************************/
                                               // Test Step 3  call EnblCNDD_CanInterrupts.
@@ -5610,7 +5610,7 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTxConfirmation");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
    /***************************************************************************************************************/
                                               // Test Step 6 Keep a breakpoint in SetCANR_e_CanIfTxConfirmation and check CAN PDU ID.
   /***************************************************************************************************************/
@@ -5669,8 +5669,8 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
   /***************************************************************************************************************/
@@ -5867,7 +5867,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   A_DBGR_R();
   A_DBGR_Go();
   /***************************************************************************************************************/
@@ -5889,7 +5889,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
@@ -6061,7 +6061,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
   /***************************************************************************************************************/
@@ -6121,7 +6121,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngCNDD_CanRxInit");
   TestStepAddActionExpected( chActionText, chExpectedText );
 
-  A_DBGR_BreakpointSet("MngCNDD_CanRxInit");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanRxInit");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
@@ -6134,7 +6134,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetCNDD_e_CanControllerMode funtion ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCNDD_e_CanControllerMode");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCNDD_e_CanControllerMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanControllerMode");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
@@ -6147,7 +6147,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "set Breakpoint inSetCANR_h_CanIfRxIndication callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_h_CanIfRxIndication");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetCANR_h_CanIfRxIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_h_CanIfRxIndication");
   A_DBGR_Go();
   A_DBGR_Go();
 
@@ -6216,7 +6216,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
   A_DBGR_R();
   A_DBGR_Go();
   /***************************************************************************************************************/
@@ -6238,7 +6238,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
@@ -6410,7 +6410,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
@@ -6435,7 +6435,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
@@ -6587,7 +6587,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
   //TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
   A_DBGR_R();
@@ -6616,7 +6616,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("MngCNDD_CanTrcvMain");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanTrcvMain");
 
   /***************************************************************************************************************/
                                               // Test Step 2 Call MngCNDD_CanTrcvMain function in a periodic 5ms or 10ms task. This step involves setting up a periodic task to call MngCNDD_CanTrcvMain every 5ms or 10ms.
@@ -6635,7 +6635,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
    /***************************************************************************************************************/
                                               // Test Step 3 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
   /***************************************************************************************************************/
@@ -6710,7 +6710,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCNDD_e_CanTrcvOpMode");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "ECU should be in running state");
@@ -6740,7 +6740,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("MngCNDD_CanTrcvMain");
+  A_DBGR_BreakpointSet_AbortOnFail("MngCNDD_CanTrcvMain");
 
   /***************************************************************************************************************/
                                               // Test Step 2 Call MngCNDD_CanTrcvMain function in a periodic 5ms or 10ms task. This step involves setting up a periodic task to call MngCNDD_CanTrcvMain every 5ms or 10ms.
@@ -6759,7 +6759,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "verify Delete all Breakpoints");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("SetCANR_e_CanIfTrcvModeIndication");
+  A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTrcvModeIndication");
    /***************************************************************************************************************/
                                               // Test Step 3 Keep a breakpoint in SetCANR_e_CanIfTrcvModeIndication callback function.
   /***************************************************************************************************************/
@@ -6861,7 +6861,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanTxBufMax_Maximum_Tx_Buffer_Fill_Lev
   snprintf( chActionText, elCount(chActionText), "set Breakpoint GetCNDD_Cnt_CanTxBufMax callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in GetCNDD_Cnt_CanTxBufMax");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_Cnt_CanTxBufMax");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_Cnt_CanTxBufMax");
   E_DBGR_BreakpointCheckForHalt("GetCNDD_Cnt_CanTxBufMax");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -6933,7 +6933,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanTxBufMax_Maximum_Tx_Buffer_Fill_Lev
   snprintf( chActionText, elCount(chActionText), "set Breakpoint GetCNDD_Cnt_CanTxBufMax callback function ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in GetCNDD_Cnt_CanTxBufMax");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_Cnt_CanTxBufMax");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_Cnt_CanTxBufMax");
   E_DBGR_BreakpointCheckForHalt("GetCNDD_Cnt_CanTxBufMax");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -7061,7 +7061,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_Maximum_RX_Buffer_Fill_Lev
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_R();
   A_DBGR_Go();
@@ -7387,7 +7387,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_OPEN_ma
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_R();
   A_DBGR_Go();
@@ -7574,7 +7574,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_OPEN_ma
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_R();
   A_DBGR_Go();
@@ -7696,7 +7696,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_msgs_an
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
 
   A_DBGR_R();
   A_DBGR_Go();
@@ -7819,7 +7819,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_FULL_CA
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
     /***************************************************************************************************************/
@@ -7919,7 +7919,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_192_msgs_f
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
     /***************************************************************************************************************/
@@ -8074,7 +8074,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_FULL_CA
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
     /***************************************************************************************************************/
@@ -8190,7 +8190,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_192_msgs_f
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCan_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
   A_DBGR_Go();
     /***************************************************************************************************************/
@@ -8363,7 +8363,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -8405,7 +8405,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -8441,7 +8441,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -8503,7 +8503,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -8545,7 +8545,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -8581,7 +8581,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -8637,7 +8637,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -8691,7 +8691,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -8727,7 +8727,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
     snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -8781,7 +8781,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -8823,7 +8823,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -8859,7 +8859,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -8913,7 +8913,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -8967,7 +8967,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9003,7 +9003,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
    snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9056,7 +9056,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9098,7 +9098,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9140,7 +9140,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9194,7 +9194,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9248,7 +9248,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9290,7 +9290,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
     snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9344,7 +9344,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9398,7 +9398,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9435,7 +9435,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9487,7 +9487,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9542,7 +9542,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9579,7 +9579,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9631,7 +9631,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9673,7 +9673,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9709,7 +9709,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -9764,7 +9764,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9817,7 +9817,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -9849,7 +9849,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
@@ -9905,7 +9905,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -9940,7 +9940,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
    /***************************************************************************************************************/
                                               // Test Step 3 Call GetCNDD_e_CanTrcvSpcfcFlts and verify channel ID as 0
   /***************************************************************************************************************/
@@ -9984,7 +9984,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10039,7 +10039,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10093,7 +10093,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10130,7 +10130,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10183,7 +10183,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10226,7 +10226,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10262,7 +10262,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10317,7 +10317,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10364,7 +10364,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
    /***************************************************************************************************************/
                                               // Test Step 3 Call GetCNDD_e_CanTrcvSpcfcFlts and verify channel ID as 1
   /***************************************************************************************************************/
@@ -10407,7 +10407,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10458,7 +10458,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10513,7 +10513,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10550,7 +10550,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10604,7 +10604,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10659,7 +10659,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10696,7 +10696,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10749,7 +10749,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10792,7 +10792,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10830,7 +10830,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -10884,7 +10884,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -10939,7 +10939,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -10976,7 +10976,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11029,7 +11029,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11072,7 +11072,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11109,7 +11109,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11163,7 +11163,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11218,7 +11218,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11255,7 +11255,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11308,7 +11308,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11351,7 +11351,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11388,7 +11388,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11442,7 +11442,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11497,7 +11497,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11534,7 +11534,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11587,7 +11587,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11630,7 +11630,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11667,7 +11667,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11721,7 +11721,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11776,7 +11776,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -11813,7 +11813,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_Go();
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
@@ -11866,7 +11866,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANA
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -11909,7 +11909,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANA
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -12004,7 +12004,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANB
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12059,7 +12059,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANB
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetCNDD_e_CanTrcvSpcfcFlts");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetCNDD_e_CanTrcvSpcfcFlts");
+  A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -12151,7 +12151,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12178,7 +12178,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("BatDisconnectStatus_MainFunc\\57");
+  A_DBGR_BreakpointSet_AbortOnFail("BatDisconnectStatus_MainFunc\\57");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
   snprintf( chExpectedText, elCount(chExpectedText), "Ecu is should be in running state");
@@ -12255,7 +12255,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12349,7 +12349,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_increments
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12462,7 +12462,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_increments
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12577,7 +12577,7 @@ testcase Verify_that_the_low_voltage_event_counter_is_reset_after_a_controller_r
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 
@@ -12685,7 +12685,7 @@ testcase Verify_that_the_low_voltage_event_counter_is_reset_after_a_controller_r
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet("TestCantrcv_GetCanLoVoltEvnt\\2");
+  A_DBGR_BreakpointSet_AbortOnFail("TestCantrcv_GetCanLoVoltEvnt\\2");
   A_DBGR_R();
   A_DBGR_Go();
 

@@ -65,7 +65,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -87,7 +87,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -169,7 +169,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core1_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core1_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -191,7 +191,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -274,7 +274,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -296,7 +296,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -381,7 +381,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -405,7 +405,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -489,7 +489,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -513,7 +513,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -601,7 +601,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -625,7 +625,7 @@ testcase Verify_Hardware_CRC_Calculation_Reset_Initialization_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -714,7 +714,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -737,7 +737,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -788,7 +788,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -807,7 +807,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1234");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1234");  
 
   A_DBGR_Go();
   
@@ -868,7 +868,7 @@ testcase Verify_Hardware_CRC16_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -891,7 +891,7 @@ testcase Verify_Hardware_CRC16_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1120");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1120");  
 
   A_DBGR_Go();
   
@@ -942,7 +942,7 @@ testcase Verify_Hardware_CRC16_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1137");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1137");  
 
   A_DBGR_Go();
   
@@ -961,7 +961,7 @@ testcase Verify_Hardware_CRC16_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1158");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1158");  
 
   A_DBGR_Go();
   
@@ -1022,7 +1022,7 @@ testcase Verify_Hardware_CRC8_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -1045,7 +1045,7 @@ testcase Verify_Hardware_CRC8_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
@@ -1096,7 +1096,7 @@ testcase Verify_Hardware_CRC8_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1054");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1054");  
 
   A_DBGR_Go();
   
@@ -1115,7 +1115,7 @@ testcase Verify_Hardware_CRC8_Calculation_Inprogress_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1075");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1075");  
 
   A_DBGR_Go();
   
@@ -1176,7 +1176,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core1_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core1_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -1199,7 +1199,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -1250,7 +1250,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -1269,7 +1269,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1234");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1234");  
 
   A_DBGR_Go();
   
@@ -1330,7 +1330,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -1353,7 +1353,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -1404,7 +1404,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -1423,7 +1423,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1234");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1234");  
 
   A_DBGR_Go();
   
@@ -1484,7 +1484,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -1510,7 +1510,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -1561,7 +1561,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -1608,7 +1608,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 // TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1234");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1234");  
 
   A_DBGR_Go();
   
@@ -1669,7 +1669,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -1693,7 +1693,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -1747,7 +1747,7 @@ while(1)
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -1794,7 +1794,7 @@ while(1)
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 // TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1224");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1224");  
 
   A_DBGR_Go();
   
@@ -1884,7 +1884,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -1906,7 +1906,7 @@ testcase Verify_Hardware_CRC32_Calculation_Inprogress_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1203");  
 
   A_DBGR_Go();
   
@@ -1966,7 +1966,7 @@ while(1)
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1219");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1219");  
 
   A_DBGR_Go();
   
@@ -2013,7 +2013,7 @@ while(1)
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 // TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1224");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1224");  
 
   A_DBGR_Go();
   
@@ -2103,7 +2103,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -2125,7 +2125,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -2172,7 +2172,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -2215,7 +2215,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -2261,7 +2261,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -2306,7 +2306,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -2387,7 +2387,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -2409,7 +2409,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\120");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\120");  
 
   A_DBGR_Go();
   
@@ -2456,7 +2456,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\148");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\148");  
 
   A_DBGR_Go();
   
@@ -2499,7 +2499,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\150");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\150");  
 
   A_DBGR_Go();
   
@@ -2545,7 +2545,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\203");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\203");  
 
   A_DBGR_Go();
   
@@ -2590,7 +2590,7 @@ testcase Verify_Hardware_CRC16_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -2671,7 +2671,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -2693,7 +2693,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\22");  
 
   A_DBGR_Go();
   
@@ -2740,7 +2740,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\42");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\42");  
 
   A_DBGR_Go();
   
@@ -2783,7 +2783,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\150");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\150");  
 
   A_DBGR_Go();
   
@@ -2829,7 +2829,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\96");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\96");  
 
   A_DBGR_Go();
   
@@ -2874,7 +2874,7 @@ testcase Verify_Hardware_CRC8_Calculation_SignatureAvail_Reporting_Core_0()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\120");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\120");  
 
   A_DBGR_Go();
   
@@ -2955,7 +2955,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core1_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core1_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -2976,7 +2976,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -3024,7 +3024,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -3067,7 +3067,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -3113,7 +3113,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -3158,7 +3158,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -3238,7 +3238,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -3260,7 +3260,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -3308,7 +3308,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -3351,7 +3351,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -3397,7 +3397,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -3442,7 +3442,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -3522,7 +3522,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -3547,7 +3547,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -3595,7 +3595,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -3638,7 +3638,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -3684,7 +3684,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -3729,7 +3729,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -3809,7 +3809,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -3833,7 +3833,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -3885,7 +3885,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -3930,7 +3930,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -3976,7 +3976,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -4021,7 +4021,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -4102,7 +4102,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -4124,7 +4124,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\227");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\227");  
 
   A_DBGR_Go();
   
@@ -4175,7 +4175,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\253");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\253");  
 
   A_DBGR_Go();
   
@@ -4219,7 +4219,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\255");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\255");  
 
   A_DBGR_Go();
   
@@ -4265,7 +4265,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\292");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\292");  
 
   A_DBGR_Go();
   
@@ -4310,7 +4310,7 @@ testcase Verify_Hardware_CRC32_Calculation_SignatureAvail_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -4389,7 +4389,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -4414,7 +4414,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -4462,7 +4462,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -4505,7 +4505,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -4551,7 +4551,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -4596,7 +4596,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -4677,7 +4677,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -4699,7 +4699,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -4747,7 +4747,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -4790,7 +4790,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -4836,7 +4836,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -4881,7 +4881,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -4962,7 +4962,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core1_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core1_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -4984,7 +4984,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -5032,7 +5032,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -5075,7 +5075,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -5121,7 +5121,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -5166,7 +5166,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -5247,7 +5247,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -5269,7 +5269,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -5317,7 +5317,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -5360,7 +5360,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -5406,7 +5406,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -5451,7 +5451,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -5531,7 +5531,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -5555,7 +5555,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -5607,7 +5607,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -5650,7 +5650,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -5696,7 +5696,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -5741,7 +5741,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -5820,7 +5820,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -5844,7 +5844,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -5896,7 +5896,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -5939,7 +5939,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -5985,7 +5985,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -6030,7 +6030,7 @@ testcase Verify_Hardware_CRC_Calculation_Invalid_algorithm_Failure_Reporting_Cor
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -6112,7 +6112,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -6134,7 +6134,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -6182,7 +6182,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   
@@ -6225,7 +6225,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -6271,7 +6271,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -6316,7 +6316,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -6396,7 +6396,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -6418,7 +6418,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -6466,7 +6466,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   
@@ -6509,7 +6509,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -6555,7 +6555,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -6600,7 +6600,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -6680,7 +6680,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -6703,7 +6703,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -6751,7 +6751,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   
@@ -6794,7 +6794,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -6840,7 +6840,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -6885,7 +6885,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -6965,7 +6965,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -6988,7 +6988,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -7036,7 +7036,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   
@@ -7079,7 +7079,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -7125,7 +7125,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -7170,7 +7170,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -7250,7 +7250,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -7273,7 +7273,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -7325,7 +7325,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   testWaitForTimeout(2000);
@@ -7369,7 +7369,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -7415,7 +7415,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -7460,7 +7460,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -7540,7 +7540,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -7563,7 +7563,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -7612,7 +7612,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\367");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\367");  
 
   A_DBGR_Go();
   
@@ -7658,7 +7658,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\369");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\369");  
 
   A_DBGR_Go();
   
@@ -7704,7 +7704,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\381");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\381");  
 
   A_DBGR_Go();
   
@@ -7749,7 +7749,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -7829,7 +7829,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -7851,7 +7851,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -7899,7 +7899,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   
@@ -7942,7 +7942,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -7988,7 +7988,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -8033,7 +8033,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -8113,7 +8113,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -8135,7 +8135,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -8183,7 +8183,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   
@@ -8226,7 +8226,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -8272,7 +8272,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -8317,7 +8317,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -8397,7 +8397,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -8418,7 +8418,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -8466,7 +8466,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   
@@ -8509,7 +8509,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -8555,7 +8555,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -8600,7 +8600,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -8680,7 +8680,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -8703,7 +8703,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -8751,7 +8751,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   
@@ -8794,7 +8794,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -8840,7 +8840,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -8885,7 +8885,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -8965,7 +8965,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -8988,7 +8988,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -9036,7 +9036,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   testWaitForTimeout(5000);
@@ -9079,7 +9079,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -9125,7 +9125,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -9170,7 +9170,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -9250,7 +9250,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -9272,7 +9272,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\392");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\392");  
 
   A_DBGR_Go();
   
@@ -9321,7 +9321,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\407");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\407");  
 
   A_DBGR_Go();
   testWaitForTimeout(6000);
@@ -9364,7 +9364,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\409");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\409");  
 
   A_DBGR_Go();
   
@@ -9410,7 +9410,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\421");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\421");  
 
   A_DBGR_Go();
   
@@ -9455,7 +9455,7 @@ testcase Verify_Hardware_CRC32_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\432");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\432");  
 
   A_DBGR_Go();
   
@@ -9535,7 +9535,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -9557,7 +9557,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\678");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\678");  
 
   A_DBGR_Go();
   
@@ -9605,7 +9605,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\699");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\699");  
 
   A_DBGR_Go();
   
@@ -9648,7 +9648,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\701");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\701");  
 
   A_DBGR_Go();
   
@@ -9694,7 +9694,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\727");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\727");  
 
   A_DBGR_Go();
   
@@ -9739,7 +9739,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_End_Address_Failure_Reporting
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\748");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\748");  
 
   A_DBGR_Go();
   
@@ -9819,7 +9819,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -9841,7 +9841,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\748");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\748");  
 
   A_DBGR_Go();
   
@@ -9889,7 +9889,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\764");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\764");  
 
   A_DBGR_Go();
   
@@ -9932,7 +9932,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\766");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\766");  
 
   A_DBGR_Go();
   
@@ -9978,7 +9978,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\792");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\792");  
 
   A_DBGR_Go();
   
@@ -10023,7 +10023,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_End_Address_Failure_Reporting_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\813");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\813");  
 
   A_DBGR_Go();
   
@@ -10103,7 +10103,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -10125,7 +10125,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\615");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\615");  
 
   A_DBGR_Go();
   
@@ -10173,7 +10173,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\630");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\630");  
 
   A_DBGR_Go();
   
@@ -10216,7 +10216,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\632");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\632");  
 
   A_DBGR_Go();
   
@@ -10262,7 +10262,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\657");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\657");  
 
   A_DBGR_Go();
   
@@ -10307,7 +10307,7 @@ testcase Verify_Hardware_CRC16_Calculation_Invalid_Start_Address_Failure_Reporti
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\678");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\678");  
 
   A_DBGR_Go();
   
@@ -10387,7 +10387,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -10409,7 +10409,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -10457,7 +10457,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\327");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\327");  
 
   A_DBGR_Go();
   
@@ -10500,7 +10500,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\329");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\329");  
 
   A_DBGR_Go();
   
@@ -10546,7 +10546,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\341");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\341");  
 
   A_DBGR_Go();
   
@@ -10591,7 +10591,7 @@ testcase Verify_Hardware_CRC8_Calculation_Invalid_Start_Address_Failure_Reportin
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\352");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\352");  
 
   A_DBGR_Go();
   
@@ -10671,7 +10671,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -10693,7 +10693,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\813");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\813");  
 
   A_DBGR_Go();
   
@@ -10741,7 +10741,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\829");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\829");  
 
   A_DBGR_Go();
   
@@ -10784,7 +10784,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\831");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\831");  
 
   A_DBGR_Go();
   
@@ -10831,7 +10831,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\859");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\859");  
 
   A_DBGR_Go();
   
@@ -10878,7 +10878,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\861");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\861");  
 
   A_DBGR_Go();
   testWaitForTimeout(4000);
@@ -10924,7 +10924,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\888");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\888");  
 
   A_DBGR_Go();
   
@@ -10970,7 +10970,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Passed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   
@@ -11050,7 +11050,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -11072,7 +11072,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\308");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\308");  
 
   A_DBGR_Go();
   
@@ -11120,7 +11120,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\518");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\518");  
 
   A_DBGR_Go();
   
@@ -11163,7 +11163,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\520");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\520");  
 
   A_DBGR_Go();
   
@@ -11210,7 +11210,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\534");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\534");  
   testWaitForTimeout(1000);
   A_DBGR_Go();
   
@@ -11257,7 +11257,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\536");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\536");  
 
   A_DBGR_Go();
   testWaitForTimeout(4000);
@@ -11303,7 +11303,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\549");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\549");  
 
   A_DBGR_Go();
   
@@ -11349,7 +11349,7 @@ testcase Verify_CRC_Request_Before_Reading_Signatur_Of_Last_Request_Failed()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\549");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\549");  
 
   A_DBGR_Go();
   
@@ -11429,7 +11429,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -11452,7 +11452,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   
@@ -11499,7 +11499,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\926");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\926");  
 
   A_DBGR_Go();
   
@@ -11542,7 +11542,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\928");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\928");  
 
   A_DBGR_Go();
   
@@ -11588,7 +11588,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\954");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\954");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -11633,7 +11633,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -11713,7 +11713,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -11736,7 +11736,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   
@@ -11783,7 +11783,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\926");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\926");  
 
   A_DBGR_Go();
   
@@ -11826,7 +11826,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\928");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\928");  
 
   A_DBGR_Go();
   
@@ -11872,7 +11872,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\954");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\954");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -11917,7 +11917,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -11997,7 +11997,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -12022,7 +12022,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   
@@ -12069,7 +12069,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\926");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\926");  
 
   A_DBGR_Go();
   
@@ -12112,7 +12112,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\928");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\928");  
 
   A_DBGR_Go();
   
@@ -12158,7 +12158,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\954");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\954");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -12203,7 +12203,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -12283,7 +12283,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -12306,7 +12306,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   
@@ -12356,7 +12356,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\926");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\926");  
 
   A_DBGR_Go();
   
@@ -12399,7 +12399,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\928");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\928");  
 
   A_DBGR_Go();
   
@@ -12445,7 +12445,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\954");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\954");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -12490,7 +12490,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -12570,7 +12570,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -12592,7 +12592,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\910");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\910");  
 
   A_DBGR_Go();
   testWaitForTimeout(2000);
@@ -12641,7 +12641,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\926");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\926");  
 
   A_DBGR_Go();
   
@@ -12684,7 +12684,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\928");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\928");  
 
   A_DBGR_Go();
   
@@ -12730,7 +12730,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\954");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\954");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -12775,7 +12775,7 @@ testcase Verify_Hardware_CRC8_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -12856,7 +12856,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core0_10ms_MainFunction\\45");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_10ms_MainFunction\\45");  
 
   A_DBGR_Go();
   
@@ -12879,7 +12879,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -12926,7 +12926,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\990");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\990");  
 
   A_DBGR_Go();
   
@@ -12969,7 +12969,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\992");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\992");  
 
   A_DBGR_Go();
   
@@ -13015,7 +13015,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1018");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1018");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -13060,7 +13060,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_1()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
@@ -13140,7 +13140,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core2_10ms_MainFunction\\36");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core2_10ms_MainFunction\\36");  
 
   A_DBGR_Go();
   
@@ -13163,7 +13163,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -13210,7 +13210,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\990");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\990");  
 
   A_DBGR_Go();
   
@@ -13253,7 +13253,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\992");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\992");  
 
   A_DBGR_Go();
   
@@ -13299,7 +13299,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1018");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1018");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -13344,7 +13344,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_2()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
@@ -13424,7 +13424,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core3_10ms_MainFunction\\35");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core3_10ms_MainFunction\\35");  
 
   A_DBGR_Go();
   
@@ -13449,7 +13449,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -13496,7 +13496,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\990");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\990");  
 
   A_DBGR_Go();
   
@@ -13539,7 +13539,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\992");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\992");  
 
   A_DBGR_Go();
   
@@ -13585,7 +13585,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1018");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1018");  
 
   A_DBGR_Go();
   testWaitForTimeout(3000);
@@ -13630,7 +13630,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_3()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
@@ -13710,7 +13710,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core4_1000ms_MainFunction\\65");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core4_1000ms_MainFunction\\65");  
 
   A_DBGR_Go();
   
@@ -13733,7 +13733,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   
@@ -13783,7 +13783,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\990");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\990");  
 
   A_DBGR_Go();
   
@@ -13826,7 +13826,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\992");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\992");  
 
   A_DBGR_Go();
   
@@ -13872,7 +13872,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1018");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1018");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -13917,7 +13917,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_4()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
@@ -13997,7 +13997,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_hwcrc_llsi(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in Test_hwcrc_llsi();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestApp_Core5_1000ms_MainFunction\\54");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core5_1000ms_MainFunction\\54");  
 
   A_DBGR_Go();
   
@@ -14019,7 +14019,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_coreId_u8 = (BYTE)GetCoreID(); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_coreId_u8 = (BYTE)GetCoreID();"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\975");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\975");  
 
   A_DBGR_Go();
   testWaitForTimeout(2000);
@@ -14068,7 +14068,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint inPerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8); "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in PerfmHWIO_h_CalcCRC ((BYTE)test_HwCrc_CRC32_ethernet_E, v_seed_u32, v_startAddr_u8, v_endAddr_u8);"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\990");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\990");  
 
   A_DBGR_Go();
   
@@ -14111,7 +14111,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\992");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\992");  
 
   A_DBGR_Go();
   
@@ -14157,7 +14157,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1018");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1018");  
 
   A_DBGR_Go();
   testWaitForTimeout(1000);
@@ -14202,7 +14202,7 @@ testcase Verify_Hardware_CRC16_Calculation_Failure_Reporting_Core_5()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in v_crcSts_u8 = GetHWIO_e_CalcCRC_St();"" inside Test_hwcrc_llsi"); 
 //  TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("Test_hwcrc_llsi\\1039");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_hwcrc_llsi\\1039");  
 
   A_DBGR_Go();
   
