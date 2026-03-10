@@ -412,7 +412,7 @@ testcase Verify_GetHWIO_b_BatConnectionStatus_returns_0_when_system_wakes_up_due
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -426,7 +426,7 @@ testcase Verify_GetHWIO_b_BatConnectionStatus_returns_0_when_system_wakes_up_due
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 
@@ -632,7 +632,7 @@ testcase Verify_that_the_BATTERY_CONNECT_status_is_retained_over_all_conditions_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint TestCanTrcv_Init callback function "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in TestCanTrcv_Init"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );   
-  A_DBGR_BreakpointSet("TestCanTrcv_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCanTrcv_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init "); 
@@ -646,7 +646,7 @@ testcase Verify_that_the_BATTERY_CONNECT_status_is_retained_over_all_conditions_
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init "); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint is Set in TestCan_Init"); 
   TestStepAddActionExpected( chActionText, chExpectedText );  
-  A_DBGR_BreakpointSet("TestCan_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init "); 

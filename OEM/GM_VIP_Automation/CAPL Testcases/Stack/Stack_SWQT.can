@@ -45,7 +45,7 @@ testcase To_verify_the_SMU_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\51 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\51 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\51");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\51");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in App_MCALInit\\51"); 
@@ -57,7 +57,7 @@ testcase To_verify_the_SMU_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Smu_Init  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Smu_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Smu_Init"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Smu_Init"); 
 
   A_DBGR_Go();;
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Smu_Init function defination side  "); 
@@ -92,7 +92,7 @@ testcase To_verify_the_SDLAdaptor_init_ROM_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\53 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\53 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\53");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\53");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in App_MCALInit\\53 function"); 
@@ -103,7 +103,7 @@ testcase To_verify_the_SDLAdaptor_init_ROM_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SDLAdaptor_init  Function defination  side "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SDLAdaptor_init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText);
-  A_DBGR_BreakpointSet("SDLAdaptor_init");
+  A_DBGR_BreakpointSet_AbortOnFail("SDLAdaptor_init");
 
   A_DBGR_Go();
   
@@ -139,7 +139,7 @@ testcase To_verify_the_os_main_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in core0_main\\29 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set core0_main\\29 in Function call side"); 
-  A_DBGR_BreakpointSet("core0_main\\29");  
+  A_DBGR_BreakpointSet_AbortOnFail("core0_main\\29");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\29"); 
@@ -151,7 +151,7 @@ testcase To_verify_the_os_main_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in os_main  Function defination side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set os_main in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("os_main"); 
+  A_DBGR_BreakpointSet_AbortOnFail("os_main"); 
 
 
   A_DBGR_Go();
@@ -187,7 +187,7 @@ testcase To_verify_the_GetHWIO_e_CPU_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  StartupHook Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set StartupHook in Function call side"); 
-  A_DBGR_BreakpointSet("StartupHook");  
+  A_DBGR_BreakpointSet_AbortOnFail("StartupHook");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in StartupHook"); 
@@ -199,7 +199,7 @@ testcase To_verify_the_GetHWIO_e_CPU_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  GetHWIO_e_CPU  Function defination side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_CPU in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_CPU"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_CPU"); 
 
 
   A_DBGR_Go();
@@ -235,7 +235,7 @@ testcase To_verify_the_CntrlRBSR_Background_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Os_Entry_Task_Core0_BackgroundTask\\7 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Os_Entry_Task_Core0_BackgroundTask\\7 in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Entry_Task_Core0_BackgroundTask\\7");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Entry_Task_Core0_BackgroundTask\\7");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Os_Entry_Task_Core0_BackgroundTask\\7"); 
@@ -247,7 +247,7 @@ testcase To_verify_the_CntrlRBSR_Background_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in CntrlRBSR_Background  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set CntrlRBSR_Background in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("CntrlRBSR_Background"); 
+  A_DBGR_BreakpointSet_AbortOnFail("CntrlRBSR_Background"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in CntrlRBSR_Background function defination side  "); 
@@ -282,7 +282,7 @@ testcase To_verify_the_Os_Entry_OS_SMUSafety_ISR1_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Os_Cbk_Idle\\24 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Os_Cbk_Idle\\24 in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Cbk_Idle\\24");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Cbk_Idle\\24");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -294,7 +294,7 @@ testcase To_verify_the_Os_Entry_OS_SMUSafety_ISR1_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in CntrlRBSR_Background  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set CntrlRBSR_Background in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("CntrlRBSR_Background"); 
+  A_DBGR_BreakpointSet_AbortOnFail("CntrlRBSR_Background"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in CntrlRBSR_Background function defination side  "); 
@@ -330,7 +330,7 @@ testcase To_verify_the_Os_Entry_Task_Core0_10ms_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Os_Entry_Task_Core0_10ms Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Os_Entry_Task_Core0_10ms in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Entry_Task_Core0_10ms");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Entry_Task_Core0_10ms");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Os_Entry_Task_Core0_10ms"); 
@@ -365,7 +365,7 @@ testcase To_verify_the_Os_Entry_Task_Core0_250ms_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Os_Entry_Task_Core0_250ms Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Os_Entry_Task_Core0_250ms in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Entry_Task_Core0_250ms");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Entry_Task_Core0_250ms");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Os_Entry_Task_Core0_10ms"); 
@@ -400,7 +400,7 @@ testcase To_verify_the_GetHWIO_e_RstSrc_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in   Ipt_F_part1_v Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Ipt_F_part1_v in Function call side"); 
-  A_DBGR_BreakpointSet("Ipt_F_part1_v");  
+  A_DBGR_BreakpointSet_AbortOnFail("Ipt_F_part1_v");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Ipt_F_part1_v"); 
@@ -412,7 +412,7 @@ testcase To_verify_the_GetHWIO_e_RstSrc_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_RstSrc   Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_RstSrc  in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_RstSrc"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_RstSrc"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_RstSrc  function defination side  "); 
@@ -447,7 +447,7 @@ testcase To_verify_the_GetHWIO_e_ROM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_rom_injection\\7 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_rom_injection\\7 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\7");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\7");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\7"); 
@@ -459,7 +459,7 @@ testcase To_verify_the_GetHWIO_e_ROM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_ROM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_ROM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_ROM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_ROM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_ROM_Flt function defination side  "); 
@@ -494,7 +494,7 @@ testcase To_verify_the_GetSDLAdaptor_e_ROM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_ROM_Flt Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_ROM_Flt in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_e_ROM_Flt");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_ROM_Flt");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_ROM_Flt"); 
@@ -506,7 +506,7 @@ testcase To_verify_the_GetSDLAdaptor_e_ROM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_e_ROM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_e_ROM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_e_ROM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_e_ROM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_e_ROM_Flt function defination side  "); 
@@ -541,7 +541,7 @@ testcase To_verify_the_GetHWIO_y_ROM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_rom_injection\\9 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_rom_injection\\9 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -553,7 +553,7 @@ testcase To_verify_the_GetHWIO_y_ROM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_AddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_AddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_AddressFailed function defination side  "); 
@@ -588,7 +588,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_AddressFailed Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_AddressFailed in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_AddressFailed");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_AddressFailed");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_AddressFailed"); 
@@ -600,7 +600,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_y_ROM_AddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_y_ROM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_y_ROM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_y_ROM_AddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_y_ROM_AddressFailed function defination side  "); 
@@ -635,7 +635,7 @@ testcase To_verify_the_GetHWIO_y_ROM_InstAddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_rom_injection\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_rom_injection\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\8");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\8 "); 
@@ -647,7 +647,7 @@ testcase To_verify_the_GetHWIO_y_ROM_InstAddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_InstAddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_InstAddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_InstAddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_InstAddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_InstAddressFailed function defination side  "); 
@@ -682,7 +682,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_InstAddressFailed_Software_interface(
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  GetHWIO_y_ROM_InstAddressFailed Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_InstAddressFailed  in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_InstAddressFailed");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_InstAddressFailed");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_InstAddressFailed"); 
@@ -694,7 +694,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_InstAddressFailed_Software_interface(
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_y_ROM_InstAddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_y_ROM_InstAddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_y_ROM_InstAddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_y_ROM_InstAddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_y_ROM_InstAddressFailed function defination side  "); 
@@ -728,7 +728,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_i
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection");  
   A_DBGR_Go();
   
   
@@ -748,7 +748,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_i
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_rom_injection\\10  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_rom_injection\\10  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\10"); 
@@ -769,7 +769,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_FailedCPU_Specific function defination side  "); 
@@ -809,7 +809,7 @@ testcase To_verify_the_MID_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection");  
   A_DBGR_Go();
   
   
@@ -829,7 +829,7 @@ testcase To_verify_the_MID_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_rom_injection\\10  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_rom_injection\\10  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\10"); 
@@ -850,7 +850,7 @@ testcase To_verify_the_MID_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_FailedCPU_Specific function defination side  "); 
@@ -890,7 +890,7 @@ testcase To_verify_the_Max_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection");  
   A_DBGR_Go();
   
   
@@ -910,7 +910,7 @@ testcase To_verify_the_Max_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_rom_injection\\10  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_rom_injection\\10  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\10"); 
@@ -931,7 +931,7 @@ testcase To_verify_the_Max_value_GetHWIO_y_ROM_FailedCPU_Specific_Software_inter
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_ROM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_FailedCPU_Specific function defination side  "); 
@@ -973,7 +973,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_FailedCPU_Specific_Software_interface
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  GetHWIO_y_ROM_FailedCPU_Specific Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_ROM_FailedCPU_Specific  in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_y_ROM_FailedCPU_Specific");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_ROM_FailedCPU_Specific");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_ROM_FailedCPU_Specific"); 
@@ -985,7 +985,7 @@ testcase To_verify_the_GetSDLAdaptor_y_ROM_FailedCPU_Specific_Software_interface
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_y_ROM_FailedCPU_Specific  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_y_ROM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_y_ROM_FailedCPU_Specific"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_y_ROM_FailedCPU_Specific"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_y_ROM_FailedCPU_Specific function defination side  "); 
@@ -1020,7 +1020,7 @@ testcase To_verify_the_ClrHWIO_ROM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_rom_injection\\11 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_rom_injection\\11 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_rom_injection\\11");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_rom_injection\\11");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_rom_injection\\11 "); 
@@ -1032,7 +1032,7 @@ testcase To_verify_the_ClrHWIO_ROM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_ROM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_ROM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrHWIO_ROM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_ROM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in ClrHWIO_ROM_Flt function defination side  "); 
@@ -1067,7 +1067,7 @@ testcase To_verify_the_ClrSDLAdaptor_ROM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_ROM_Flt Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_ROM_Flt in Function call side"); 
-  A_DBGR_BreakpointSet("ClrHWIO_ROM_Flt");  
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_ROM_Flt");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in ClrHWIO_ROM_Flt"); 
@@ -1079,7 +1079,7 @@ testcase To_verify_the_ClrSDLAdaptor_ROM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrSDLAdaptor_ROM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrSDLAdaptor_ROM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrSDLAdaptor_ROM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrSDLAdaptor_ROM_Flt"); 
 
 
   A_DBGR_Go();
@@ -1120,7 +1120,7 @@ testcase To_verify_the_SDLAdaptor_init_RAM_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\52 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\52 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\52");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\52");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in App_MCALInit\\52 function"); 
@@ -1131,7 +1131,7 @@ testcase To_verify_the_SDLAdaptor_init_RAM_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SDLAdaptor_init  Function defination  side "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SDLAdaptor_init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText);
-  A_DBGR_BreakpointSet("SDLAdaptor_init");
+  A_DBGR_BreakpointSet_AbortOnFail("SDLAdaptor_init");
 
   A_DBGR_Go();
   
@@ -1167,7 +1167,7 @@ testcase To_verify_the_SDLAdaptor_run_RAM_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Os_Entry_Task_Core0_10ms\\10 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Os_Entry_Task_Core0_10ms\\10 in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Entry_Task_Core0_10ms\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Entry_Task_Core0_10ms\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Os_Entry_Task_Core0_10ms\\10 Function call side  ");
@@ -1179,7 +1179,7 @@ testcase To_verify_the_SDLAdaptor_run_RAM_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SDLAdaptor_run  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SDLAdaptor_run in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SDLAdaptor_run"); 
+  A_DBGR_BreakpointSet_AbortOnFail("SDLAdaptor_run"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SDLAdaptor_run function defination side  "); 
@@ -1213,7 +1213,7 @@ testcase To_verify_the_GetHWIO_e_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1233,7 +1233,7 @@ testcase To_verify_the_GetHWIO_e_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\6  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\6  Function call side  ");
@@ -1245,7 +1245,7 @@ testcase To_verify_the_GetHWIO_e_RAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_RAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_RAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_RAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_RAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_RAM_Flt function defination side  "); 
@@ -1279,7 +1279,7 @@ testcase To_verify_the_GetSDLAdaptor_e_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1299,7 +1299,7 @@ testcase To_verify_the_GetSDLAdaptor_e_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\6  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\6");  
   A_DBGR_Go();
   
   
@@ -1312,7 +1312,7 @@ testcase To_verify_the_GetSDLAdaptor_e_RAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_e_RAM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_e_RAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_e_RAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_e_RAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_e_RAM_Flt function defination side  "); 
@@ -1346,7 +1346,7 @@ testcase To_verify_the_GetHWIO_y_RAM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1365,7 +1365,7 @@ testcase To_verify_the_GetHWIO_y_RAM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\7  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\7 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\7");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\7");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\7  Function call side  "); 
@@ -1377,7 +1377,7 @@ testcase To_verify_the_GetHWIO_y_RAM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_AddressFailed Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_AddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_AddressFailed function defination side  "); 
@@ -1411,7 +1411,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1431,7 +1431,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_AddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\7 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\7 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\7");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\7");  
   A_DBGR_Go();
    
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in Test_ecc_ram_injection\\7 function"); 
@@ -1442,7 +1442,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_AddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_AddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_AddressFailed function defination side  "); 
@@ -1476,7 +1476,7 @@ testcase To_verify_the_GetHWIO_y_RAM_InstAddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1496,7 +1496,7 @@ testcase To_verify_the_GetHWIO_y_RAM_InstAddressFailed_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\8  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\8");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection\\8 "); 
@@ -1508,7 +1508,7 @@ testcase To_verify_the_GetHWIO_y_RAM_InstAddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_InstAddressFailed Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_InstAddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_InstAddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_InstAddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_InstAddressFailed function defination side  "); 
@@ -1542,7 +1542,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_InstAddressFailed_Software_interface(
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1562,7 +1562,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_InstAddressFailed_Software_interface(
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\8");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in Test_ecc_ram_injection\\8 function"); 
@@ -1573,7 +1573,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_InstAddressFailed_Software_interface(
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_InstAddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_InstAddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_InstAddressFailed");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_InstAddressFailed");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_InstAddressFailed function defination side  "); 
@@ -1607,7 +1607,7 @@ testcase To_verify_the_ClrHWIO_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1626,7 +1626,7 @@ testcase To_verify_the_ClrHWIO_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\10  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\10 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -1638,7 +1638,7 @@ testcase To_verify_the_ClrHWIO_RAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_RAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_RAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrHWIO_RAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_RAM_Flt"); 
 
 
   A_DBGR_Go();
@@ -1673,7 +1673,7 @@ testcase To_verify_the_ClrSDLAdaptor_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -1693,7 +1693,7 @@ testcase To_verify_the_ClrSDLAdaptor_RAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_RAM_Flt Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_RAM_Flt in Function call side"); 
-  A_DBGR_BreakpointSet("ClrHWIO_RAM_Flt");  
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_RAM_Flt");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in ClrHWIO_RAM_Flt function"); 
@@ -1704,7 +1704,7 @@ testcase To_verify_the_ClrSDLAdaptor_RAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrSDLAdaptor_RAM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrSDLAdaptor_RAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrSDLAdaptor_RAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrSDLAdaptor_RAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in ClrSDLAdaptor_RAM_Flt function defination side  "); 
@@ -1739,7 +1739,7 @@ testcase To_verify_the_Minimum_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  App_MCALInit\\83  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  App_MCALInit\\83  in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\83");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\83");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in App_MCALInit\\83"); 
@@ -1771,7 +1771,7 @@ testcase To_verify_the_Minimum_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_h_RAM_ECC_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_h_RAM_ECC_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_h_RAM_ECC_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_h_RAM_ECC_Init");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_h_RAM_ECC_Init function defination side  "); 
@@ -1822,7 +1822,7 @@ testcase To_verify_the_Mid_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  App_MCALInit\\83  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  App_MCALInit\\83 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\83");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\83");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in App_MCALInit\\83"); 
@@ -1853,7 +1853,7 @@ testcase To_verify_the_Mid_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_h_RAM_ECC_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_h_RAM_ECC_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_h_RAM_ECC_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_h_RAM_ECC_Init");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_h_RAM_ECC_Init function defination side  "); 
@@ -1904,7 +1904,7 @@ testcase To_verify_the_Maximum_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  App_MCALInit\\83  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  App_MCALInit\\83  in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\83");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\83");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in App_MCALInit\\83"); 
@@ -1936,7 +1936,7 @@ testcase To_verify_the_Maximum_value_SetHWIO_h_RAM_ECC_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_h_RAM_ECC_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_h_RAM_ECC_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_h_RAM_ECC_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_h_RAM_ECC_Init");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_h_RAM_ECC_Init function defination side  "); 
@@ -1987,7 +1987,7 @@ testcase To_verify_the_SetSDLAdaptor_h_RAM_ECC_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  App_MCALInit\\51 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\51 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\51");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\51");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetSDLAdaptor_h_RAM_ECC_Init Function call side  "); 
@@ -1999,7 +1999,7 @@ testcase To_verify_the_SetSDLAdaptor_h_RAM_ECC_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_h_RAM_ECC_Init  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_h_RAM_ECC_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_h_RAM_ECC_Init");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_h_RAM_ECC_Init");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetSDLAdaptor_h_RAM_ECC_Init function defination side  "); 
@@ -2036,7 +2036,7 @@ testcase To_verify_the_GetHWIO_e_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2049,7 +2049,7 @@ testcase To_verify_the_GetHWIO_e_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_b_WrtProtRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_b_WrtProtRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_b_WrtProtRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_WrtProtRAM_Flt"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2089,7 +2089,7 @@ testcase To_verify_the_GetSDLAdaptor_e_CacheRAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_CacheRAM_Flt\\3 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_CacheRAM_Flt\\3 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_e_CacheRAM_Flt\\3");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_CacheRAM_Flt\\3");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetHWIO_e_CacheRAM_Flt\\3 function"); 
@@ -2100,7 +2100,7 @@ testcase To_verify_the_GetSDLAdaptor_e_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_e_CacheRAM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_e_CacheRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_e_CacheRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_e_CacheRAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_e_CacheRAM_Flt function defination side  "); 
@@ -2136,7 +2136,7 @@ testcase To_verify_the_GetHWIO_y_CacheRAM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\12  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\12 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\12");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\12");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2149,7 +2149,7 @@ testcase To_verify_the_GetHWIO_y_CacheRAM_AddressFailed_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_CacheRAM_AddressFailed Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_CacheRAM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_CacheRAM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_CacheRAM_AddressFailed"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2189,7 +2189,7 @@ testcase To_verify_the_GetSDLAdaptor_y_CacheRAM_AddressFailed_Software_interface
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_CacheRAM_AddressFailed\\3 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_CacheRAM_AddressFailed\\3 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_y_CacheRAM_AddressFailed\\3");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_CacheRAM_AddressFailed\\3");  
   A_DBGR_Go();
    
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetHWIO_y_CacheRAM_AddressFailed\\3 function"); 
@@ -2200,7 +2200,7 @@ testcase To_verify_the_GetSDLAdaptor_y_CacheRAM_AddressFailed_Software_interface
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_y_CacheRAM_AddressFailed  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_y_CacheRAM_AddressFailed in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_y_CacheRAM_AddressFailed"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_y_CacheRAM_AddressFailed"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_y_CacheRAM_AddressFailed function defination side  "); 
@@ -2236,7 +2236,7 @@ testcase To_verify_the_ClrHWIO_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\11  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\11 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\11");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\11");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2249,7 +2249,7 @@ testcase To_verify_the_ClrHWIO_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_CacheRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_CacheRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrHWIO_CacheRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_CacheRAM_Flt"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2289,7 +2289,7 @@ testcase To_verify_the_ClrSDLAdaptor_CacheRAM_Flt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_CacheRAM_Flt\\2 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_CacheRAM_Flt\\2 in Function call side"); 
-  A_DBGR_BreakpointSet("ClrHWIO_CacheRAM_Flt\\2");  
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_CacheRAM_Flt\\2");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in ClrHWIO_CacheRAM_Flt\\2 function"); 
@@ -2300,7 +2300,7 @@ testcase To_verify_the_ClrSDLAdaptor_CacheRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrSDLAdaptor_CacheRAM_Flt  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrSDLAdaptor_CacheRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrSDLAdaptor_CacheRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrSDLAdaptor_CacheRAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in ClrSDLAdaptor_CacheRAM_Flt function defination side  "); 
@@ -2334,7 +2334,7 @@ testcase To_verify_the_GetHWIO_y_RAM_FailedCPU_Specific_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -2354,7 +2354,7 @@ testcase To_verify_the_GetHWIO_y_RAM_FailedCPU_Specific_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\9 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\9 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection\\9"); 
@@ -2366,7 +2366,7 @@ testcase To_verify_the_GetHWIO_y_RAM_FailedCPU_Specific_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_FailedCPU_Specific"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_FailedCPU_Specific"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_FailedCPU_Specific function defination side  "); 
@@ -2400,7 +2400,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_FailedCPU_Specific_Software_interface
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   
@@ -2420,7 +2420,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_FailedCPU_Specific_Software_interface
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Test_ecc_ram_injection\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Test_ecc_ram_injection\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in Test_ecc_ram_injection\\8 function"); 
@@ -2431,7 +2431,7 @@ testcase To_verify_the_GetSDLAdaptor_y_RAM_FailedCPU_Specific_Software_interface
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetSDLAdaptor_y_RAM_FailedCPU_Specific  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetSDLAdaptor_y_RAM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetSDLAdaptor_y_RAM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetSDLAdaptor_y_RAM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetSDLAdaptor_y_RAM_FailedCPU_Specific function defination side  "); 
@@ -2467,7 +2467,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection"); 
@@ -2499,7 +2499,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection\\9  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection\\9  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection\\9"); 
@@ -2514,7 +2514,7 @@ testcase To_verify_the_Minimum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_FailedCPU_Specific function defination side  "); 
@@ -2556,7 +2556,7 @@ testcase To_verify_the_Mid_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_inter
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection"); 
@@ -2588,7 +2588,7 @@ testcase To_verify_the_Mid_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_inter
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection\\9  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection\\9  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection\\9"); 
@@ -2603,7 +2603,7 @@ testcase To_verify_the_Mid_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_inter
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_FailedCPU_Specific function defination side  "); 
@@ -2645,7 +2645,7 @@ testcase To_verify_the_Maximum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection  in Function call side"); 
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection"); 
@@ -2677,7 +2677,7 @@ testcase To_verify_the_Maximum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  Test_ecc_ram_injection\\9  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Test_ecc_ram_injection\\9  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Test_ecc_ram_injection\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("Test_ecc_ram_injection\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Test_ecc_ram_injection\\9"); 
@@ -2692,7 +2692,7 @@ testcase To_verify_the_Maximum_value_GetHWIO_y_RAM_FailedCPU_Specific_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_y_RAM_FailedCPU_Specific Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_y_RAM_FailedCPU_Specific in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_y_RAM_FailedCPU_Specific");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_y_RAM_FailedCPU_Specific");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_y_RAM_FailedCPU_Specific function defination side  "); 
@@ -2734,7 +2734,7 @@ testcase To_verify_the_GetHWIO_Cnt_StackSize_RAM_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestApp_Core0_1000ms_MainFunction\\87 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestApp_Core0_1000ms_MainFunction\\87 in Function call side"); 
-  A_DBGR_BreakpointSet("TestApp_Core0_1000ms_MainFunction\\87");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_1000ms_MainFunction\\87");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestApp_Core0_1000ms_MainFunction\\87 Function call side"); 
@@ -2746,7 +2746,7 @@ testcase To_verify_the_GetHWIO_Cnt_StackSize_RAM_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_Cnt_StackSize  Function defination  side "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_Cnt_StackSize in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText);
-  A_DBGR_BreakpointSet("GetHWIO_Cnt_StackSize");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_Cnt_StackSize");
 
   A_DBGR_Go();
   
@@ -2782,7 +2782,7 @@ testcase To_verify_the_GetHWIO_Cnt_StackPeak_RAM_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestApp_Core0_1000ms_MainFunction\\90 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TestApp_Core0_1000ms_MainFunction\\90 in Function call side"); 
-  A_DBGR_BreakpointSet("TestApp_Core0_1000ms_MainFunction\\90");  
+  A_DBGR_BreakpointSet_AbortOnFail("TestApp_Core0_1000ms_MainFunction\\90");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestApp_Core0_1000ms_MainFunction\\90 Function call side"); 
@@ -2794,7 +2794,7 @@ testcase To_verify_the_GetHWIO_Cnt_StackPeak_RAM_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_Cnt_StackPeak  Function defination  side "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_Cnt_StackPeak in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText);
-  A_DBGR_BreakpointSet("GetHWIO_Cnt_StackPeak");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_Cnt_StackPeak");
 
   A_DBGR_Go();
   
@@ -2835,7 +2835,7 @@ testcase To_verify_the_ClrHWIO_WrtProtRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2848,7 +2848,7 @@ testcase To_verify_the_ClrHWIO_WrtProtRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_WrtProtRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_WrtProtRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrHWIO_WrtProtRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_WrtProtRAM_Flt"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2889,7 +2889,7 @@ testcase To_verify_the_GetHWIO_b_WrtProtRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\11");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2902,7 +2902,7 @@ testcase To_verify_the_GetHWIO_b_WrtProtRAM_Flt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_b_WrtProtRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_b_WrtProtRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_b_WrtProtRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_WrtProtRAM_Flt"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2943,7 +2943,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltAddr_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -2956,7 +2956,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltAddr_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltAddr Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_ptr_WrtProtRAM_FltAddr in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltAddr"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltAddr"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -2997,7 +2997,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltInstAddr_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -3010,7 +3010,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltInstAddr_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltInstAddr Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_ptr_WrtProtRAM_FltInstAddr in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltInstAddr"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltInstAddr"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -3051,7 +3051,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_True_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -3064,7 +3064,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_True_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_b_WrtProtRAM_LckUnlck\\5  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_b_WrtProtRAM_LckUnlck\\5 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_b_WrtProtRAM_LckUnlck\\5"); 
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_b_WrtProtRAM_LckUnlck\\5"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -3105,7 +3105,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_False_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25 in Function call side"); 
  // TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
   A_DBGR_Go();
   
   //snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -3118,7 +3118,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_False_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_b_WrtProtRAM_LckUnlck\\10  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_b_WrtProtRAM_LckUnlck\\10 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_b_WrtProtRAM_LckUnlck\\10"); 
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_b_WrtProtRAM_LckUnlck\\10"); 
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ECU running   "); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is ECU is running ");  
   //TestStepAddActionExpected( chActionText, chExpectedText );
@@ -3161,7 +3161,7 @@ testcase To_verify_the_MCU_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\22 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\22 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\22");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\22");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in App_MCALInit\\22 function"); 
@@ -3172,7 +3172,7 @@ testcase To_verify_the_MCU_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Mcu_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Mcu_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Mcu_Init"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Mcu_Init"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Mcu_Init function defination side  "); 
@@ -3207,7 +3207,7 @@ testcase To_verify_the_MCU_InitClock_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\24 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\24 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\24");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\24");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in App_MCALInit\\24 function"); 
@@ -3218,7 +3218,7 @@ testcase To_verify_the_MCU_InitClock_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Mcu_InitClock Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Mcu_InitClock in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Mcu_InitClock"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Mcu_InitClock"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Mcu_InitClock function defination side  "); 
@@ -3253,7 +3253,7 @@ testcase To_verify_the_Mcu_DistributePllClock_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in App_MCALInit\\33 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set App_MCALInit\\33 in Function call side"); 
-  A_DBGR_BreakpointSet("App_MCALInit\\33");  
+  A_DBGR_BreakpointSet_AbortOnFail("App_MCALInit\\33");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in App_MCALInit\\33 function"); 
@@ -3264,7 +3264,7 @@ testcase To_verify_the_Mcu_DistributePllClock_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Mcu_DistributePllClock Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Mcu_DistributePllClock in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Mcu_DistributePllClock"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Mcu_DistributePllClock"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Mcu_DistributePllClock function defination side  "); 
@@ -3299,7 +3299,7 @@ testcase To_verify_the_os_main_Timers_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in core0_main\\28 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set core0_main\\28 in Function call side"); 
-  A_DBGR_BreakpointSet("core0_main\\28");  
+  A_DBGR_BreakpointSet_AbortOnFail("core0_main\\28");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\28"); 
@@ -3311,7 +3311,7 @@ testcase To_verify_the_os_main_Timers_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in os_main  Function defination side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set os_main in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("os_main"); 
+  A_DBGR_BreakpointSet_AbortOnFail("os_main"); 
 
 
   A_DBGR_Go();
@@ -3347,7 +3347,7 @@ testcase To_verify_the_Os_Entry_Task_Core0_100ms_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Os_Entry_Task_Core0_100ms\\14 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  Os_Entry_Task_Core0_100ms\\14 in Function call side"); 
-  A_DBGR_BreakpointSet("Os_Entry_Task_Core0_100ms\\14");  
+  A_DBGR_BreakpointSet_AbortOnFail("Os_Entry_Task_Core0_100ms\\14");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in  Os_Entry_Task_Core0_100ms\\14 function"); 
@@ -3358,7 +3358,7 @@ testcase To_verify_the_Os_Entry_Task_Core0_100ms_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MngTSKR_100msOS_Task Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MngTSKR_100msOS_Task in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MngTSKR_100msOS_Task"); 
+  A_DBGR_BreakpointSet_AbortOnFail("MngTSKR_100msOS_Task"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngTSKR_100msOS_Task function defination side  "); 
@@ -3393,7 +3393,7 @@ testcase To_verify_the_GetHWIO_Cnt_SysTick_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in test_ticks\\4 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set test_ticks\\4 in Function call side"); 
-  A_DBGR_BreakpointSet("test_ticks\\4");  
+  A_DBGR_BreakpointSet_AbortOnFail("test_ticks\\4");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in test_ticks\\4 function"); 
@@ -3404,7 +3404,7 @@ testcase To_verify_the_GetHWIO_Cnt_SysTick_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_Cnt_SysTicks Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_Cnt_SysTicks in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_Cnt_SysTicks"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_Cnt_SysTicks"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_Cnt_SysTicks function defination side  "); 
@@ -3439,7 +3439,7 @@ testcase To_verify_the_GetHWIO_Cnt_SysTicksPerMicrosec_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in test_ticks Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set test_ticks in Function call side"); 
-  A_DBGR_BreakpointSet("test_ticks");  
+  A_DBGR_BreakpointSet_AbortOnFail("test_ticks");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in test_ticks function"); 
@@ -3450,7 +3450,7 @@ testcase To_verify_the_GetHWIO_Cnt_SysTicksPerMicrosec_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  GetHWIO_Cnt_SysTicksPerMicrosec Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  GetHWIO_Cnt_SysTicksPerMicrosec in function  defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_Cnt_SysTicksPerMicrosec"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_Cnt_SysTicksPerMicrosec"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in  GetHWIO_Cnt_SysTicksPerMicrosec function defination side  "); 
@@ -3485,7 +3485,7 @@ testcase To_verify_the_GetHWIO_t_Current_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in test_Current_Time Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set test_Current_Time in Function call side"); 
-  A_DBGR_BreakpointSet("test_Current_Time");  
+  A_DBGR_BreakpointSet_AbortOnFail("test_Current_Time");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in test_Current_Time function"); 
@@ -3496,7 +3496,7 @@ testcase To_verify_the_GetHWIO_t_Current_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  GetHWIO_t_Current Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  GetHWIO_t_Current in function  defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_t_Current"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_t_Current"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in  GetHWIO_t_Current function defination side  "); 
@@ -3531,7 +3531,7 @@ testcase To_verify_the_GetHWIO_e_CPU_timers_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Get_STM_Tick_Value  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Get_STM_Tick_Value  in Function call side"); 
-  A_DBGR_BreakpointSet("Get_STM_Tick_Value");  
+  A_DBGR_BreakpointSet_AbortOnFail("Get_STM_Tick_Value");  
   A_DBGR_Go();
   
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in Get_STM_Tick_Value  function"); 
@@ -3542,7 +3542,7 @@ testcase To_verify_the_GetHWIO_e_CPU_timers_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_CPU Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_CPU in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_CPU"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_CPU"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_CPU function defination side  "); 
@@ -3583,7 +3583,7 @@ testcase To_verify_the_Tc4xMemProt_App_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in core0_main\\20 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set core0_main\\20 in Function call side"); 
-  A_DBGR_BreakpointSet("core0_main\\20");  
+  A_DBGR_BreakpointSet_AbortOnFail("core0_main\\20");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in core0_main\\20 "); 
@@ -3595,7 +3595,7 @@ testcase To_verify_the_Tc4xMemProt_App_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_App_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_App_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_App_Init"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_App_Init"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_App_Init function defination side  "); 
@@ -3630,7 +3630,7 @@ testcase To_verify_the_Tc4xMemProt_Init_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_App_Init\\98\\1  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_App_Init\\98\\1 in Function call side"); 
-  A_DBGR_BreakpointSet("Tc4xMemProt_App_Init\\98\\1");  
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_App_Init\\98\\1");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_App_Init\\98\\1 "); 
@@ -3642,7 +3642,7 @@ testcase To_verify_the_Tc4xMemProt_Init_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Init Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Init in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Init"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Init"); 
 
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_Init function defination side  "); 
@@ -3682,7 +3682,7 @@ testcase To_verify_the_Tc4xMemProt_TrapHandler_Ifx_Software_interface()
   /***************************************************************************************************************/
   //snprintf( chActionText, elCount(chActionText), "Set Breakpoint in P:0x80833C36 stack overflow address  Function call side"); 
   //snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set P:0x80833C36 stack overflow address in Function call side"); 
-  //A_DBGR_BreakpointSet("P:0x80833C36");  
+  //A_DBGR_BreakpointSet_AbortOnFail("P:0x80833C36");  
  // A_DBGR_Go();
   
  // snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in P:0x80833C36 stack overflow address"); 
@@ -3695,7 +3695,7 @@ testcase To_verify_the_Tc4xMemProt_TrapHandler_Ifx_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_TrapHandler_Ifx Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_TrapHandler_Ifx in funaction call side"); 
   //TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("InternalProtectionError\\32"); 
+  A_DBGR_BreakpointSet_AbortOnFail("InternalProtectionError\\32"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_TrapHandler_Ifx function call side"); 
@@ -3708,7 +3708,7 @@ testcase To_verify_the_Tc4xMemProt_TrapHandler_Ifx_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_TrapHandler_Ifx Function defination side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_TrapHandler_Ifx in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_TrapHandler_Ifx"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_TrapHandler_Ifx"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_TrapHandler_Ifx function defination side"); 
@@ -3746,7 +3746,7 @@ testcase To_verify_the_TX4xMemProt_APP_Violation_CallBack_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_App_Init Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_App_Init in Function call side"); 
-  A_DBGR_BreakpointSet("Tc4xMemProt_App_Init");  
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_App_Init");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_App_Init Function call side  ");
@@ -3758,7 +3758,7 @@ testcase To_verify_the_TX4xMemProt_APP_Violation_CallBack_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TX4xMemProt_APP_Violation_CallBack\\2  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set TX4xMemProt_APP_Violation_CallBack\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("TX4xMemProt_APP_Violation_CallBack\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("TX4xMemProt_APP_Violation_CallBack\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TX4xMemProt_APP_Violation_CallBack\\2 function defination side  "); 
@@ -3793,7 +3793,7 @@ testcase To_verify_the_hwio_reset_stack_request_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53+0x2 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_App_Init in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53+0x2");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53+0x2");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_App_Init Function call side  ");
@@ -3804,7 +3804,7 @@ testcase To_verify_the_hwio_reset_stack_request_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in InternalProtectionError\\42 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set InternalProtectionError\\42 in Function call side"); 
-  A_DBGR_BreakpointSet("InternalProtectionError\\42");  
+  A_DBGR_BreakpointSet_AbortOnFail("InternalProtectionError\\42");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in InternalProtectionError\\42 Function call side  ");
@@ -3817,7 +3817,7 @@ testcase To_verify_the_hwio_reset_stack_request_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in hwio_reset_request\\2  Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set hwio_reset_request\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("hwio_reset_request\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("hwio_reset_request\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in hwio_reset_request\\2 function defination side  "); 
@@ -3852,7 +3852,7 @@ testcase To_verify_the_GetHWIO_e_StackProtSt_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\55  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\55 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\55");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\55");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\55"); 
@@ -3864,7 +3864,7 @@ testcase To_verify_the_GetHWIO_e_StackProtSt_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_StackProtSt\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_StackProtSt\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_e_StackProtSt\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_StackProtSt\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_StackProtSt\\2 function defination side  "); 
@@ -3899,7 +3899,7 @@ testcase To_verify_the_Tc4xMemProt_Get_Error_StackOverflow_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_StackProtSt\\9  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_StackProtSt\\9 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_e_StackProtSt\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_StackProtSt\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_StackProtSt\\9"); 
@@ -3911,7 +3911,7 @@ testcase To_verify_the_Tc4xMemProt_Get_Error_StackOverflow_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Get_Error_StackOverflow\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Get_Error_StackOverflow\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Get_Error_StackOverflow\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Get_Error_StackOverflow\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_Get_Error_StackOverflow\\2 function defination side  "); 
@@ -3946,7 +3946,7 @@ testcase To_verify_the_Tc4xMemProt_Get_Error_StackUnderflow_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_e_StackProtSt\\17  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_e_StackProtSt\\17 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_e_StackProtSt\\17");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_e_StackProtSt\\17");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_e_StackProtSt\\17"); 
@@ -3958,7 +3958,7 @@ testcase To_verify_the_Tc4xMemProt_Get_Error_StackUnderflow_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Get_Error_StackUnderflow\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Get_Error_StackUnderflow\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Get_Error_StackUnderflow\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Get_Error_StackUnderflow\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemTc4xMemProt_Get_Error_StackUnderflowrot_Get_Error_StackOverflow\\2 function defination side  "); 
@@ -3993,7 +3993,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\25"); 
@@ -4005,7 +4005,7 @@ testcase To_verify_the_SetHWIO_b_WrtProtRAM_LckUnlck_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_b_WrtProtRAM_LckUnlck\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_b_WrtProtRAM_LckUnlck\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_b_WrtProtRAM_LckUnlck\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_b_WrtProtRAM_LckUnlck\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_b_WrtProtRAM_LckUnlck\\2 function defination side  "); 
@@ -4040,7 +4040,7 @@ testcase To_verify_the_Tc4xMemProt_SetWP_Protection_True_condition_Software_inte
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_b_WrtProtRAM_LckUnlck\\5  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_b_WrtProtRAM_LckUnlck\\5 in Function call side"); 
-  A_DBGR_BreakpointSet("SetHWIO_b_WrtProtRAM_LckUnlck\\5");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_b_WrtProtRAM_LckUnlck\\5");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_b_WrtProtRAM_LckUnlck\\5"); 
@@ -4052,7 +4052,7 @@ testcase To_verify_the_Tc4xMemProt_SetWP_Protection_True_condition_Software_inte
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_SetWP_Protection\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_SetWP_Protection\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_SetWP_Protection\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_SetWP_Protection\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_SetWP_Protection\\2 function defination side  "); 
@@ -4087,7 +4087,7 @@ testcase To_verify_the_Tc4xMemProt_SetWP_Protection_False_condition_Software_int
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_b_WrtProtRAM_LckUnlck\\10  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_b_WrtProtRAM_LckUnlck\\10 in Function call side"); 
-  A_DBGR_BreakpointSet("SetHWIO_b_WrtProtRAM_LckUnlck\\10");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_b_WrtProtRAM_LckUnlck\\10");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_b_WrtProtRAM_LckUnlck\\10"); 
@@ -4099,7 +4099,7 @@ testcase To_verify_the_Tc4xMemProt_SetWP_Protection_False_condition_Software_int
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_SetWP_Protection\\2 Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_SetWP_Protection\\2 in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_SetWP_Protection\\2"); 
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_SetWP_Protection\\2"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_SetWP_Protection\\2 function defination side  "); 
@@ -4134,7 +4134,7 @@ testcase To_verify_the_GetHWIO_b_WrtProtRAM_Flt_Stack_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\18 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\18 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\18");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\18");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_WriteProtectedRAM_Tests\\18"); 
@@ -4146,7 +4146,7 @@ testcase To_verify_the_GetHWIO_b_WrtProtRAM_Flt_Stack_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_b_WrtProtRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_b_WrtProtRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_b_WrtProtRAM_Flt"); 
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_WrtProtRAM_Flt"); 
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_b_WrtProtRAM_Flt function defination side  "); 
@@ -4181,7 +4181,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_Software_interf
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_b_WrtProtRAM_Flt\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint GetHWIO_b_WrtProtRAM_Flt\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_b_WrtProtRAM_Flt\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_b_WrtProtRAM_Flt\\8");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_b_WrtProtRAM_Flt\\8"); 
@@ -4193,7 +4193,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_Software_interf
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Get_WriteProtectedAccessError Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Get_WriteProtectedAccessError in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Get_WriteProtectedAccessError");
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Get_WriteProtectedAccessError");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_Get_WriteProtectedAccessError function defination side  "); 
@@ -4228,7 +4228,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltAddr_stack_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is BreakpointMEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\18"); 
@@ -4240,7 +4240,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltAddr_stack_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltAddr Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_ptr_WrtProtRAM_FltAddr in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltAddr");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltAddr");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_ptr_WrtProtRAM_FltAddr function defination side  "); 
@@ -4275,7 +4275,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_FltAddr_Softwar
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltAddr\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint GetHWIO_ptr_WrtProtRAM_FltAddr\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltAddr\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltAddr\\8");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_ptr_WrtProtRAM_FltAddr\\8"); 
@@ -4287,7 +4287,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_FltAddr_Softwar
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Get_WriteProtectedAccessError Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Get_WriteProtectedAccessError in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Get_WriteProtectedAccessError");
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Get_WriteProtectedAccessError");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_Get_WriteProtectedAccessError function defination side  "); 
@@ -4322,7 +4322,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltInstAddr_stack_Software_interfa
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is BreakpointMEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\19"); 
@@ -4334,7 +4334,7 @@ testcase To_verify_the_GetHWIO_ptr_WrtProtRAM_FltInstAddr_stack_Software_interfa
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltInstAddr Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set GetHWIO_ptr_WrtProtRAM_FltInstAddr in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltInstAddr");
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltInstAddr");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_ptr_WrtProtRAM_FltInstAddr function defination side  "); 
@@ -4369,7 +4369,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_FltInstAddr_Sof
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in GetHWIO_ptr_WrtProtRAM_FltInstAddr\\8 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint GetHWIO_ptr_WrtProtRAM_FltInstAddr\\8 in Function call side"); 
-  A_DBGR_BreakpointSet("GetHWIO_ptr_WrtProtRAM_FltInstAddr\\8");  
+  A_DBGR_BreakpointSet_AbortOnFail("GetHWIO_ptr_WrtProtRAM_FltInstAddr\\8");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetHWIO_ptr_WrtProtRAM_FltInstAddr\\8"); 
@@ -4381,7 +4381,7 @@ testcase To_verify_the_Tc4xMemProt_Get_WriteProtectedAccessError_FltInstAddr_Sof
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_Get_WriteProtectedAccessError Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_Get_WriteProtectedAccessError in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_Get_WriteProtectedAccessError");
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_Get_WriteProtectedAccessError");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_Get_WriteProtectedAccessError function defination side  "); 
@@ -4416,7 +4416,7 @@ testcase To_verify_the_SetHWIO_y_WrtProtRAM_Update_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate\\5 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate\\5 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate\\5");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate\\5");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate\\5"); 
@@ -4428,7 +4428,7 @@ testcase To_verify_the_SetHWIO_y_WrtProtRAM_Update_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_y_WrtProtRAM_Update Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set SetHWIO_y_WrtProtRAM_Update in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_y_WrtProtRAM_Update function defination side  "); 
@@ -4463,7 +4463,7 @@ testcase To_verify_the_Tc4xMemProt_APP_SetProtectionContext_Unprotected_Software
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_y_WrtProtRAM_Update\\5 Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint SetHWIO_y_WrtProtRAM_Update\\5 in Function call side"); 
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update\\5");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update\\5");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_y_WrtProtRAM_Update\\5"); 
@@ -4475,7 +4475,7 @@ testcase To_verify_the_Tc4xMemProt_APP_SetProtectionContext_Unprotected_Software
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_APP_SetProtectionContext Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_APP_SetProtectionContext in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_APP_SetProtectionContext");
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_APP_SetProtectionContext");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_APP_SetProtectionContext function defination side  "); 
@@ -4510,7 +4510,7 @@ testcase To_verify_the_Tc4xMemProt_APP_SetProtectionContext_Protected_Software_i
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in SetHWIO_y_WrtProtRAM_Update\\9 inction call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint SetHWIO_y_WrtProtRAM_Update\\9  Function call side"); 
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update\\9");  
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update\\9");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetHWIO_y_WrtProtRAM_Update\\9"); 
@@ -4522,7 +4522,7 @@ testcase To_verify_the_Tc4xMemProt_APP_SetProtectionContext_Protected_Software_i
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in Tc4xMemProt_APP_SetProtectionContext Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set Tc4xMemProt_APP_SetProtectionContext in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("Tc4xMemProt_APP_SetProtectionContext");
+  A_DBGR_BreakpointSet_AbortOnFail("Tc4xMemProt_APP_SetProtectionContext");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in Tc4xMemProt_APP_SetProtectionContext function defination side  "); 
@@ -4557,7 +4557,7 @@ testcase To_verify_the_ClrHWIO_WrtProtRAM_Flt_Stack_Software_interface()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30 inction call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30 Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_WPArea\\30"); 
@@ -4569,7 +4569,7 @@ testcase To_verify_the_ClrHWIO_WrtProtRAM_Flt_Stack_Software_interface()
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in ClrHWIO_WrtProtRAM_Flt Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set ClrHWIO_WrtProtRAM_Flt in funaction defination side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("ClrHWIO_WrtProtRAM_Flt");
+  A_DBGR_BreakpointSet_AbortOnFail("ClrHWIO_WrtProtRAM_Flt");
 
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in ClrHWIO_WrtProtRAM_Flt function defination side  "); 
@@ -4604,7 +4604,7 @@ testcase To_verify_the_Minimum_value_SetHWIO_y_WrtProtRAM_Update_Software_interf
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
@@ -4639,7 +4639,7 @@ testcase To_verify_the_Minimum_value_SetHWIO_y_WrtProtRAM_Update_Software_interf
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update function defination side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function Defination side"); 
@@ -4692,7 +4692,7 @@ testcase To_verify_the_Mid_value_SetHWIO_y_WrtProtRAM_Update_Software_interface(
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
@@ -4727,7 +4727,7 @@ testcase To_verify_the_Mid_value_SetHWIO_y_WrtProtRAM_Update_Software_interface(
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update function defination side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function Defination side"); 
@@ -4780,7 +4780,7 @@ testcase To_verify_the_Max_value_SetHWIO_y_WrtProtRAM_Update_Software_interface(
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  Function call side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_ExecuteWriteTest_ProtectedAddress_ProtectedUpdate  in Function call side"); 
@@ -4815,7 +4815,7 @@ testcase To_verify_the_Max_value_SetHWIO_y_WrtProtRAM_Update_Software_interface(
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update function defination side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function call side"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("SetHWIO_y_WrtProtRAM_Update");
+  A_DBGR_BreakpointSet_AbortOnFail("SetHWIO_y_WrtProtRAM_Update");
   
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  SetHWIO_y_WrtProtRAM_Update Function defination  side  "); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  SetHWIO_y_WrtProtRAM_Update  in Function Defination side"); 
@@ -4875,7 +4875,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -4895,7 +4895,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -4950,7 +4950,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_Overflow_Un
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -4970,7 +4970,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_Overflow_Un
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 before stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  before stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   /***************************************************************************************************************/    
                                               // Test Step4 Reading  the fault information variable(Before_fault)
   /***************************************************************************************************************/
@@ -5007,7 +5007,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet(" MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail(" MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in  MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -5027,7 +5027,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in  MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set  MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet(" MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail(" MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at  MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in  MEMPROT_HWIO_Run_StackUnderflow_Tests\\57+0x2"); 
@@ -5059,7 +5059,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5068,7 +5068,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5103,7 +5103,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5123,7 +5123,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5155,7 +5155,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5164,7 +5164,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5199,7 +5199,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5219,7 +5219,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5251,7 +5251,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5260,7 +5260,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5295,7 +5295,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5315,7 +5315,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5347,7 +5347,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5356,7 +5356,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5391,7 +5391,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5411,7 +5411,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5443,7 +5443,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5452,7 +5452,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5487,7 +5487,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5507,7 +5507,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5539,7 +5539,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5548,7 +5548,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5583,7 +5583,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5603,7 +5603,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5635,7 +5635,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\52 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\52  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\52");
   A_DBGR_Go();
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the Before_clear_fault_status  variable value to 1"); 
@@ -5644,7 +5644,7 @@ testcase To_verify_the_STACK_PROTECTION_STATUS_should_reset_0_STACK_NO_ERROR_whe
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\53 Reading the STACK_PROTECTION_STATUS After reset condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\53  Reading the STACK_PROTECTION_STATUS After reset condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\53");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "Set the After_clear_fault_status  variable value to 0"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify After_clear_fault_status variable value to 0");
@@ -5679,7 +5679,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5699,7 +5699,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5754,7 +5754,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5774,7 +5774,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5829,7 +5829,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5849,7 +5849,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5904,7 +5904,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5924,7 +5924,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -5979,7 +5979,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\6"); 
@@ -5999,7 +5999,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_overflow_co
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackOverflow_Tests\\57+0x2"); 
@@ -6054,7 +6054,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6074,7 +6074,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
@@ -6129,7 +6129,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6149,7 +6149,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
@@ -6204,7 +6204,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6224,7 +6224,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
@@ -6279,7 +6279,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6299,7 +6299,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
@@ -6354,7 +6354,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6374,7 +6374,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
@@ -6429,7 +6429,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 Function call side"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\6 in Function call side"); 
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\6");  
   A_DBGR_Go();
   
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\6"); 
@@ -6449,7 +6449,7 @@ testcase To_verify_the_software_shall_report_the_status_of_the_Stack_underflow_c
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2 stack overflow condition"); 
   snprintf( chExpectedText, elCount(chExpectedText), "verify is Breakpoint Set MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2  stack overflow condition"); 
   TestStepAddActionExpected( chActionText, chExpectedText );
-  A_DBGR_BreakpointSet("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
+  A_DBGR_BreakpointSet_AbortOnFail("MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2");
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), "setting the Breakpoint at MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 
   snprintf( chExpectedText, elCount(chExpectedText), "Verify Breakpoint hit in MEMPROT_HWIO_Run_StackUnderflow_Tests\\56+0x2"); 

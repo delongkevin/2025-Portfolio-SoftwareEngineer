@@ -187,6 +187,70 @@ long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCo
 }
 
 
+/*! long lFctn_T32_Launch(char aT32ExePath[], char aT32ConfigFile[])
+*  \brief Launches Trace32 if it is not already running.
+*         Calls the given T32 executable with the supplied config file, then polls
+*         the STATE command until the debugger transitions out of the Down (0) state
+*         or cc_dwT32_LaunchTimeout is reached.
+*
+*  \param[in] aT32ExePath   - Full path to the Trace32 executable
+*                             (e.g. "C:\\T32\\t32marm.exe").
+*  \param[in] aT32ConfigFile - Full path to the T32 config file to load
+*                              (e.g. "C:\\T32\\config.t32").
+*
+*  \return  Ok    (1) : T32 is connected (state != Down) after launch.
+*  \return  NotOk (0) : Timeout – T32 did not connect within cc_dwT32_LaunchTimeout.
+*  \return  Error (-1): Launch command could not be started.
+*
+* Change History:
+* Date(DD.MM.YY)        Author          Change info
+*
+* 10.03.26              Copilot         Created – auto-starts T32 when not running.
+*/
+long lFctn_T32_Launch(char aT32ExePath[], char aT32ConfigFile[])
+{
+  char chLaunchCmd[1024];
+  long lState;
+  long lElapsed;
+  long lPollInterval;
+  byte bDebugFlag;
+
+  bDebugFlag = cc_bT32_GlobalDebugFlag;
+  writeDbgLevel(DebugFuncCalls, "Function lFctn_T32_Launch() entered.");
+
+  // Build the launch command: <exe> -c <config>
+  snprintf(chLaunchCmd, elcount(chLaunchCmd), "\"%s\" -c \"%s\"", aT32ExePath, aT32ConfigFile);
+
+  if ((byte)DebugFuncParam & bDebugFlag)
+    writeDbgLevel(DebugFuncParam, "Launch command: %s", chLaunchCmd);
+
+  // Start T32 in the background (non-blocking: process launched and left running).
+  // TestWaitForSyscall with timeout 0 fires-and-forgets (does not wait for exit).
+  TestWaitForSyscall(chLaunchCmd, 0, 0);
+
+  // Poll until T32 becomes connected or we time out.
+  lPollInterval = 1000; // check every 1 s
+  lElapsed = 0;
+
+  while (lElapsed < cc_dwT32_LaunchTimeout)
+  {
+    testWaitForTimeoutSilent(lPollInterval);
+    lElapsed += lPollInterval;
+
+    lState = lFctn_G_T32_GET_STATE();
+    if (lState != T32_State_Down && lState != Error)
+    {
+      write("T32 connected after %d ms (state=%d).", lElapsed, lState);
+      return Ok;
+    }
+    write("Waiting for T32 to connect... %d ms elapsed (state=%d).", lElapsed, lState);
+  }
+
+  write("ERROR: T32 did not connect within %d ms.", cc_dwT32_LaunchTimeout);
+  return NotOk;
+}
+
+
 /*! long lFctn_G_T32_GET_STATE()
 *  \brief Function that read the state of the system.
 *
