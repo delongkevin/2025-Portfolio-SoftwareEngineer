@@ -1,0 +1,1 @@
+C:\T32\bin\windows\t32marm.exe -c "C:\T32\config.t32" -s "./initiate_flash.cmm"
