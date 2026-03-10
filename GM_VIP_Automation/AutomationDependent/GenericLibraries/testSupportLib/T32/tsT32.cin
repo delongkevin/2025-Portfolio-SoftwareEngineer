@@ -685,6 +685,12 @@ export testfunction A_DBGR_EnsureT32Running(char aT32ExePath[], char aT32ConfigF
 *         delay to handle the case where Trace32 symbol tables are still being resolved
 *         after a load.  The module variable sv_T32_LastBreakpointSetOk is set to Ok on
 *         success and NotOk on failure so callers can react without changing the return type.
+*
+*         If all retries up to cc_nT32_BPSetSymbolReloadAt fail, the function issues a
+*         SYMBOL.RELOAD command (equivalent to the manual "Reload Symbols" action in the
+*         T32 IDE) and waits cc_dwT32_SymbolReloadWait ms before continuing to retry.
+*         This eliminates false "symbol not found" failures caused by transient delays
+*         in ELF symbol table resolution that occur during unattended automation runs.
 * 
 *  \param[in] aAddress - name of the BP ("Symbol")
 *
@@ -695,6 +701,7 @@ export testfunction A_DBGR_EnsureT32Running(char aT32ExePath[], char aT32ConfigF
 *   
 * 31.08.20              CrJu         Refactoring the code.
 * 10.03.26              Copilot      Added retry loop and sv_T32_LastBreakpointSetOk status.
+* 10.03.26              Copilot      Added SYMBOL.RELOAD on mid-retry to recover from slow symbol loading.
 */
 export testfunction A_DBGR_BreakpointSet(char aAddress[])
 {
@@ -706,10 +713,15 @@ export testfunction A_DBGR_BreakpointSet(char aAddress[])
   char chFailText[250];
   char chAction[250];
   char chT32Cmd[128] = "";
+  // Outer double-quotes are required by T32_API.exe to pass the command as a
+  // single argument (consistent with all other chT32Cmd strings in this module).
+  char chReloadCmd[32] = "\"SYMBOL.RELOAD\"";
   int  nAttempt;
+  int  bSymbolReloadDone;
 
   bDebugFlag = NotOk;
   bResultAction = NotOk;
+  bSymbolReloadDone = 0;
   sv_T32_LastBreakpointSetOk = NotOk; // pessimistic default
 
   writeDbgLevel(DebugFuncCalls, "Function A_DBGR_BreakpointSet() entered.");
@@ -730,9 +742,22 @@ export testfunction A_DBGR_BreakpointSet(char aAddress[])
   snprintf(chT32Cmd, elcount(chT32Cmd), "\"BREAK.SET %s\"", aAddress);
 
   // Retry loop: T32 symbol tables may still be loading right after a DO/load script.
-  // Retry up to cc_nT32_BPSetMaxRetries times before declaring failure.
+  // After cc_nT32_BPSetSymbolReloadAt failures a SYMBOL.RELOAD is issued to trigger
+  // T32 to re-process the ELF symbol database (the same action as the manual
+  // "Reload Symbols" in the T32 IDE).  Retries continue for the remaining attempts.
   for (nAttempt = 1; nAttempt <= cc_nT32_BPSetMaxRetries; nAttempt++)
   {
+    // Trigger SYMBOL.RELOAD once, after cc_nT32_BPSetSymbolReloadAt failed attempts,
+    // to recover from slow ELF symbol table loading.
+    if (!bSymbolReloadDone && nAttempt > cc_nT32_BPSetSymbolReloadAt)
+    {
+      write("A_DBGR_BreakpointSet: '%s' still not found after %d attempts. Issuing SYMBOL.RELOAD and waiting %d ms...",
+            aAddress, cc_nT32_BPSetSymbolReloadAt, cc_dwT32_SymbolReloadWait);
+      lFctn_CallT32API(chReloadCmd, chApiMessage, lApiExitCode);
+      testWaitForTimeoutSilent(cc_dwT32_SymbolReloadWait);
+      bSymbolReloadDone = 1;
+    }
+
     lFctn_CallT32API(chT32Cmd, chApiMessage, lApiExitCode);
 
     if (lApiExitCode[0] == 0)

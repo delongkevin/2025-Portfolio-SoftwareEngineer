@@ -43,8 +43,15 @@ variables
   // Retry constants for BREAK.SET when the symbol table is still loading.
   // T32_API can transiently report symbol-not-found while ELF symbols are
   // being resolved; retrying with a short delay avoids false failures.
-  const int   cc_nT32_BPSetMaxRetries      = 5;    // max BREAK.SET attempts
-  const dword cc_dwT32_BPSetRetryInterval  = 1000; // ms between attempts
+  //
+  // If all initial retries are exhausted the library issues a SYMBOL.RELOAD
+  // command (equivalent to the manual "Reload Symbols" action in the T32 IDE)
+  // and then retries for up to cc_nT32_BPSetMaxRetries total attempts.
+  // cc_nT32_BPSetSymbolReloadAt must be < cc_nT32_BPSetMaxRetries.
+  const int   cc_nT32_BPSetMaxRetries         = 10;   // max BREAK.SET attempts; increased to allow retries after SYMBOL.RELOAD
+  const dword cc_dwT32_BPSetRetryInterval     = 1000; // ms between attempts
+  const int   cc_nT32_BPSetSymbolReloadAt     = 5;    // trigger SYMBOL.RELOAD after this many failed attempts
+  const dword cc_dwT32_SymbolReloadWait       = 2000; // ms to wait after issuing SYMBOL.RELOAD before retrying
 
   // How long to wait for Trace32 to become connected after auto-launch.
   const dword cc_dwT32_LaunchTimeout = 30000; // ms
