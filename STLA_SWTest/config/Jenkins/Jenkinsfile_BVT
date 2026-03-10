@@ -128,7 +128,7 @@ $found.FullName
                     env.STLA_ROOT = powershell(
                         returnStdout: true, script: findRoot
                     ).trim()
-                    env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC"
+                    env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
                     echo "STLA_ROOT       : ${env.STLA_ROOT}"
                     echo "Report dir      : ${env.REPORT_DIR_FULL}"
                 }
@@ -186,7 +186,7 @@ $found.FullName
                 sleep 20
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Flashing', timeouts: """${params.flashingTimeout}""")
                     }
                 }
@@ -203,7 +203,7 @@ $found.FullName
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Sanity', timeouts: """${params.BVTTimeout}""")
                     }
                 }
@@ -220,7 +220,7 @@ $found.FullName
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'PR_Sanity', timeouts: """${params.flashingTimeout}""")
                     }
                 }
@@ -237,7 +237,7 @@ $found.FullName
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'Robustness', timeouts: """${params.BVTTimeout}""")
                     }
                 }
@@ -254,7 +254,7 @@ $found.FullName
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
+                        qualityGate.executeCANoeTest(CANoeCFGFileName: 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg',
                         CANoeTestUnitNames: 'CPU_Load_Test', timeouts: """${params.BVTTimeout}""")
                     }
                 }
@@ -292,16 +292,16 @@ post {
                 """
             }
         }
-        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC', reportFiles: 'index.html', reportName: 'L2H4060 CVADAS SWQT Report', reportTitles: 'SWQT results'])
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.html'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.xml'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.jpg'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.txt'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.gif, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.avi, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.png, BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.csv'
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\CVADAS_RBS_TRSC', reportFiles: 'index.html', reportName: 'L2H4060 CVADAS SWQT Report', reportTitles: 'SWQT results'])
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.html'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.xml'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.jpg'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.txt'
+        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/**/*.gif, BVTRBS/CVADAS_RBS_TRSC/**/*.avi, BVTRBS/CVADAS_RBS_TRSC/**/*.png, BVTRBS/CVADAS_RBS_TRSC/**/*.csv'
         archiveArtifacts allowEmptyArchive: true, artifacts: '**/Software_Test_Report.html'
-        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/03_VariantDependent/*/CVADAS_RBS_TRSC/*_jenkins.xml"
+        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/CVADAS_RBS_TRSC/*_jenkins.xml"
         script {
-            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*", CanoeTestReportsPath: "BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC")
+            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*", CanoeTestReportsPath: "BVTRBS/CVADAS_RBS_TRSC")
         }
         catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
             cleanWs(disableDeferredWipeout: true)
@@ -367,7 +367,7 @@ def generateEmailBody(String status) {
             <tr><th>Upstream Build</th><td>${params.upstreamJobName} #${params.BuildNumber}</td></tr>
             <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
             <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
-            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
         </table>
 
         <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>

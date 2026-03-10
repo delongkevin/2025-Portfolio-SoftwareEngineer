@@ -7,7 +7,7 @@ without physical ADAS bench hardware (ECU / CANoe / Lauterbach T32).
 
 What it does
 ------------
-1. Scans the .run directory under BVTRBS/.../CVADAS_RBS_TRSC for the
+1. Scans the .run directory under BVTRBS/CVADAS_RBS_TRSC for the
    latest .vtt.export.xml file for each known STLA test unit.
 2. Extracts every <testsequence name="..."> from each export file.
 3. For each test unit it writes two report files into the output directory:
@@ -106,8 +106,6 @@ def _find_run_dir(stla_root: Path) -> Optional[Path]:
     candidate = (
         stla_root
         / 'BVTRBS'
-        / '03_VariantDependent'
-        / 'Customer'
         / 'CVADAS_RBS_TRSC'
         / '.run'
     )
@@ -347,7 +345,7 @@ def main() -> int:
     if run_dir is None:
         print(
             "WARNING: .run cache directory not found under "
-            "BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/. "
+            "BVTRBS/CVADAS_RBS_TRSC/. "
             "No .vtt.export.xml files will be parsed.",
             file=sys.stderr,
         )

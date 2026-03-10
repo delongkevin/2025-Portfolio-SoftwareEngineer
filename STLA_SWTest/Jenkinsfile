@@ -3,7 +3,7 @@
 // =============================================================================
 //
 // Project   : L2H4060 CVADAS BEV (ADAS Camera / Surround-View System)
-// CANoe cfg : BVTRBS\03_VariantDependent\Customer\CVADAS_RBS_TRSC\
+// CANoe cfg : BVTRBS\CVADAS_RBS_TRSC\
 //               ME_L2H4060_DT_CVADAS_DSBus.cfg
 //
 // PATH RULE – how tool and file paths work in this pipeline
@@ -71,16 +71,16 @@ pipeline {
         STLA_ROOT = ''   // set dynamically in Discover Paths
 
         // Sub-paths relative to STLA_SWTest
-        REL_CANOE_CFG    = 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg'
+        REL_CANOE_CFG    = 'BVTRBS\\CVADAS_RBS_TRSC\\ME_L2H4060_DT_CVADAS_DSBus.cfg'
         REL_SIMULATE     = 'simulate_tests.py'
-        REL_REPORT_DIR   = 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC'
+        REL_REPORT_DIR   = 'BVTRBS\\CVADAS_RBS_TRSC'
         REL_SIM_OUT      = 'Test Reports\\simulation'
-        REL_CHECK_PORT   = 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\Check_Port.py'
-        REL_CPU_PARSER   = 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\CPU_Load_Graph_Parser.py'
+        REL_CHECK_PORT   = 'BVTRBS\\CVADAS_RBS_TRSC\\Check_Port.py'
+        REL_CPU_PARSER   = 'BVTRBS\\CVADAS_RBS_TRSC\\CPU_Load_Graph_Parser.py'
         REL_ARG_PARSER   = 'config\\Jenkins\\arg_parser.py'
 
         // Junit test results pattern (shared between SWQT Test Suite and Aggregate Reports)
-        JUNIT_PATTERN    = 'STLA_SWTest/BVTRBS/03_VariantDependent/*/CVADAS_RBS_TRSC/*_jenkins.xml'
+        JUNIT_PATTERN    = 'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/*_jenkins.xml'
 
         // Non-path constants
         FLASH_TIMEOUT_S  = '3000'
@@ -628,14 +628,14 @@ except Exception as e:
                         reportTitles:          'L2H4060 CVADAS SWQT Results'
                     ])
                     archiveArtifacts(
-                        artifacts:         'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.html,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.xml,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.jpg,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.txt,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.gif,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.avi,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.png,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.csv,' +
+                        artifacts:         'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/*.html,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/*.xml,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/*.jpg,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/*.txt,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/**/*.gif,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/**/*.avi,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/**/*.png,' +
+                                           'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/**/*.csv,' +
                                            '**/Software_Test_Report.html',
                         allowEmptyArchive: true
                     )
@@ -647,7 +647,7 @@ except Exception as e:
                     script {
                         qualityGate.executerecordCANoeTestResult(
                             CanoeTestReportName:  'Report_*',
-                            CanoeTestReportsPath: 'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC'
+                            CanoeTestReportsPath: 'STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC'
                         )
                     }
                 }
@@ -726,7 +726,7 @@ def _emailBody(String status) {
       <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
       <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
       <tr><th>Software Test Report</th>
-          <td><a href="${BUILD_URL}artifact/STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+          <td><a href="${BUILD_URL}artifact/STLA_SWTest/BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
     </table>
     <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>
     <p>Regards,<br>Jenkins</p>
