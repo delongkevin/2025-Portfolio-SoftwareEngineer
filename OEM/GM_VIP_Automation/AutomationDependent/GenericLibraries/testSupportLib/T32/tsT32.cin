@@ -617,16 +617,31 @@ void E_DBGR_CheckConnection()
 *
 * 10.03.26              Copilot         Created – auto-starts T32 when not connected.
 */
-void A_DBGR_EnsureT32Running(char aT32ExePath[], char aT32ConfigFile[])
+export testfunction A_DBGR_EnsureT32Running(char aT32ExePath[], char aT32ConfigFile[])
 {
   long lState;
   long lLaunchResult;
+  char chAction[250];
   char chPassText[250];
   char chFailText[250];
+  byte bResultAction;
   byte bDebugFlag;
 
   bDebugFlag = NotOk;
   writeDbgLevel(DebugFuncCalls, "Function A_DBGR_EnsureT32Running() entered.");
+
+  // Add the action to the report before any evaluation call.
+  snprintf(chAction, elcount(chAction), "Ensure Trace32 is connected and running.");
+  bResultAction = bFctn_REPORTAction(chAction);
+
+  if (!bResultAction)
+  {
+    snprintf(chFailText, elcount(chFailText), "ERROR: The action text could not be added in the Report. bFctn_REPORTAction() return: %d.", bResultAction);
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "ERROR: %s.", chFailText);
+    vFctn_REPORTActionEvaluation(chFailText, FAIL);
+    return;
+  }
 
   lState = lFctn_G_T32_GET_STATE(msgInfo);
 

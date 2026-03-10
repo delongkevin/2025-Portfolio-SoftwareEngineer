@@ -213,6 +213,7 @@ long lFctn_T32_Launch(char aT32ExePath[], char aT32ConfigFile[])
   long lState;
   long lElapsed;
   long lPollInterval;
+  long lSyscallResult;
   byte bDebugFlag;
 
   bDebugFlag = cc_bT32_GlobalDebugFlag;
@@ -226,7 +227,15 @@ long lFctn_T32_Launch(char aT32ExePath[], char aT32ConfigFile[])
 
   // Start T32 in the background (non-blocking: process launched and left running).
   // TestWaitForSyscall with timeout 0 fires-and-forgets (does not wait for exit).
-  TestWaitForSyscall(chLaunchCmd, 0, 0);
+  // Return value: -1 if the command could not be started, otherwise the process exit code.
+  lSyscallResult = TestWaitForSyscall(chLaunchCmd, 0, 0);
+  if (lSyscallResult == -1)
+  {
+    write("ERROR: lFctn_T32_Launch() – could not start T32 process. Command: %s", chLaunchCmd);
+    return Error;
+  }
+
+  write("lFctn_T32_Launch(): T32 process started. Waiting for connection...");
 
   // Poll until T32 becomes connected or we time out.
   lPollInterval = 1000; // check every 1 s
@@ -243,7 +252,9 @@ long lFctn_T32_Launch(char aT32ExePath[], char aT32ConfigFile[])
       write("T32 connected after %d ms (state=%d).", lElapsed, lState);
       return Ok;
     }
-    write("Waiting for T32 to connect... %d ms elapsed (state=%d).", lElapsed, lState);
+    // Only log poll progress under debug flag to avoid flooding the test log
+    if ((byte)DebugFuncInternal & bDebugFlag)
+      writeDbgLevel(DebugFuncInternal, "Waiting for T32 to connect... %d ms elapsed (state=%d).", lElapsed, lState);
   }
 
   write("ERROR: T32 did not connect within %d ms.", cc_dwT32_LaunchTimeout);
