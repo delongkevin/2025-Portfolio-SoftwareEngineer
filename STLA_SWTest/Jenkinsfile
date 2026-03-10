@@ -31,11 +31,19 @@
 // ------------
 //   windows-agent      – any Windows PC with Python and git in PATH.
 //                        Stages: Checkout, Validate, Simulate
-//   windows-bench      – dedicated ADAS bench PC.
+//   windows-bench      – dedicated ADAS bench PC (default bench label).
 //                        Same as windows-agent PLUS CANoe64.exe, t32rem.exe,
 //                        OdxPdxFlasher.exe in PATH, ECU connected,
 //                        POWERSUPPLY_PORT set on the node.
 //                        Stages: Flash ECU, BVT/Sanity, SWQT Tests, Reports
+//   L2H4060_SWTest     – named bench node for the L2H4060 CVADAS bench.
+//                        Select via the buildMachine parameter (default).
+//
+// Upstream-triggered builds
+// -------------------------
+//   Set upstreamJobName to the full Jenkins job path of the upstream build
+//   job and BuildNumber to the build number to trace which software is under
+//   test.  Both are informational and surfaced in the build log.
 //
 // Jenkins shared library
 // ----------------------
@@ -71,14 +79,23 @@ pipeline {
         REL_CPU_PARSER   = 'BVTRBS\\03_VariantDependent\\Customer\\CVADAS_RBS_TRSC\\CPU_Load_Graph_Parser.py'
         REL_ARG_PARSER   = 'config\\Jenkins\\arg_parser.py'
 
+        // Junit test results pattern (shared between SWQT Test Suite and Aggregate Reports)
+        JUNIT_PATTERN    = 'STLA_SWTest/BVTRBS/03_VariantDependent/*/CVADAS_RBS_TRSC/*_jenkins.xml'
+
         // Non-path constants
         FLASH_TIMEOUT_S  = '3000'
         BVT_TIMEOUT_S    = '30000'
         TEST_TIMEOUT_S   = '4500'
+
+        // Project-specific constants (preserved from Jenkinsfile_BVT)
+        FULL_PDX_NAME    = 'FL_85E907217B_XXXX_DEV_V001_E.pdx'
+        // CT server path that supplies Python support files needed by CANoe
+        CT_PYTHON_SRC    = 'C:\\JS\\CT_Server_Standard_files_Continous_Testing\\python'
+        JENKINS_URL      = 'https://eahubjenkins02.magna.global:8443/view/L2H4060/job'
     }
 
     options {
-        buildDiscarder(logRotator(daysToKeepStr: '30', numToKeepStr: '15'))
+        buildDiscarder(logRotator(daysToKeepStr: '30', numToKeepStr: '15', artifactNumToKeepStr: '5'))
         timeout(time: 3, unit: 'HOURS')
         disableConcurrentBuilds()
         timestamps()
@@ -133,9 +150,27 @@ pipeline {
             defaultValue: false,
             description:  'Stop after BVT without running the full SWQT test suite.'
         )
+        choice(
+            name:         'buildMachine',
+            choices:      ['L2H4060_SWTest', 'windows-bench'],
+            description:  'Jenkins agent label for all bench stages (Flash, BVT, SWQT, Reports). ' +
+                          'Must match a configured node in Manage Jenkins → Nodes. ' +
+                          'L2H4060_SWTest is the dedicated CVADAS bench PC.'
+        )
+        string(
+            name:         'upstreamJobName',
+            defaultValue: 'L2H4060/job/L2H4060_BS_branches/job/L2H4060_Software/job',
+            description:  'Full Jenkins job path of the upstream build that triggered this test run. ' +
+                          'Informational – surfaced in the build log for traceability.'
+        )
+        string(
+            name:         'BuildNumber',
+            defaultValue: '251',
+            description:  'Upstream build number under test. Required when triggered manually.'
+        )
         string(
             name:         'Mail_To',
-            defaultValue: '',
+            defaultValue: 'Kevin.Delong@magna.com Azharul.Haque@magna.com saibhargav.thottempudi@magna.com gopinath.ramanathan@magna.com',
             description:  'Space-separated list of email recipients for build notifications.'
         )
     }
@@ -149,8 +184,31 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-                echo "Branch : ${env.BRANCH_NAME ?: params.ReleaseBuild}"
-                echo "Commit : ${env.GIT_COMMIT}"
+                echo "Branch        : ${env.BRANCH_NAME ?: params.ReleaseBuild}"
+                echo "Commit        : ${env.GIT_COMMIT}"
+                echo "Bench node    : ${params.buildMachine}"
+                echo "Upstream job  : ${params.upstreamJobName}"
+                echo "Build number  : ${params.BuildNumber}"
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        stage('checkBuildEnvironment') {
+        // ---------------------------------------------------------------------
+        // Validates the bench node environment (CANoe version, shared library
+        // presence, config package) using the setEnvironment shared-library
+        // helper.  Mirrors the first stage in Jenkinsfile_BVT so that
+        // environment problems are caught before any bench hardware is used.
+        // Runs on the bench node so the same toolchain is validated.
+        // ---------------------------------------------------------------------
+            when { expression { params.RUN_ON_BENCH == true } }
+            agent { label params.buildMachine }
+            steps {
+                script {
+                    setEnvironment.executecheckBuildEnv(
+                        configPackageJsonPath: 'config/Packager/config_package.json'
+                    )
+                }
             }
         }
 
@@ -312,7 +370,7 @@ $found.FullName
                     expression { params.flashTarget   == true }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 echo "======================================================"
                 echo "  Flash ECU – CANoe test unit: Flashing"
@@ -351,7 +409,7 @@ $found.FullName
                     expression { params.enableBVT    == true }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 echo "======================================================"
                 echo "  BVT – Sanity"
@@ -412,7 +470,7 @@ except Exception as e:
                     expression { params.enableQuickSanity == true }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -445,7 +503,7 @@ except Exception as e:
                     expression { params.SKIP_TEST_SUITE == false }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 script {
                     if (!env.CANOE_EXE) {
@@ -472,7 +530,7 @@ except Exception as e:
             post {
                 always {
                     junit(
-                        testResults:       'STLA_SWTest\\BVTRBS\\**\\*_jenkins.xml',
+                        testResults:       env.JUNIT_PATTERN,
                         allowEmptyResults: true,
                         keepLongStdio:     true
                     )
@@ -492,7 +550,7 @@ except Exception as e:
                     expression { params.enableRobustness == true }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 script {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -521,7 +579,7 @@ except Exception as e:
                     expression { params.CPU_Load_Test == true }
                 }
             }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
                 // Execute CANoe CPU load test unit
                 script {
@@ -547,8 +605,13 @@ except Exception as e:
         // Runs when bench stages executed, regardless of test outcome.
         // ---------------------------------------------------------------------
             when { expression { params.RUN_ON_BENCH == true } }
-            agent { label 'windows-bench' }
+            agent { label params.buildMachine }
             steps {
+                // Copy CT server Python support files into the report directory
+                // (mirrors the xcopy in Jenkinsfile_BVT; OK to fail if path absent)
+                bat """
+                    xcopy /E /I /Y "%CT_PYTHON_SRC%" "%REPORT_DIR_FULL%" || exit 0
+                """
                 bat """
                     python "%STLA_ROOT%\\%REL_ARG_PARSER%"
                 """
@@ -568,9 +631,25 @@ except Exception as e:
                         artifacts:         'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.html,' +
                                            'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.xml,' +
                                            'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.jpg,' +
-                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.txt',
+                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/*.txt,' +
+                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.gif,' +
+                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.avi,' +
+                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.png,' +
+                                           'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/**/*.csv,' +
+                                           '**/Software_Test_Report.html',
                         allowEmptyArchive: true
                     )
+                    junit(
+                        testResults:       env.JUNIT_PATTERN,
+                        allowEmptyResults: true,
+                        healthScaleFactor: 1.0
+                    )
+                    script {
+                        qualityGate.executerecordCANoeTestResult(
+                            CanoeTestReportName:  'Report_*',
+                            CanoeTestReportsPath: 'STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC'
+                        )
+                    }
                 }
             }
         }
@@ -628,25 +707,30 @@ def _emailBody(String status) {
     body  { font-family: Arial, sans-serif; color: #333; }
     h2    { color: #0073e6; }
     .status { font-size:16px; font-weight:bold; padding:8px; color:white; background-color:${color}; }
+    .report-link { font-size:14px; }
     table { width:100%; border-collapse:collapse; margin-top:10px; }
     th,td { padding:10px; text-align:left; border-bottom:1px solid #ddd; }
     th    { background-color:#f4f4f4; }
+    .container { padding:20px; }
   </style>
 </head>
 <body>
-  <h2>Jenkins Build Report – L2H4060 CVADAS ADAS SW Test</h2>
-  <p class="status">Build Status: ${status}</p>
-  <table>
-    <tr><th>Build Number</th><td>${BUILD_NUMBER}</td></tr>
-    <tr><th>Job Name</th><td>${JOB_NAME}</td></tr>
-    <tr><th>Release Build</th><td>${params.ReleaseBuild}</td></tr>
-    <tr><th>Build URL</th><td><a href="${BUILD_URL}">View Build</a></td></tr>
-    <tr><th>Console Log</th><td><a href="${BUILD_URL}console">View Console</a></td></tr>
-    <tr><th>SWQT Report</th>
-        <td><a href="${BUILD_URL}artifact/STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/index.html">View Report</a></td></tr>
-  </table>
-  <p>For issues contact the STLA SW Test team.</p>
-  <p>Regards,<br>Jenkins</p>
+  <div class="container">
+    <h2>Jenkins Build Report: L2H4060 CVADAS BEV SWQT</h2>
+    <p class="status">Build Status: ${status}</p>
+    <table>
+      <tr><th>Build Number</th><td>${BUILD_NUMBER}</td></tr>
+      <tr><th>Test Job</th><td>${JOB_NAME}</td></tr>
+      <tr><th>Release Build</th><td>${params.ReleaseBuild}</td></tr>
+      <tr><th>Upstream Build</th><td>${params.upstreamJobName} #${params.BuildNumber}</td></tr>
+      <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
+      <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
+      <tr><th>Software Test Report</th>
+          <td><a href="${BUILD_URL}artifact/STLA_SWTest/BVTRBS/03_VariantDependent/Customer/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+    </table>
+    <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>
+    <p>Regards,<br>Jenkins</p>
+  </div>
 </body>
 </html>""".stripIndent()
 }
