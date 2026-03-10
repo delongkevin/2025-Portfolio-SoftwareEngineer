@@ -239,6 +239,17 @@ Write-Output $found.FullName
                     // versions when stdout is empty or the script exits early.
                     def rawRoot = powershell(returnStdout: true, script: findRoot)
                     env.STLA_ROOT = rawRoot?.trim() ?: "${env.WORKSPACE}\\STLA_SWTest"
+
+                    // Validate that the resolved STLA_ROOT actually exists on disk.
+                    // Fail fast so downstream stages don't run against a wrong path.
+                    def rootExists = bat(
+                        script: "@if not exist \"${env.STLA_ROOT}\" exit 1",
+                        returnStatus: true
+                    )
+                    if (rootExists != 0) {
+                        error "FATAL: Resolved STLA_ROOT '${env.STLA_ROOT}' does not exist. " +
+                              "Verify workspace contents or STLA_SWTest checkout."
+                    }
                     echo "STLA_ROOT        : ${env.STLA_ROOT}"
 
                     // 2. Derive full paths

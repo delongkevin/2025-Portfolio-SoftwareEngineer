@@ -27,8 +27,12 @@ What it does
 
 Exit codes
 ----------
-    0  –  simulation complete; at least one test suite found
-    1  –  root not found, no .vtt.export.xml files found, or parse error
+    0  –  simulation complete (reports written).  This includes the case
+           where no .vtt.export.xml files are found (e.g. no prior CANoe
+           session / fresh bench).  Zero sequences discovered is a valid
+           first-run state, not a pipeline error.
+    1  –  fatal error: root directory does not exist, or an unrecoverable
+           XML parse failure occurred.  The pipeline should mark UNSTABLE.
 
 Usage
 -----

@@ -134,8 +134,20 @@ if ($found) {
 '''
                     // Guard against null returned by powershell() on some Jenkins
                     // versions when stdout is empty or the script exits early.
-                    def rawRoot = powershell(returnStdout: true, script: findRoot)
-                    env.STLA_ROOT = rawRoot?.trim() ?: "${env.WORKSPACE}\\STLA_SWTest"
+                    // Validate each candidate with fileExists() to avoid silently
+                    // using a non-existent path as STLA_ROOT.
+                    def rawRoot      = powershell(returnStdout: true, script: findRoot)
+                    def candidateRoot = rawRoot?.trim()
+                    def subfolderRoot = "${env.WORKSPACE}\\STLA_SWTest"
+
+                    if (!candidateRoot || !fileExists(candidateRoot)) {
+                        if (fileExists(subfolderRoot)) {
+                            candidateRoot = subfolderRoot
+                        } else if (fileExists(env.WORKSPACE)) {
+                            candidateRoot = env.WORKSPACE
+                        }
+                    }
+                    env.STLA_ROOT = candidateRoot
 
                     if (!env.STLA_ROOT) {
                         error "FATAL: Could not determine STLA_ROOT from workspace ${env.WORKSPACE}"
@@ -145,7 +157,7 @@ if ($found) {
                     env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
                     env.SIM_OUT_FULL    = "${env.STLA_ROOT}\\Test Reports\\simulation"
 
-                    echo """\
+                    echo """
 ======================================================
   STLA Directory Hierarchy
 ======================================================
@@ -178,10 +190,10 @@ if ($found) {
         // without any ECU hardware.
         //
         // Exit codes from simulate_tests.py:
-        //   0 – simulation complete (including when no .run cache exists yet;
-        //       that is a normal first-run state, not an error).
-        //   1 – fatal error: root directory not found or XML parse failure.
-        //       Only exit code 1 marks the build UNSTABLE.
+        //   0 – simulation complete (reports written; zero sequences found is
+        //       a valid first-run state when .run cache does not yet exist).
+        //   non-zero – fatal error (root directory not found, parse failure,
+        //              Python/argparse error).  Any non-zero exit marks UNSTABLE.
         // ---------------------------------------------------------------------
             when {
                 expression { params.SIMULATE == true }
@@ -197,8 +209,9 @@ if ($found) {
                         returnStatus: true
                     )
                     if (rc != 0) {
-                        echo "Simulation ERROR: simulate_tests.py exited ${rc}. " +
-                             "Root directory not found or .vtt.export.xml parse failure. " +
+                        echo "Simulation ERROR: simulate_tests.py exited with code ${rc}. " +
+                             "Check output above for details (root not found, " +
+                             "XML parse failure, or Python/argparse error). " +
                              "Marking build UNSTABLE."
                         currentBuild.result = 'UNSTABLE'
                     }

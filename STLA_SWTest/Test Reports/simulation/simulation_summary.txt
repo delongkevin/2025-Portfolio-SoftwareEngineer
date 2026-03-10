@@ -1,6 +1,6 @@
 STLA CVADAS ADAS SW Test – Virtual Bench Simulation Summary
 ============================================================
-Generated : 2026-03-10 18:27:47
+Generated : 2026-03-10 19:56:49
 Root      : /home/runner/work/Portfolio-SoftwareEngineer/Portfolio-SoftwareEngineer/STLA_SWTest
 Output    : /home/runner/work/Portfolio-SoftwareEngineer/Portfolio-SoftwareEngineer/STLA_SWTest/Test Reports/simulation
 
