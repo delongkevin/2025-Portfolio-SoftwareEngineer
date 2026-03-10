@@ -1,7 +1,12 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# Generated test reports (simulation output and merged HTML)
 OEM/GM_VIP_Automation/Test Reports/simulation/
+GM_VIP_Automation/Test Reports/simulation/
+GM_VIP_Automation/Test Reports/*.html
 
 # Local e-mail configuration – never commit real credentials
 OEM/GM_VIP_Automation/.env
+GM_VIP_Automation/.env
