@@ -31,11 +31,6 @@ on:
     # Every day at 02:00 UTC
     - cron: '0 2 * * *'
   workflow_dispatch:
-    inputs:
-      suite:
-        description: 'Test suite to focus on (leave blank for all suites)'
-        required: false
-        default: ''
 
 # Restrict default token permissions to read-only for the whole workflow.
 permissions:
@@ -95,7 +90,6 @@ jobs:
           python GM_VIP_Automation/simulate_tests.py \
             --root    GM_VIP_Automation \
             --out-dir GM_VIP_Automation/Test\ Reports/simulation
-        continue-on-error: true
 
       - name: Generate consolidated HTML report
         if: always()
