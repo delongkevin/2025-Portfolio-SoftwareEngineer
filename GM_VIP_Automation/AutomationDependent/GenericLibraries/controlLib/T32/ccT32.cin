@@ -37,8 +37,10 @@ variables
   const dword cc_dwT32_MaxTimeout = 3000;//ms
 
   // Timeout used when waiting for a breakpoint to be reached after GO.
-  // Longer than cc_dwT32_MaxTimeout to allow for RTOS scheduling latency.
-  const dword cc_dwT32_BP_HaltTimeout = 5000;//ms
+  // 20 s: some BPs (e.g. deep in the CAN driver call chain, or requiring a CAN
+  // message to trigger an RX callback) need more than the previous 5 s.
+  // Raising this constant is the single place to tune without adding per-test waits.
+  const dword cc_dwT32_BP_HaltTimeout = 20000;//ms
 
   // Retry constants for BREAK.SET when the symbol table is still loading.
   // T32_API can transiently report symbol-not-found while ELF symbols are
