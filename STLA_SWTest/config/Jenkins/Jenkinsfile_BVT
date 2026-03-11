@@ -110,48 +110,89 @@ pipeline {
 
         stage('Discover Paths') {
         // ---------------------------------------------------------------------
-        // 1. Locates STLA_SWTest anywhere under the workspace and sets
-        //    STLA_ROOT.  Falls back to the workspace root when the checkout
-        //    places STLA_SWTest content directly (no subfolder).
+        // 1. Discovers the project root by looking for a sentinel file that
+        //    uniquely identifies this project, regardless of what the project
+        //    folder is named on disk.
+        //
+        //    Sentinel: config\Packager\config_package.json
+        //    (present in every valid checkout of this repository)
+        //
+        //    Priority order:
+        //      a) Workspace root itself (most common: repo checked out directly)
+        //      b) First immediate subdirectory containing the sentinel
+        //         (covers multi-repo workspaces)
+        //      c) Workspace root as last-resort fallback
+        //
         // 2. Derives every sub-path used by downstream stages so nothing is
         //    hardcoded elsewhere in the pipeline.
-        // 3. Echoes a full directory-hierarchy summary for easy log reading.
+        // 3. Echoes a directory-hierarchy summary for easy log reading.
+        //
+        // NOTE: fileExists() is unreliable with absolute Windows paths on some
+        // Jenkins versions.  All existence checks use bat(returnStatus:true)
+        // with "if not exist" which is always correct on Windows.
+        // The workspace path is injected into PowerShell via withEnv to avoid
+        // special-character escaping issues.
         // ---------------------------------------------------------------------
             steps {
                 script {
-                    def findRoot = '''
-$found = Get-ChildItem -Path $env:WORKSPACE `
-             -Filter "STLA_SWTest" `
-             -Directory -Recurse `
-             -ErrorAction SilentlyContinue |
-         Select-Object -First 1
-if ($found) {
-    Write-Output $found.FullName
-} else {
-    # Workspace IS the STLA_SWTest root (SCM checks out into workspace directly)
-    Write-Output $env:WORKSPACE
-}
-'''
-                    // Guard against null returned by powershell() on some Jenkins
-                    // versions when stdout is empty or the script exits early.
-                    // Validate each candidate with fileExists() to avoid silently
-                    // using a non-existent path as STLA_ROOT.
-                    def rawRoot      = powershell(returnStdout: true, script: findRoot)
-                    def candidateRoot = rawRoot?.trim()
-                    def subfolderRoot = "${env.WORKSPACE}\\STLA_SWTest"
+                    // Pre-initialise to workspace-based defaults so that
+                    // post.always blocks have valid (non-empty) values even
+                    // if this stage fails before env.STLA_ROOT is set.
+                    env.REPORT_DIR_FULL = "${env.WORKSPACE}\\BVTRBS\\CVADAS_RBS_TRSC"
+                    env.SIM_OUT_FULL    = "${env.WORKSPACE}\\Test Reports\\simulation"
+                    env.STLA_REL        = ''
 
-                    if (!candidateRoot || !fileExists(candidateRoot)) {
-                        if (fileExists(subfolderRoot)) {
-                            candidateRoot = subfolderRoot
-                        } else if (fileExists(env.WORKSPACE)) {
-                            candidateRoot = env.WORKSPACE
+                    def wsPath   = env.WORKSPACE
+                    // Sentinel file that uniquely identifies the project root.
+                    def sentinel = 'config\\Packager\\config_package.json'
+                    def projectRoot = ''
+                    def projectRel  = ''
+
+                    // Check (a): workspace root IS the project root.
+                    def wsIsRoot = bat(
+                        script: "@if not exist \"${wsPath}\\${sentinel}\" exit 1",
+                        returnStatus: true) == 0
+
+                    if (wsIsRoot) {
+                        projectRoot = wsPath
+                        projectRel  = ''
+                    } else {
+                        // Check (b): scan immediate subdirectories for the sentinel.
+                        // Workspace path is injected via withEnv – no escaping needed.
+                        def findScript = '''
+$match = Get-ChildItem -Path $env:STLA_WORKSPACE -Directory -ErrorAction SilentlyContinue |
+    Where-Object { Test-Path (Join-Path $_.FullName $env:STLA_SENTINEL) } |
+    Select-Object -First 1
+if ($match) { Write-Output $match.FullName }
+'''
+                        def rawRoot = ''
+                        try {
+                            withEnv(["STLA_WORKSPACE=${wsPath}",
+                                     "STLA_SENTINEL=${sentinel}"]) {
+                                rawRoot = powershell(returnStdout: true, script: findScript)
+                            }
+                        } catch (ignored) {
+                            echo "INFO: PowerShell sentinel search skipped – ${ignored.message}"
+                        }
+
+                        if (rawRoot?.trim()) {
+                            projectRoot = rawRoot.trim()
+                            // Compute the relative path (e.g. 'MyProjectFolder').
+                            // Guard: only substring if projectRoot is under wsPath.
+                            projectRel = projectRoot.startsWith(wsPath)
+                                ? projectRoot.substring(wsPath.length()).replaceAll('^[/\\\\]+', '')
+                                : ''
+                        } else {
+                            // Fallback (c): treat workspace root as project root.
+                            echo "INFO: Project sentinel not found in any subdirectory; " +
+                                 "using workspace root as project root."
+                            projectRoot = wsPath
+                            projectRel  = ''
                         }
                     }
-                    env.STLA_ROOT = candidateRoot
 
-                    if (!env.STLA_ROOT) {
-                        error "FATAL: Could not determine STLA_ROOT from workspace ${env.WORKSPACE}"
-                    }
+                    env.STLA_ROOT = projectRoot
+                    env.STLA_REL  = projectRel
 
                     // Derive all sub-paths from STLA_ROOT (single source of truth)
                     env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
@@ -159,10 +200,10 @@ if ($found) {
 
                     echo """
 ======================================================
-  STLA Directory Hierarchy
+  Project Root Discovery
 ======================================================
-  STLA_ROOT
-  ${env.STLA_ROOT}
+  STLA_ROOT : ${env.STLA_ROOT}
+  STLA_REL  : ${env.STLA_REL ?: '(workspace root)'}
   |
   +-- BVTRBS\\CVADAS_RBS_TRSC\\
   |     CANoe config + hardware test reports
@@ -184,7 +225,7 @@ if ($found) {
 
         stage('Simulate Test Cases') {
         // ---------------------------------------------------------------------
-        // simulate_tests.py lives at STLA_SWTest/simulate_tests.py.
+        // simulate_tests.py lives at the project root (STLA_ROOT\simulate_tests.py).
         // It discovers vTestStudio test sequences from .vtt.export.xml files
         // in the CANoe .run cache and generates JUnit XML + HTML reports
         // without any ECU hardware.
@@ -343,24 +384,51 @@ if ($found) {
 post {
     always {
         script {
+            // Build workspace-relative path prefix.
+            // STLA_REL is '' when the project is the workspace root (most common),
+            // or 'MyFolderName' when the project lives in a subdirectory.
+            def rp = env.STLA_REL ? "${env.STLA_REL}/" : ''
+
             // Safety-net xcopy: ensures Python support files are present even
             // when the Parse Data stage fails or is skipped.
-            if (params.RUN_ON_BENCH) {
+            // Guard: only run when REPORT_DIR_FULL is set (non-empty) to avoid
+            // "Invalid drive specification" errors if Discover Paths failed.
+            if (params.RUN_ON_BENCH && env.REPORT_DIR_FULL?.trim()) {
                 bat """
                 xcopy /E /I /Y "%CT_PYTHON_SRC%" "%REPORT_DIR_FULL%" || exit 0
                 """
             }
-        }
-        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: false, reportDir: 'BVTRBS\\CVADAS_RBS_TRSC', reportFiles: 'index.html', reportName: 'L2H4060 CVADAS SWQT Report', reportTitles: 'SWQT results'])
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.html'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.xml'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.jpg'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/*.txt'
-        archiveArtifacts allowEmptyArchive: true, artifacts: 'BVTRBS/CVADAS_RBS_TRSC/**/*.gif, BVTRBS/CVADAS_RBS_TRSC/**/*.avi, BVTRBS/CVADAS_RBS_TRSC/**/*.png, BVTRBS/CVADAS_RBS_TRSC/**/*.csv'
-        archiveArtifacts allowEmptyArchive: true, artifacts: '**/Software_Test_Report.html'
-        junit allowEmptyResults: true, healthScaleFactor: 1.0, testResults: "BVTRBS/CVADAS_RBS_TRSC/*_jenkins.xml"
-        script {
-            qualityGate.executerecordCANoeTestResult(CanoeTestReportName: "Report_*", CanoeTestReportsPath: "BVTRBS/CVADAS_RBS_TRSC")
+
+            publishHTML([allowMissing: true, alwaysLinkToLastBuild: true,
+                         keepAll: false,
+                         reportDir:   "${rp}BVTRBS/CVADAS_RBS_TRSC",
+                         reportFiles: 'index.html',
+                         reportName:  'L2H4060 CVADAS SWQT Report',
+                         reportTitles: 'SWQT results'])
+
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: "${rp}BVTRBS/CVADAS_RBS_TRSC/*.html"
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: "${rp}BVTRBS/CVADAS_RBS_TRSC/*.xml"
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: "${rp}BVTRBS/CVADAS_RBS_TRSC/*.jpg"
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: "${rp}BVTRBS/CVADAS_RBS_TRSC/*.txt"
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: "${rp}BVTRBS/CVADAS_RBS_TRSC/**/*.gif," +
+                           "${rp}BVTRBS/CVADAS_RBS_TRSC/**/*.avi," +
+                           "${rp}BVTRBS/CVADAS_RBS_TRSC/**/*.png," +
+                           "${rp}BVTRBS/CVADAS_RBS_TRSC/**/*.csv"
+            archiveArtifacts allowEmptyArchive: true,
+                artifacts: '**/Software_Test_Report.html'
+
+            junit allowEmptyResults: true, healthScaleFactor: 1.0,
+                testResults: "${rp}BVTRBS/CVADAS_RBS_TRSC/*_jenkins.xml"
+
+            qualityGate.executerecordCANoeTestResult(
+                CanoeTestReportName:  "Report_*",
+                CanoeTestReportsPath: "${rp}BVTRBS/CVADAS_RBS_TRSC"
+            )
         }
         catchError(buildResult: currentBuild.currentResult, stageResult: 'SUCCESS') {
             cleanWs(disableDeferredWipeout: true)
@@ -369,7 +437,7 @@ post {
 
     failure {
         script {
-            def emailBody = generateEmailBody(currentBuild.currentResult)
+            def emailBody = generateEmailBody(currentBuild.currentResult, env.STLA_REL ?: '')
             emailext (
                 mimeType: 'text/html',
                 attachmentsPattern: "**/Software_Test_Report.html",
@@ -383,7 +451,7 @@ post {
 
     success {
         script {
-            def emailBody = generateEmailBody(currentBuild.currentResult)
+            def emailBody = generateEmailBody(currentBuild.currentResult, env.STLA_REL ?: '')
             emailext (
                 mimeType: 'text/html',
                 attachmentsPattern: "**/Software_Test_Report.html",
@@ -397,8 +465,9 @@ post {
 }
 }
 
-def generateEmailBody(String status) {
+def generateEmailBody(String status, String relPath = '') {
     def color = (status == 'SUCCESS') ? 'green' : 'red'
+    def rp    = relPath ? "${relPath}/" : ''
     return """<!DOCTYPE html>
 <html>
 <head>
@@ -426,7 +495,7 @@ def generateEmailBody(String status) {
             <tr><th>Upstream Build</th><td>${params.upstreamJobName} #${params.BuildNumber}</td></tr>
             <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
             <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
-            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/${rp}BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
         </table>
 
         <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>
