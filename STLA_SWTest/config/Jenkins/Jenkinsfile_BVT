@@ -437,7 +437,7 @@ post {
 
     failure {
         script {
-            def emailBody = generateEmailBody(currentBuild.currentResult)
+            def emailBody = generateEmailBody(currentBuild.currentResult, env.STLA_REL ?: '')
             emailext (
                 mimeType: 'text/html',
                 attachmentsPattern: "**/Software_Test_Report.html",
@@ -451,7 +451,7 @@ post {
 
     success {
         script {
-            def emailBody = generateEmailBody(currentBuild.currentResult)
+            def emailBody = generateEmailBody(currentBuild.currentResult, env.STLA_REL ?: '')
             emailext (
                 mimeType: 'text/html',
                 attachmentsPattern: "**/Software_Test_Report.html",
@@ -465,8 +465,9 @@ post {
 }
 }
 
-def generateEmailBody(String status) {
+def generateEmailBody(String status, String relPath = '') {
     def color = (status == 'SUCCESS') ? 'green' : 'red'
+    def rp    = relPath ? "${relPath}/" : ''
     return """<!DOCTYPE html>
 <html>
 <head>
@@ -494,7 +495,7 @@ def generateEmailBody(String status) {
             <tr><th>Upstream Build</th><td>${params.upstreamJobName} #${params.BuildNumber}</td></tr>
             <tr><th>Execution Report</th><td><a href="${BUILD_URL}">View Build Logs</a></td></tr>
             <tr><th>Live Console</th><td><a href="${BUILD_URL}console">View Live Console</a></td></tr>
-            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
+            <tr><th>Software Test Report</th><td><a href="${BUILD_URL}artifact/${rp}BVTRBS/CVADAS_RBS_TRSC/Software_Test_Report.html">View Test Report</a></td></tr>
         </table>
 
         <p>For any issues, please contact <a href="mailto:Kevin.Delong@magna.com">Kevin Delong</a>.</p>
