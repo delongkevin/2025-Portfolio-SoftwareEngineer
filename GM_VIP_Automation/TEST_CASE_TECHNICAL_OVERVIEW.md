@@ -846,7 +846,7 @@ check means the loop never terminates if `Stress` enters the loop at any value >
 Config Register, Wake-Up, Lockstep, Stack, Internal Bus), automation scripts
 sometimes encounter "symbol not found" failures when setting T32 breakpoints.
 The failures are transient: manually clicking "Reload Symbols" in the T32 IDE
-immediately after resolves the problem, and subsequent `BREAK.SET` calls succeed.
+immediately resolves the problem, and subsequent `BREAK.SET` calls succeed.
 The root cause is that T32 finishes attaching to the target and loading the ELF
 file, but the symbol table index is not fully built by the time the first
 `BREAK.SET` command arrives — especially on slow bench PCs running long test suites.
