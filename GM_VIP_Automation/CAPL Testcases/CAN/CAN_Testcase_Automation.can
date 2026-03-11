@@ -21,7 +21,7 @@ variables
   byte dat_tcno[1] =  {0xAA};
   byte dat_64byte[64] = {0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55};
   byte Output[64];
-  char breakpoint[100] = "SetCANR_e_CanIfTxConfirmation\5";
+  char breakpoint[100] = "SetCANR_e_CanIfTxConfirmation";
   //long CANID[70] = { 0x00000401, 0x00000301, 0x00000201, 0x40000042, 0x4000039E, 0x40000211, 0x40000212, 0x4000039D, 0x4000020D, 0x4000039B, 0x4000003E, 0x400002B3, 0x40000398, 0x400000BA, 0x40000397, 0x40000270, 0x40000585, 0x4000056B, 0x4000052C, 0x400002D7, 0x40000523, 0x40000568, 0x40000522, 0x40000505, 0x40000593, 0x40000594, 0x40000582, 0x400005A4, 0x400000B6, 0x40000584, 0x400003C3, 0x400003C4, 0x400003C2, 0x400002D5, 0x400003A2, 0x400002D6, 0x4000057F, 0x40000590, 0x400005A1, 0x400005F9, 0x400000C0, 0x400002BF, 0x400003AA, 0x400003B1, 0x40000596, 0x400005C9, 0x400003A5, 0x4000003F, 0x400003A6, 0x400005D2, 0x400004F0, 0x40000599, 0x4000006F, 0x400005CA, 0x400005CB, 0x400005BA, 0x4000059B, 0x40000293, 0x400004E1, 0x400004DC, 0x400000AF, 0x400000AE, 0x40000595, 0x400005C4, 0x40000140, 0x400002D8, 0xC0000100, 0x80007000, 0x00000140, 0x00000140};
   long CANID[70] = {0x00000401, 0x00000301, 0x00000201, 0x00000042, 0x0000039E, 0x00000211, 0x00000212, 0x0000039D, 0x0000020D, 0x0000039B, 0x0000003E, 0x000002B3, 0x00000398, 0x000000BA, 0x00000397, 0x00000270, 0x00000585, 0x0000056B, 0x0000052C, 0x000002D7, 0x00000523, 0x00000568, 0x00000522, 0x00000505, 0x00000593, 0x00000594, 0x00000582, 0x000005A4, 0x000000B6, 0x00000584, 0x000003C3, 0x000003C4, 0x000003C2, 0x000002D5, 0x000003A2, 0x000002D6, 0x0000057F, 0x00000590, 0x000005A1, 0x000005F9, 0x000000C0, 0x000002BF, 0x000003AA, 0x000003B1, 0x00000596, 0x000005C9, 0x000003A5, 0x0000003F, 0x000003A6, 0x000005D2, 0x000004F0, 0x00000599, 0x0000006F, 0x000005CA, 0x000005CB, 0x000005BA, 0x0000059B, 0x00000293, 0x000004E1, 0x000004DC, 0x000000AF, 0x000000AE, 0x00000595, 0x000005C4, 0x00000140, 0x000002D8, 0xC0000100, 0x00007000, 0x00000140, 0x00000140 };
   long CANID_B[70] = {0x00000401, 0x00000301, 0x00000201, 0x00000042, 0x0000039E, 0x00000211, 0x00000212, 0x0000039D, 0x0000020D, 0x0000039B, 0x0000003E, 0x000002B3, 0x00000398, 0x000000BA, 0x00000397, 0x00000270, 0x00000585, 0x0000056B, 0x0000052C, 0x000002D7, 0x00000523, 0x00000568, 0x00000522, 0x00000505, 0x00000593, 0x00000594, 0x00000582, 0x000005A4, 0x000000B6, 0x00000584, 0x000003C3, 0x000003C4, 0x000003C2, 0x000002D5, 0x000003A2, 0x000002D6, 0x0000057F, 0x00000590, 0x000005A1, 0x000005F9, 0x000000C0, 0x000002BF, 0x000003AA, 0x000003B1, 0x00000596, 0x000005C9, 0x000003A5, 0x0000003F, 0x000003A6, 0x000005D2, 0x000004F0, 0x00000599, 0x0000006F, 0x000005CA, 0x000005CB, 0x000005BA, 0x0000059B, 0x00000293, 0x000004E1, 0x000004DC, 0x000000AF, 0x000000AE, 0x00000595, 0x000005C4, 0x00000140, 0x000002D8, 0xC0000100, 0x00007000, 0x00000140, 0x00000140 };
@@ -74,7 +74,6 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
@@ -88,6 +87,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -138,6 +138,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -151,6 +152,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -175,6 +177,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -184,7 +187,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x00000401");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x00000401,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x00000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -247,6 +250,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -299,6 +303,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -313,6 +318,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -339,6 +345,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -348,7 +355,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -404,6 +411,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   /**configuring CAN2 msg**/
@@ -494,6 +502,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -507,6 +516,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -531,6 +541,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -540,7 +551,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -574,6 +585,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -583,7 +595,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x123");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x123,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x123,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -644,6 +656,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -694,6 +707,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -707,6 +721,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -731,6 +746,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -740,7 +756,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -798,6 +814,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -848,6 +865,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -861,6 +879,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -886,6 +905,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -895,7 +915,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000401");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000401,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -951,6 +971,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1001,6 +1022,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -1014,6 +1036,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -1039,6 +1062,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -1048,7 +1072,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1104,6 +1128,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1154,6 +1179,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -1167,6 +1193,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -1192,6 +1219,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -1201,7 +1229,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 //  snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
 //  snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x80000401");
 //  TestStepAddActionExpected( chActionText, chExpectedText );
-//  E_DBGR_VariableCheck("CanpdumsgId ",0x80000401,Equal);
+//  E_DBGR_VariableCheck("CanpdumsgId",0x80000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1258,6 +1286,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1308,6 +1337,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -1321,6 +1351,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -1346,6 +1377,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -1355,7 +1387,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 //  snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
 //  snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x80000401");
 //  TestStepAddActionExpected( chActionText, chExpectedText );
-//  E_DBGR_VariableCheck("CanpdumsgId ",0x80000401,Equal);
+//  E_DBGR_VariableCheck("CanpdumsgId",0x80000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1412,6 +1444,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1453,6 +1486,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -1467,6 +1501,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -1493,6 +1528,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -1502,7 +1538,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",1025,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",1025,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1559,6 +1595,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1611,6 +1648,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -1625,6 +1663,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -1651,6 +1690,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -1660,7 +1700,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1717,6 +1757,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Maximum_Me
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1805,6 +1846,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Maximum_Me
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1886,6 +1928,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -1967,6 +2010,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Minimum_Me
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2053,6 +2097,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2086,6 +2131,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chActionText, elCount(chActionText), "SetCANR_e_CanIfTxConfirmation reached");
   snprintf( chExpectedText, elCount(chExpectedText), "reached SetCANR_e_CanIfTxConfirmation");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTxConfirmation");
 
   snprintf( chActionText, elCount(chActionText), "Debugger running ");
@@ -2151,6 +2197,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2190,6 +2237,7 @@ testcase To_Verify_SetCANR_e_CanIfTxConfirmation_Interface_transmitted_Message_s
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in SetCANR_e_CanIfTxConfirmation");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("SetCANR_e_CanIfTxConfirmation");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTxConfirmation");
 }
 
@@ -2240,6 +2288,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2321,6 +2370,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_transmitted_Message_successfully
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2405,6 +2455,7 @@ testcase To_verify_the_Interface_CntrlCNDD_h_CanWrt_Transmission_with_Minimum_Me
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -2498,6 +2549,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -2522,6 +2574,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -2589,6 +2642,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -2620,6 +2674,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Stop_Mode_fo
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   cnt = 0;
@@ -2708,6 +2763,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -2732,6 +2788,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -2801,6 +2858,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -2828,6 +2886,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Invalid_Mode
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
   cnt = 0;
   while(1)
@@ -2915,6 +2974,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -2939,6 +2999,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -3005,6 +3066,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
 
@@ -3035,6 +3097,7 @@ testcase To_Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Start_Mod
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   E_DBGR_VariableCheck_until("ChannelId",1,Equal);
@@ -3098,6 +3161,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3122,6 +3186,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -3187,6 +3252,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3214,6 +3280,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_Sleep_Mode_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   cnt = 0;
@@ -3302,6 +3369,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3326,6 +3394,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -3391,6 +3460,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3418,6 +3488,7 @@ testcase Verify_SetCNDD_e_CanControllerMode_Interface_Transition_to_WakeUp_Mode_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   cnt = 0;
@@ -3507,6 +3578,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3531,6 +3603,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanMainMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainMode function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanMainMode");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -3550,6 +3623,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Stop_Mode_for_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -3615,6 +3689,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Controller mode");
@@ -3639,6 +3714,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanMainMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanMainMode");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -3658,6 +3734,7 @@ testcase Verify_MngCNDD_CanMainMode_interface_Mode_Transition_to_Start_Mode_for_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfCntrlrModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrModeIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -3725,6 +3802,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -3775,6 +3853,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -3789,6 +3868,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   /***************************************************************************************************************/
@@ -3801,6 +3881,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in MngCNDD_CanMainRead ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainRead function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanMainRead");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -3831,6 +3912,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -3840,7 +3922,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x00000123");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x00000123,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x00000123,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -3890,6 +3972,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -3942,6 +4025,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -3957,6 +4041,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
   /***************************************************************************************************************/
@@ -3969,6 +4054,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   A_DBGR_Go();
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in MngCNDD_CanMainRead ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanMainRead function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanMainRead");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -4000,6 +4086,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -4009,7 +4096,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -4065,6 +4152,7 @@ testcase Verify_MngCNDD_CanMainBusOff_Interface_CAN_Bus_Off_Detection_for_CANA_C
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_e_CanIfCntrlrBusOff  ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfCntrlrBusOff function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfCntrlrBusOff");
 
   /***************************************************************************************************************/
@@ -4121,6 +4209,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4145,6 +4234,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -4210,6 +4300,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4234,6 +4325,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -4299,6 +4391,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4323,6 +4416,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -4388,6 +4482,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4412,6 +4507,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -4478,6 +4574,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4502,6 +4599,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   cnt = 0;
@@ -4590,6 +4688,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4613,6 +4712,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   E_DBGR_VariableCheck_until("ChannelId",1,Equal);
@@ -4677,6 +4777,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4705,6 +4806,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   E_DBGR_VariableCheck_until("ChannelId",1,Equal);
@@ -4768,6 +4870,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -4792,6 +4895,7 @@ testcase Verify_SetCNDD_e_CanTrcvOpMode_Interface_by_Setting_CAN_Transceiver_to_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   E_DBGR_VariableCheck_until("ChannelId",1,Equal);
@@ -4856,6 +4960,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -4883,6 +4988,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -4897,6 +5003,7 @@ testcase To_Verify_CntrlCNDD_h_CanWrt_Interface_should_not_transmitted_Message_b
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -4973,6 +5080,7 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt\\7");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt\\7");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5051,6 +5159,7 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5129,6 +5238,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5167,6 +5277,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANA_CAN2()
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_EnableInterrupt");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_EnableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5257,6 +5368,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANB_CAN8()
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_DisableInterrupt\\7");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_DisableInterrupt\\7");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5295,6 +5407,7 @@ testcase Verify_Re_enabling_CAN_Interrupts_After_Disabling_for_CANB_CAN8()
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("TestCan_EnableInterrupt");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_EnableInterrupt");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5371,6 +5484,7 @@ testcase Verify_DsblCNDD_CanInterrupts_Interface_by_Disabling_CAN_Interrupts_for
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in DsblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("DsblCNDD_CanInterrupts");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("DsblCNDD_CanInterrupts");
 
   snprintf( chActionText, elCount(chActionText), "Configure channelid values ");
@@ -5466,6 +5580,7 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in EnblCNDD_CanInterrupts");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("EnblCNDD_CanInterrupts");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("EnblCNDD_CanInterrupts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -5486,6 +5601,7 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   /***************************************************************************************************************/
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_e_CanIfTxConfirmation ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTxConfirmation function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTxConfirmation");
 }
 
@@ -5560,6 +5676,7 @@ testcase Verify_EnblCNDD_CanInterrupts_interface_by_Enabling_CAN_Interrupts_for_
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in EnblCNDD_CanInterrupts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in EnblCNDD_CanInterrupts function");
   TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("EnblCNDD_CanInterrupts");
 
   /***************************************************************************************************************/
@@ -5684,6 +5801,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCanTrcv_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCanTrcv_Init");
 
   /***************************************************************************************************************/
@@ -5697,6 +5815,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanTrcvPnFrameDataMaskIndex variable");
@@ -5881,6 +6000,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCanTrcv_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCanTrcv_Init");
 
   /***************************************************************************************************************/
@@ -5895,6 +6015,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanTrcvPnFrameDataMaskIndex variable");
@@ -6076,6 +6197,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -6126,6 +6248,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanRxInit ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanRxInit function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanRxInit");
 
  /***************************************************************************************************************/
@@ -6139,6 +6262,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
 
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCNDD_e_CanControllerMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanControllerMode function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanControllerMode");
 
    /***************************************************************************************************************/
@@ -6164,6 +6288,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), " Verify Breakpoint should hit in SetCANR_h_CanIfRxIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_h_CanIfRxIndication function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_h_CanIfRxIndication");
 
   snprintf( chActionText, elCount(chActionText), "verify CanrxmsgIdx");
@@ -6173,7 +6298,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -6230,6 +6355,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCanTrcv_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCanTrcv_Init");
 
   /***************************************************************************************************************/
@@ -6244,6 +6370,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_negative_scenario_by_sending
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanTrcvPnFrameDataMaskIndex variable");
@@ -6428,6 +6555,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCanTrcv_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCanTrcv_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCanTrcv_Init");
   /***************************************************************************************************************/
                                               // Test Step 2 Configure the values for the structure TsCNDD_CanTrcvCnfgType for CAN2 Channel.
@@ -6441,6 +6569,7 @@ testcase Verify_MngCNDD_CanTrcvInitialize_interface_for_CAN_Transceiver_Initiali
   snprintf( chActionText, elCount(chActionText), "Verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
  // TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanTrcvPnFrameDataMaskIndex variable");
@@ -6604,6 +6733,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -6629,6 +6759,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanTrcvMain ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanTrcvMain function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanTrcvMain");
 
    snprintf( chActionText, elCount(chActionText), "Delete all Breakpoints");
@@ -6649,6 +6780,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANB_CAN8()
 
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   E_DBGR_VariableCheck_until("channelid",1,Equal);
@@ -6728,6 +6860,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCNDD_e_CanTrcvOpMode ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCNDD_e_CanTrcvOpMode function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCNDD_e_CanTrcvOpMode");
 
   snprintf( chActionText, elCount(chActionText), "Configure Transciver mode");
@@ -6753,6 +6886,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in MngCNDD_CanTrcvMain ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in MngCNDD_CanTrcvMain function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("MngCNDD_CanTrcvMain");
 
    snprintf( chActionText, elCount(chActionText), "Delete all Breakpoints");
@@ -6780,6 +6914,7 @@ testcase Verify_MngCNDD_CanTrcvMain_interface_Functionality_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in SetCANR_e_CanIfTrcvModeIndication ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in SetCANR_e_CanIfTrcvModeIndication function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("SetCANR_e_CanIfTrcvModeIndication");
 
   snprintf( chActionText, elCount(chActionText), "Verify ChannelId ");
@@ -6862,6 +6997,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanTxBufMax_Maximum_Tx_Buffer_Fill_Lev
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in GetCNDD_Cnt_CanTxBufMax");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_Cnt_CanTxBufMax");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_Cnt_CanTxBufMax");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -6934,6 +7070,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanTxBufMax_Maximum_Tx_Buffer_Fill_Lev
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint is Set in GetCNDD_Cnt_CanTxBufMax");
   TestStepAddActionExpected( chActionText, chExpectedText );
   A_DBGR_BreakpointSet_AbortOnFail("GetCNDD_Cnt_CanTxBufMax");
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_Cnt_CanTxBufMax");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -7077,6 +7214,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_Maximum_RX_Buffer_Fill_Lev
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   snprintf( chActionText, elCount(chActionText), "Configure CanId values ");
@@ -7403,6 +7541,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_OPEN_ma
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
 
@@ -7590,6 +7729,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_OPEN_ma
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
 
@@ -7712,6 +7852,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_msgs_an
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
   //TestStepAddActionExpected( chActionText, chExpectedText );
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
 
@@ -7833,6 +7974,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_FULL_CA
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   for ( i = 0; i < 64; i++) {
@@ -7933,6 +8075,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_192_msgs_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
 
   for ( i = 0; i < 64; i++) {
@@ -8088,6 +8231,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_64_FULL_CA
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
   for ( i = 0; i < 3; i++) {
 
@@ -8204,6 +8348,7 @@ testcase Verify_the_interface_GetCNDD_Cnt_CanRxBufMax_by_initializing_192_msgs_f
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCan_Init ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCan_Init function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCan_Init");
   for ( i = 0; i < 3; i++) {
 
@@ -8378,6 +8523,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8415,6 +8561,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8447,6 +8594,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
 //  snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8518,6 +8666,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8555,6 +8704,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8587,6 +8737,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
 
@@ -8652,6 +8803,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8701,6 +8853,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8733,6 +8886,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_t
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
 
@@ -8796,6 +8950,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8833,6 +8988,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8865,6 +9021,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -8928,6 +9085,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -8977,6 +9135,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9009,6 +9168,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_w
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   /***************************************************************************************************************/
                                               // Test Step 5 verify that value which represents CanTrcv_FaultStatus
@@ -9071,6 +9231,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9108,6 +9269,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9146,6 +9308,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9209,6 +9372,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9258,6 +9422,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9296,6 +9461,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_m
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9359,6 +9525,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9408,6 +9575,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9441,6 +9609,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9502,6 +9671,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9552,6 +9722,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9585,6 +9756,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9646,6 +9818,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
     snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9683,6 +9856,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
     snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9715,6 +9889,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9779,6 +9954,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure Channel_ID values ");
@@ -9827,6 +10003,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Configure Channel_ID values ");
@@ -9859,6 +10036,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_p
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
   /***************************************************************************************************************/
                                               // Test Step 5 verify that value which represents CanTrcv_FaultStatus
@@ -9920,6 +10098,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -9957,6 +10136,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -9990,6 +10170,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10054,6 +10235,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure Channel_ID values ");
@@ -10103,6 +10285,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10136,6 +10319,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10198,6 +10382,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10236,6 +10421,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Configure Channel_ID values ");
@@ -10268,6 +10454,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10332,6 +10519,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure Channel_ID values ");
@@ -10381,6 +10569,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
   snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10413,6 +10602,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_V
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10473,6 +10663,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10523,6 +10714,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10556,6 +10748,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10619,6 +10812,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10669,6 +10863,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10702,6 +10897,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_A
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10764,6 +10960,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10802,6 +10999,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
 
@@ -10836,6 +11034,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -10899,6 +11098,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10949,6 +11149,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -10982,6 +11183,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_o
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11044,6 +11246,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11082,6 +11285,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11115,6 +11319,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11178,6 +11383,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11228,6 +11434,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11261,6 +11468,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11323,6 +11531,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11361,6 +11570,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11394,6 +11604,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11457,6 +11668,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11507,6 +11719,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11540,6 +11753,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_s
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11602,6 +11816,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11640,6 +11855,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11673,6 +11889,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11736,6 +11953,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11786,6 +12004,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11819,6 +12038,7 @@ testcase Verify_that_the_GetCNDD_e_CanTrcvSpcfcFlts_function_correctly_reports_C
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
   /***************************************************************************************************************/
@@ -11881,6 +12101,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANA
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -11919,6 +12140,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANA
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -12019,6 +12241,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANB
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanTrcvSpcfcFlts\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanTrcvSpcfcFlts\\2");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -12069,6 +12292,7 @@ testcase Verify_that_the_fault_status_is_reset_after_a_controller_reset_for_CANB
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in GetCNDD_e_CanTrcvSpcfcFlts ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in GetCNDD_e_CanTrcvSpcfcFlts function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("GetCNDD_e_CanTrcvSpcfcFlts");
 
    snprintf( chActionText, elCount(chActionText), "Flash the Software and ECU is running ");
@@ -12166,6 +12390,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
@@ -12201,6 +12426,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
    snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("BatDisconnectStatus_MainFunc\\57");
 //  snprintf( chActionText, elCount(chActionText), "Set voltage to 12 volts ");
 //  snprintf( chExpectedText, elCount(chExpectedText), "Voltage is 12");
@@ -12270,6 +12496,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_reports_th
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
@@ -12364,6 +12591,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_increments
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
@@ -12477,6 +12705,7 @@ testcase Verify_that_the_GetCNDD_Cnt_CanLoVoltEvnt_function_correctly_increments
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
@@ -12592,6 +12821,7 @@ testcase Verify_that_the_low_voltage_event_counter_is_reset_after_a_controller_r
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
@@ -12700,6 +12930,7 @@ testcase Verify_that_the_low_voltage_event_counter_is_reset_after_a_controller_r
   snprintf( chActionText, elCount(chActionText), "verify Breakpoint should hit in TestCantrcv_GetCanLoVoltEvnt\\2 ");
   snprintf( chExpectedText, elCount(chExpectedText), "Breakpoint hit in TestCantrcv_GetCanLoVoltEvnt\\2 function");
 
+  waitForNotRunning(20000);
   E_DBGR_BreakpointCheckForHalt("TestCantrcv_GetCanLoVoltEvnt\\2");
 
   snprintf( chActionText, elCount(chActionText), "Configure CheckCanLoEvent values ");
