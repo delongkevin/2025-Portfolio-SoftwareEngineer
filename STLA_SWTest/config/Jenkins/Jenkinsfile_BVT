@@ -116,44 +116,83 @@ pipeline {
         // 2. Derives every sub-path used by downstream stages so nothing is
         //    hardcoded elsewhere in the pipeline.
         // 3. Echoes a full directory-hierarchy summary for easy log reading.
+        //
+        // NOTE: fileExists() is unreliable with absolute Windows paths on some
+        // Jenkins versions.  All existence checks use bat(returnStatus:true)
+        // with "if not exist" which is always correct on Windows.
+        // Similarly, $env:WORKSPACE is not always injected into the PowerShell
+        // environment; the workspace path is passed explicitly from Groovy.
         // ---------------------------------------------------------------------
             steps {
                 script {
+                    // Pre-initialise sub-paths to workspace-based defaults so
+                    // that post.always blocks have valid (non-empty) values even
+                    // if this stage fails before env.STLA_ROOT is set.
+                    env.REPORT_DIR_FULL = "${env.WORKSPACE}\\BVTRBS\\CVADAS_RBS_TRSC"
+                    env.SIM_OUT_FULL    = "${env.WORKSPACE}\\Test Reports\\simulation"
+
+                    // Helper: reliable absolute-path existence check on Windows.
+                    // bat "if not exist" is used because fileExists() is not
+                    // guaranteed to work with absolute paths on all Jenkins
+                    // versions / Windows agents.
+                    def pathExistsBat = { String p ->
+                        p?.trim() &&
+                        bat(script: "@if not exist \"${p}\" exit 1",
+                            returnStatus: true) == 0
+                    }
+
+                    // 1. Search for STLA_SWTest subfolder.
+                    //    The workspace path is injected via withEnv so that it
+                    //    is available as $env:STLA_WORKSPACE in PowerShell
+                    //    without any special-character escaping.  This avoids
+                    //    relying on $env:WORKSPACE being present in the
+                    //    PowerShell environment (behaviour varies by Jenkins
+                    //    version).
+                    def wsPath   = env.WORKSPACE
                     def findRoot = '''
-$found = Get-ChildItem -Path $env:WORKSPACE `
-             -Filter "STLA_SWTest" `
+$found = Get-ChildItem -Path $env:STLA_WORKSPACE `
+             -Filter 'STLA_SWTest' `
              -Directory -Recurse `
              -ErrorAction SilentlyContinue |
          Select-Object -First 1
-if ($found) {
-    Write-Output $found.FullName
-} else {
-    # Workspace IS the STLA_SWTest root (SCM checks out into workspace directly)
-    Write-Output $env:WORKSPACE
-}
+if ($found) { Write-Output $found.FullName }
 '''
-                    // Guard against null returned by powershell() on some Jenkins
-                    // versions when stdout is empty or the script exits early.
-                    // Validate each candidate with fileExists() to avoid silently
-                    // using a non-existent path as STLA_ROOT.
-                    def rawRoot      = powershell(returnStdout: true, script: findRoot)
-                    def candidateRoot = rawRoot?.trim()
-                    def subfolderRoot = "${env.WORKSPACE}\\STLA_SWTest"
+                    def candidateRoot = ''
+                    try {
+                        def rawRoot = ''
+                        withEnv(["STLA_WORKSPACE=${wsPath}"]) {
+                            rawRoot = powershell(returnStdout: true, script: findRoot)
+                        }
+                        candidateRoot = rawRoot?.trim() ?: ''
+                    } catch (ignored) {
+                        echo "INFO: PowerShell root search skipped – ${ignored.message}"
+                    }
 
-                    if (!candidateRoot || !fileExists(candidateRoot)) {
-                        if (fileExists(subfolderRoot)) {
+                    // 2. Validate or fall back.
+                    //    Priority order:
+                    //      a) PowerShell result (STLA_SWTest subfolder found)
+                    //      b) Explicit subfolder path  WORKSPACE\STLA_SWTest
+                    //      c) Workspace root (repo checked out directly – most
+                    //         common for the L2H4060_SWTest repository)
+                    def subfolderRoot = "${wsPath}\\STLA_SWTest"
+
+                    if (!candidateRoot || !pathExistsBat(candidateRoot)) {
+                        if (pathExistsBat(subfolderRoot)) {
                             candidateRoot = subfolderRoot
-                        } else if (fileExists(env.WORKSPACE)) {
-                            candidateRoot = env.WORKSPACE
+                        } else {
+                            // Workspace root IS the STLA_SWTest root.
+                            // Do NOT call error() here – the workspace always
+                            // exists and is the correct root for a direct
+                            // L2H4060_SWTest checkout.
+                            echo "INFO: STLA_SWTest subfolder not found; " +
+                                 "treating workspace root as STLA_ROOT."
+                            candidateRoot = wsPath
                         }
                     }
+
                     env.STLA_ROOT = candidateRoot
 
-                    if (!env.STLA_ROOT) {
-                        error "FATAL: Could not determine STLA_ROOT from workspace ${env.WORKSPACE}"
-                    }
-
-                    // Derive all sub-paths from STLA_ROOT (single source of truth)
+                    // 3. Update sub-paths now that STLA_ROOT is confirmed.
                     env.REPORT_DIR_FULL = "${env.STLA_ROOT}\\BVTRBS\\CVADAS_RBS_TRSC"
                     env.SIM_OUT_FULL    = "${env.STLA_ROOT}\\Test Reports\\simulation"
 
@@ -345,7 +384,9 @@ post {
         script {
             // Safety-net xcopy: ensures Python support files are present even
             // when the Parse Data stage fails or is skipped.
-            if (params.RUN_ON_BENCH) {
+            // Guard: only run when REPORT_DIR_FULL is set (non-empty) to avoid
+            // "Invalid drive specification" errors if Discover Paths failed.
+            if (params.RUN_ON_BENCH && env.REPORT_DIR_FULL?.trim()) {
                 bat """
                 xcopy /E /I /Y "%CT_PYTHON_SRC%" "%REPORT_DIR_FULL%" || exit 0
                 """
