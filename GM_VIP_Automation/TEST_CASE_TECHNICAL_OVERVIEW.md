@@ -840,6 +840,46 @@ check means the loop never terminates if `Stress` enters the loop at any value >
 | TC22 – WakeUp/Sleep stress | `while(1)` + `if(Stress==50){Stress=0;break;}` | `Stress=0; while(Stress < cc_nWakeup_StressIterations)` + `Stress=0` after | `Stress` drives both odd/even bus selector and the iteration count; a `while` with `<` is clearer than a `for`. Reset before **and** after guarantees no carry-over to subsequent tests. |
 | TC23 – Power Reset stress | same as TC22 | same fix | Same rationale; `Stress` also used as `CANID[Stress]` index |
 
+### 17.8 T32 Symbol-Not-Found – Automatic SYMBOL.RELOAD Recovery
+
+**Problem:** When running the Sanity test suite (CAN, Battery, BINVDM, OS Config,
+Config Register, Wake-Up, Lockstep, Stack, Internal Bus), automation scripts
+sometimes encounter "symbol not found" failures when setting T32 breakpoints.
+The failures are transient: manually clicking "Reload Symbols" in the T32 IDE
+immediately resolves the problem, and subsequent `BREAK.SET` calls succeed.
+The root cause is that T32 finishes attaching to the target and loading the ELF
+file, but the symbol table index is not fully built by the time the first
+`BREAK.SET` command arrives — especially on slow bench PCs running long test suites.
+
+**Fix:** Updated `A_DBGR_BreakpointSet()` in
+`AutomationDependent/GenericLibraries/testSupportLib/T32/tsT32.cin` to issue a
+`SYMBOL.RELOAD` command (the programmatic equivalent of the manual "Reload
+Symbols" action) after the first `cc_nT32_BPSetSymbolReloadAt` (5) failed
+attempts, and then continue retrying for the remaining attempts.
+
+Two new constants were added to
+`AutomationDependent/GenericLibraries/controlLib/T32/ccT32.cin`:
+
+| Constant | Value | Purpose |
+|----------|-------|---------|
+| `cc_nT32_BPSetMaxRetries` | 10 *(was 5)* | Total BREAK.SET attempts; increased to allow retries after SYMBOL.RELOAD |
+| `cc_nT32_BPSetSymbolReloadAt` | 5 | Issue `SYMBOL.RELOAD` after this many consecutive failures |
+| `cc_dwT32_SymbolReloadWait` | 2000 ms | Wait after `SYMBOL.RELOAD` before resuming retries |
+
+**Timeline for a worst-case breakpoint set:**
+
+| Phase | Duration |
+|-------|----------|
+| Attempts 1–5 (1 s each) | 5 s |
+| SYMBOL.RELOAD + 2 s settle wait | ~2 s |
+| Attempts 6–10 (1 s each) | 5 s |
+| **Total before hard failure** | **~12 s** |
+
+Previously the total wait was only 5 s, which was insufficient on loaded bench
+PCs with large ELF files (>200 MB). The new 12 s window covers all observed
+real-world symbol-load latencies without meaningfully extending normal test
+execution (the SYMBOL.RELOAD branch is only reached when T32 is slow).
+
 ---
 
 ## 18. Jenkins CI/CD Pipeline
