@@ -1,8 +1,8 @@
 GM VIP Automation – Virtual Bench Simulation Summary
 ========================================================
-Generated : 2026-03-06 16:23:01
-Root      : D:\Portfolio-SoftwareEngineer\OEM\GM_VIP_Automation
-Output    : D:\Portfolio-SoftwareEngineer\OEM\GM_VIP_Automation\Test Reports\simulation
+Generated : 2026-03-11 15:26:19
+Root      : /home/runner/work/Portfolio-SoftwareEngineer/Portfolio-SoftwareEngineer/GM_VIP_Automation
+Output    : /home/runner/work/Portfolio-SoftwareEngineer/Portfolio-SoftwareEngineer/GM_VIP_Automation/Test Reports/simulation
 
 Suite: BINVDM
   Source XML          : BINVDM.xml
@@ -17,20 +17,6 @@ Suite: OS_Testcase_Automation
   Testcases missing   : 0
   CANoe XML           : OS_Testcase_Automation_simulated.xml
   JUnit XML           : junit/OS_Testcase_Automation_junit.xml
-
-Suite: Sanity
-  Source XML          : Sanity.xml
-  Testcases found     : 79
-  Testcases missing   : 0
-  CANoe XML           : Sanity_simulated.xml
-  JUnit XML           : junit/Sanity_junit.xml
-
-Suite: Stack
-  Source XML          : Stack.xml
-  Testcases found     : 98
-  Testcases missing   : 0
-  CANoe XML           : Stack_simulated.xml
-  JUnit XML           : junit/Stack_junit.xml
 
 Suite: SWQT_Battery
   Source XML          : SWQT_Battery.xml
@@ -87,6 +73,20 @@ Suite: SWQT_Wakeup
   Testcases missing   : 0
   CANoe XML           : SWQT_Wakeup_simulated.xml
   JUnit XML           : junit/SWQT_Wakeup_junit.xml
+
+Suite: Sanity
+  Source XML          : Sanity.xml
+  Testcases found     : 79
+  Testcases missing   : 0
+  CANoe XML           : Sanity_simulated.xml
+  JUnit XML           : junit/Sanity_junit.xml
+
+Suite: Stack
+  Source XML          : Stack.xml
+  Testcases found     : 98
+  Testcases missing   : 0
+  CANoe XML           : Stack_simulated.xml
+  JUnit XML           : junit/Stack_junit.xml
 
 ========================================================
 TOTAL  Found: 780   Missing: 0

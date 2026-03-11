@@ -21,7 +21,7 @@ variables
   byte dat_tcno[1] =  {0xAA};
   byte dat_64byte[64] = {0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55,0xAA,0x55};
   byte Output[64];
-  char breakpoint[100] = "SetCANR_e_CanIfTxConfirmation\5";
+  char breakpoint[100] = "SetCANR_e_CanIfTxConfirmation";
   //long CANID[70] = { 0x00000401, 0x00000301, 0x00000201, 0x40000042, 0x4000039E, 0x40000211, 0x40000212, 0x4000039D, 0x4000020D, 0x4000039B, 0x4000003E, 0x400002B3, 0x40000398, 0x400000BA, 0x40000397, 0x40000270, 0x40000585, 0x4000056B, 0x4000052C, 0x400002D7, 0x40000523, 0x40000568, 0x40000522, 0x40000505, 0x40000593, 0x40000594, 0x40000582, 0x400005A4, 0x400000B6, 0x40000584, 0x400003C3, 0x400003C4, 0x400003C2, 0x400002D5, 0x400003A2, 0x400002D6, 0x4000057F, 0x40000590, 0x400005A1, 0x400005F9, 0x400000C0, 0x400002BF, 0x400003AA, 0x400003B1, 0x40000596, 0x400005C9, 0x400003A5, 0x4000003F, 0x400003A6, 0x400005D2, 0x400004F0, 0x40000599, 0x4000006F, 0x400005CA, 0x400005CB, 0x400005BA, 0x4000059B, 0x40000293, 0x400004E1, 0x400004DC, 0x400000AF, 0x400000AE, 0x40000595, 0x400005C4, 0x40000140, 0x400002D8, 0xC0000100, 0x80007000, 0x00000140, 0x00000140};
   long CANID[70] = {0x00000401, 0x00000301, 0x00000201, 0x00000042, 0x0000039E, 0x00000211, 0x00000212, 0x0000039D, 0x0000020D, 0x0000039B, 0x0000003E, 0x000002B3, 0x00000398, 0x000000BA, 0x00000397, 0x00000270, 0x00000585, 0x0000056B, 0x0000052C, 0x000002D7, 0x00000523, 0x00000568, 0x00000522, 0x00000505, 0x00000593, 0x00000594, 0x00000582, 0x000005A4, 0x000000B6, 0x00000584, 0x000003C3, 0x000003C4, 0x000003C2, 0x000002D5, 0x000003A2, 0x000002D6, 0x0000057F, 0x00000590, 0x000005A1, 0x000005F9, 0x000000C0, 0x000002BF, 0x000003AA, 0x000003B1, 0x00000596, 0x000005C9, 0x000003A5, 0x0000003F, 0x000003A6, 0x000005D2, 0x000004F0, 0x00000599, 0x0000006F, 0x000005CA, 0x000005CB, 0x000005BA, 0x0000059B, 0x00000293, 0x000004E1, 0x000004DC, 0x000000AF, 0x000000AE, 0x00000595, 0x000005C4, 0x00000140, 0x000002D8, 0xC0000100, 0x00007000, 0x00000140, 0x00000140 };
   long CANID_B[70] = {0x00000401, 0x00000301, 0x00000201, 0x00000042, 0x0000039E, 0x00000211, 0x00000212, 0x0000039D, 0x0000020D, 0x0000039B, 0x0000003E, 0x000002B3, 0x00000398, 0x000000BA, 0x00000397, 0x00000270, 0x00000585, 0x0000056B, 0x0000052C, 0x000002D7, 0x00000523, 0x00000568, 0x00000522, 0x00000505, 0x00000593, 0x00000594, 0x00000582, 0x000005A4, 0x000000B6, 0x00000584, 0x000003C3, 0x000003C4, 0x000003C2, 0x000002D5, 0x000003A2, 0x000002D6, 0x0000057F, 0x00000590, 0x000005A1, 0x000005F9, 0x000000C0, 0x000002BF, 0x000003AA, 0x000003B1, 0x00000596, 0x000005C9, 0x000003A5, 0x0000003F, 0x000003A6, 0x000005D2, 0x000004F0, 0x00000599, 0x0000006F, 0x000005CA, 0x000005CB, 0x000005BA, 0x0000059B, 0x00000293, 0x000004E1, 0x000004DC, 0x000000AF, 0x000000AE, 0x00000595, 0x000005C4, 0x00000140, 0x000002D8, 0xC0000100, 0x00007000, 0x00000140, 0x00000140 };
@@ -74,7 +74,6 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   TestStepAddActionExpected( chActionText, chExpectedText );
 
   A_DBGR_BreakpointDeleteAll();
-  A_DBGR_BreakpointSet_AbortOnFail("TestCan_Init");
   A_DBGR_R();
 
   snprintf( chActionText, elCount(chActionText), "Set Breakpoint in TestCan_Init ");
@@ -184,7 +183,7 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x00000401");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x00000401,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x00000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -348,7 +347,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -540,7 +539,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -583,7 +582,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x123");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x123,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x123,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -740,7 +739,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Minimum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -895,7 +894,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000401");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000401,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1048,7 +1047,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Maximum_Messa
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1201,7 +1200,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 //  snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
 //  snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x80000401");
 //  TestStepAddActionExpected( chActionText, chExpectedText );
-//  E_DBGR_VariableCheck("CanpdumsgId ",0x80000401,Equal);
+//  E_DBGR_VariableCheck("CanpdumsgId",0x80000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1355,7 +1354,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Extended_Mess
 //  snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
 //  snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x80000401");
 //  TestStepAddActionExpected( chActionText, chExpectedText );
-//  E_DBGR_VariableCheck("CanpdumsgId ",0x80000401,Equal);
+//  E_DBGR_VariableCheck("CanpdumsgId",0x80000401,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 8");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1502,7 +1501,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",1025,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",1025,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -1660,7 +1659,7 @@ testcase To_Verify_MngCNDD_CanRxInit_Interface_Initialization_with_Standard_Mess
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -3840,7 +3839,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANA_CAN2()
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x00000123");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x00000123,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x00000123,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -4009,7 +4008,7 @@ testcase Verify_the_interface_MngCNDD_CanMainRead_for_CANB_CAN8()
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 1025");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 1");
   TestStepAddActionExpected( chActionText, chExpectedText );
@@ -6173,7 +6172,7 @@ testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANA_
   snprintf( chActionText, elCount(chActionText), "Verify CanpdumsgId ");
   snprintf( chExpectedText, elCount(chExpectedText), " CanpdumsgId as 0x40000456");
   TestStepAddActionExpected( chActionText, chExpectedText );
-  E_DBGR_VariableCheck("CanpdumsgId ",0x40000456,Equal);
+  E_DBGR_VariableCheck("CanpdumsgId",0x40000456,Equal);
    snprintf( chActionText, elCount(chActionText), "Verify Canpdudatalength");
   snprintf( chExpectedText, elCount(chExpectedText), "Canpdudatalength as 64");
   TestStepAddActionExpected( chActionText, chExpectedText );
