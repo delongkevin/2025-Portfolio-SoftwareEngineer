@@ -136,7 +136,28 @@
     </TestDesigners>
     <TUInfos />
   </TUProperties>
-  <NodeLayerDlls />
+  <NodeLayerDlls>
+    <NodeLayerDll>
+      <Path>CANstress_NL.dll</Path>
+      <TsoPath base="app">CANstress_NL.dll</TsoPath>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>FRStressNL.dll</Path>
+      <TsoPath base="app">FRStressNL.dll</TsoPath>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>C2X_IL.dll</Path>
+      <TsoPath base="app">C2X_IL.dll</TsoPath>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>J1939TestServiceLibraryNL.dll</Path>
+      <TsoPath base="app">J1939TestServiceLibraryNL.dll</TsoPath>
+    </NodeLayerDll>
+    <NodeLayerDll>
+      <Path>VHDevDLL.dll</Path>
+      <TsoPath base="app">VHDevDLL.dll</TsoPath>
+    </NodeLayerDll>
+  </NodeLayerDlls>
   <UserFiles />
   <TetEntries>
     <TetEntry>

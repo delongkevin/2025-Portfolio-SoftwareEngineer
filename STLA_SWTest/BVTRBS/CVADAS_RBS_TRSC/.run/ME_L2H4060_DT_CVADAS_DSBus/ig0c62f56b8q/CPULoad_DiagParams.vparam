@@ -10,5 +10,5 @@ command_Stack_MCU2_0	Auto		python CPU_Stack_MCU2_0.py
 command_CPU_MCU2_1	Auto		python CPU_Load_MCU2_1.py
 command_CPU_MCU2_0	Auto		python CPU_Load_MCU2_0.py
 command_CPU_A72	Auto		python CPU_Load_A72.py
-Python_Script_Path	Auto		..\\CT_Server_Standard_files_Continous_Testing\\python
+Python_Script_Path	Auto		..\\Portfolio-SoftwareEngineer\\STLA_SWTest\\BVTRBS\\CVADAS_RBS_TRSC\\python
 
