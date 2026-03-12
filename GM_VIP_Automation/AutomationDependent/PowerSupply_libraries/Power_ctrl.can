@@ -3,7 +3,7 @@
 //----------------- Updated to support BK Precision 1687b programmable power supply ---------
 //---------- Communication: RS232, 9600 baud, 8 data bits, no parity, 1 stop bit ------------
 //---------- Command terminator: \r (CR only, as per BK Precision 1687b programming rules) --
-//---------- SOUT1 = turn output ON,  SOUT0 = turn output OFF --------------------------------
+//---------- SOUT0 = turn output ON,  SOUT1 = turn output OFF --------------------------------
 //*********************************************************************************************
 includes
 {
@@ -126,12 +126,12 @@ export testfunction Read_current(int port)  // Function is used to read actual o
 
 export testfunction Power_OFF_ON(int port, int ctrl)  // Function is used to turn On or Off the power supply
                                                       // port: COM port number (check Device Manager)
-                                                      // ctrl: 0 = turn output OFF (SOUT0), 1 = turn output ON (SOUT1)
+                                                      // ctrl: 0 = turn output OFF (SOUT1), 1 = turn output ON (SOUT0)
 {
   RS232_Initialize(port);
-  // BK Precision 1687b: SOUT0 = output OFF, SOUT1 = output ON
+  // BK Precision 1687b: SOUT0 = output ON, SOUT1 = output OFF
   // Each command receives an "OK\r" response from the supply
-  snprintf(buffer1, elCount(buffer1), "SOUT%d\r", ctrl);
+  snprintf(buffer1, elCount(buffer1), "SOUT%d\r", 1 - ctrl);
   for(i = 0; i < strlen(buffer1); i++)
   {
     buffer[i] = buffer1[i];
@@ -141,12 +141,12 @@ export testfunction Power_OFF_ON(int port, int ctrl)  // Function is used to tur
   {
     if(ctrl == 0)
     {
-      testStep("", "Power output turned OFF (SOUT0)");
+      testStep("", "Power output turned OFF (SOUT1)");
       testStepPass();
     }
     else
     {
-      testStep("", "Power output turned ON (SOUT1)");
+      testStep("", "Power output turned ON (SOUT0)");
       testStepPass();
     }
   }
