@@ -195,11 +195,17 @@ testcase ToVerify_MngCNDD_CanRxInitInterface_Initialization_with_Minimum_Message
 
 testcase Flashing()
 {
-sysExec("C:\\Automation\\GM_VIP_Automation\\LauterbachFlash.bat", "Commandline", "C:\\Automation\\GM_VIP_Automation");
+  char chBatPath[500];
+  char chPyCmd[500];
+
+  // automation_root is computed at preStart by config.cin and ends with a
+  // trailing backslash, e.g. "C:\<bench>\GM_VIP_Automation\".
+  snprintf(chBatPath, elcount(chBatPath), "%sLauterbachFlash.bat", automation_root);
+  sysExec(chBatPath, "Commandline", automation_root);
 //  write("result = %d",result);
 
-
-  SysExec("python C:\\Automation\\GM_VIP_Automation\\Serial.py", "Commandline", "C:\\Users\\suresing\\AppData\\Local\\Programs\\Python\\Python313");
+  snprintf(chPyCmd, elcount(chPyCmd), "python \"%sSerial.py\"", automation_root);
+  SysExec(chPyCmd, "Commandline", automation_root);
 }
 
 testcase To_verify_MngCNDD_CanRxInit_Interface_that_the_CAN_controller_for_CANB_CAN8_is_initialized_correctly()

@@ -839,6 +839,7 @@ export testfunction A_DBGR_BreakpointSet_AbortOnFail(char aAddress[])
              "Symbol '%s' not found in T32 after %d attempt(s) – aborting test case to avoid 20-second GO timeout.",
              aAddress, cc_nT32_BPSetMaxRetries);
     write("ABORT: %s", chAbortMsg);
+    testCaseAbort();
   }
 }
 
