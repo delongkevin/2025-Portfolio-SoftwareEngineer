@@ -2,11 +2,20 @@
 // automation_root and teraterm are computed at runtime from the CANoe
 // configuration file path so the automation works on any bench without
 // requiring manual path edits after a Git clone.
+//
+// -----------------------------------------------------------------------
+// HOW TO CHANGE THE POWER SUPPLY COM PORT
+// -----------------------------------------------------------------------
+// Edit ONLY the line below.  Every test-case file that includes this CIN
+// passes powersupply_port to Power_ctrl.can functions, so a single-line
+// change here propagates automatically to the entire test suite.
+//   Current hardware: BK Precision 1687b on COM4.
+// -----------------------------------------------------------------------
 variables
 {
     char automation_root[256] = "";  // computed by vFctn_Config_ComputePaths()
     char teraterm[256]        = "";  // computed by vFctn_Config_ComputePaths()
-    int powersupply_port      = 4;
+    int powersupply_port      = 4;   // COM port for BK Precision 1687b – change here only
 }
 
 /// Compute bench-specific paths from the CANoe configuration directory.
