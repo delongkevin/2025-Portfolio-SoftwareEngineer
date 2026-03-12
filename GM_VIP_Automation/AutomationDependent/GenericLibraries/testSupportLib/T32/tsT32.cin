@@ -810,6 +810,17 @@ export testfunction A_DBGR_BreakpointSet(char aAddress[])
   // No wait needed: BREAK.SET does not change ECU run state.
 }
 
+/// Abort the current test case execution.
+/// testCaseAbort() is not a built-in CAPL function; this definition provides
+/// the missing support so callers compile without errors.  It wraps the
+/// built-in testStop(), which stops the running test execution immediately,
+/// preventing useless GO / waitForNotRunning sequences when a critical
+/// pre-condition (e.g. symbol lookup) has already failed.
+void testCaseAbort()
+{
+  testStop();
+}
+
 /// <BREAKPOINTS>
 /*! void A_DBGR_BreakpointSet_AbortOnFail(char aAddress[])
 *  \brief Convenience wrapper around A_DBGR_BreakpointSet() that aborts the current
@@ -839,6 +850,7 @@ export testfunction A_DBGR_BreakpointSet_AbortOnFail(char aAddress[])
              "Symbol '%s' not found in T32 after %d attempt(s) – aborting test case to avoid 20-second GO timeout.",
              aAddress, cc_nT32_BPSetMaxRetries);
     write("ABORT: %s", chAbortMsg);
+    testCaseAbort();
   }
 }
 
