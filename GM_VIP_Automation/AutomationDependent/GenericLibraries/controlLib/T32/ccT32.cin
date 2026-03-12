@@ -58,6 +58,16 @@ variables
   // How long to wait for Trace32 to become connected after auto-launch.
   const dword cc_dwT32_LaunchTimeout = 30000; // ms
 
+  // Mandatory quiet time after every T32_API.exe call (success or failure).
+  //
+  // T32_API.exe communicates with Trace32 over a local socket.  Back-to-back
+  // calls from CAPL can arrive before the socket server has finished
+  // processing/cleaning up the previous command.  This gap, inserted inside
+  // lFctn_CallT32API(), prevents that contention without adding any retry
+  // logic: if a call still fails the test step is reported as FAIL and the
+  // operator re-runs the test case.
+  const dword cc_dwT32_APICallMinGap = 50; // ms quiet time after each API call
+
 }
 
  

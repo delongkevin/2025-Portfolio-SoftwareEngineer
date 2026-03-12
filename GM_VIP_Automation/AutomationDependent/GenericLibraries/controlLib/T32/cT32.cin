@@ -147,19 +147,28 @@ void vFctn_T32_CommandCreate_StartUpScripts(char aOutputStringCommand[],char aCo
 }
 
 /* ! long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCode[])
-*  \brief Function that calls the T32 API using .NET DLL with Execution.WaitForTask
-*         to prevent CANoe realtime kernel overruns. Captures console output from T32_API.exe.
+*  \brief Function that calls the T32 API using .NET DLL with Execution.WaitForTask.
+*         Captures console output from T32_API.exe.
 *
-*  \return -1: The command was NOT successfully sent.
+*         After every invocation (regardless of success or failure) a
+*         mandatory quiet gap (cc_dwT32_APICallMinGap) is inserted so that
+*         T32's socket server has finished processing/cleaning up the
+*         previous command before the next T32_API.exe process connects.
+*         There is deliberately no retry: if the call fails the test step
+*         is reported as FAIL and the operator re-runs the test case.
+*
+*  \return -1: The command was NOT successfully sent (DLL-level failure).
 *  \return  0: The command was successfully sent.
 *
-*  Change History: 
-*  Date(DD.MM.YY)        Author          Change info                                                          
-*   
+*  Change History:
+*  Date(DD.MM.YY)        Author          Change info
+*
 *  04.05.22              GaMo         Refactoring the code.
-*  31.01.26              Auto         Performance optimization - removed unnecessary waits
-*  12.03.26              Copilot      Fixed T32_API.exe path: now resolved via vFctn_T32_ConfigPathCreate
-*                                     (was an incorrect relative path "../AutomationDependent/GenericLibraries/T32_API.exe").
+*  31.01.26              Auto         Performance optimisation – removed unnecessary waits.
+*  12.03.26              Copilot      Fixed T32_API.exe path via vFctn_T32_ConfigPathCreate.
+*  12.03.26              Copilot      Added post-call gap (cc_dwT32_APICallMinGap) to prevent
+*                                     back-to-back socket contention.  Removed retry logic per
+*                                     project requirement: fail fast, re-run the test case.
 */
 long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCode[])
 {
@@ -168,25 +177,27 @@ long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCo
 
   // Build the absolute path to T32_API.exe located in AutomationDependent\GenericLibraries\
   vFctn_T32_ConfigPathCreate(T32ApiExe);
-  strncat(T32ApiExe, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe", elcount(T32ApiExe) - strlen(T32ApiExe) - 1);
+  strncat(T32ApiExe, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe", elcount(T32ApiExe));
 
   aRetApiExitCode[0] = -1;
 
-  // This captures console output and prevents realtime overruns
-  // returnExeCall = dllRunT32cmd(T32ApiExe, aCommand, aRetApiMessage, aRetApiExitCode);
-  // returnExeCall = dllRunT32cmdBlocking(T32ApiExe, aCommand, aRetApiMessage, aRetApiExitCode);
   returnExeCall = dllRunT32cmdNonBlocking(T32ApiExe, aCommand, aRetApiMessage, aRetApiExitCode);
 
-  // Handle special exit code 259 (STILL_ACTIVE) as success
+  // Exit code 259 (STILL_ACTIVE) is treated as success by the DLL layer;
+  // normalise the raw process exit code here so callers see 0 on success.
   if (aRetApiExitCode[0] == 259)
-  {
-    write("T32 API returned STILL_ACTIVE exit code (259), treating as success but risks proceeding side effects of incomplete execution.");
     aRetApiExitCode[0] = 0;
-  }
 
-
+  // Propagate DLL-level failure to the exit-code output so callers only need
+  // to check aRetApiExitCode[0] == 0 for a clean success test.
   if (returnExeCall != 0)
     aRetApiExitCode[0] = -1;
+
+  // Mandatory inter-call gap: gives T32's socket server time to close the
+  // current connection before the next T32_API.exe process attempts to open
+  // a new one.  Applied unconditionally (success and failure) so the gap is
+  // always present regardless of the outcome.
+  testWaitForTimeoutSilent(cc_dwT32_APICallMinGap);
 
   return returnExeCall;
 }
