@@ -58,12 +58,12 @@ export testfunction Set_voltage(int port, float volt)  // Set output voltage on 
     else
     {
       write("WARNING: BK Precision 1687b VOLT ACK not received on COM%d (ret1=%d 0x%02X 0x%02X)", port, ret1, buffer3[0], buffer3[1]);
-      testStepfail("", "VOLTAGE set to %.1f V - supply did not acknowledge (COM%d)", volt, port);
+      testStepFail("", "VOLTAGE set to %.1f V - supply did not acknowledge (COM%d)", volt, port);
     }
   }
   else
   {
-    testStepfail("", "Unable to set voltage due to RS232Send error %d on COM%d", ret, port);
+    testStepFail("", "Unable to set voltage due to RS232Send error %d on COM%d", ret, port);
   }
   RS232Close(port);
 }
@@ -90,7 +90,7 @@ export testfunction Read_voltage(int port)  // Read actual output voltage from B
   }
   else
   {
-    testStepfail("", "Voltage read request not sent on COM%d - RS232Send error %d", port, ret);
+    testStepFail("", "Voltage read request not sent on COM%d - RS232Send error %d", port, ret);
   }
   testWaitForTimeout(500);  // BK Precision 1687b responds in <100 ms; 500 ms is a safe margin
   buffer3[0] = 0;
@@ -106,7 +106,7 @@ export testfunction Read_voltage(int port)  // Read actual output voltage from B
     Teststep("", "Actual voltage: %s x 10 mV (COM%d)", buffer2, port);
   }
   else
-    testStepfail("", "Voltage read error on COM%d - no response received", port);
+    testStepFail("", "Voltage read error on COM%d - no response received", port);
   RS232Close(port);
 }
 
@@ -129,7 +129,7 @@ export testfunction Read_current(int port)  // Read actual output current from B
   }
   else
   {
-    testStepfail("", "Current read request not sent on COM%d - RS232Send error %d", port, ret);
+    testStepFail("", "Current read request not sent on COM%d - RS232Send error %d", port, ret);
   }
   testWaitForTimeout(500);  // BK Precision 1687b responds in <100 ms; 500 ms is a safe margin
   buffer3[0] = 0;
@@ -145,7 +145,7 @@ export testfunction Read_current(int port)  // Read actual output current from B
     Teststep("", "Actual current: %s mA (COM%d)", buffer2, port);
   }
   else
-    testStepfail("", "Current read error on COM%d - no response received", port);
+    testStepFail("", "Current read error on COM%d - no response received", port);
   RS232Close(port);
 }
 
@@ -184,12 +184,12 @@ export testfunction Power_OFF_ON(int port, int ctrl)  // Turn power output ON or
     else
     {
       write("WARNING: BK Precision 1687b SOUT%d ACK not received on COM%d (ret1=%d 0x%02X 0x%02X)", ctrl, port, ret1, buffer3[0], buffer3[1]);
-      testStepfail("", "Power %s command sent but supply did not acknowledge (COM%d)", ctrl == 0 ? "OFF" : "ON", port);
+      testStepFail("", "Power %s command sent but supply did not acknowledge (COM%d)", ctrl == 0 ? "OFF" : "ON", port);
     }
   }
   else
   {
-    testStepfail("", "Unable to change power output state on COM%d - RS232Send error %d", port, ret);
+    testStepFail("", "Unable to change power output state on COM%d - RS232Send error %d", port, ret);
   }
   RS232Close(port);
 }
@@ -223,7 +223,7 @@ void RS232_Initialize(int port)
       testWaitForTimeoutSilent(200);
     }
   }
-  testStepfail("", "COM%d could not be opened after 3 attempts - check that no other node holds the port", port);
+  testStepFail("", "COM%d could not be opened after 3 attempts - check that no other node holds the port", port);
 }
 
 RS232OnReceive(dword port, byte buffer[], dword number)

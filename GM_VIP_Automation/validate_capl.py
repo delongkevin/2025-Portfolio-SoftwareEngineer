@@ -14,6 +14,9 @@ Checks performed
                       declaration has a paired opening brace.
 4. Cross-file refs  – every <capltestcase name="..."/> in Testsuite_Environment
                       XML files has a matching testcase definition in a .can file.
+5. CAPL API names   – detects known incorrect/misspelled CAPL built-in function
+                      names that cause CANoe parse errors at compile time
+                      (e.g. testStepfail → testStepFail).
 
 Usage
 -----
@@ -283,6 +286,47 @@ def check_xml_vs_can_consistency(
 
 
 # ---------------------------------------------------------------------------
+# Check 5 – known CAPL API name typos / case errors
+# ---------------------------------------------------------------------------
+#
+# Maps each incorrect (misspelled or wrong-case) identifier to the correct one.
+# These cause CANoe parse errors at compile time and are easy to miss by eye
+# because CAPL function names are case-sensitive.
+#
+_CAPL_API_TYPOS: dict[str, str] = {
+    # testStepFail is the correct CAPL built-in; 'testStepfail' (lowercase f)
+    # triggers a parse error in every CANoe version.
+    "testStepfail":  "testStepFail",
+    # testStepPass is the correct CAPL built-in; 'testSteppass' (lowercase p)
+    # is an undefined identifier and causes a parse error.
+    "testSteppass":  "testStepPass",
+    # testCaseFail is the correct CAPL built-in; lowercase variants are invalid.
+    "testCasefail":  "testCaseFail",
+    "testcasefail":  "testCaseFail",
+}
+
+# Pre-compiled regex: word-boundary match for each incorrect token so we don't
+# flag occurrences inside longer identifiers.
+_CAPL_TYPO_RE = re.compile(
+    r'\b(' + '|'.join(re.escape(k) for k in _CAPL_API_TYPOS) + r')\b'
+)
+
+
+def check_capl_api_names(filepath: Path, text: str) -> list[str]:
+    """Return error strings for known CAPL built-in name typos / case errors."""
+    issues = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for m in _CAPL_TYPO_RE.finditer(line):
+            wrong = m.group(1)
+            correct = _CAPL_API_TYPOS[wrong]
+            issues.append(
+                f"  {filepath}:{lineno}:{m.start() + 1}: "
+                f"incorrect CAPL API name '{wrong}' — use '{correct}' instead"
+            )
+    return issues
+
+
+# ---------------------------------------------------------------------------
 # Main driver
 # ---------------------------------------------------------------------------
 
@@ -342,6 +386,7 @@ def main() -> int:
         file_issues += check_bracket_balance(fp, cleaned)
         file_issues += check_includes(fp, raw)       # raw: keep line numbers accurate
         file_issues += check_declarations(fp, cleaned)
+        file_issues += check_capl_api_names(fp, cleaned)
 
         if file_issues:
             print(f"[FAIL] {fp.relative_to(root)}")
