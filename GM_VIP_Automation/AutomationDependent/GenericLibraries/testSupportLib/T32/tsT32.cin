@@ -21,7 +21,7 @@ variables
   char msgInfo[1024];
   // Updated by A_DBGR_BreakpointSet() after each call.
   // Test cases can inspect this to detect symbol-not-found failures and
-  // use A_DBGR_BreakpointSet_AbortOnFail() (which calls testStop()) before
+  // use A_DBGR_BreakpointSet_AbortOnFail() (which calls testCaseFail()) before
   // wasting time on GO/waitForNotRunning that can never succeed.
   byte sv_T32_LastBreakpointSetOk;
 }
@@ -839,6 +839,7 @@ export testfunction A_DBGR_BreakpointSet_AbortOnFail(char aAddress[])
              "Symbol '%s' not found in T32 after %d attempt(s) – aborting test case to avoid 20-second GO timeout.",
              aAddress, cc_nT32_BPSetMaxRetries);
     write("ABORT: %s", chAbortMsg);
+    testCaseFail();
   }
 }
 
