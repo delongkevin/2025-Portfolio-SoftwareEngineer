@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using Vector.CANoe.Threading;
 
 namespace dotnetT32dllLib

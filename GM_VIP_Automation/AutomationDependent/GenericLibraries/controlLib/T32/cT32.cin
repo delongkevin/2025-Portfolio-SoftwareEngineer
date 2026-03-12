@@ -150,12 +150,12 @@ void vFctn_T32_CommandCreate_StartUpScripts(char aOutputStringCommand[],char aCo
 *  \brief Function that calls the T32 API using .NET DLL with Execution.WaitForTask.
 *         Captures console output from T32_API.exe.
 *
-*         After every successful invocation a mandatory quiet gap
-*         (cc_dwT32_APICallMinGap) is inserted so that T32's socket server
-*         has finished processing the previous command before the next
-*         T32_API.exe process connects.  There is deliberately no retry:
-*         if the call fails the test step is reported as FAIL and the
-*         operator re-runs the test case.
+*         After every invocation (regardless of success or failure) a
+*         mandatory quiet gap (cc_dwT32_APICallMinGap) is inserted so that
+*         T32's socket server has finished processing/cleaning up the
+*         previous command before the next T32_API.exe process connects.
+*         There is deliberately no retry: if the call fails the test step
+*         is reported as FAIL and the operator re-runs the test case.
 *
 *  \return -1: The command was NOT successfully sent (DLL-level failure).
 *  \return  0: The command was successfully sent.
@@ -177,7 +177,7 @@ long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCo
 
   // Build the absolute path to T32_API.exe located in AutomationDependent\GenericLibraries\
   vFctn_T32_ConfigPathCreate(T32ApiExe);
-  strncat(T32ApiExe, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe", elcount(T32ApiExe) - strlen(T32ApiExe) - 1);
+  strncat(T32ApiExe, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe", elcount(T32ApiExe));
 
   aRetApiExitCode[0] = -1;
 
