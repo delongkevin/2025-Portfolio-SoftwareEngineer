@@ -42,6 +42,8 @@ export testfunction Set_voltage(int port, float volt)  // Function is used to se
   {
     testStepfail("", "Unable to set voltage due to error %d", ret);
   }
+  testWaitForTimeout(200);  // Allow BK Precision 1687B time to process the command
+  RS232Close(port);
 }
 
 
@@ -67,8 +69,8 @@ export testfunction Read_voltage(int port)  // Function is used to read actual o
   {
     testStepfail("", "Voltage read request not sent due to error %d", ret);
   }
+  testWaitForTimeout(2000);  // Wait for BK Precision 1687B response
   ret1 = RS232Receive(port, buffer3, elcount(buffer3));
-  testWaitForTimeout(2000);
   if(ret1 == 1)
   {
     // Extract first 4 bytes (voltage in units of 10 mV)
@@ -81,6 +83,7 @@ export testfunction Read_voltage(int port)  // Function is used to read actual o
   }
   else
     Teststep("", "Voltage read error");
+  RS232Close(port);
 }
 
 export testfunction Read_current(int port)  // Function is used to read actual output current
@@ -104,8 +107,8 @@ export testfunction Read_current(int port)  // Function is used to read actual o
   {
     testStepfail("", "Current read request not sent due to error %d", ret);
   }
+  testWaitForTimeout(2000);  // Wait for BK Precision 1687B response
   ret1 = RS232Receive(port, buffer3, elcount(buffer3));
-  testWaitForTimeout(2000);
   if(ret1 == 1)
   {
     // Extract bytes 4-7 (current in units of 1 mA)
@@ -118,6 +121,7 @@ export testfunction Read_current(int port)  // Function is used to read actual o
   }
   else
     Teststep("", "Current read error");
+  RS232Close(port);
 }
 
 export testfunction Power_OFF_ON(int port, int ctrl)  // Function is used to turn On or Off the power supply
@@ -150,11 +154,15 @@ export testfunction Power_OFF_ON(int port, int ctrl)  // Function is used to tur
   {
     testStepfail("", "Unable to change power output state due to error %d", ret);
   }
+  testWaitForTimeout(200);  // Allow BK Precision 1687B time to process the command
+  RS232Close(port);
 }
 
 void RS232_Initialize(int port)  // Initialization of RS232 port for BK Precision 1687b
                                 // Settings: 9600 baud, 8 data bits, 1 stop bit, no parity (flow control = 0)
 {
+  RS232Close(port);  // Ensure port is closed before opening; RS232Close on an
+                     // already-closed port is a safe no-op in CANoe CAPL.
   RS232Configure(port, 9600, 8, 1, 0);
   port_open = RS232Open(port);
   if(port_open == 1)
