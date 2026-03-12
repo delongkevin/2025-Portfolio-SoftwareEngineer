@@ -158,12 +158,17 @@ void vFctn_T32_CommandCreate_StartUpScripts(char aOutputStringCommand[],char aCo
 *   
 *  04.05.22              GaMo         Refactoring the code.
 *  31.01.26              Auto         Performance optimization - removed unnecessary waits
+*  12.03.26              Copilot      Fixed T32_API.exe path: now resolved via vFctn_T32_ConfigPathCreate
+*                                     (was an incorrect relative path "../AutomationDependent/GenericLibraries/T32_API.exe").
 */
 long lFctn_CallT32API(char aCommand[], char aRetApiMessage[], long aRetApiExitCode[])
 {
   long returnExeCall;
-  // Performance: Use static path constant instead of local array initialization each call
-  char T32ApiExe[256] = "../AutomationDependent/GenericLibraries/T32_API.exe";
+  char T32ApiExe[256];
+
+  // Build the absolute path to T32_API.exe located in AutomationDependent\GenericLibraries\
+  vFctn_T32_ConfigPathCreate(T32ApiExe);
+  strncat(T32ApiExe, "TestSuites\\AutomationDependent\\GenericLibraries\\T32_API.exe", elcount(T32ApiExe) - strlen(T32ApiExe) - 1);
 
   aRetApiExitCode[0] = -1;
 
