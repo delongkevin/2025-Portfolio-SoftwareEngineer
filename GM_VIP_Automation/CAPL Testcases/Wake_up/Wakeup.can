@@ -3786,7 +3786,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_A_BUS_WAKEUP_when_an_inv
   }
   else
   {
-    testSteppass("1","string is not present");
+    testStepPass("1","string is not present");
   }
   setTimer(periodicTimer_CAN2, 1);
   testWaitForTimeout(cc_dwWakeup_TimerFlushDelay);
@@ -3994,7 +3994,7 @@ testcase Verify_that_the_software_does_not_report_a_CAN_B_BUS_WAKEUP_when_an_inv
   }
   else
   {
-    testSteppass("1","string is not present");
+    testStepPass("1","string is not present");
   }
  
   setTimer(periodicTimer_CAN8,1);

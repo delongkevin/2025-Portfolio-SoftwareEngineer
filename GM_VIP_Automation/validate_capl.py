@@ -1,19 +1,43 @@
 """
-validate_capl.py - Pre-deployment CAPL syntax consistency checker
-==================================================================
-Scans all .can/.cin files under GM_VIP_Automation and reports structural
-issues that would prevent Vector CANoe from compiling them.  Run this
-script before deploying to each of the 20 test benches to verify that
-the source tree is internally consistent.
+validate_capl.py - Pre-deployment CAPL syntax & correctness checker
+====================================================================
+Scans all .can/.cin files under GM_VIP_Automation and reports issues
+that would prevent Vector CANoe from compiling them, or introduce
+silent runtime bugs.  Run this script in CI/CD before deploying to
+any test bench to catch mistakes early – without needing a CANoe
+licence or a Windows machine.
 
 Checks performed
 ----------------
-1. Bracket balance  – matched { } [ ] ( ) across each file.
-2. Include existence – every #include path resolves to a file on disk.
-3. Declarations     – every testcase / testfunction / export testfunction
-                      declaration has a paired opening brace.
-4. Cross-file refs  – every <capltestcase name="..."/> in Testsuite_Environment
-                      XML files has a matching testcase definition in a .can file.
+1.  Bracket balance        – matched { } [ ] ( ) across each file.
+2.  Include existence      – every #include path resolves to a file on disk.
+3.  Declarations           – every testcase / testfunction / export testfunction
+                             declaration has a paired opening brace.
+4.  Cross-file refs        – every <capltestcase name="..."/> in
+                             Testsuite_Environment XML files has a matching
+                             testcase definition in a .can file.
+5.  CAPL API name typos    – detects wrong-case CAPL built-in names that cause
+                             parse errors (e.g. testStepfail → testStepFail).
+6.  Forbidden identifiers  – calls to C standard-library functions or CAPL
+                             API names that do NOT exist in CANoe and will cause
+                             an immediate compile error
+                             (e.g. atoi → _atoi64, testStop → testCaseFail).
+7.  Duplicate definitions  – same testcase or testfunction name defined more
+                             than once in the same file (link-time error in
+                             CANoe when both modules are loaded together).
+8.  snprintf format args   – single-line snprintf() calls where the number of
+                             printf-style format specifiers (including CAPL-
+                             specific %I64d / %I64u / %ld / %llX etc.) does not
+                             match the number of extra arguments provided.
+                             Under-specified strings read garbage; over-specified
+                             ones silently ignore values.
+9.  variables{} block      – every .can testcase file must contain at least one
+                             top-level variables { } block; missing one causes
+                             CANoe to reject the file.
+10. Missing semicolons     – statement lines inside function bodies that end
+                             with a closing ')' but have no terminating ';'
+                             (a common copy-paste mistake that causes a parse
+                             error on the *next* line rather than the culprit).
 
 Usage
 -----
@@ -283,6 +307,321 @@ def check_xml_vs_can_consistency(
 
 
 # ---------------------------------------------------------------------------
+# Check 5 – known CAPL API name typos / case errors
+# ---------------------------------------------------------------------------
+#
+# Maps each incorrect (misspelled or wrong-case) identifier to the correct one.
+# These cause CANoe parse errors at compile time and are easy to miss by eye
+# because CAPL function names are case-sensitive.
+#
+_CAPL_API_TYPOS: dict[str, str] = {
+    # testStepFail is the correct CAPL built-in; 'testStepfail' (lowercase f)
+    # triggers a parse error in every CANoe version.
+    "testStepfail":  "testStepFail",
+    # testStepPass is the correct CAPL built-in; 'testSteppass' (lowercase p)
+    # is an undefined identifier and causes a parse error.
+    "testSteppass":  "testStepPass",
+    # testCaseFail is the correct CAPL built-in; lowercase variants are invalid.
+    "testCasefail":  "testCaseFail",
+    "testcasefail":  "testCaseFail",
+}
+
+# Pre-compiled regex: word-boundary match for each incorrect token so we don't
+# flag occurrences inside longer identifiers.
+_CAPL_TYPO_RE = re.compile(
+    r'\b(' + '|'.join(re.escape(k) for k in _CAPL_API_TYPOS) + r')\b'
+)
+
+
+def check_capl_api_names(filepath: Path, text: str) -> list[str]:
+    """Return error strings for known CAPL built-in name typos / case errors."""
+    issues = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for m in _CAPL_TYPO_RE.finditer(line):
+            wrong = m.group(1)
+            correct = _CAPL_API_TYPOS[wrong]
+            issues.append(
+                f"  {filepath}:{lineno}:{m.start() + 1}: "
+                f"incorrect CAPL API name '{wrong}' — use '{correct}' instead"
+            )
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 6 – forbidden / non-existent CAPL identifiers
+# ---------------------------------------------------------------------------
+#
+# These identifiers do NOT exist in CANoe's CAPL runtime.  Using any of them
+# causes an "unknown identifier" parse error at compile time.  Each entry maps
+# the bad token to a recommended replacement and an explanation.
+#
+_CAPL_FORBIDDEN: dict[str, tuple[str, str]] = {
+    # C standard-library calls that are absent from CAPL
+    "atoi":       ("_atoi64()", "atoi() is not a CAPL built-in; use _atoi64() for integer parsing"),
+    "malloc":     ("a fixed-size array", "dynamic memory allocation (malloc) is not supported in CAPL"),
+    "free":       ("(remove – CAPL has no heap)", "dynamic memory deallocation (free) is not supported in CAPL"),
+    "printf":     ("write() or writeDbgLevel()", "printf() does not exist in CAPL; use write() or writeDbgLevel()"),
+    # CAPL test-API names that were removed / never existed
+    "testStop":   ("testCaseFail()", "testStop() does not exist in CAPL; use testCaseFail() to abort a test case"),
+    "TestAbort":  ("testCaseFail()", "TestAbort() does not exist in CAPL; use testCaseFail() to abort a test case"),
+}
+
+# Word-boundary regex for each forbidden token
+_FORBIDDEN_RE = re.compile(
+    r'\b(' + '|'.join(re.escape(k) for k in _CAPL_FORBIDDEN) + r')\s*\('
+)
+
+
+def check_forbidden_identifiers(filepath: Path, text: str) -> list[str]:
+    """Return error strings for CAPL forbidden / non-existent function calls."""
+    issues = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for m in _FORBIDDEN_RE.finditer(line):
+            token = m.group(1)
+            replacement, reason = _CAPL_FORBIDDEN[token]
+            issues.append(
+                f"  {filepath}:{lineno}:{m.start() + 1}: "
+                f"forbidden call '{token}()' — {reason} (use {replacement} instead)"
+            )
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 7 – duplicate testcase / testfunction definitions within same file
+# ---------------------------------------------------------------------------
+#
+# CANoe compiles each .can file in the context of the test suite.  If the same
+# testcase or testfunction name is defined twice in the same file the linker
+# raises an "already defined" error.  This check catches the mistake early.
+#
+_FUNC_DEF_RE = re.compile(
+    r'(?:export\s+)?(?:testcase|testfunction)\s+(\w+)\s*\('
+)
+
+
+def check_duplicate_definitions(filepath: Path, text: str) -> list[str]:
+    """Return error strings for testcase/testfunction names defined more than once."""
+    seen: dict[str, int] = {}   # name → first lineno
+    issues = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for m in _FUNC_DEF_RE.finditer(line):
+            name = m.group(1)
+            if name in seen:
+                issues.append(
+                    f"  {filepath}:{lineno}: duplicate definition of '{name}'"
+                    f" (first defined at line {seen[name]})"
+                )
+            else:
+                seen[name] = lineno
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 8 – snprintf format-specifier vs argument count
+# ---------------------------------------------------------------------------
+#
+# Counts the printf-style format specifiers in the format-string argument of a
+# single-line snprintf() call and compares that count to the number of extra
+# arguments supplied.  Supports all standard C specifiers PLUS the CAPL /
+# Windows-specific %I64d, %I64u, %I32d, %ld, %lld, %llX, etc.
+#
+# Only single-line calls are checked (multi-line snprintf calls are skipped
+# to avoid false positives from the argument parser).
+#
+# CAPL-specific format specifiers handled:
+#   %I64d / %I64u / %I64x  — 64-bit signed/unsigned (Windows __int64)
+#   %I32d / %I32u           — 32-bit (same as %d/%u but explicit)
+#   %ld / %lu / %lx         — long int variants
+#   %lld / %llu / %llX      — long long variants
+#   %%                       — literal percent (does NOT consume an argument)
+#
+_FMT_SPEC_RE = re.compile(
+    r'%(?:%|'                                      # %% = escaped, no arg
+    r'[-+ #0]*'                                    # optional flags
+    r'(?:\d+|\*)?'                                 # optional width
+    r'(?:\.(?:\d+|\*))?'                           # optional precision
+    r'(?:hh?|ll?|L|I64|I32|q|j|z|t)?'            # length modifier (CAPL: I64, I32)
+    r'[diouxXeEfgGcsp]'                            # conversion specifier
+    r')'
+)
+
+# Matches the entire single-line: snprintf(dest, size, "fmt" [, args]);
+_SNPRINTF_RE = re.compile(
+    r'\bsnprintf\s*\('
+    r'\s*[^,\n]+,'          # dest buffer
+    r'\s*[^,\n]+,'          # max size
+    r'\s*"([^"\n]*)"'       # format string (captured in group 1)
+    r'((?:[^\n;])*?)'       # optional extra args (group 2, may be empty)
+    r'\)\s*;'               # closing );
+)
+
+
+def _count_top_level_args(s: str) -> int:
+    """Count comma-separated top-level arguments in ``s`` (stops at ')' depth 0)."""
+    depth = 0
+    count = 0
+    has_content = False
+    i = 0
+    while i < len(s):
+        c = s[i]
+        if c in '([{':
+            depth += 1
+        elif c in ')]}':
+            if depth == 0:
+                break
+            depth -= 1
+        elif c == ',' and depth == 0:
+            count += 1
+        elif c == '"':
+            has_content = True
+            i += 1
+            while i < len(s) and not (s[i] == '"' and s[i - 1] != '\\'):
+                i += 1
+        if c not in ' \t\n':
+            has_content = True
+        i += 1
+    return count + (1 if has_content else 0)
+
+
+def check_snprintf_format_args(filepath: Path, text: str) -> list[str]:
+    """Return error strings where snprintf format-spec count ≠ argument count."""
+    issues = []
+    for m in _SNPRINTF_RE.finditer(text):
+        fmt = m.group(1)
+        rest = (m.group(2) or '').strip().lstrip(',').strip()
+        # Count specifiers, excluding %% (literal percent)
+        specs = [s for s in _FMT_SPEC_RE.findall(fmt) if s != '%%']
+        if not specs:
+            continue
+        n_args = _count_top_level_args(rest) if rest else 0
+        if n_args != len(specs):
+            lineno = text[:m.start()].count('\n') + 1
+            issues.append(
+                f"  {filepath}:{lineno}: snprintf format has {len(specs)}"
+                f" specifier(s) but {n_args} argument(s) provided"
+                f" (format: \"{fmt[:60]}{'...' if len(fmt) > 60 else ''}\")"
+            )
+    return issues
+
+
+# ---------------------------------------------------------------------------
+# Check 9 – variables{} block required in .can testcase files
+# ---------------------------------------------------------------------------
+#
+# Every CANoe .can module must contain a top-level ``variables { }`` block
+# to declare its global variables.  A file that has testcase / testfunction
+# definitions but no variables block will cause CANoe to reject it with a
+# structural parse error.
+#
+_VARIABLES_BLOCK_RE = re.compile(r'\bvariables\s*\{')
+
+
+def check_variables_block(filepath: Path, text: str) -> list[str]:
+    """Return an error if a .can file that defines testcases has no variables{} block."""
+    # Only applies to .can files (not .cin libraries, which are permitted to
+    # omit the variables block when they have no module-level state).
+    if filepath.suffix.lower() != '.can':
+        return []
+    # Skip example/documentation files
+    if 'Docs' in filepath.parts:
+        return []
+    # Must contain at least one testcase or testfunction definition
+    has_testfunc = bool(_FUNC_DEF_RE.search(text))
+    if not has_testfunc:
+        return []
+    if not _VARIABLES_BLOCK_RE.search(text):
+        return [
+            f"  {filepath}: .can file defines testcase/testfunction but has no"
+            " top-level variables{} block — CANoe will reject this file"
+        ]
+    return []
+
+
+# ---------------------------------------------------------------------------
+# Check 10 – missing semicolons on statement lines
+# ---------------------------------------------------------------------------
+#
+# A statement line that ends with ')' inside a function body almost always
+# needs a terminating ';'.  When it is omitted CANoe raises a parse error on
+# the *following* line, making the real culprit hard to find.
+#
+# Heuristic: inside a function body (brace depth ≥ 1), a non-blank line that
+# • ends with ')' (after stripping whitespace / trailing comments), AND
+# • is not a control-flow keyword (if / for / while / switch / do / else), AND
+# • is not a function *definition* (the next non-blank line is not '{'), AND
+# • the closing ')' is balanced (the line contains a matching '(')
+# … is flagged as likely missing a semicolon.
+#
+_CONTROL_FLOW_RE = re.compile(r'^\s*(if|else\s+if|for|while|switch|do|else)\b')
+_FUNC_DECL_STYLE_RE = re.compile(
+    r'^\s*(?:export\s+)?'
+    r'(?:testcase|testfunction|void|byte|int|long|float|char|word|dword|qword|int64)\s+\w+'
+)
+
+
+def check_missing_semicolons(filepath: Path, text: str) -> list[str]:
+    """Return warnings for statement lines that likely need a terminating ';'."""
+    issues = []
+    lines = text.splitlines()
+    brace_depth = 0
+    n = len(lines)
+
+    for idx, line in enumerate(lines):
+        raw_line = line.rstrip()
+
+        # Safety: strip any residual inline comments the file-level stripper may
+        # have missed (can happen when in-string state drifts across a large file).
+        clean = re.sub(r'//.*$', '', raw_line).rstrip().strip()
+
+        # Track brace depth (approximation — good enough for heuristics)
+        brace_depth += raw_line.count('{') - raw_line.count('}')
+
+        if brace_depth <= 0:
+            continue           # at file scope — function definitions are OK without ;
+        if not clean:
+            continue
+        if clean.startswith('#'):
+            continue           # preprocessor directives (#pragma, #include, …)
+        if not clean.endswith(')'):
+            continue
+        # Skip control-flow keywords, including patterns like "{if (" or "} else if ("
+        if re.match(r'^\{?\s*(if|else\s*if|for|while|switch|do)\b', clean):
+            continue
+        if re.match(r'^\}\s*(else\s*if|else)\b', clean):
+            continue
+        if _CONTROL_FLOW_RE.match(clean):
+            continue
+        # Skip boolean/logical continuation lines (multi-line condition)
+        if clean.startswith('||') or clean.startswith('&&'):
+            continue
+        if _FUNC_DECL_STYLE_RE.match(clean):
+            continue
+
+        # The closing ')' must be balanced by a matching opener on this very line
+        opens = clean.count('(')
+        closes = clean.count(')')
+        if opens == 0 or opens != closes:
+            continue           # unbalanced — multi-line call or complex expression
+
+        # Check that the next non-blank line is not '{' (= function/block opener)
+        for ahead in range(1, 4):
+            if idx + ahead >= n:
+                break
+            nxt = re.sub(r'//.*$', '', lines[idx + ahead]).strip()
+            if nxt and not nxt.startswith('//'):
+                if nxt.startswith('{'):
+                    break      # block opener — this is a declaration, not a call
+                lineno = idx + 1
+                issues.append(
+                    f"  {filepath}:{lineno}: possible missing ';' after"
+                    f" closing ')' — statement: {clean[:80]}"
+                )
+                break
+
+    return issues
+
+
+# ---------------------------------------------------------------------------
 # Main driver
 # ---------------------------------------------------------------------------
 
@@ -340,8 +679,14 @@ def main() -> int:
 
         file_issues = []
         file_issues += check_bracket_balance(fp, cleaned)
-        file_issues += check_includes(fp, raw)       # raw: keep line numbers accurate
+        file_issues += check_includes(fp, raw)            # raw: keep line numbers accurate
         file_issues += check_declarations(fp, cleaned)
+        file_issues += check_capl_api_names(fp, cleaned)
+        file_issues += check_forbidden_identifiers(fp, cleaned)
+        file_issues += check_duplicate_definitions(fp, cleaned)
+        file_issues += check_snprintf_format_args(fp, cleaned)
+        file_issues += check_variables_block(fp, cleaned)
+        file_issues += check_missing_semicolons(fp, cleaned)
 
         if file_issues:
             print(f"[FAIL] {fp.relative_to(root)}")
