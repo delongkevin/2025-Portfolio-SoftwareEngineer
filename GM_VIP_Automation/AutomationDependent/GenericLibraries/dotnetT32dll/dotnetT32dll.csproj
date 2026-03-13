@@ -17,6 +17,12 @@
     <CANoeExecPath Condition="'$(CANoeExecPath)' == ''">C:\Program Files\Vector CANoe 19\Exec64\NETDev</CANoeExecPath>
   </PropertyGroup>
 
+  <!-- Exclude the CI-only VectorCANoeStub subdirectory from this project's compile glob.
+       The stub is a separate project built first in CI to satisfy the reference below. -->
+  <ItemGroup>
+    <Compile Remove="VectorCANoeStub/**" />
+  </ItemGroup>
+
   <!-- Reference Vector CANoe assemblies for threading (Execution.Wait, WaitForTask, etc.) -->
   <!-- Reference directly from CANoe installation -->
   <!-- Note: Vector.CANoe.Runtime.Output doesn't work for standalone CAPL-called DLLs -->

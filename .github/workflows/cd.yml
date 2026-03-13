@@ -8,8 +8,10 @@
 # Pipeline overview
 # -----------------
 #   1. capl-validate  – same CAPL static-analysis gate as CI
-#   2. simulate       – test simulation + HTML report generation
-#   3. release        – attaches the consolidated simulation report and
+#   2. dotnet-build   – compile dotnetT32dll.dll from source (.NET 8.0) and
+#                       validate the resulting binary before release
+#   3. simulate       – test simulation + HTML report generation
+#   4. release        – attaches the consolidated simulation report and
 #                       the simulation summary as assets on the GitHub Release
 #
 # Bench stages (Flash ECU, BVT, Execute Test Suite) require a self-hosted
@@ -62,12 +64,65 @@ jobs:
             --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
-  # Job 2 – Test Simulation + HTML Report
+  # Job 2 – Build dotnetT32dll.dll from source (.NET 8.0)
+  # ---------------------------------------------------------------------------
+  dotnet-build:
+    name: Build dotnetT32dll (.NET 8.0)
+    runs-on: ubuntu-latest
+    needs: capl-validate
+    permissions:
+      contents: read
+
+    env:
+      DOTNET_PROJ: GM_VIP_Automation/AutomationDependent/GenericLibraries/dotnetT32dll
+      STUB_OUT:    /tmp/canoe-stub
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Build VectorCANoe stub assembly
+        run: |
+          dotnet build "$DOTNET_PROJ/VectorCANoeStub/VectorCANoeStub.csproj" \
+            --configuration Release \
+            --output "$STUB_OUT"
+
+      - name: Prepare stub directory layout
+        run: |
+          mkdir -p "$STUB_OUT/net8.0"
+          cp "$STUB_OUT/Vector.CANoe.Threading.dll" "$STUB_OUT/net8.0/"
+
+      - name: Build dotnetT32dll.dll
+        run: |
+          dotnet build "$DOTNET_PROJ/dotnetT32dll.csproj" \
+            --configuration Release \
+            /p:CANoeExecPath="$STUB_OUT"
+
+      - name: Validate dotnetT32dll build artifacts
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
+  # ---------------------------------------------------------------------------
+  # Job 3 – Test Simulation + HTML Report
   # ---------------------------------------------------------------------------
   simulate:
     name: Simulate Test Cases
     runs-on: ubuntu-latest
-    needs: capl-validate
+    needs: [capl-validate, dotnet-build]
     permissions:
       contents: read
 
@@ -108,7 +163,7 @@ jobs:
           if-no-files-found: warn
 
   # ---------------------------------------------------------------------------
-  # Job 3 – Attach release assets
+  # Job 4 – Attach release assets
   # ---------------------------------------------------------------------------
   release:
     name: Publish Release Assets
@@ -134,7 +189,7 @@ jobs:
             release-assets/simulation_summary.txt
 
   # ---------------------------------------------------------------------------
-  # Job 4 – Bench Hardware-in-Loop (self-hosted, opt-in)
+  # Job 5 – Bench Hardware-in-Loop (self-hosted, opt-in)
   # ---------------------------------------------------------------------------
   # Uncomment this job once a self-hosted Windows runner with label
   # "windows-bench" is registered in your repository settings and the
