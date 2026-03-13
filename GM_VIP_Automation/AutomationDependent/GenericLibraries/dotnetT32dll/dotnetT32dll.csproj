@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- Using .NET Framework 4.7 for CANoe compatibility -->
-    <TargetFramework>net47</TargetFramework>
+    <!-- Using .NET 8.0 for CANoe compatibility (CANoe v19.0+) -->
+    <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
     <OutputType>Library</OutputType>
     <RootNamespace>dotnetT32dllLib</RootNamespace>
@@ -16,10 +16,10 @@
   <!-- Reference Vector CANoe assemblies for threading (Execution.Wait, WaitForTask, etc.) -->
   <!-- Reference directly from CANoe installation -->
   <!-- Note: Vector.CANoe.Runtime.Output doesn't work for standalone CAPL-called DLLs -->
-  <!-- Using v40 subfolder for .NET Framework 4.x compatibility -->
+  <!-- Using net8.0 subfolder for .NET 8.0 compatibility -->
   <ItemGroup>
     <Reference Include="Vector.CANoe.Threading, Version=19.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(CANoeExecPath)\v40\Vector.CANoe.Threading.dll</HintPath>
+      <HintPath>$(CANoeExecPath)\net8.0\Vector.CANoe.Threading.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
       <Private>false</Private>
     </Reference>

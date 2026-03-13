@@ -1,7 +1,7 @@
 # dotnetT32dll - .NET DLL for CANoe CAPL Integration
 
-This build provides a .NET Framework 4.7 DLL that can be called from CAPL scripts in Vector CANoe.
-.NET 4.7 has been supported since CANoe ~v12.0. .NET is supported starting with CANoe v19.0.
+This build provides a .NET 8.0 DLL that can be called from CAPL scripts in Vector CANoe.
+.NET 8.0 is supported starting with CANoe v19.0.
 
 ## Overview
 
@@ -16,7 +16,7 @@ Per Vector CANoe documentation, CAPL can call functions from .NET DLLs that fulf
 
 ```
 dotnetT32dll/
-├── dotnetT32dll.csproj      # .NET Framework 4.7 project file (x64)
+├── dotnetT32dll.csproj      # .NET 8.0 project file (x64)
 ├── dotnetT32dll.cs          # C# class with static methods
 ├── cdotnetT32dll.cin        # CAPL include file with wrapper functions
 ├── dotnetT32dll.dll         # Built .NET DLL (output)
@@ -27,8 +27,8 @@ dotnetT32dll/
 ## Building
 
 ### Prerequisites
-- .NET SDK (supports .NET Framework 4.7 targeting)
-- Vector CANoe 13.0 or higher (for runtime execution)
+- .NET SDK 8.0 or higher
+- Vector CANoe 19.0 or higher (for runtime execution)
 
 ### Build Steps
 
@@ -125,7 +125,7 @@ long result = dotnetT32dllLib::dotnetT32dllHelper::TestAdd(10, 20);
 Ensure the DLL is properly referenced with `#pragma netlibrary("dotnetT32dll.dll")` and the DLL is in the search path.
 
 ### "Assembly load error"
-Verify .NET Framework 4.7 is installed and the platform (x64/x86) matches your CANoe configuration.
+Verify .NET 8.0 runtime is installed and the platform (x64/x86) matches your CANoe configuration.
 
 ### CANoe Realtime Overruns
 Use `dllRunT32cmdNonBlocking()` instead of `dllRunT32cmdBlocking()`. The non-blocking version uses `Execution.WaitForTask()` to yield to CANoe's realtime kernel during process execution.
