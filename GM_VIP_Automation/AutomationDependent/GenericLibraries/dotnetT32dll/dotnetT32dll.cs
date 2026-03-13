@@ -82,6 +82,7 @@ namespace dotnetT32dllLib
                 {
                     FileName               = exePath,
                     Arguments              = command,
+                    WorkingDirectory       = System.IO.Path.GetDirectoryName(exePath) ?? "",
                     UseShellExecute        = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError  = true,
