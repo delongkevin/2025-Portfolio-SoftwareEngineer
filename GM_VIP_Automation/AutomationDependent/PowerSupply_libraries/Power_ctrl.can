@@ -184,7 +184,14 @@ export testfunction Power_OFF_ON(int port, int ctrl)  // Turn power output ON or
     else
     {
       write("WARNING: BK Precision 1687b SOUT%d ACK not received on COM%d (ret1=%d 0x%02X 0x%02X)", ctrl, port, ret1, buffer3[0], buffer3[1]);
-      testStepFail("", "Power %s command sent but supply did not acknowledge (COM%d)", ctrl == 0 ? "OFF" : "ON", port);
+      if(ctrl == 0)
+      {
+        testStepFail("", "Power OFF command sent but supply did not acknowledge (COM%d)", port);
+      }
+      else
+      {
+        testStepFail("", "Power ON command sent but supply did not acknowledge (COM%d)", port);
+      }
     }
   }
   else
