@@ -5,18 +5,22 @@
 # Triggered on every push and pull request.
 #
 # What runs here (no bench hardware required):
-#   1. CAPL Validation  – validate_capl.py
+#   1. CAPL Validation     – validate_capl.py
 #        Checks bracket balance, #include paths, function declarations, and
 #        XML-vs-.can cross-file consistency across all .can/.cin files.
-#   2. DLL Validation   – validate_dotnetT32dll.py
-#        Verifies that the committed dotnetT32dll.dll is a .NET 8.0 build
-#        with all required runtime files and symbols intact.  This catches
-#        the "Unknown symbol 'dotnetT32dllLib'" CAPL compile error before
-#        the DLL reaches a test bench.
-#   3. Test Simulation  – simulate_tests.py
+#   2. dotnet Build        – dotnet build dotnetT32dll.csproj
+#        Compiles the .NET 8.0 DLL from source using a VectorCANoeStub shim
+#        in place of the real CANoe assemblies.  Catches C# compile errors
+#        that would otherwise only surface at bench deployment time.
+#   3. DLL Validation      – validate_dotnetT32dll.py
+#        Verifies that dotnetT32dll.dll (freshly compiled in step 2) is a
+#        .NET 8.0 build with all required runtime files and symbols intact.
+#        This catches the "Unknown symbol 'dotnetT32dllLib'" CAPL compile
+#        error before the DLL reaches a test bench.
+#   4. Test Simulation     – simulate_tests.py
 #        Discovers every testcase definition in the CAPL source files and
 #        generates JUnit-compatible XML reports without physical hardware.
-#   4. Simulation Report – merge_reports.py
+#   5. Simulation Report   – merge_reports.py
 #        Merges the per-suite simulated XMLs into a single HTML report and
 #        uploads it as a build artifact.
 #
@@ -77,11 +81,92 @@ jobs:
             --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
-  # Job 2 – DLL Validation
+  # Job 2 – Build dotnetT32dll.dll from source (.NET 8.0)
+  # ---------------------------------------------------------------------------
+  dotnet-build:
+    name: Build dotnetT32dll (.NET 8.0)
+    runs-on: ubuntu-latest
+    needs: capl-validate
+    permissions:
+      contents: read
+
+    env:
+      DOTNET_PROJ: GM_VIP_Automation/AutomationDependent/GenericLibraries/dotnetT32dll
+      STUB_OUT:    /tmp/canoe-stub
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build VectorCANoe stub assembly
+        # Produces Vector.CANoe.Threading.dll so the main project can be
+        # compiled without a real Vector CANoe installation.
+        run: |
+          dotnet build "$DOTNET_PROJ/VectorCANoeStub/VectorCANoeStub.csproj" \
+            --configuration Release \
+            --output "$STUB_OUT"
+
+      - name: Prepare stub directory layout
+        # CANoeExecPath\net8.0\Vector.CANoe.Threading.dll is the HintPath
+        # used in dotnetT32dll.csproj; replicate that structure with the stub.
+        run: |
+          mkdir -p "$STUB_OUT/net8.0"
+          cp "$STUB_OUT/Vector.CANoe.Threading.dll" "$STUB_OUT/net8.0/"
+
+      - name: Build dotnetT32dll.dll
+        # Pass the stub directory as CANoeExecPath so MSBuild resolves the
+        # reference.  The AfterBuild target in the .csproj copies the output
+        # DLL + runtimeconfig.json + deps.json to controlLib/T32/ automatically.
+        run: |
+          dotnet build "$DOTNET_PROJ/dotnetT32dll.csproj" \
+            --configuration Release \
+            /p:CANoeExecPath="$STUB_OUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Validate dotnetT32dll build artifacts
+        # Run the full validator against the freshly compiled DLL to catch
+        # .NET 8 targeting, required symbols, and .cin API consistency issues.
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Run dotnetT32dll validation
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
+  # ---------------------------------------------------------------------------
+  # Job 3 – DLL Validation (committed artifacts)
+  # ---------------------------------------------------------------------------
+  # Validates the dotnetT32dll.dll binary that is committed to the repository
+  # (controlLib/T32/) independently of the dotnet-build job.  This catches the
+  # case where someone edits dotnetT32dll.cs but forgets to rebuild and commit
+  # the updated DLL before opening a PR.
   # ---------------------------------------------------------------------------
   dotnetdll-validate:
     name: DLL Validation (dotnetT32dll)
     runs-on: ubuntu-latest
+    needs: capl-validate
     permissions:
       contents: read
 
@@ -98,17 +183,19 @@ jobs:
         run: pip install --upgrade pip
 
       - name: Validate dotnetT32dll build artifacts
+        # Validates the committed DLL (controlLib/T32/dotnetT32dll.dll).
+        # The dotnet-build job validates the freshly compiled DLL.
         run: |
           python GM_VIP_Automation/validate_dotnetT32dll.py \
             --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
-  # Job 3 – Test Simulation + Report
+  # Job 4 – Test Simulation + Report
   # ---------------------------------------------------------------------------
   simulate:
     name: Simulate Test Cases
     runs-on: ubuntu-latest
-    needs: capl-validate
+    needs: [capl-validate, dotnet-build, dotnetdll-validate]
     permissions:
       contents: read
 

@@ -2,9 +2,9 @@
 # GM VIP Automation – Continuous Testing (CT)
 # =============================================================================
 #
-# Runs the full CAPL validation and test simulation on a daily schedule to
-# catch regressions that time-based changes (e.g. updated test suite XMLs or
-# CAPL source edits) may introduce between feature commits.
+# Runs the full CAPL validation, .NET build, and test simulation on a daily
+# schedule to catch regressions that time-based changes (e.g. updated test
+# suite XMLs or CAPL source edits) may introduce between feature commits.
 #
 # Triggers
 # --------
@@ -14,8 +14,10 @@
 #
 # Jobs
 #   1. capl-validate  – static analysis gate (bracket balance, includes, etc.)
-#   2. simulate-all   – simulate every test suite and generate the HTML report
-#   3. summary        – print a concise pass/fail table to the run log and
+#   2. dotnet-build   – compile dotnetT32dll.dll from source (.NET 8.0) and
+#                       validate the resulting binary
+#   3. simulate-all   – simulate every test suite and generate the HTML report
+#   4. summary        – print a concise pass/fail table to the run log and
 #                       create a job summary visible in the GitHub Actions UI
 #
 # Artifacts retained
@@ -71,12 +73,65 @@ jobs:
             --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
-  # Job 2 – Full Test Simulation
+  # Job 2 – Build dotnetT32dll.dll from source (.NET 8.0)
+  # ---------------------------------------------------------------------------
+  dotnet-build:
+    name: Build dotnetT32dll (.NET 8.0)
+    runs-on: ubuntu-latest
+    needs: capl-validate
+    permissions:
+      contents: read
+
+    env:
+      DOTNET_PROJ: GM_VIP_Automation/AutomationDependent/GenericLibraries/dotnetT32dll
+      STUB_OUT:    /tmp/canoe-stub
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Build VectorCANoe stub assembly
+        run: |
+          dotnet build "$DOTNET_PROJ/VectorCANoeStub/VectorCANoeStub.csproj" \
+            --configuration Release \
+            --output "$STUB_OUT"
+
+      - name: Prepare stub directory layout
+        run: |
+          mkdir -p "$STUB_OUT/net8.0"
+          cp "$STUB_OUT/Vector.CANoe.Threading.dll" "$STUB_OUT/net8.0/"
+
+      - name: Build dotnetT32dll.dll
+        run: |
+          dotnet build "$DOTNET_PROJ/dotnetT32dll.csproj" \
+            --configuration Release \
+            /p:CANoeExecPath="$STUB_OUT"
+
+      - name: Validate dotnetT32dll build artifacts
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
+  # ---------------------------------------------------------------------------
+  # Job 3 – Full Test Simulation
   # ---------------------------------------------------------------------------
   simulate-all:
     name: Simulate All Test Suites
     runs-on: ubuntu-latest
-    needs: capl-validate
+    needs: [capl-validate, dotnet-build]
     permissions:
       contents: read
 
@@ -139,12 +194,12 @@ jobs:
           retention-days: 30
 
   # ---------------------------------------------------------------------------
-  # Job 3 – GitHub Actions job summary
+  # Job 4 – GitHub Actions job summary
   # ---------------------------------------------------------------------------
   summary:
     name: Test Summary
     runs-on: ubuntu-latest
-    needs: simulate-all
+    needs: [capl-validate, dotnet-build, simulate-all]
     if: always()
     permissions:
       contents: read
@@ -170,8 +225,9 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Stage | Result |" >> "$GITHUB_STEP_SUMMARY"
           echo "|-------|--------|" >> "$GITHUB_STEP_SUMMARY"
-          echo "| CAPL Validation | ${{ needs.capl-validate.result }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Test Simulation | ${{ needs.simulate-all.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| CAPL Validation    | ${{ needs.capl-validate.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| dotnet Build (.NET 8) | ${{ needs.dotnet-build.result }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Test Simulation    | ${{ needs.simulate-all.result }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           if [ -f summary-output/simulation_summary.txt ]; then
             echo "### Simulation Summary" >> "$GITHUB_STEP_SUMMARY"
