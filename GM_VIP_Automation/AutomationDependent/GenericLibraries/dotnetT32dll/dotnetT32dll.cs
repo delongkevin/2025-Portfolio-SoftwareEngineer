@@ -78,11 +78,17 @@ namespace dotnetT32dllLib
 
             try
             {
+                string workingDirectory = System.IO.Path.GetDirectoryName(exePath);
+                if (string.IsNullOrWhiteSpace(workingDirectory))
+                {
+                    workingDirectory = Environment.CurrentDirectory;
+                }
+
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName               = exePath,
                     Arguments              = command,
-                    WorkingDirectory       = System.IO.Path.GetDirectoryName(exePath) ?? "",
+                    WorkingDirectory       = workingDirectory,
                     UseShellExecute        = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError  = true,
