@@ -127,16 +127,20 @@ jobs:
             --configuration Release \
             /p:CANoeExecPath="$STUB_OUT"
 
-      - name: Verify dotnetT32dll artifacts were produced
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Validate dotnetT32dll build artifacts
+        # Run the full validator against the freshly compiled DLL to catch
+        # .NET 8 targeting, required symbols, and .cin API consistency issues.
         run: |
-          T32DIR="GM_VIP_Automation/AutomationDependent/GenericLibraries/controlLib/T32"
-          for f in dotnetT32dll.dll dotnetT32dll.runtimeconfig.json dotnetT32dll.deps.json; do
-            if [ ! -f "$T32DIR/$f" ]; then
-              echo "::error::Expected artifact missing: $T32DIR/$f"
-              exit 1
-            fi
-          done
-          echo "All dotnetT32dll artifacts present in controlLib/T32/"
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
   # Job 3 – DLL Validation (committed artifacts)

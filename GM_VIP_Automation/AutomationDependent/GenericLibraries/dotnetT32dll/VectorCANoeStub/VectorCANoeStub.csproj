@@ -19,7 +19,7 @@
          main project's HintPath resolves correctly via /p:CANoeExecPath. -->
     <AssemblyName>Vector.CANoe.Threading</AssemblyName>
     <OutputType>Library</OutputType>
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <!-- Suppress version/informational attributes that conflict with the real assembly. -->
