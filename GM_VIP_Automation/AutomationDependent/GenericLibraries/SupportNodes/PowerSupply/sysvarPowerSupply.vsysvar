@@ -2,24 +2,27 @@
 <systemvariables version="4">
   <namespace name="" comment="" interface="">
     <namespace name="PowerSupply1_Variables" comment="" interface="">
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="BaudRate1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="COMPort1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="BaudRate1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="9600" minValue="0" minValuePhys="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="COMPort1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="4" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="CurrentVal1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="DataBits1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="DataBits1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="8" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="FlowControl1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="MaxCurrent1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="MaxVoltage1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="MaxCurrent1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="2000" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="MaxVoltage1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="15000" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="OutputVal1" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" startValue="0" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="OutputValCurrent1" comment="" bitcount="64" isSigned="true" encoding="65001" type="float" startValue="0" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Parity1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWwaitTime1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="50" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SCPIAddress1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="StopBits1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Type1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="StopBits1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Type1" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="5" minValue="0" minValuePhys="0" maxValue="5" maxValuePhys="5">
         <valuetable name="Custom" definesMinMax="false">
           <valuetableentry value="0" lowerBound="0" upperBound="0" description="Not Available" displayString="Not Available" />
-          <valuetableentry value="1" lowerBound="1" upperBound="1" description="EX355P" displayString="EX355P" />
-          <valuetableentry value="2" lowerBound="2" upperBound="2" description="Custom" displayString="Custom" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="General" displayString="General" />
+          <valuetableentry value="2" lowerBound="2" upperBound="2" description="SCPI" displayString="SCPI" />
+          <valuetableentry value="3" lowerBound="3" upperBound="3" description="GeneralDual_1" displayString="GeneralDual_1" />
+          <valuetableentry value="4" lowerBound="4" upperBound="4" description="GeneralDual_2" displayString="GeneralDual_2" />
+          <valuetableentry value="5" lowerBound="5" upperBound="5" description="BKPrecision" displayString="BKPrecision" />
         </valuetable>
       </variable>
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="VoltageVal1" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
@@ -39,11 +42,14 @@
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWwaitTime2" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="50" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SCPIAddress2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="StopBits2" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Type2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="Type2" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="5" maxValuePhys="5">
         <valuetable name="Custom" definesMinMax="false">
           <valuetableentry value="0" lowerBound="0" upperBound="0" description="Not Available" displayString="Not Available" />
-          <valuetableentry value="1" lowerBound="1" upperBound="1" description="EX355P" displayString="EX355P" />
-          <valuetableentry value="2" lowerBound="2" upperBound="2" description="Custom" displayString="Custom" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="General" displayString="General" />
+          <valuetableentry value="2" lowerBound="2" upperBound="2" description="SCPI" displayString="SCPI" />
+          <valuetableentry value="3" lowerBound="3" upperBound="3" description="GeneralDual_1" displayString="GeneralDual_1" />
+          <valuetableentry value="4" lowerBound="4" upperBound="4" description="GeneralDual_2" displayString="GeneralDual_2" />
+          <valuetableentry value="5" lowerBound="5" upperBound="5" description="BKPrecision" displayString="BKPrecision" />
         </valuetable>
       </variable>
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="VoltageVal2" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" />
@@ -71,14 +77,14 @@
       </variable>
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWoff" comment="" bitcount="1" isSigned="false" encoding="65001" type="int" startValue="0" />
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWon" comment="" bitcount="1" isSigned="false" encoding="65001" type="int" startValue="0" />
-      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWType" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3" maxValuePhys="3">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWType" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="5" maxValuePhys="5">
         <valuetable name="vtPSType" definesMinMax="false">
           <valuetableentry value="0" lowerBound="0" upperBound="0" description="NotAvailable" displayString="NotAvailable" />
           <valuetableentry value="1" lowerBound="1" upperBound="1" description="General" displayString="General" />
           <valuetableentry value="2" lowerBound="2" upperBound="2" description="SCPI" displayString="SCPI" />
           <valuetableentry value="3" lowerBound="3" upperBound="3" description="GeneralDual_1" displayString="GeneralDual_1" />
           <valuetableentry value="4" lowerBound="4" upperBound="4" description="GeneralDual_2" displayString="GeneralDual_2" />
-          <valuetableentry value="5" lowerBound="5" upperBound="5" description="Korad" displayString="Korad" />
+          <valuetableentry value="5" lowerBound="5" upperBound="5" description="BKPrecision" displayString="BKPrecision" />
         </valuetable>
       </variable>
       <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="POWwaitTime" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="50" />

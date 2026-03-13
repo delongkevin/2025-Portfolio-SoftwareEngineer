@@ -15,7 +15,9 @@ variables
   byte bNoDesiredChar = 0;
   
   //Array for Reading Data used at RS232OnReceive
-  byte bReadData[8];
+  // BK Precision 1687b GETD response is VVVVAAAAOM\r (9 data bytes + CR = 10 bytes).
+  // Buffer must be >= 10 to avoid overflow reset that corrupts dwElementsRead before CR fires.
+  byte bReadData[12];
   byte bReadDataSCPI[20];
   
   //Flags
