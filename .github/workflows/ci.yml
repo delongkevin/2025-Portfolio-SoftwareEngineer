@@ -8,10 +8,15 @@
 #   1. CAPL Validation  – validate_capl.py
 #        Checks bracket balance, #include paths, function declarations, and
 #        XML-vs-.can cross-file consistency across all .can/.cin files.
-#   2. Test Simulation  – simulate_tests.py
+#   2. DLL Validation   – validate_dotnetT32dll.py
+#        Verifies that the committed dotnetT32dll.dll is a .NET 8.0 build
+#        with all required runtime files and symbols intact.  This catches
+#        the "Unknown symbol 'dotnetT32dllLib'" CAPL compile error before
+#        the DLL reaches a test bench.
+#   3. Test Simulation  – simulate_tests.py
 #        Discovers every testcase definition in the CAPL source files and
 #        generates JUnit-compatible XML reports without physical hardware.
-#   3. Simulation Report – merge_reports.py
+#   4. Simulation Report – merge_reports.py
 #        Merges the per-suite simulated XMLs into a single HTML report and
 #        uploads it as a build artifact.
 #
@@ -72,7 +77,33 @@ jobs:
             --root GM_VIP_Automation
 
   # ---------------------------------------------------------------------------
-  # Job 2 – Test Simulation + Report
+  # Job 2 – DLL Validation
+  # ---------------------------------------------------------------------------
+  dotnetdll-validate:
+    name: DLL Validation (dotnetT32dll)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Validate dotnetT32dll build artifacts
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
+  # ---------------------------------------------------------------------------
+  # Job 3 – Test Simulation + Report
   # ---------------------------------------------------------------------------
   simulate:
     name: Simulate Test Cases
