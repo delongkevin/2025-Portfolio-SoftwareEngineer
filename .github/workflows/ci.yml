@@ -142,6 +142,19 @@ jobs:
           python GM_VIP_Automation/validate_dotnetT32dll.py \
             --root GM_VIP_Automation
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install --upgrade pip
+
+      - name: Run dotnetT32dll validation
+        run: |
+          python GM_VIP_Automation/validate_dotnetT32dll.py \
+            --root GM_VIP_Automation
+
   # ---------------------------------------------------------------------------
   # Job 3 – DLL Validation (committed artifacts)
   # ---------------------------------------------------------------------------
