@@ -76,19 +76,35 @@ namespace dotnetT32dllLib
             string errorMessage  = "";
             int processExitCode  = -1;
 
+            // Validate that exePath yields a non-empty, existing working directory
+            // before attempting to start the process.  An empty result means exePath
+            // is relative (e.g. "T32_API.exe") or a bare drive root, both of which
+            // would reproduce the original "cannot start process with working directory"
+            // failure.  Fail fast here with a clear diagnostic rather than silently
+            // using an empty or unrelated directory.
+            string workingDir = System.IO.Path.GetDirectoryName(exePath);
+            string pathError  = null;
+            if (string.IsNullOrEmpty(workingDir))
+                pathError = $"Cannot determine working directory from exePath '{exePath}'. " +
+                            "Provide an absolute path to T32_API.exe.";
+            else if (!System.IO.Directory.Exists(workingDir))
+                pathError = $"Working directory '{workingDir}' (derived from exePath '{exePath}') does not exist.";
+
+            if (pathError != null)
+            {
+                message = pathError;
+                if (exitCode != null && exitCode.Length > 0)
+                    exitCode[0] = -1;
+                return -1;
+            }
+
             try
             {
-                string workingDirectory = System.IO.Path.GetDirectoryName(exePath);
-                if (string.IsNullOrWhiteSpace(workingDirectory))
-                {
-                    workingDirectory = Environment.CurrentDirectory;
-                }
-
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName               = exePath,
                     Arguments              = command,
-                    WorkingDirectory       = workingDirectory,
+                    WorkingDirectory       = workingDir,
                     UseShellExecute        = false,
                     RedirectStandardOutput = true,
                     RedirectStandardError  = true,
