@@ -22,6 +22,13 @@ if ([string]::IsNullOrEmpty($CANoeExecPath)) {
     )
 
     foreach ($path in $possiblePaths) {
+        # .NET 8.0 assemblies are placed in a net8.0 subfolder in CANoe v19+
+        if (Test-Path "$path\net8.0\Vector.CANoe.Runtime.dll") {
+            $CANoeExecPath = $path
+            Write-Host "Found CANoe at: $CANoeExecPath" -ForegroundColor Green
+            break
+        }
+        # Fallback: check top-level for older CANoe installations
         if (Test-Path "$path\Vector.CANoe.Runtime.dll") {
             $CANoeExecPath = $path
             Write-Host "Found CANoe at: $CANoeExecPath" -ForegroundColor Green
@@ -37,11 +44,14 @@ if ([string]::IsNullOrEmpty($CANoeExecPath)) {
     }
 }
 
-# Verify the CANoe assemblies exist
+# Verify the CANoe assemblies exist.
+# In CANoe v19+ with .NET 8.0 support, assemblies live in the net8.0 subfolder.
 $requiredAssemblies = @("Vector.CANoe.Runtime.dll", "Vector.CANoe.Threading.dll")
 foreach ($asm in $requiredAssemblies) {
-    if (-not (Test-Path "$CANoeExecPath\$asm")) {
-        Write-Host "ERROR: Required assembly not found: $CANoeExecPath\$asm" -ForegroundColor Red
+    $net8Path  = "$CANoeExecPath\net8.0\$asm"
+    $topPath   = "$CANoeExecPath\$asm"
+    if (-not (Test-Path $net8Path) -and -not (Test-Path $topPath)) {
+        Write-Host "ERROR: Required assembly not found in '$CANoeExecPath' or '$CANoeExecPath\net8.0': $asm" -ForegroundColor Red
         exit 1
     }
 }
@@ -61,10 +71,12 @@ dotnet build $projectPath --configuration $Configuration /p:CANoeExecPath="$CANo
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n=== Build Successful ===" -ForegroundColor Green
-    $outputDll = Join-Path $scriptDir "bin\$Configuration\net8.0\dotnetT32dll.dll"
-    $targetDll = Join-Path $scriptDir "..\controlLib\T32\dotnetT32dll.dll"
-    $outputCin = Join-Path $scriptDir "cdotnetT32dll.cin"
-    $targetCin = Join-Path $scriptDir "..\controlLib\T32\cdotnetT32dll.cin"
+    $outputDll           = Join-Path $scriptDir "bin\$Configuration\net8.0\dotnetT32dll.dll"
+    $outputRuntimeConfig = Join-Path $scriptDir "bin\$Configuration\net8.0\dotnetT32dll.runtimeconfig.json"
+    $outputDepsJson      = Join-Path $scriptDir "bin\$Configuration\net8.0\dotnetT32dll.deps.json"
+    $targetDll           = Join-Path $scriptDir "..\controlLib\T32\dotnetT32dll.dll"
+    $outputCin           = Join-Path $scriptDir "cdotnetT32dll.cin"
+    $targetCin           = Join-Path $scriptDir "..\controlLib\T32\cdotnetT32dll.cin"
 
     if (Test-Path $outputDll) {
         Write-Host "Output DLL: $outputDll" -ForegroundColor Green
@@ -72,6 +84,22 @@ if ($LASTEXITCODE -eq 0) {
     if (Test-Path $targetDll) {
         Write-Host "Copied to: $targetDll" -ForegroundColor Green
     }
+
+    # Copy runtimeconfig.json - required by CANoe to initialize the .NET 8.0 runtime
+    # when loading the DLL via #pragma netlibrary.
+    if (Test-Path $outputRuntimeConfig) {
+        Copy-Item -Force $outputRuntimeConfig (Join-Path $scriptDir "..\controlLib\T32\dotnetT32dll.runtimeconfig.json")
+        Write-Host "Copied runtimeconfig.json to controlLib\T32\" -ForegroundColor Green
+    } else {
+        Write-Host "WARNING: dotnetT32dll.runtimeconfig.json not found - ensure <EnableDynamicLoading>true</EnableDynamicLoading> is set in the .csproj" -ForegroundColor Yellow
+    }
+
+    # Copy deps.json - required for assembly dependency resolution at runtime.
+    if (Test-Path $outputDepsJson) {
+        Copy-Item -Force $outputDepsJson (Join-Path $scriptDir "..\controlLib\T32\dotnetT32dll.deps.json")
+        Write-Host "Copied deps.json to controlLib\T32\" -ForegroundColor Green
+    }
+
     Copy-Item -Force $outputCin $targetCin
     Write-Host "Output CIN: $outputCin" -ForegroundColor Green
 

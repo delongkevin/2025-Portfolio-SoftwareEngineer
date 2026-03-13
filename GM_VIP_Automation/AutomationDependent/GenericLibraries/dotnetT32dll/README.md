@@ -121,6 +121,19 @@ long result = dotnetT32dllLib::dotnetT32dllHelper::TestAdd(10, 20);
 
 ## Troubleshooting
 
+### "Unknown symbol 'dotnetT32dllLib'" in CAPL (after .NET 8.0 recompile)
+This is the most common error after switching from .NET Framework to .NET 8.0.
+CANoe's `#pragma netlibrary` loads the DLL as a **native-hosted** .NET assembly and needs
+`dotnetT32dll.runtimeconfig.json` alongside the DLL to bootstrap the .NET 8.0 runtime.
+
+Ensure the `.csproj` contains:
+```xml
+<EnableDynamicLoading>true</EnableDynamicLoading>
+```
+Then rebuild. The build target and `Build-dotnetT32dll.ps1` will copy
+`dotnetT32dll.runtimeconfig.json` and `dotnetT32dll.deps.json` to `controlLib\T32\`
+alongside `dotnetT32dll.dll`. All three files must be present in the same directory.
+
 ### "Method not found in CAPL"
 Ensure the DLL is properly referenced with `#pragma netlibrary("dotnetT32dll.dll")` and the DLL is in the search path.
 
