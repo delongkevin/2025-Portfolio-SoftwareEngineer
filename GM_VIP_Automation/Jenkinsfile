@@ -311,7 +311,7 @@ $found.FullName
                 // -----------------------------------------------------------------
                 stage('Build .NET DLL') {
                 // -----------------------------------------------------------------
-                // Compiles dotnetT32dll.csproj (net47, x64) - the CAPL #pragma netlibrary
+                // Compiles dotnetT32dll.csproj (net8.0, x64) - the CAPL #pragma netlibrary
                 // bridge to the Lauterbach T32 API.
                 //
                 // CANoe64.exe must be in PATH.  CANOE_EXEC_PATH (NETDev folder) is
@@ -328,7 +328,7 @@ $found.FullName
                                 currentBuild.result = 'UNSTABLE'
                                 return
                             }
-                            def threadingDll = "${env.CANOE_EXEC_PATH}\\v40\\Vector.CANoe.Threading.dll"
+                            def threadingDll = "${env.CANOE_EXEC_PATH}\\net8.0\\Vector.CANoe.Threading.dll"
                             def dllPresent = bat(
                                 script: "if exist \"${threadingDll}\" (exit 0) else (exit 1)",
                                 returnStatus: true

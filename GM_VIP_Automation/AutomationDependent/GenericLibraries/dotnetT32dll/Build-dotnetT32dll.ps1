@@ -50,7 +50,7 @@ Write-Host "CANoe assemblies verified." -ForegroundColor Green
 # Build the project
 $projectPath = Join-Path $scriptDir "dotnetT32dll.csproj"
 
-Write-Host "Building .NET Framework 4.7 library (x64)..." -ForegroundColor Cyan
+Write-Host "Building .NET 8.0 library (x64)..." -ForegroundColor Cyan
 Write-Host "Using CANoe path: $CANoeExecPath" -ForegroundColor Cyan
 
 # Clean and rebuild
@@ -61,7 +61,7 @@ dotnet build $projectPath --configuration $Configuration /p:CANoeExecPath="$CANo
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n=== Build Successful ===" -ForegroundColor Green
-    $outputDll = Join-Path $scriptDir "bin\$Configuration\net47\dotnetT32dll.dll"
+    $outputDll = Join-Path $scriptDir "bin\$Configuration\net8.0\dotnetT32dll.dll"
     $targetDll = Join-Path $scriptDir "..\controlLib\T32\dotnetT32dll.dll"
     $outputCin = Join-Path $scriptDir "cdotnetT32dll.cin"
     $targetCin = Join-Path $scriptDir "..\controlLib\T32\cdotnetT32dll.cin"
