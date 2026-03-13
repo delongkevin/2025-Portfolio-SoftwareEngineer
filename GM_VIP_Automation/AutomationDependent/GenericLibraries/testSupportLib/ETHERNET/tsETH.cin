@@ -381,7 +381,7 @@ void E_ETH_CheckChannelLinkStatus(char aPortName[], enum cc_eETHLinkStatus aExpS
     vFctn_REPORTStepEvaluation(chTempText, PASS); 
   }
   else{
-    snprintf(chTempText,elcount(chTempText), "FAIL: %s link status is %s expected: %s", aPortName, lRecvStatus, cc_chLinkStatus[lRecvStatus], cc_chLinkStatus[aExpStatus]);
+    snprintf(chTempText,elcount(chTempText), "FAIL: %s link status is %s expected: %s", aPortName, cc_chLinkStatus[lRecvStatus], cc_chLinkStatus[aExpStatus]);
     vFctn_REPORTStepEvaluation(chTempText, FAIL); 
   }
 }

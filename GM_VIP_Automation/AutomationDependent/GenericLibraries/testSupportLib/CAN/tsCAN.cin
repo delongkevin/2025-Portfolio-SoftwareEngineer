@@ -1097,7 +1097,7 @@ void A_CAN_SendBurstMessage(dword aMsgID[], byte aBytesToBeSend[], dword aTimeBe
     }
     else//An error occured
     {
-      snprintf(chFailText, elcount(chFailText), "An error occured, the aMsgDLC is wrong -%d-(must be beween 1 and 8) or the CAN Channel number is wrong -%d-(must be between 1 and 32).");  
+      snprintf(chFailText, elcount(chFailText), "An error occurred, the aMsgDLC is wrong -%d-(must be between 1 and 8) or the CAN Channel number is wrong -%d-(must be between 1 and 32).", aDataLengthOfMessage, aCANChannel);  
       if((byte)DebugFuncInternal & bDebugFlag)
         writeDbgLevel (DebugFuncInternal, "ERROR: %s", chFailText);
       vFctn_REPORTActionEvaluation(chFailText, FAIL);  

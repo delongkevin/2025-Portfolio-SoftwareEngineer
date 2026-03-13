@@ -2312,14 +2312,14 @@ void E_DIAG_SendAndComparePrimitiveData(diagRequest *aDiagReq, dword aStartByte,
             //SUCCESS: Primitive data is NOT IDENTICAL, as expected
             if ( aPrimitiveDataToBeCompared != qwActualPrimitiveValue )
             {
-              snprintf(chPassText,elcount(chPassText), "SUCCESS: Primitive data of diag request: -%s- is NOT IDENTICAL with expected value: 0x%llX(!= 0x%llX).", chServiceRequestToString, aPrimitiveDataToBeCompared);
+              snprintf(chPassText,elcount(chPassText), "SUCCESS: Primitive data of diag request: -%s- is NOT IDENTICAL with expected value: 0x%llX(!= 0x%llX).", chServiceRequestToString, aPrimitiveDataToBeCompared, qwActualPrimitiveValue);
       		    if ( (byte)DebugFuncInternal & bDebugFlag)
       		      writeDbgLevel (DebugFuncInternal, chPassText);
       		    vFctn_REPORTStepEvaluation(chPassText, PASS);
             }
             else //FAIL: Primitive data is IDENTICAL, as not expected
             {
-              snprintf(chFailText,elcount(chFailText), "FAILED: Primitive data of diag request: -%s- is IDENTICAL, as not expected, with value: 0x%llX.", chServiceRequestToString, aPrimitiveDataToBeCompared, qwActualPrimitiveValue);
+              snprintf(chFailText,elcount(chFailText), "FAILED: Primitive data of diag request: -%s- is IDENTICAL, as not expected, with value: 0x%llX.", chServiceRequestToString, qwActualPrimitiveValue);
       		    if ( (byte)DebugFuncInternal & bDebugFlag)
       		      writeDbgLevel (DebugFuncInternal, chFailText);
       		    vFctn_REPORTStepEvaluation(chFailText, FAIL);
